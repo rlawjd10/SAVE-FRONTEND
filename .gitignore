@@ -16,9 +16,8 @@ local.properties
 
 
 android/app/src/main/AndroidManifest.xml
-/app/src/main/res/values/colors.xml
-/app/src/main/res/values/strings.xml
-
+app/src/main/res/values/strings.xml
+app/src/main/res/values/colors.xml
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,android,kotlin,androidstudio
