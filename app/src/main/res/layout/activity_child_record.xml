@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Record.ChildRecordActivity">
+
+<!--* 필수 입력 사항-->
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    app:layout_constraintBottom_toBottomOf="@id/child_name"
+    app:layout_constraintEnd_toEndOf="@+id/age_notSure_btn"
+    android:layout_marginTop="106dp"
+
+    android:text="* 필수 입력 사항"
+    android:fontFamily="@font/pretendard_semi_bold"
+    android:textColor="#FF7F61"
+    android:textSize="10sp"
+
+    />
+
+<!--아이 이름 입력-->
+<TextView
+    android:id="@+id/child_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="@+id/record_child_name"
+    android:text="이름"
+    android:fontFamily="@font/pretendard_bold"
+    android:textColor="@color/black"
+    android:textSize="16sp"
+    android:layout_marginTop="124dp"
+    />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_bold"
+        android:text="*"
+        android:textColor="#FF7F61"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@+id/child_name"
+        app:layout_constraintTop_toTopOf="@+id/child_name"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/record_child_name"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:backgroundTint="#FF7F61"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/child_name"
+        app:layout_constraintRight_toLeftOf="@+id/age_notSure_btn"
+
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:inputType="textPersonName"
+        android:text="김가명"
+
+        android:textColor="#FF7F61"
+        android:textSize="16sp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_width="283dp"
+        android:layout_height="28dp"
+        android:text="이름을 알 수 없는 경우, 대상 아동을 특정할 수 있는 호칭을 입력해주세요.
+ex) ‘옆집 아들’, ‘3층 아이’"
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:textColor="#FF7F61"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/record_child_name"
+        app:layout_constraintTop_toBottomOf="@+id/record_child_name"
+        />
+
+    <android.widget.Button
+        android:id="@+id/age_notSure_btn"
+        android:layout_width="40dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/white"
+        android:drawableRight="@drawable/icn_check_02_off"
+        android:fontFamily="@font/pretendard_semi_bold"
+
+        android:text="추정"
+        android:textColor="#B5B5B5"
+        android:textSize="12sp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/record_child_name"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/record_child_name" />
+
+
+<!-- 아이 성별 입력 -->
+<TextView
+    android:id="@+id/child_gender"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="@id/child_name"
+    app:layout_constraintTop_toBottomOf="@id/child_name"
+    android:text="성별"
+    android:fontFamily="@font/pretendard_bold"
+    android:textColor="@color/black"
+    android:textSize="16sp"
+    android:layout_marginTop="100dp"
+    />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintLeft_toRightOf="@+id/child_gender"
+    app:layout_constraintTop_toTopOf="@+id/child_gender"
+    android:text="*"
+    android:fontFamily="@font/pretendard_bold"
+    android:textColor="#FF7F61"
+    android:textSize="16sp"
+    tools:ignore="MissingConstraints" />
+
+<android.widget.Button
+    android:layout_width="94dp"
+    android:layout_height="28dp"
+    android:id="@+id/child_male"
+    android:background="@color/white"
+    android:backgroundTint="#FF7F61"
+    app:layout_constraintHorizontal_chainStyle="packed"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/child_gender"
+    app:layout_constraintRight_toLeftOf="@+id/child_female"
+    android:layout_marginTop="18dp"
+
+    android:text="남"
+    android:gravity="center"
+    android:textColor="@color/white"
+    android:textSize="13sp"
+    android:fontFamily="@font/pretendard_semi_bold"
+    />
+<android.widget.Button
+    android:layout_width="94dp"
+    android:layout_height="28dp"
+    android:id="@+id/child_female"
+    android:background="@color/white"
+    android:backgroundTint="#FF7F61"
+
+    app:layout_constraintLeft_toRightOf="@+id/child_male"
+    app:layout_constraintTop_toBottomOf="@id/child_gender"
+    app:layout_constraintRight_toLeftOf="@+id/child_dontKnow"
+
+
+    android:layout_marginTop="18dp"
+    android:layout_marginLeft="12dp"
+    android:text="여"
+    android:gravity="center"
+    android:textColor="@color/white"
+    android:textSize="13sp"
+    android:fontFamily="@font/pretendard_semi_bold"
+    />
+<android.widget.Button
+    android:layout_width="94dp"
+    android:layout_height="28dp"
+    android:id="@+id/child_dontKnow"
+    android:background="@color/white"
+    android:backgroundTint="#FF7F61"
+
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/child_gender"
+    app:layout_constraintLeft_toRightOf="@id/child_female"
+
+    android:layout_marginTop="18dp"
+    android:layout_marginLeft="12dp"
+    android:text="모름"
+    android:gravity="center"
+    android:textColor="@color/white"
+    android:textSize="13sp"
+    android:fontFamily="@font/pretendard_semi_bold"
+    />
+
+
+<!--아이 나이 입력-->
+<TextView
+    android:id="@+id/child_age"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="@id/child_name"
+    app:layout_constraintTop_toBottomOf="@+id/child_gender"
+    android:text="나이"
+    android:fontFamily="@font/pretendard_bold"
+    android:textColor="@color/black"
+    android:textSize="16sp"
+    android:layout_marginTop="95dp"
+    />
+<android.widget.Button
+    android:layout_width="40dp"
+    android:layout_height="24dp"
+    android:background="@color/white"
+    app:layout_constraintLeft_toRightOf="@+id/child_age"
+    app:layout_constraintBottom_toBottomOf="@+id/child_age"
+    app:layout_constraintEnd_toEndOf="@+id/age_notSure_btn"
+
+    android:text="모름"
+    android:textSize="12sp"
+    android:textColor="#B5B5B5"
+    android:fontFamily="@font/pretendard_semi_bold"
+
+    android:drawableRight="@drawable/icn_check_02_off"
+    />
+<TextView
+    android:id="@+id/record_child_age"
+    android:layout_width="306dp"
+    android:layout_height="28dp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/child_age"
+    app:layout_constraintRight_toRightOf="parent"
+
+    android:layout_marginTop="18dp"
+
+    android:text="아마,,,,,numberpicker로,,??"
+    android:fontFamily="@font/pretendard_bold"
+    android:textSize="16sp"
+    />
+
+
+<!--아이 주소 입력-->
+<TextView
+    android:id="@+id/child_address"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="@id/child_name"
+    app:layout_constraintTop_toBottomOf="@id/child_age"
+    android:text="주소"
+    android:fontFamily="@font/pretendard_bold"
+    android:textColor="@color/black"
+    android:textSize="16sp"
+    android:layout_marginTop="95dp"
+    />
+<EditText
+    android:id="@+id/record_child_address_base"
+    android:layout_width="308dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="2"
+    android:backgroundTint="#FF7F61"
+    app:layout_constraintTop_toBottomOf="@+id/child_address"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+
+    android:inputType="textPersonName"
+    android:textSize="12sp"
+    android:text="서울시 마포구 월드컵북로 122"
+    android:fontFamily="@font/pretendard_semi_bold"
+    android:textColor="#FF7F61"
+    tools:ignore="MissingConstraints" />
+<EditText
+    android:id="@+id/record_child_address_detail"
+    android:layout_width="308dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="2"
+    android:backgroundTint="#FF7F61"
+    app:layout_constraintTop_toBottomOf="@+id/record_child_address_base"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    android:inputType="textPersonName"
+    android:textSize="12sp"
+    android:text="203호(상암동)"
+    android:fontFamily="@font/pretendard_semi_bold"
+    android:textColor="#FF7F61"
+    tools:ignore="MissingConstraints" />
+
+<!--입력 완료 버튼-->
+<android.widget.Button
+    android:layout_width="306dp"
+    android:layout_height="44dp"
+    android:id="@+id/record_done"
+    android:background="#B5B5B5"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    android:layout_marginBottom="58dp"
+    android:text="수정 완료"
+    android:gravity="center"
+    android:textColor="@color/white"
+    android:textSize="16sp"
+    android:fontFamily="@font/pretendard_semi_bold"
+    />
+</androidx.constraintlayout.widget.ConstraintLayout>
