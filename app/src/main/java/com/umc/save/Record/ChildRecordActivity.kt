@@ -15,9 +15,12 @@ class ChildRecordActivity : AppCompatActivity() {
     lateinit var binding: ActivityChildRecordBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_child_record)
         binding = ActivityChildRecordBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.recordDone.setOnClickListener{
+            startActivity(Intent(this, OffenderRecordActivity::class.java))
+        }
 
     }
 }

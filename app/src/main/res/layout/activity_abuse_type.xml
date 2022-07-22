@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Record.RecordDetail.AbuseTypeActivity">
+
+    <TextView
+        android:id="@+id/type_txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textColor="@color/black"
+        android:text="의심 유형"
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:textSize="32sp"
+        android:gravity="left"
+        android:layout_marginLeft="27dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="150dp"
+        />
+    <TextView
+        android:id="@+id/type_txt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textColor="#B5B5B5"
+        android:text="복수 선택 가능합니다."
+        android:fontFamily="@font/pretendard_bold"
+        android:textSize="16sp"
+        android:gravity="left"
+        android:layout_marginLeft="27dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/type_txt1"
+        android:layout_marginTop="13dp"/>
+    
+    
+    <!--신체 학대-->
+    <android.widget.Button
+        android:id="@+id/physical_abuse_btn"
+        android:layout_width="146dp"
+        android:layout_height="80dp"
+        android:background="#E5E5E5"
+        android:drawableLeft="@drawable/icn_category_physical"
+        android:paddingLeft="23dp"
+        android:fontFamily="@font/pretendard_bold"
+
+        android:text="신체 학대"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        tools:ignore="MissingConstraints"
+
+        android:layout_marginTop="52dp"
+
+        app:layout_constraintStart_toStartOf="@id/next_btn"
+        app:layout_constraintTop_toBottomOf="@+id/type_txt2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/emotional_abuse_btn"
+        />
+
+    <!--정서 학대-->
+    <android.widget.Button
+        android:id="@+id/emotional_abuse_btn"
+        android:layout_width="146dp"
+        android:layout_height="80dp"
+        android:background="#E5E5E5"
+        android:drawableLeft="@drawable/icn_category_emotional"
+        android:fontFamily="@font/pretendard_bold"
+        android:paddingLeft="23dp"
+
+        android:text="정서 학대"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+
+        android:layout_marginTop="52dp"
+
+        app:layout_constraintEnd_toEndOf="@id/next_btn"
+        app:layout_constraintLeft_toRightOf="@id/physical_abuse_btn"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/type_txt2"
+        />
+
+    <!--성 학대-->
+    <android.widget.Button
+        android:id="@+id/sexual_abuse_btn"
+        android:layout_width="146dp"
+        android:layout_height="80dp"
+        android:background="#E5E5E5"
+        android:drawableLeft="@drawable/icn_category_sexual"
+        android:paddingLeft="23dp"
+        android:fontFamily="@font/pretendard_bold"
+
+        android:text="성 학대"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        tools:ignore="MissingConstraints"
+
+        android:layout_marginTop="14dp"
+
+        app:layout_constraintStart_toStartOf="@id/physical_abuse_btn"
+        app:layout_constraintTop_toBottomOf="@+id/physical_abuse_btn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/emotional_abuse_btn"
+        />
+
+    <!--성 학대-->
+    <android.widget.Button
+        android:id="@+id/neglect_abuse_btn"
+        android:layout_width="146dp"
+        android:layout_height="80dp"
+        android:background="#E5E5E5"
+        android:drawableLeft="@drawable/icn_category_neglect"
+        android:fontFamily="@font/pretendard_bold"
+        android:paddingLeft="23dp"
+
+        android:text="방임"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+
+        android:layout_marginTop="14dp"
+
+        app:layout_constraintEnd_toEndOf="@id/emotional_abuse_btn"
+        app:layout_constraintLeft_toRightOf="@id/sexual_abuse_btn"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emotional_abuse_btn"
+        />
+
+    <!--입력 완료 버튼-->
+    <android.widget.Button
+        android:layout_width="306dp"
+        android:layout_height="44dp"
+        android:id="@+id/next_btn"
+        android:background="#B5B5B5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="58dp"
+        android:text="다음"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:fontFamily="@font/pretendard_semi_bold"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
