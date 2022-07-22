@@ -14,10 +14,21 @@
         <entry key="..\:/SAVE-FRONTEND/app/src/main/res/layout/activity_record_done.xml" value="0.33" />
         <entry key="..\:/SAVE-FRONTEND/app/src/main/res/layout/activity_record_main.xml" value="0.2" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/fragment_child_blue_background.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/fragment_child_green_background.xml" value="0.1465" />
+        <entry key="app/src/main/res/drawable/fragment_child_red_background.xml" value="0.1465" />
+        <entry key="app/src/main/res/drawable/fragment_child_red_off_background.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/fragment_child_red_on_background.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/fragment_locker_child_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="app/src/main/res/font-v26/font.xml" value="0.1" />
         <entry key="app/src/main/res/font/font.xml" value="0.1278962001853568" />
-        <entry key="app/src/main/res/layout/fragment_locker.xml" value="0.20153985507246377" />
+        <entry key="app/src/main/res/layout/fragment_child_info_list.xml" value="0.13330547430004178" />
+        <entry key="app/src/main/res/layout/fragment_locker.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_locker_child_info.xml" value="0.13288758880066862" />
+        <entry key="app/src/main/res/layout/fragment_locker_child_info_calendar.xml" value="0.13288758880066862" />
+        <entry key="app/src/main/res/layout/fragment_locker_child_info_list.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_locker_child_list.xml" value="0.13288758880066862" />
         <entry key="app/src/main/res/menu/top_nav_menu.xml" value="0.33229166666666665" />
       </map>
     </option>
