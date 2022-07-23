@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< Updated upstream
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/fragment_child_blue_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/fragment_child_green_background.xml" value="0.1465" />
@@ -23,6 +24,10 @@
         <entry key="app/src/main/res/layout/fragment_locker_child_info_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_locker_child_list.xml" value="0.13288758880066862" />
         <entry key="app/src/main/res/menu/top_nav_menu.xml" value="0.33229166666666665" />
+=======
+        <entry key="..\:/Users/MASTER/Desktop/SAVE-FRONTEND/app/src/main/res/layout/activity_main.xml" value="0.2755208333333333" />
+        <entry key="..\:/Users/MASTER/Desktop/SAVE-FRONTEND/app/src/main/res/layout/activity_main2.xml" value="0.2755208333333333" />
+>>>>>>> Stashed changes
       </map>
     </option>
   </component>
