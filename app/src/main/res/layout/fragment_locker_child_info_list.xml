@@ -8,16 +8,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-        <Button
+        <ImageButton
             android:id="@+id/child_info_ib"
             android:layout_width="306dp"
             android:layout_height="96dp"
             android:layout_marginTop="120dp"
             android:background="@drawable/fragment_child_blue_background"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"/>
 
             <ImageView
                 android:id="@+id/child_info_image"
@@ -69,8 +69,6 @@
                 app:layout_constraintStart_toStartOf="@id/child_info_ib"
                 app:layout_constraintTop_toTopOf="@id/child_info_ib" />
 
-        </Button>
-
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/record_content_tb"
             android:layout_width="match_parent"
@@ -84,7 +82,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/record_content_vp"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

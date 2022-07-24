@@ -42,13 +42,13 @@
         android:id="@+id/physical_abuse_btn"
         android:layout_width="146dp"
         android:layout_height="80dp"
-        android:background="#E5E5E5"
+        android:background="@drawable/btn_color_gray_to_dark_red"
         android:drawableLeft="@drawable/icn_category_physical"
         android:paddingLeft="23dp"
         android:fontFamily="@font/pretendard_bold"
 
         android:text="신체 학대"
-        android:textColor="@color/black"
+        android:textColor="@drawable/txt_color_black_to_white"
         android:textSize="13sp"
         tools:ignore="MissingConstraints"
 
@@ -65,13 +65,13 @@
         android:id="@+id/emotional_abuse_btn"
         android:layout_width="146dp"
         android:layout_height="80dp"
-        android:background="#E5E5E5"
+        android:background="@drawable/btn_color_gray_to_dark_red"
         android:drawableLeft="@drawable/icn_category_emotional"
         android:fontFamily="@font/pretendard_bold"
         android:paddingLeft="23dp"
 
         android:text="정서 학대"
-        android:textColor="@color/black"
+        android:textColor="@drawable/txt_color_black_to_white"
         android:textSize="13sp"
 
         android:layout_marginTop="52dp"
@@ -87,13 +87,13 @@
         android:id="@+id/sexual_abuse_btn"
         android:layout_width="146dp"
         android:layout_height="80dp"
-        android:background="#E5E5E5"
+        android:background="@drawable/btn_color_gray_to_dark_red"
         android:drawableLeft="@drawable/icn_category_sexual"
         android:paddingLeft="23dp"
         android:fontFamily="@font/pretendard_bold"
 
         android:text="성 학대"
-        android:textColor="@color/black"
+        android:textColor="@drawable/txt_color_black_to_white"
         android:textSize="13sp"
         tools:ignore="MissingConstraints"
 
@@ -110,13 +110,13 @@
         android:id="@+id/neglect_abuse_btn"
         android:layout_width="146dp"
         android:layout_height="80dp"
-        android:background="#E5E5E5"
+        android:background="@drawable/btn_color_gray_to_dark_red"
         android:drawableLeft="@drawable/icn_category_neglect"
         android:fontFamily="@font/pretendard_bold"
         android:paddingLeft="23dp"
 
         android:text="방임"
-        android:textColor="@color/black"
+        android:textColor="@drawable/txt_color_black_to_white"
         android:textSize="13sp"
 
         android:layout_marginTop="14dp"

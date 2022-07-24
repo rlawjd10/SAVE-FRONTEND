@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Record.RecordDoneActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/record_text"
@@ -13,7 +12,7 @@
         android:layout_marginTop="219dp"
         app:layout_constraintStart_toStartOf="@id/record_new_child"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="등록이\n완료되었습니다."
+        android:text="기록하기"
         android:fontFamily="@font/pretendard_semi_bold"
         android:textColor="@color/black"
         android:textSize="40sp"
@@ -21,12 +20,24 @@
         tools:ignore="MissingConstraints" />
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/record_text"
+        app:layout_constraintStart_toStartOf="@id/record_new_child"
+
+        android:text="이미 등록된 아동인가요?"
+        android:fontFamily="@font/pretendard_bold"
+        android:textColor="#B5B5B5"
+        android:gravity="top"
+        tools:ignore="MissingConstraints" />
+
     <!--새 아동 등록하기-->
     <ImageView
         android:id="@+id/icn_plus_large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/icn_storage_large"
+        android:background="@drawable/icn_plus_large"
         app:layout_constraintStart_toStartOf="@id/record_new_child"
         app:layout_constraintTop_toTopOf="@id/record_new_child"
         android:elevation="3dp"
@@ -38,14 +49,14 @@
         android:id="@+id/record_new_child"
         android:layout_width="146dp"
         android:layout_height="261dp"
-        android:background="#FFE6E6"
+        android:background="@color/light_red"
         android:fontFamily="@font/pretendard_bold"
 
         android:gravity="left"
         android:paddingLeft="25dp"
         android:paddingTop="179dp"
         android:paddingBottom="33dp"
-        android:text="보관함으로"
+        android:text="새 아동 \n등록하기"
         android:textSize="20sp"
 
         app:layout_constraintTop_toBottomOf="@+id/record_text"
@@ -78,8 +89,8 @@
         android:layout_marginLeft="14dp"
 
 
-        android:background="#FFCCCC"
-        android:text="이어서 \n기록하기"
+        android:background="@color/red"
+        android:text="기존 아동 \n등록하기"
         android:fontFamily="@font/pretendard_bold"
         android:textSize="20sp"
         android:gravity="left"

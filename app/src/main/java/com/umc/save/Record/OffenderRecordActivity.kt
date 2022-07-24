@@ -18,7 +18,7 @@ class OffenderRecordActivity : AppCompatActivity() {
         }
 
         binding.recordNext.setOnClickListener{
-            startActivity(Intent(this, RecordDoneActivity::class.java))
+            startActivity(Intent(this, RecordDoneFragment::class.java))
         }
     }
 }
