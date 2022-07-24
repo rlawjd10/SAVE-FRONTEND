@@ -17,7 +17,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"/>
 
             <ImageView
                 android:id="@+id/child_info_image"
@@ -68,8 +68,6 @@
                 android:textSize="8sp"
                 app:layout_constraintStart_toStartOf="@id/child_info_ib"
                 app:layout_constraintTop_toTopOf="@id/child_info_ib" />
-
-        </ImageButton>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/record_content_tb"

@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+<<<<<<< Updated upstream
 
         initBottomNavigation()
     }
@@ -42,7 +43,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             false
+=======
+        binding.button.setOnClickListener{
+            startActivity(Intent(this, RecordActivity::class.java))
+>>>>>>> Stashed changes
         }
+
     }
 }
 
