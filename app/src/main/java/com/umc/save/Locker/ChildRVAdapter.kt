@@ -1,20 +1,19 @@
-package com.umc.save.Record
+package com.umc.save.Locker
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.umc.save.Child
 import com.umc.save.databinding.ItemChildBinding
 
 class ChildRVAdapter (private val childList : ArrayList<Child>) : RecyclerView.Adapter<ChildRVAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ChildRVAdapter.ViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemChildBinding = ItemChildBinding.inflate(LayoutInflater.from(viewGroup.context),
                 viewGroup, false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ChildRVAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(childList[position])
 //        holder.itemView.setOnClickListener{ }
     }

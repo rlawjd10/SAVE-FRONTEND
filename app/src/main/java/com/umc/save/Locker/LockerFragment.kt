@@ -1,4 +1,4 @@
-package com.umc.save
+package com.umc.save.Locker
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.umc.save.Record.ChildRVAdapter
 import com.umc.save.databinding.FragmentLockerBinding
-import java.text.DateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -36,7 +34,6 @@ class LockerFragment : Fragment() {
                 "여","10","부산",
                 "1000-1202", Date(2021,2,3)))
         }
-
 
 
         val childRVAdapter = ChildRVAdapter(childList)

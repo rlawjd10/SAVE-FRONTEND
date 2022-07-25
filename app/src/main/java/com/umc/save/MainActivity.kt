@@ -2,6 +2,7 @@ package com.umc.save
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.umc.save.Locker.LockerFragment
 import com.umc.save.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
