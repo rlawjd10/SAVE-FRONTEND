@@ -3,6 +3,7 @@ package com.umc.save
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.umc.save.Locker.LockerFragment
+import com.umc.save.Record.RecordFragment
 import com.umc.save.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -34,6 +35,13 @@ class MainActivity : AppCompatActivity() {
                 R.id.tab_storage -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, LockerFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
+                }
+
+                R.id.tab_add -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frm, RecordFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }

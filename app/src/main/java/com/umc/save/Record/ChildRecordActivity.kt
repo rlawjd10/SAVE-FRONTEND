@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.umc.save.R
 import com.umc.save.databinding.ActivityChildRecordBinding
-import com.umc.save.databinding.ActivityRecordMainBinding
+//import com.umc.save.databinding.ActivityRecordMainBinding
 
 class ChildRecordActivity : AppCompatActivity() {
     lateinit var binding: ActivityChildRecordBinding
