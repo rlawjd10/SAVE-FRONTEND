@@ -12,11 +12,31 @@ import com.umc.save.databinding.ActivityChildRecordBinding
 //import com.umc.save.databinding.ActivityRecordMainBinding
 
 class ChildRecordActivity : AppCompatActivity() {
+    var name_num = 0
+    var age_num = 0
     lateinit var binding: ActivityChildRecordBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChildRecordBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.nameNotSureBtn.setOnClickListener{
+            name_num++
+            if(name_num % 2 != 0 ) {
+                binding.nameNotSureBtn.isSelected = true
+            } else{
+                binding.nameNotSureBtn.isSelected = false
+            }
+        }
+
+        binding.ageNotSureBtn.setOnClickListener{
+            age_num++
+            if(age_num % 2 != 0 ) {
+                binding.ageNotSureBtn.isSelected = true
+            } else{
+                binding.ageNotSureBtn.isSelected = false
+            }
+        }
 
         binding.recordDone.setOnClickListener{
             startActivity(Intent(this, OffenderRecordActivity::class.java))

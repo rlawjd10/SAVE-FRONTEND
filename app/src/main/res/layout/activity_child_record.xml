@@ -81,21 +81,22 @@ ex) ‘옆집 아들’, ‘3층 아이’"
         />
 
     <android.widget.Button
-        android:id="@+id/age_notSure_btn"
+        android:id="@+id/name_notSure_btn"
         android:layout_width="40dp"
         android:layout_height="24dp"
         android:layout_marginBottom="8dp"
         android:background="@color/white"
-        android:drawableRight="@drawable/icn_check_02_off"
         android:fontFamily="@font/pretendard_semi_bold"
 
         android:text="추정"
-        android:textColor="#B5B5B5"
+        android:textColor="@drawable/txt_color_dark_gray_to_dark_red"
         android:textSize="12sp"
 
         app:layout_constraintBottom_toBottomOf="@+id/record_child_name"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/record_child_name" />
+        app:layout_constraintLeft_toRightOf="@+id/record_child_name"
+        android:drawableEnd="@drawable/not_sure_btn_gray_to_dark_red"
+        />
 
 
 <!-- 아이 성별 입력 -->
@@ -192,19 +193,20 @@ ex) ‘옆집 아들’, ‘3층 아이’"
     android:layout_marginTop="95dp"
     />
 <android.widget.Button
+    android:id="@+id/age_notSure_btn"
     android:layout_width="40dp"
     android:layout_height="24dp"
     android:background="@color/white"
     app:layout_constraintLeft_toRightOf="@+id/child_age"
     app:layout_constraintBottom_toBottomOf="@+id/child_age"
-    app:layout_constraintEnd_toEndOf="@+id/age_notSure_btn"
+    app:layout_constraintEnd_toEndOf="@+id/name_notSure_btn"
 
-    android:text="모름"
+    android:text="추정"
     android:textSize="12sp"
-    android:textColor="@color/dark_gray"
+    android:textColor="@drawable/txt_color_dark_gray_to_dark_red"
     android:fontFamily="@font/pretendard_semi_bold"
 
-    android:drawableRight="@drawable/icn_check_02_off"
+    android:drawableEnd="@drawable/not_sure_btn_gray_to_dark_red"
     />
 <TextView
     android:id="@+id/record_child_age"

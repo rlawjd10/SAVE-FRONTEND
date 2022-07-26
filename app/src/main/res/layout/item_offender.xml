@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="14dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.widget.Button
+        android:id="@+id/item_offender_info_ib"
+        android:layout_width="306dp"
+        android:layout_height="96dp"
+        android:background="@drawable/btn_color_light_gray_to_dark_red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingRight="26dp"
+        android:drawableEnd="@drawable/check_icn_on_off"
+        />
+
+
+    <TextView
+        android:elevation="2dp"
+        android:id="@+id/item_offender_info_rel_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="23dp"
+        android:fontFamily="@font/pretendard_bold"
+        android:text="어린이집 교사"
+        android:textColor="@drawable/txt_dark_red_to_white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/item_offender_info_ib"
+        app:layout_constraintTop_toTopOf="@id/item_offender_info_ib" />
+
+    <TextView
+        android:elevation="2dp"
+        android:id="@+id/item_child_info_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="55dp"
+        android:fontFamily="@font/pretendard_bold"
+        android:text="홍길동"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/item_offender_info_ib"
+        app:layout_constraintTop_toTopOf="@id/item_offender_info_ib" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
