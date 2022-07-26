@@ -14,13 +14,6 @@
         android:theme="@style/Theme.SAVE"
         tools:targetApi="31">
         <activity
-            android:name=".ChooseOffenderActivity"
-            android:exported="false" />
-        <activity android:name=".Record.RecordDetail.DetailEtcActivity" />
-        <activity android:name=".Record.RecordDetail.CalendarTimePlaceActivity" />
-        <activity android:name=".Record.RecordDetail.AbuseTypeActivity" />
-        <activity android:name=".Record.OffenderRecordActivity" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -30,6 +23,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".Record.ChildRecordActivity" />
+        <activity android:name=".Record.RecordDetail.ChooseOffenderActivity" />
+        <activity android:name=".Record.RecordDetail.DetailEtcActivity" />
+        <activity android:name=".Record.RecordDetail.CalendarTimePlaceActivity" />
+        <activity android:name=".Record.RecordDetail.AbuseTypeActivity" />
+        <activity android:name=".Record.OffenderRecordActivity" />
+        <activity android:name=".Locker.ChildLockerActivity"/>
+        <activity android:name=".Locker.DetailRecordLockerActivity"/>
     </application>
 
 </manifest>

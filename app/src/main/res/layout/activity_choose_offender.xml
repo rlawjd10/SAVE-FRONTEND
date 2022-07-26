@@ -11,7 +11,7 @@
         android:layout_height="match_parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,11 +27,10 @@
             android:text="학대 행위자\n선택"
             android:fontFamily="@font/pretendard_semi_bold"
             android:textSize="32sp"
-            android:gravity="left"
-            android:layout_marginLeft="27dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="221dp"
+            android:layout_marginLeft="50dp"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
