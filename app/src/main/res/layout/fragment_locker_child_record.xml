@@ -71,41 +71,41 @@
 
 
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/record_content_tb"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/child_info_ib"
-            app:tabRippleColor="@android:color/transparent"
-            app:tabSelectedTextColor="#FF7F61" />
+<!--        <com.google.android.material.tabs.TabLayout-->
+<!--            android:id="@+id/record_content_tb"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/child_info_ib"-->
+<!--            app:tabRippleColor="@android:color/transparent"-->
+<!--            app:tabSelectedTextColor="#FF7F61" />-->
 
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/record_content_vp"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/child_info_ib"
-            app:layout_constraintTop_toBottomOf="@id/record_content_tb"/>
+<!--        <androidx.viewpager2.widget.ViewPager2-->
+<!--            android:id="@+id/record_content_vp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="300dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.0"-->
+<!--            app:layout_constraintStart_toStartOf="@id/child_info_ib"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/record_content_tb"/>-->
 
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/suspect_control_btn"
-            android:layout_width="146dp"
-            android:layout_height="44dp"
-            android:background="@drawable/fragment_dark_red_background"
-            android:fontFamily="@font/pretendard_bold"
-            android:textSize="16sp"
-            android:text="학대 행위자 관리"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/record_content_vp"/>
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/suspect_control_btn"-->
+<!--            android:layout_width="146dp"-->
+<!--            android:layout_height="44dp"-->
+<!--            android:background="@drawable/fragment_dark_red_background"-->
+<!--            android:fontFamily="@font/pretendard_bold"-->
+<!--            android:textSize="16sp"-->
+<!--            android:text="학대 행위자 관리"-->
+<!--            android:textColor="@color/white"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/record_content_vp"/>-->
 
 
 

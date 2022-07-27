@@ -5,8 +5,8 @@
     android:layout_marginBottom="14dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageButton
-        android:id="@+id/item_child_info_ib"
+    <ImageView
+        android:id="@+id/item_child_info_iv"
         android:layout_width="306dp"
         android:layout_height="96dp"
         android:background="@drawable/fragment_child_red_on_background"
@@ -22,8 +22,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="19dp"
         android:src="@drawable/ilst_girl_01_blue"
-        app:layout_constraintStart_toStartOf="@id/item_child_info_ib"
-        app:layout_constraintTop_toTopOf="@id/item_child_info_ib" />
+        app:layout_constraintStart_toStartOf="@id/item_child_info_iv"
+        app:layout_constraintTop_toTopOf="@id/item_child_info_iv" />
 
 
     <TextView
@@ -36,8 +36,8 @@
         android:text="박예명"
         android:textColor="@color/dark_red"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/item_child_info_ib"
-        app:layout_constraintTop_toTopOf="@id/item_child_info_ib" />
+        app:layout_constraintStart_toStartOf="@id/item_child_info_iv"
+        app:layout_constraintTop_toTopOf="@id/item_child_info_iv" />
 
     <TextView
         android:id="@+id/item_child_info_specific_tv"
@@ -49,8 +49,8 @@
         android:text="여자/5세/서울시 마포구 상암동"
         android:textColor="@color/black"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@id/item_child_info_ib"
-        app:layout_constraintTop_toTopOf="@id/item_child_info_ib" />
+        app:layout_constraintStart_toStartOf="@id/item_child_info_iv"
+        app:layout_constraintTop_toTopOf="@id/item_child_info_iv" />
 
     <TextView
         android:id="@+id/item_child_info_date_tv"
@@ -62,8 +62,8 @@
         android:text="2022.07.05"
         android:textColor="@color/dark_red"
         android:textSize="8sp"
-        app:layout_constraintStart_toStartOf="@id/item_child_info_ib"
-        app:layout_constraintTop_toTopOf="@id/item_child_info_ib" />
+        app:layout_constraintStart_toStartOf="@id/item_child_info_iv"
+        app:layout_constraintTop_toTopOf="@id/item_child_info_iv" />
 
 
 

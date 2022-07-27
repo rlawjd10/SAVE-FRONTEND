@@ -10,30 +10,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
 
-            tools:ignore="MissingConstraints">
 
             <TextView
                 android:id="@+id/locker_title_tv"
-                android:layout_width="171dp"
+                android:layout_width="306dp"
                 android:layout_height="46dp"
                 android:fontFamily="@font/pretendard_semi_bold"
                 android:text="보관함"
                 android:textColor="@color/black"
                 android:textSize="40sp"
                 android:layout_marginTop="216dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/locker_guide_tv"
-                android:layout_width="234.62dp"
-                android:layout_height="match_parent"
+                android:layout_width="224dp"
+                android:layout_height="19dp"
                 android:layout_marginTop="13dp"
                 android:fontFamily="@font/pretendard_bold"
                 android:text="기록을 열람할 아동을 선택해주세요."
@@ -46,17 +41,17 @@
                 android:id="@+id/locker_child_edit_tv"
                 android:layout_width="23dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="102dp"
-                android:layout_marginTop="61dp"
+                android:layout_marginStart="48.95dp"
+                android:layout_marginTop="28.41dp"
                 android:fontFamily="@font/pretendard_bold"
                 android:text="편집"
                 android:textColor="#FF7f61"
                 android:textSize="13sp"
-                app:layout_constraintStart_toEndOf="@id/locker_title_tv"
-                app:layout_constraintTop_toBottomOf="@id/locker_title_tv" />
+                app:layout_constraintStart_toEndOf="@id/locker_guide_tv"
+                app:layout_constraintTop_toBottomOf="@id/locker_guide_tv" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
         <androidx.recyclerview.widget.RecyclerView

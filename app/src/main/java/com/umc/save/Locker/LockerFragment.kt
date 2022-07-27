@@ -1,11 +1,14 @@
 package com.umc.save.Locker
 
 import android.os.Bundle
+import android.provider.Settings.Global.putString
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Record.RecordFragment
@@ -26,9 +29,7 @@ class LockerFragment : Fragment() {
     ): View? {
         binding = FragmentLockerBinding.inflate(inflater,container,false)
 
-
         childList.apply {
-
             add(Child(1,"양현진",true,
                 "여","10","인천광역시 연수구 송도동",
                 "1000-1202", Date(2022-1900,1,2)))
@@ -45,28 +46,32 @@ class LockerFragment : Fragment() {
         binding.childListRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
 
 
-//        childRVAdapter.setMyItemClickListener(object: ChildRVAdapter.MyItemClickListener {
-//            override fun onItemClick(child: Child) {
-//                changeRecordChildLockerFragment(child)
-//            }
-//        })
+        Log.d("childList",childList.toString())
+
+        childRVAdapter.setMyItemClickListener(object: ChildRVAdapter.MyItemClickListener {
+            override fun onItemClick(child: Child) {
+                changeRecordChildLockerFragment(child)
+            }
+        })
+
 
 
         return binding.root
     }
 
 
-//    private fun changeRecordChildLockerFragment(child: Child) {
-//        (context as MainActivity).supportFragmentManager.beginTransaction()
-//            .replace(R.id.main_frm, RecordChildLockerFragment().apply {
-//                val gson = Gson()
-//                val childJson = gson.toJson(child)
-//                putString("child",childJson)
-//
-//
-//            })
-//            .addToBackStack(null)
-//            .commitAllowingStateLoss()
-//    }
+    private fun changeRecordChildLockerFragment(child: Child) {
+        (context as MainActivity).supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.main_frm, RecordChildLockerFragment().apply {
+                arguments = Bundle().apply {
+                    val gson = Gson()
+                    val childJson = gson.toJson(child)
+                    putString("child",childJson)
+                }
+            })
+            .addToBackStack(null)
+            .commitAllowingStateLoss()
+    }
 
 }
