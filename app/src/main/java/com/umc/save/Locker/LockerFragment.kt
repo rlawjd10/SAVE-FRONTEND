@@ -53,11 +53,11 @@ class LockerFragment : Fragment() {
         binding.childListRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
 
 
-        childRVAdapter.setMyItemClickListener(object: ChildRVAdapter.MyItemClickListener {
-            override fun onItemClick(child: Child) {
-                openRecordFragment(child)
-            }
-        })
+//        childRVAdapter.setMyItemClickListener(object: ChildRVAdapter.MyItemClickListener {
+//            override fun onItemClick(child: Child) {
+//                openRecordFragment(child)
+//            }
+//        })
 
 
 
