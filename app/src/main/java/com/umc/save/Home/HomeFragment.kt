@@ -38,7 +38,6 @@ class HomeFragment : Fragment() {
             changeFragment(NewsHomeFragment())
         }
 
-
         return binding.root
     }
 

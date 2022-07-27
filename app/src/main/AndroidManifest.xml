@@ -13,18 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SAVE"
         tools:targetApi="31">
-        <activity
-            android:name=".Home.StatisHomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Home.NewsHomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Home.GuideHomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Home.ActionHomeActivity"
-            android:exported="false" />
         <activity android:name=".Record.RecordDetail.DetailEtcActivity" />
         <activity android:name=".Record.RecordDetail.CalendarTimePlaceActivity" />
         <activity android:name=".Record.RecordDetail.AbuseTypeActivity" />
