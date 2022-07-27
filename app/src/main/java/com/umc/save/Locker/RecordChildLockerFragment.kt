@@ -11,7 +11,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.umc.save.databinding.FragmentLockerChildListBinding
 import com.umc.save.databinding.FragmentLockerChildRecordBinding
 
-class RecordChildLockerFragment : Fragment(){
+class RecordChildLockerFragment(child: Child) : Fragment(){
     lateinit var binding: FragmentLockerChildRecordBinding
     private val method  = arrayListOf("목록에서 보기","달력에서 보기")
 

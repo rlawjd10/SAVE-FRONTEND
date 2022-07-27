@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.umc.save.HomeFragment
+import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Record.RecordFragment
 import com.umc.save.databinding.FragmentLockerBinding
@@ -40,14 +40,6 @@ class LockerFragment : Fragment() {
                 "1000-1202", Date(2021-1900,2,3)))
         }
 
-//        fun openRecordFragment(child: Child) {
-//            val fragmentManager = supportFragmentManager
-//            childFragmentManager
-//                .beginTransaction().
-//                replace(R.id.locker_frm,RecordChildLockerFragment())
-//                .commit()
-//        }
-
         val childRVAdapter = ChildRVAdapter(childList)
         binding.childListRv.adapter = childRVAdapter
         binding.childListRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
@@ -55,15 +47,26 @@ class LockerFragment : Fragment() {
 
 //        childRVAdapter.setMyItemClickListener(object: ChildRVAdapter.MyItemClickListener {
 //            override fun onItemClick(child: Child) {
-//                openRecordFragment(child)
+//                changeRecordChildLockerFragment(child)
 //            }
 //        })
 
 
-
-
-
-
         return binding.root
     }
+
+
+//    private fun changeRecordChildLockerFragment(child: Child) {
+//        (context as MainActivity).supportFragmentManager.beginTransaction()
+//            .replace(R.id.main_frm, RecordChildLockerFragment().apply {
+//                val gson = Gson()
+//                val childJson = gson.toJson(child)
+//                putString("child",childJson)
+//
+//
+//            })
+//            .addToBackStack(null)
+//            .commitAllowingStateLoss()
+//    }
+
 }

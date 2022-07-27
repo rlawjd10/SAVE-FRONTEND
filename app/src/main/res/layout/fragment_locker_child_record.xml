@@ -84,7 +84,7 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/record_content_vp"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="300dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -94,15 +94,18 @@
 
 
 
-<!--        <Button-->
-<!--            android:id="@+id/suspect_control_ib"-->
-<!--            android:layout_width="146dp"-->
-<!--            android:layout_height="44dp"-->
-<!--            android:layout_marginBottom="98dp"-->
-<!--            android:background="@drawable/fragment_child_red_on_background"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent" />-->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/suspect_control_btn"
+            android:layout_width="146dp"
+            android:layout_height="44dp"
+            android:background="@drawable/fragment_dark_red_background"
+            android:fontFamily="@font/pretendard_bold"
+            android:textSize="16sp"
+            android:text="학대 행위자 관리"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/record_content_vp"/>
 
 
 
