@@ -3,26 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/HomeFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.umc.save.FirstFragment"
+        android:id="@+id/HomeFragment"
+        android:name="com.umc.save.Home.HomeFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_home">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.umc.save.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+            android:id="@+id/action_HomeFragment_to_NewsActivity"
+            app:destination="@id/NewsActivity"/>
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_HomeFragment_to_ActionActivity"
+            app:destination="@id/ActionActivity" />
+        <action
+            android:id="@+id/action_HomeFragment_to_GuideActivity"
+            app:destination="@id/GuideActivity" />
+        <action
+            android:id="@+id/action_HomeFragment_to_StatisActivity"
+            app:destination="@id/StatisActivity" />
+
     </fragment>
+    <activity
+        android:id="@+id/NewsActivity"
+        android:name="com.umc.save.Home.NewsHomeActivity"
+        android:label="News Activity"
+        tools:layout="@layout/activity_news_home"/>
+    <activity
+        android:id="@+id/ActionActivity"
+        android:name="com.umc.save.Home.ActionHomeActivity"
+        android:label="Action Activity"
+        tools:layout="@layout/activity_action_home"/>
+    <activity
+        android:id="@+id/GuideActivity"
+        android:name="com.umc.save.Home.GuideHomeActivity"
+        android:label="Guide Activity"
+        tools:layout="@layout/activity_guide_home"/>
+    <activity
+        android:id="@+id/StatisActivity"
+        android:name="com.umc.save.Home.StatisHomeActivity"
+        android:label="Statis Activity"
+        tools:layout="@layout/activity_statis_home"/>
 </navigation>
