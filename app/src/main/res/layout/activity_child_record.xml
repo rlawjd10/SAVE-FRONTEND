@@ -62,7 +62,7 @@
 
         android:fontFamily="@font/pretendard_semi_bold"
         android:inputType="textPersonName"
-        android:text="김가명"
+        android:text="-"
 
         android:textColor="#FF7F61"
         android:textSize="16sp"
@@ -127,7 +127,7 @@ ex) ‘옆집 아들’, ‘3층 아이’"
     android:layout_width="94dp"
     android:layout_height="28dp"
     android:id="@+id/child_male"
-    android:background="@drawable/fragment_dark_red_background"
+    android:background="@drawable/btn_white_to_dark_red"
     app:layout_constraintHorizontal_chainStyle="packed"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintTop_toBottomOf="@id/child_gender"
@@ -136,7 +136,7 @@ ex) ‘옆집 아들’, ‘3층 아이’"
 
     android:text="남"
     android:gravity="center"
-    android:textColor="@color/white"
+    android:textColor="@drawable/txt_dark_red_to_white"
     android:textSize="13sp"
     android:fontFamily="@font/pretendard_semi_bold"
     />
@@ -144,7 +144,7 @@ ex) ‘옆집 아들’, ‘3층 아이’"
     android:layout_width="94dp"
     android:layout_height="28dp"
     android:id="@+id/child_female"
-    android:background="@drawable/fragment_dark_red_background"
+    android:background="@drawable/btn_white_to_dark_red"
 
     app:layout_constraintLeft_toRightOf="@+id/child_male"
     app:layout_constraintTop_toBottomOf="@id/child_gender"
@@ -155,7 +155,7 @@ ex) ‘옆집 아들’, ‘3층 아이’"
     android:layout_marginLeft="12dp"
     android:text="여"
     android:gravity="center"
-    android:textColor="@color/white"
+    android:textColor="@drawable/txt_dark_red_to_white"
     android:textSize="13sp"
     android:fontFamily="@font/pretendard_semi_bold"
     />
@@ -163,7 +163,7 @@ ex) ‘옆집 아들’, ‘3층 아이’"
     android:layout_width="94dp"
     android:layout_height="28dp"
     android:id="@+id/child_dontKnow"
-    android:background="@drawable/fragment_dark_red_background"
+    android:background="@drawable/btn_white_to_dark_red"
 
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toBottomOf="@id/child_gender"
@@ -173,7 +173,7 @@ ex) ‘옆집 아들’, ‘3층 아이’"
     android:layout_marginLeft="12dp"
     android:text="모름"
     android:gravity="center"
-    android:textColor="@color/white"
+    android:textColor="@drawable/txt_dark_red_to_white"
     android:textSize="13sp"
     android:fontFamily="@font/pretendard_semi_bold"
     />
@@ -208,20 +208,101 @@ ex) ‘옆집 아들’, ‘3층 아이’"
 
     android:drawableEnd="@drawable/not_sure_btn_gray_to_dark_red"
     />
-<TextView
+
+    <!-- 나이 입력 칸 -->
+<EditText
     android:id="@+id/record_child_age"
-    android:layout_width="306dp"
+    android:layout_width="129dp"
     android:layout_height="28dp"
+    android:backgroundTint="@color/dark_red"
+
     app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintStart_toStartOf="@id/child_age"
     app:layout_constraintTop_toBottomOf="@id/child_age"
     app:layout_constraintRight_toRightOf="parent"
 
     android:layout_marginTop="18dp"
 
-    android:text="아마,,,,,numberpicker로,,??"
-    android:fontFamily="@font/pretendard_bold"
+    android:fontFamily="@font/pretendard_semi_bold"
+    android:inputType="text"
+    android:text="-"
+
+    android:textColor="#FF7F61"
     android:textSize="16sp"
     />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="@id/record_child_age"
+        app:layout_constraintBottom_toBottomOf="@id/record_child_age"
+
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+
+        android:text="세"
+        android:textSize="16sp"
+        android:textColor="@color/dark_red"
+        android:fontFamily="@font/pretendard_semi_bold"
+        />
+
+    <!-- 나이 추정 -->
+    <TextView
+        android:id="@+id/txt_flow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintBottom_toBottomOf="@id/record_child_age_NS"
+        app:layout_constraintLeft_toRightOf="@id/record_child_age"
+        app:layout_constraintRight_toLeftOf="@+id/record_child_age_NS"
+
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+
+        android:text="~"
+        android:textSize="16sp"
+        android:textColor="@drawable/txt_color_dark_gray_to_dark_red"
+        android:fontFamily="@font/pretendard_semi_bold"
+        />
+
+    <EditText
+        android:id="@+id/record_child_age_NS"
+        android:layout_width="129dp"
+        android:layout_height="28dp"
+        android:backgroundTint="@color/dark_gray"
+
+        app:layout_constraintEnd_toEndOf="@+id/age_notSure_btn"
+        app:layout_constraintLeft_toRightOf="@id/txt_flow"
+        app:layout_constraintTop_toBottomOf="@id/child_age"
+        app:layout_constraintRight_toRightOf="parent"
+
+        android:layout_marginTop="18dp"
+
+        android:text="-"
+        android:fontFamily="@font/pretendard_bold"
+        android:textSize="16sp"
+
+        android:enabled="false"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="@id/record_child_age_NS"
+        app:layout_constraintBottom_toBottomOf="@id/record_child_age_NS"
+
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+
+        android:text="세"
+        android:textSize="16sp"
+        android:textColor="@drawable/txt_color_dark_gray_to_dark_red"
+        android:fontFamily="@font/pretendard_semi_bold"
+        />
+
+
+
 
 
 <!--아이 주소 입력-->
@@ -249,7 +330,7 @@ ex) ‘옆집 아들’, ‘3층 아이’"
 
     android:inputType="textPersonName"
     android:textSize="12sp"
-    android:text="서울시 마포구 월드컵북로 122"
+    android:text="도로명 주소"
     android:fontFamily="@font/pretendard_semi_bold"
     android:textColor="@color/dark_red"
     tools:ignore="MissingConstraints" />
@@ -264,7 +345,7 @@ ex) ‘옆집 아들’, ‘3층 아이’"
     app:layout_constraintRight_toRightOf="parent"
     android:inputType="textPersonName"
     android:textSize="12sp"
-    android:text="203호(상암동)"
+    android:text="상세주소"
     android:fontFamily="@font/pretendard_semi_bold"
     android:textColor="@color/dark_red"
     tools:ignore="MissingConstraints" />
@@ -279,7 +360,7 @@ ex) ‘옆집 아들’, ‘3층 아이’"
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"
     android:layout_marginBottom="58dp"
-    android:text="수정 완료"
+    android:text="다음"
     android:gravity="center"
     android:textColor="@color/white"
     android:textSize="16sp"

@@ -3,6 +3,7 @@ package com.umc.save.Record
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import com.umc.save.Locker.LockerFragment
 import com.umc.save.R
 import com.umc.save.databinding.ActivityOffenderRecordBinding
@@ -29,8 +30,12 @@ class OffenderRecordActivity : AppCompatActivity() {
             age_num++
             if(age_num % 2 != 0 ) {
                 binding.ageNotSureBtn.isSelected = true
+                binding.recordOffenderAgeNS.isEnabled = true
+                binding.recordOffenderAgeNS.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.dark_red)
             } else{
                 binding.ageNotSureBtn.isSelected = false
+                binding.recordOffenderAgeNS.isEnabled = false
+                binding.recordOffenderAgeNS.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.dark_gray)
             }
         }
 

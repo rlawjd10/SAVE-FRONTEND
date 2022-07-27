@@ -123,40 +123,56 @@
             tools:ignore="MissingConstraints" />
 
         <android.widget.Button
-            android:layout_width="64dp"
+            android:layout_width="94dp"
             android:layout_height="28dp"
             android:id="@+id/offender_male"
-            android:background="@color/white"
-            android:backgroundTint="#FF7F61"
+            android:background="@drawable/btn_white_to_dark_red"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/record_offender_name"
             app:layout_constraintTop_toBottomOf="@id/offender_gender"
             app:layout_constraintRight_toLeftOf="@+id/offender_female"
             android:layout_marginTop="18dp"
 
             android:text="남"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@drawable/txt_dark_red_to_white"
             android:textSize="13sp"
             android:fontFamily="@font/pretendard_semi_bold"
             />
         <android.widget.Button
-            android:layout_width="64dp"
+            android:layout_width="94dp"
             android:layout_height="28dp"
             android:id="@+id/offender_female"
-            android:background="@color/white"
-            android:backgroundTint="#FF7F61"
+            android:background="@drawable/btn_white_to_dark_red"
 
             app:layout_constraintLeft_toRightOf="@+id/offender_male"
             app:layout_constraintTop_toBottomOf="@id/offender_gender"
-            app:layout_constraintRight_toLeftOf="@+id/record_offender_age"
+            app:layout_constraintRight_toLeftOf="@+id/offender_dontKnow"
+
 
             android:layout_marginTop="18dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="12dp"
             android:text="여"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@drawable/txt_dark_red_to_white"
+            android:textSize="13sp"
+            android:fontFamily="@font/pretendard_semi_bold"
+            />
+        <android.widget.Button
+            android:layout_width="94dp"
+            android:layout_height="28dp"
+            android:id="@+id/offender_dontKnow"
+            android:background="@drawable/btn_white_to_dark_red"
+
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/offender_gender"
+            app:layout_constraintLeft_toRightOf="@id/offender_female"
+
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="12dp"
+            android:text="모름"
+            android:gravity="center"
+            android:textColor="@drawable/txt_dark_red_to_white"
             android:textSize="13sp"
             android:fontFamily="@font/pretendard_semi_bold"
             />
@@ -166,55 +182,125 @@
             android:id="@+id/offender_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@+id/offender_gender"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/offender_name"
+            app:layout_constraintStart_toStartOf="@id/offender_name"
+            app:layout_constraintTop_toBottomOf="@+id/offender_gender"
             android:text="나이"
             android:fontFamily="@font/pretendard_bold"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="12dp"
+            android:layout_marginTop="95dp"
             />
-
         <android.widget.Button
             android:id="@+id/age_notSure_btn"
             android:layout_width="40dp"
             android:layout_height="24dp"
             android:background="@color/white"
-            android:drawableRight="@drawable/not_sure_btn_gray_to_dark_red"
-            android:fontFamily="@font/pretendard_semi_bold"
+            app:layout_constraintLeft_toRightOf="@+id/offender_age"
+            app:layout_constraintBottom_toBottomOf="@+id/offender_age"
+            app:layout_constraintEnd_toEndOf="@+id/name_notSure_btn"
 
             android:text="추정"
-            android:textColor="@drawable/txt_color_dark_gray_to_dark_red"
             android:textSize="12sp"
+            android:textColor="@drawable/txt_color_dark_gray_to_dark_red"
+            android:fontFamily="@font/pretendard_semi_bold"
 
-            app:layout_constraintEnd_toEndOf="@+id/name_notSure_btn"
-            app:layout_constraintBottom_toBottomOf="@+id/offender_age"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/offender_age" />
+            android:drawableEnd="@drawable/not_sure_btn_gray_to_dark_red"
+            />
 
+        <!-- 나이 입력 칸 -->
         <EditText
             android:id="@+id/record_offender_age"
             android:layout_width="129dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="39dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="28dp"
+            android:backgroundTint="@color/dark_red"
 
-            android:backgroundTint="#FF7F61"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="@id/offender_age"
+            app:layout_constraintTop_toBottomOf="@id/offender_age"
+            app:layout_constraintRight_toRightOf="parent"
+
+            android:layout_marginTop="18dp"
 
             android:fontFamily="@font/pretendard_semi_bold"
             android:inputType="text"
-            android:text="42세"
+            android:text="-"
 
             android:textColor="#FF7F61"
             android:textSize="16sp"
+            />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-            app:layout_constraintEnd_toEndOf="@id/age_notSure_btn"
+            app:layout_constraintEnd_toEndOf="@id/record_offender_age"
+            app:layout_constraintBottom_toBottomOf="@id/record_offender_age"
+
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+
+            android:text="세"
+            android:textSize="16sp"
+            android:textColor="@color/dark_red"
+            android:fontFamily="@font/pretendard_semi_bold"
+            />
+
+        <!-- 나이 추정 -->
+        <TextView
+            android:id="@+id/txt_flow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintBottom_toBottomOf="@id/record_offender_age_NS"
+            app:layout_constraintLeft_toRightOf="@id/record_offender_age"
+            app:layout_constraintRight_toLeftOf="@+id/record_offender_age_NS"
+
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+
+            android:text="~"
+            android:textSize="16sp"
+            android:textColor="@drawable/txt_color_dark_gray_to_dark_red"
+            android:fontFamily="@font/pretendard_semi_bold"
+            />
+
+        <EditText
+            android:id="@+id/record_offender_age_NS"
+            android:layout_width="129dp"
+            android:layout_height="28dp"
+            android:backgroundTint="@color/dark_gray"
+
+            app:layout_constraintEnd_toEndOf="@+id/age_notSure_btn"
+            app:layout_constraintLeft_toRightOf="@id/txt_flow"
             app:layout_constraintTop_toBottomOf="@id/offender_age"
-            app:layout_constraintLeft_toRightOf="@id/offender_female"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+
+            android:layout_marginTop="18dp"
+
+            android:text="-"
+            android:fontFamily="@font/pretendard_bold"
+            android:textSize="16sp"
+
+            android:enabled="false"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintEnd_toEndOf="@id/record_offender_age_NS"
+            app:layout_constraintBottom_toBottomOf="@id/record_offender_age_NS"
+
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+
+            android:text="세"
+            android:textSize="16sp"
+            android:textColor="@drawable/txt_color_dark_gray_to_dark_red"
+            android:fontFamily="@font/pretendard_semi_bold"
+            />
+
+
+
 
 
 
@@ -224,12 +310,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/offender_name"
-            app:layout_constraintTop_toBottomOf="@id/offender_gender"
+            app:layout_constraintTop_toBottomOf="@id/record_offender_age"
             android:text="주소"
             android:fontFamily="@font/pretendard_bold"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:layout_marginTop="95dp"
+            android:layout_marginTop="30dp"
             />
         <EditText
             android:id="@+id/record_offender_address_base"
@@ -276,21 +362,23 @@
             android:textSize="16sp"
             android:layout_marginTop="100dp"
             />
+
         <android.widget.Button
             android:layout_width="64dp"
             android:layout_height="28dp"
             android:id="@+id/offender_father"
-            android:background="@color/white"
-            android:backgroundTint="#FF7F61"
+            android:background="@drawable/btn_white_to_dark_red"
+
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="@id/offender_relation"
             app:layout_constraintTop_toBottomOf="@id/offender_relation"
             app:layout_constraintRight_toLeftOf="@+id/offender_mother"
             android:layout_marginTop="18dp"
 
             android:text="부"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@drawable/txt_dark_red_to_white"
             android:textSize="13sp"
             android:fontFamily="@font/pretendard_semi_bold"
             />
@@ -299,18 +387,16 @@
             android:layout_width="64dp"
             android:layout_height="28dp"
             android:id="@+id/offender_mother"
-            android:background="@color/white"
-            android:backgroundTint="#FF7F61"
+            android:background="@drawable/btn_white_to_dark_red"
 
             app:layout_constraintLeft_toRightOf="@+id/offender_father"
             app:layout_constraintTop_toBottomOf="@id/offender_relation"
-            app:layout_constraintRight_toLeftOf="@+id/record_offender_age"
+            app:layout_constraintRight_toLeftOf="@+id/record_relation"
 
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="18dp"
             android:text="모"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@drawable/txt_dark_red_to_white"
             android:textSize="13sp"
             android:fontFamily="@font/pretendard_semi_bold"
             />

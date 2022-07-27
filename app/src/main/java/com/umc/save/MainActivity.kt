@@ -2,6 +2,10 @@ package com.umc.save
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.umc.save.Home.HomeFragment
 import com.umc.save.Locker.LockerFragment
 import com.umc.save.Record.RecordFragment
 import com.umc.save.databinding.ActivityMainBinding

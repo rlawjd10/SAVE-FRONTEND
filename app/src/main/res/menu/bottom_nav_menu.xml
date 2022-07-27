@@ -12,7 +12,7 @@
         android:enabled="true"
         android:checkable="false"
         android:icon="@drawable/icn_add_default"
-        android:title=""/>
+        android:title="기록하기"/>
 
     <item
         android:id="@+id/tab_storage"

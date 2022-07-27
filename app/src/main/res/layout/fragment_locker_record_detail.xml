@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/child_info_ib"
+            android:layout_width="306dp"
+            android:layout_height="96dp"
+            android:layout_marginTop="124dp"
+            android:background="@drawable/fragment_child_blue_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/child_info_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="19dp"
+            android:src="@drawable/ilst_girl_01_blue"
+            app:layout_constraintStart_toStartOf="@id/child_info_ib"
+            app:layout_constraintTop_toTopOf="@id/child_info_ib" />
+
+
+        <TextView
+            android:id="@+id/child_info_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="106dp"
+            android:layout_marginTop="23dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="박예명"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/child_info_ib"
+            app:layout_constraintTop_toTopOf="@id/child_info_ib" />
+
+        <TextView
+            android:id="@+id/child_info_specific_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="106.03dp"
+            android:layout_marginTop="55dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="여자/5세/서울시 마포구 상암동"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/child_info_ib"
+            app:layout_constraintTop_toTopOf="@id/child_info_ib" />
+
+
+        <ImageButton
+            android:id="@+id/suspect_info_ib"
+            android:layout_width="306dp"
+            android:layout_height="96dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/fragment_dark_gray_background"
+            app:layout_constraintStart_toStartOf="@id/child_info_ib"
+            app:layout_constraintTop_toBottomOf="@id/child_info_ib" />
+
+        <ImageView
+            android:id="@+id/suspect_info_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="19dp"
+            android:src="@drawable/ilst_girl_01_blue"
+            app:layout_constraintStart_toStartOf="@id/suspect_info_ib"
+            app:layout_constraintTop_toTopOf="@id/suspect_info_ib" />
+
+
+        <TextView
+            android:id="@+id/suspect_info_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="106dp"
+            android:layout_marginTop="23dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="박길동"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/suspect_info_ib"
+            app:layout_constraintTop_toTopOf="@id/suspect_info_ib" />
+
+        <TextView
+            android:id="@+id/suspect_info_specific_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="106.03dp"
+            android:layout_marginTop="55dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="남자/48세/서울시 마포구 상암동"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/suspect_info_ib"
+            app:layout_constraintTop_toTopOf="@id/suspect_info_ib" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="204dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/white"
+            app:layout_constraintStart_toStartOf="@id/suspect_info_ib"
+            app:layout_constraintTop_toTopOf="@id/suspect_info_ib" />
+
+
+        <TextView
+            android:id="@+id/suspect_info_relationship_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="210.99dp"
+            android:layout_marginTop="29dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="친부"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="@id/suspect_info_ib"
+            app:layout_constraintTop_toTopOf="@id/suspect_info_ib" />
+
+
+        <ImageButton
+            android:id="@+id/record_date_time_ib"
+            android:layout_width="146dp"
+            android:layout_height="146dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/fragment_dark_gray_background"
+            app:layout_constraintStart_toStartOf="@id/suspect_info_ib"
+            app:layout_constraintTop_toBottomOf="@id/suspect_info_ib" />
+
+
+        <TextView
+            android:id="@+id/record_info_date_tv"
+            android:layout_width="95.06dp"
+            android:layout_height="64.48dp"
+            android:layout_marginStart="25.35dp"
+            android:layout_marginTop="17dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="2019년\n5월 21일"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/record_date_time_ib"
+            app:layout_constraintTop_toTopOf="@id/record_date_time_ib" />
+
+        <TextView
+            android:id="@+id/record_info_time_tv"
+            android:layout_width="95.06dp"
+            android:layout_height="26.72dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="PM 04:00"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/record_info_date_tv"
+            app:layout_constraintTop_toBottomOf="@id/record_info_date_tv" />
+
+        <TextView
+            android:id="@+id/record_info_location_tv"
+            android:layout_width="32dp"
+            android:layout_height="19dp"
+            android:layout_marginBottom="23.92dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="집 안"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/record_date_time_ib"
+            app:layout_constraintStart_toStartOf="@id/record_info_time_tv"/>
+
+        <ImageButton
+            android:id="@+id/record_abuse_type_ib"
+            android:layout_width="146dp"
+            android:layout_height="146dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginStart="14dp"
+            android:background="@drawable/fragment_dark_gray_background"
+            app:layout_constraintStart_toEndOf="@id/record_date_time_ib"
+            app:layout_constraintTop_toBottomOf="@id/suspect_info_ib" />
+
+
+        <TextView
+            android:id="@+id/record_abuse_type_tv"
+            android:layout_width="74dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="17dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="신체학대"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/record_abuse_type_ib"
+            app:layout_constraintTop_toTopOf="@id/record_abuse_type_ib" />
+
+
+        <ImageView
+            android:id="@+id/record_abuse_type_iv"
+            android:layout_width="27.29dp"
+            android:layout_height="41.05dp"
+            android:layout_marginStart="93dp"
+            android:layout_marginTop="81dp"
+            android:src="@drawable/icn_category_physical"
+            app:layout_constraintStart_toStartOf="@id/record_abuse_type_ib"
+            app:layout_constraintTop_toTopOf="@id/record_abuse_type_ib" />
+
+
+        <TextView
+            android:id="@+id/record_text_tv"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:text="아파트 복도를 지나던 중 이웃집 문이 활짝 열려있는 걸 보았다. 아이가 크게 우는 소리가 들려 살짝 엿보니 203호 아저씨가 술 취한 채로 밥상을 엎고 아이의 삳ㅇ체를 강하게 밀쳤다."
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:layout_marginTop="14dp"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/pretendard_medium"
+            android:lineHeight="18dp"
+            android:background="@drawable/fragment_child_red_off_background"
+            app:layout_constraintStart_toStartOf="@id/child_info_ib"
+            app:layout_constraintTop_toBottomOf="@id/record_date_time_ib"/>
+
+        <TextView
+            android:id="@+id/record_text_etc_tv"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:text="dkfjdklsfjdklfskl"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/pretendard_medium"
+            android:layout_marginTop="30dp"
+            android:lineHeight="18dp"
+            android:background="@drawable/fragment_child_red_off_background"
+            app:layout_constraintStart_toStartOf="@id/record_text_tv"
+            app:layout_constraintTop_toBottomOf="@id/record_text_tv"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
