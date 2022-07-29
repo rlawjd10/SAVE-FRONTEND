@@ -33,7 +33,7 @@ class ChildRVAdapter (private val childList : ArrayList<Child>) : RecyclerView.A
 
     inner class ViewHolder(val binding: ItemChildBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(child: Child) {
-            var childInfo : String = child.childGender + "/" + child.childAge.toString() + "/" + child.childAddress
+            val childInfo : String = child.childGender + "/" + child.childAge.toString() + "/" + child.childAddress
             val sdf = SimpleDateFormat("yyyy.MM.dd")
 
             binding.itemChildInfoNameTv.text = child.childName

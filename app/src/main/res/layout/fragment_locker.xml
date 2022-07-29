@@ -1,75 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/locker_frm"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/locker_frm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-
-            <TextView
-                android:id="@+id/locker_title_tv"
-                android:layout_width="306dp"
-                android:layout_height="46dp"
-                android:fontFamily="@font/pretendard_semi_bold"
-                android:text="보관함"
-                android:textColor="@color/black"
-                android:textSize="40sp"
-                android:layout_marginTop="216dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/locker_guide_tv"
-                android:layout_width="224dp"
-                android:layout_height="19dp"
-                android:layout_marginTop="13dp"
-                android:fontFamily="@font/pretendard_bold"
-                android:text="기록을 열람할 아동을 선택해주세요."
-                android:textColor="#B5B5B5"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@id/locker_title_tv"
-                app:layout_constraintTop_toBottomOf="@id/locker_title_tv" />
-
-            <TextView
-                android:id="@+id/locker_child_edit_tv"
-                android:layout_width="23dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="48.95dp"
-                android:layout_marginTop="28.41dp"
-                android:fontFamily="@font/pretendard_bold"
-                android:text="편집"
-                android:textColor="#FF7f61"
-                android:textSize="13sp"
-                app:layout_constraintStart_toEndOf="@id/locker_guide_tv"
-                app:layout_constraintTop_toBottomOf="@id/locker_guide_tv" />
-
-
-
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/child_list_rv"
-            android:layout_width="match_parent"
-            android:layout_height="450dp"
-            android:layout_marginTop="350dp"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <TextView
+            android:id="@+id/locker_title_tv"
+            android:layout_width="306dp"
+            android:layout_height="48dp"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:text="보관함"
+            android:textColor="@color/black"
+            android:textSize="40sp"
+            android:layout_marginTop="219dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:listitem="@layout/item_child" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/locker_guide_tv"
+            android:layout_width="224dp"
+            android:layout_height="19dp"
+            android:layout_marginTop="13dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="기록을 열람할 아동을 선택해주세요."
+            android:textColor="#B5B5B5"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/locker_title_tv"
+            app:layout_constraintTop_toBottomOf="@id/locker_title_tv" />
+
+        <TextView
+            android:id="@+id/locker_child_edit_tv"
+            android:layout_width="23dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48.95dp"
+            android:layout_marginTop="28.41dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="편집"
+            android:textColor="#FF7f61"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@id/locker_guide_tv"
+            app:layout_constraintTop_toBottomOf="@id/locker_guide_tv" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/child_list_rv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="350dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/item_child" />
 
-</ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

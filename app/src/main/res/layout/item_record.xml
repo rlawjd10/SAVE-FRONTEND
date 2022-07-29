@@ -5,8 +5,8 @@
     android:layout_marginRight="14dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageButton
-        android:id="@+id/item_record_info_ib"
+    <ImageView
+        android:id="@+id/item_record_info_iv"
         android:layout_width="146dp"
         android:layout_height="261dp"
         android:background="@drawable/fragment_child_red_on_background"
@@ -24,8 +24,8 @@
         android:text="2022년\n7월 5일"
         android:textColor="@color/dark_red"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/item_record_info_ib"
-        app:layout_constraintTop_toTopOf="@id/item_record_info_ib" />
+        app:layout_constraintStart_toStartOf="@id/item_record_info_iv"
+        app:layout_constraintTop_toTopOf="@id/item_record_info_iv" />
 
     <TextView
         android:id="@+id/item_record_time_tv"
@@ -59,7 +59,7 @@
         android:text="2022.07.05"
         android:textColor="@color/black"
         android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@id/item_record_info_ib"
-        app:layout_constraintEnd_toEndOf="@id/item_record_info_ib"/>
+        app:layout_constraintBottom_toBottomOf="@id/item_record_info_iv"
+        app:layout_constraintEnd_toEndOf="@id/item_record_info_iv"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

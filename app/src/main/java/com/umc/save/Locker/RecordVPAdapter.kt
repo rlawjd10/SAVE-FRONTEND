@@ -5,7 +5,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class RecordVPAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
-    private val fragmentList : ArrayList<Fragment> = ArrayList()
 
     override fun getItemCount(): Int = 2
 
