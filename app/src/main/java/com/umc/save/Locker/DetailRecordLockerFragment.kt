@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.gson.Gson
+import com.umc.save.MainActivity
+import com.umc.save.R
 import com.umc.save.databinding.FragmentLockerRecordDetailBinding
 import java.text.SimpleDateFormat
 
@@ -23,22 +25,29 @@ class DetailRecordLockerFragment : Fragment() {
     ): View? {
         binding = FragmentLockerRecordDetailBinding.inflate(inflater,container,false)
 
-        val childJson = arguments?.getString("child")
-        val child = gson.fromJson(childJson,Child::class.java)
-
-//        setInit(child)
+        setInitView()
 
         return binding.root
     }
 
-//    @SuppressLint("SimpleDateFormat")
-//    private fun setInit(child: Child){
-//        val childInfo : String = child.childGender + "/" + child.childAge.toString() + "/" + child.childAddress
-//        val sdf = SimpleDateFormat("yyyy.MM.dd")
-//
-//        binding.childInfoNameTv.text = child.childName
-//        binding.childInfoSpecificTv.text = childInfo
-//
-//    }
+
+    private fun setOnClickListeners() {
+        binding.recordVideoNumTv.setOnClickListener {
+            (context as MainActivity).supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.video_frm,ListPictureLockerFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
+
+    }
+
+    private fun setInitView() {
+        (context as MainActivity).supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.picture_frm,ListPictureLockerFragment())
+            .commitAllowingStateLoss()
+    }
+
 
 }

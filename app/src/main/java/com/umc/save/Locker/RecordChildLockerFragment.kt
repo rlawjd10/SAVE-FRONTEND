@@ -13,14 +13,13 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.google.gson.Gson
 import com.umc.save.MainActivity
 import com.umc.save.R
-import com.umc.save.databinding.FragmentLockerChildListBinding
 import com.umc.save.databinding.FragmentLockerChildRecordBinding
 import java.text.SimpleDateFormat
 
 class RecordChildLockerFragment() : Fragment(){
     lateinit var binding: FragmentLockerChildRecordBinding
     private val method  = arrayListOf("목록에서 보기","달력에서 보기")
-    private var gson : Gson = Gson()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,12 +27,6 @@ class RecordChildLockerFragment() : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLockerChildRecordBinding.inflate(inflater,container,false)
-
-        val childJson = arguments?.getString("child")
-        val child = gson.fromJson(childJson,Child::class.java)
-
-
-        setInit(child)
 
 
         val recordAdapter = RecordVPAdapter(this)
@@ -50,16 +43,7 @@ class RecordChildLockerFragment() : Fragment(){
         return binding.root
     }
 
-    @SuppressLint("SimpleDateFormat")
-    private fun setInit(child: Child){
-        val childInfo : String = child.childGender + "/" + child.childAge.toString() + "/" + child.childAddress
-        val sdf = SimpleDateFormat("yyyy.MM.dd")
 
-        binding.childInfoNameTv.text = child.childName
-        binding.childInfoSpecificTv.text = childInfo
-        binding.childInfoDateTv.text = sdf.format(child.createAt).toString()
-
-    }
 
 //    private fun sendData(child: Child) {
 //        (context as MainActivity).supportFragmentManager

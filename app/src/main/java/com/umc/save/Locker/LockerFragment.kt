@@ -69,7 +69,7 @@ class LockerFragment : Fragment() {
     private fun changeRecordChildLockerFragment(child: Child) {
         (context as MainActivity).supportFragmentManager
             .beginTransaction()
-            .replace(R.id.main_frm, RecordChildLockerFragment().apply {
+            .replace(R.id.main_frm, InfoChildLockerFragment().apply {
                 arguments = Bundle().apply {
                     val gson = Gson()
                     val childJson = gson.toJson(child)

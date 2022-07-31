@@ -53,7 +53,7 @@ class ListChildLockerFragment() : Fragment() {
     private fun changeDetailRecordLockerFragment(recordData: RecordData) {
         (context as MainActivity).supportFragmentManager
             .beginTransaction()
-            .replace(R.id.main_frm, DetailRecordLockerFragment().apply {
+            .replace(R.id.locker_frm, DetailRecordLockerFragment().apply {
                 arguments = Bundle().apply {
                     val gson = Gson()
                     val recordDataJson = gson.toJson(recordData)

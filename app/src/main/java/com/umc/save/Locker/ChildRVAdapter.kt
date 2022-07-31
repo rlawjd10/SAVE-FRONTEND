@@ -1,12 +1,18 @@
 package com.umc.save.Locker
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.umc.save.R
+import com.umc.save.databinding.ItemAddBinding
+import com.umc.save.databinding.ItemAddRecordBinding
 import com.umc.save.databinding.ItemChildBinding
+import kotlinx.coroutines.NonDisposableHandle.parent
 import java.text.SimpleDateFormat
 
-class ChildRVAdapter (private val childList : ArrayList<Child>) : RecyclerView.Adapter<ChildRVAdapter.ViewHolder>() {
+class ChildRVAdapter (private val childList : ArrayList<Child>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface MyItemClickListener {
         fun onItemClick(child: Child)
@@ -18,20 +24,45 @@ class ChildRVAdapter (private val childList : ArrayList<Child>) : RecyclerView.A
         mItemClickListener = itemClickListener
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        val binding: ItemChildBinding = ItemChildBinding.inflate(LayoutInflater.from(viewGroup.context),
-                viewGroup, false)
-        return ViewHolder(binding)
+    override fun getItemViewType(position: Int): Int {
+        return if (position == childList.size) {
+            R.layout.item_add
+        } else {
+            R.layout.item_child
+        }
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(childList[position])
-        holder.itemView.setOnClickListener{  mItemClickListener.onItemClick(childList[position])}
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+
+        return when (viewType) {
+            R.layout.item_child -> {
+                val view = ItemChildBinding.inflate(LayoutInflater.from(viewGroup.context),
+                    viewGroup, false)
+                ViewHolderChild(view)
+            }
+            else -> {
+                val view = ItemAddBinding.inflate(LayoutInflater.from(viewGroup.context),
+                    viewGroup, false)
+                ViewHolderAdd(view)
+            }
+        }
+
     }
 
-    override fun getItemCount(): Int = childList.size
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-    inner class ViewHolder(val binding: ItemChildBinding) : RecyclerView.ViewHolder(binding.root) {
+        if (position == childList.size) {
+            (holder as ViewHolderAdd).bind()
+            } else {
+            (holder as ViewHolderChild).bind(childList[position])
+            (holder as ViewHolderChild).itemView.setOnClickListener{  mItemClickListener.onItemClick(childList[position])}
+        }
+
+    }
+
+    override fun getItemCount(): Int = childList.size + 1
+
+    inner class ViewHolderChild(val binding: ItemChildBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(child: Child) {
             val childInfo : String = child.childGender + "/" + child.childAge.toString() + "/" + child.childAddress
             val sdf = SimpleDateFormat("yyyy.MM.dd")
@@ -41,4 +72,14 @@ class ChildRVAdapter (private val childList : ArrayList<Child>) : RecyclerView.A
             binding.itemChildInfoDateTv.text = sdf.format(child.createAt).toString()
         }
     }
+
+    inner class ViewHolderAdd(val binding: ItemAddBinding) : RecyclerView.ViewHolder(binding.root) {
+        private val btn = itemView.findViewById<ImageView>(R.id.item_add_image)
+        fun bind() {
+            btn.setOnClickListener {
+                //
+            }
+        }
+    }
+
 }
