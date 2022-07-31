@@ -3,7 +3,9 @@ package com.umc.save.Record
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.umc.save.Locker.LockerFragment
 import com.umc.save.R
 import com.umc.save.databinding.ActivityOffenderRecordBinding
@@ -43,12 +45,24 @@ class OffenderRecordActivity : AppCompatActivity() {
             startActivity(Intent(this, OffenderRecordActivity::class.java))
         }
 
-        binding.recordNext.setOnClickListener{
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.offender_frm, RecordDoneFragment())
-                .commit()
+//        binding.recordNext.setOnClickListener{
+//            supportFragmentManager.beginTransaction()
+//                .replace(R.id.offender_frm, RecordDoneFragment())
+//                .commit()
+//
+////            startActivity(Intent(this, RecordDoneFragment::class.java))
+//        }
 
-//            startActivity(Intent(this, RecordDoneFragment::class.java))
+
+        binding.recordNext.setOnClickListener{
+            val recordDoneFragment = RecordDoneFragment()
+            val fragment : Fragment? = supportFragmentManager.findFragmentByTag(RecordDoneFragment::class.java.simpleName)
+            if(fragment !is RecordDoneFragment){
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.layout_content, recordDoneFragment, recordDoneFragment::class.java.simpleName)
+                    .commit()
+            }
+            binding.content.visibility = View.GONE
         }
     }
 }

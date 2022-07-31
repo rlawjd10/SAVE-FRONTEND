@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.umc.save.Record.RecordDetail.AbuseTypeActivity
+import com.umc.save.Record.RecordDetail.ChooseOffenderActivity
 import com.umc.save.databinding.FragmentRecordDoneBinding
 
 class RecordDoneFragment : Fragment() {
@@ -34,7 +34,7 @@ class RecordDoneFragment : Fragment() {
 
         binding.recordGoOn.setOnClickListener {
             activity?.let {
-                val intent = Intent(context, AbuseTypeActivity::class.java)
+                val intent = Intent(context, ChooseOffenderActivity::class.java)
                 startActivity(intent)
             }
         }
