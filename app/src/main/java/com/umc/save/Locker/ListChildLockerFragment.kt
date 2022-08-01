@@ -29,11 +29,6 @@ class ListChildLockerFragment() : Fragment() {
         recordList.apply {
             add(RecordData(1,Date(2022,7,5), Time(2,3,0),"인천광역시 연수구 송도동",Date(2022,3,2)))
             add(RecordData(1,Date(2021,4,3), Time(3,3,0),"인천광역시 연수구 동춘동",Date(2021,3,12)))
-            add(RecordData(1,Date(2022,7,5), Time(2,3,0),"인천광역시 연수구 송도동",Date(2022,3,2)))
-            add(RecordData(1,Date(2022,7,5), Time(2,3,0),"인천광역시 연수구 송도동",Date(2022,3,2)))
-            add(RecordData(1,Date(2022,7,5), Time(2,3,0),"인천광역시 연수구 송도동",Date(2022,3,2)))
-            add(RecordData(1,Date(2022,7,5), Time(2,3,0),"인천광역시 연수구 송도동",Date(2022,3,2)))
-            add(RecordData(1,Date(2022,7,5), Time(2,3,0),"인천광역시 연수구 송도동",Date(2022,3,2)))
         }
 
         val childRecordRVAdapter = ChildRecordRVAdapter(recordList)

@@ -1,5 +1,6 @@
 package com.umc.save.Locker
 
+import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings.Global.putString
 import android.util.Log
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.umc.save.MainActivity
 import com.umc.save.R
+import com.umc.save.Record.ChildRecordActivity
 import com.umc.save.Record.RecordFragment
 import com.umc.save.databinding.FragmentLockerBinding
 import java.text.SimpleDateFormat
@@ -60,6 +62,10 @@ class LockerFragment : Fragment() {
             override fun onItemClick(child: Child) {
                 changeRecordChildLockerFragment(child)
             }
+
+            override fun onItemClickAdd() {
+                openRecordActivity()
+            }
         })
 
         return binding.root
@@ -78,6 +84,11 @@ class LockerFragment : Fragment() {
             })
             .addToBackStack(null)
             .commitAllowingStateLoss()
+    }
+
+    private fun openRecordActivity() {
+        val intent = Intent(context, ChildRecordActivity::class.java)
+        startActivity(intent)
     }
 
 }

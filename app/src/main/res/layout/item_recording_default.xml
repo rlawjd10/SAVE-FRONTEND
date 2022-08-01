@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="14dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/recording_info_iv"
+        android:layout_width="306dp"
+        android:layout_height="48dp"
+        android:background="@drawable/fragment_child_red_on_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/recording_play_iv"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="14dp"
+        android:src="@drawable/btn_player_play"
+        app:layout_constraintStart_toStartOf="@id/recording_info_iv"
+        app:layout_constraintTop_toTopOf="@id/recording_info_iv" />
+
+    <TextView
+        android:id="@+id/recording_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="14dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="17dp"
+        android:fontFamily="@font/pretendard_medium"
+        android:text="음성 097.mp4a"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/recording_play_iv"
+        app:layout_constraintTop_toTopOf="@id/recording_info_iv"/>
+
+    <TextView
+        android:id="@+id/recording_length_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="12dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="20.97dp"
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:text="01:42"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/recording_info_iv"
+        app:layout_constraintTop_toTopOf="@id/recording_info_iv"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

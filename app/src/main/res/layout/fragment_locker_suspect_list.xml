@@ -38,7 +38,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/suspect_list_rv"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="0dp"
         android:layout_marginTop="350dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

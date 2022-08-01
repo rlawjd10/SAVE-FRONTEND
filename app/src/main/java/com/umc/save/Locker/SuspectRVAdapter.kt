@@ -11,13 +11,14 @@ import com.umc.save.Record.ChildRecordActivity
 import com.umc.save.databinding.ItemAddBinding
 import com.umc.save.databinding.ItemAddRecordBinding
 import com.umc.save.databinding.ItemChildBinding
+import com.umc.save.databinding.ItemSuspectBinding
 import kotlinx.coroutines.NonDisposableHandle.parent
 import java.text.SimpleDateFormat
 
-class ChildRVAdapter (private val childList : ArrayList<Child>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SuspectRVAdapter (private val suspectList : ArrayList<Suspect>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface MyItemClickListener {
-        fun onItemClick(child: Child)
+        fun onItemClick(suspect: Suspect)
         fun onItemClickAdd()
     }
     private lateinit var mItemClickListener: MyItemClickListener
@@ -27,20 +28,20 @@ class ChildRVAdapter (private val childList : ArrayList<Child>) : RecyclerView.A
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == childList.size) {
+        return if (position == suspectList.size) {
             R.layout.item_add
         } else {
-            R.layout.item_child
+            R.layout.item_suspect
         }
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         return when (viewType) {
-            R.layout.item_child -> {
-                val view = ItemChildBinding.inflate(LayoutInflater.from(viewGroup.context),
+            R.layout.item_suspect -> {
+                val view = ItemSuspectBinding.inflate(LayoutInflater.from(viewGroup.context),
                     viewGroup, false)
-                ViewHolderChild(view)
+                ViewHolderSuspect(view)
             }
             else -> {
                 val view = ItemAddBinding.inflate(LayoutInflater.from(viewGroup.context),
@@ -53,26 +54,29 @@ class ChildRVAdapter (private val childList : ArrayList<Child>) : RecyclerView.A
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        if (position == childList.size) {
+        if (position == suspectList.size) {
             (holder as ViewHolderAdd).bind()
             (holder as ViewHolderAdd).itemView.setOnClickListener{  mItemClickListener.onItemClickAdd()}
             } else {
-            (holder as ViewHolderChild).bind(childList[position])
-            (holder as ViewHolderChild).itemView.setOnClickListener{  mItemClickListener.onItemClick(childList[position])}
+            (holder as ViewHolderSuspect).bind(suspectList[position])
+            (holder as ViewHolderSuspect).itemView.setOnClickListener{  mItemClickListener.onItemClick(suspectList[position])}
         }
 
     }
 
-    override fun getItemCount(): Int = childList.size + 1
+    override fun getItemCount(): Int = suspectList.size + 1
 
-    inner class ViewHolderChild(val binding: ItemChildBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(child: Child) {
-            val childInfo : String = child.childGender + "/" + child.childAge.toString() + "/" + child.childAddress
-            val sdf = SimpleDateFormat("yyyy.MM.dd")
-
-            binding.itemChildInfoNameTv.text = child.childName
-            binding.itemChildInfoSpecificTv.text = childInfo
-            binding.itemChildInfoDateTv.text = sdf.format(child.createAt).toString()
+    inner class ViewHolderSuspect(val binding: ItemSuspectBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(suspect: Suspect) {
+            val unknown = "-"
+            val suspectInfo : String = suspect.suspectGender + "/" + suspect.suspectAge.toString()
+            if (suspect.suspectName == "") {
+                binding.suspectInfoNameTv.text = unknown
+            } else {
+                binding.suspectInfoNameTv.text = suspect.suspectName
+            }
+            binding.suspectInfoRelationshipTv.text = suspect.relationship
+            binding.suspectInfoSpecificTv.text = suspectInfo
         }
     }
 

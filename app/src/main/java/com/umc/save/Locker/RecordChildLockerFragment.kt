@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat
 class RecordChildLockerFragment() : Fragment(){
     lateinit var binding: FragmentLockerChildRecordBinding
     private val method  = arrayListOf("목록에서 보기","달력에서 보기")
+    private var gson : Gson = Gson()
 
 
     override fun onCreateView(
@@ -28,6 +29,8 @@ class RecordChildLockerFragment() : Fragment(){
     ): View? {
         binding = FragmentLockerChildRecordBinding.inflate(inflater,container,false)
 
+        val childJson = arguments?.getString("child")
+        val child = gson.fromJson(childJson,Child::class.java)
 
         val recordAdapter = RecordVPAdapter(this)
         binding.recordContentVp.adapter = recordAdapter
@@ -37,6 +40,21 @@ class RecordChildLockerFragment() : Fragment(){
             tab, position -> tab.text = method[position]
         }.attach()
 
+
+
+        binding.suspectControlBtn.setOnClickListener {
+            (context as MainActivity).supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.main_frm, ListSuspectLockerFragment()).apply {
+                    arguments = Bundle().apply {
+                        val gson = Gson()
+                        val childJson = gson.toJson(child)
+                        putString("child",childJson)
+                    }
+                }
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
 
 
 
