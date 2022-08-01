@@ -1,9 +1,11 @@
 package com.umc.save.Record.RecordDetail
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.umc.save.R
+import com.umc.save.Record.OffenderRecordActivity
 import com.umc.save.databinding.ActivityAbuseTypeBinding
 
 class AbuseTypeActivity : AppCompatActivity() {
@@ -54,6 +56,9 @@ class AbuseTypeActivity : AppCompatActivity() {
             }
         }
 
+        binding.nextBtn.setOnClickListener{
+            startActivity(Intent(this, CalendarTimePlaceActivity::class.java))
+        }
 
     }
 }

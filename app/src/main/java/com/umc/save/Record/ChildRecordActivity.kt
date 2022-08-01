@@ -15,6 +15,11 @@ import com.umc.save.databinding.ActivityChildRecordBinding
 class ChildRecordActivity : AppCompatActivity() {
     var name_num = 0
     var age_num = 0
+
+    var male = 0
+    var female = 0
+    var dontK = 0
+
     lateinit var binding: ActivityChildRecordBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +47,34 @@ class ChildRecordActivity : AppCompatActivity() {
                 binding.recordChildAgeNS.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.dark_gray)
             }
         }
+
+        // 아이 성별
+        binding.childMale.setOnClickListener{
+            male++
+            if(male % 2 != 0 ) {
+                binding.childMale.isSelected = true
+            } else{
+                binding.childMale.isSelected = false
+            }
+        }
+
+        binding.childFemale.setOnClickListener{
+            female++
+            if(female % 2 != 0 ) {
+                binding.childFemale.isSelected = true
+            } else{
+                binding.childFemale.isSelected = false
+            }
+        }
+        binding.childDontKnow.setOnClickListener{
+            dontK++
+            if(dontK % 2 != 0 ) {
+                binding.childDontKnow.isSelected = true
+            } else{
+                binding.childDontKnow.isSelected = false
+            }
+        }
+
 
 
         binding.recordDone.setOnClickListener{

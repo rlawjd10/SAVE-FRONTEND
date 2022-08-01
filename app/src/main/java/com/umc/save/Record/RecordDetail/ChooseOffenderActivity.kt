@@ -3,10 +3,7 @@ package com.umc.save.Record.RecordDetail
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.umc.save.R
-import com.umc.save.Record.OffenderRecordActivity
 import com.umc.save.Record.Suspect
 import com.umc.save.Record.SuspectRVAdapter
 import com.umc.save.databinding.ActivityChooseOffenderBinding
@@ -16,8 +13,7 @@ import kotlin.collections.ArrayList
 class ChooseOffenderActivity : AppCompatActivity() {
     lateinit var binding : ActivityChooseOffenderBinding
     var choice_btn = 0
-    private lateinit var suspectList : ArrayList<Suspect>
-    val suspectRVAdapter = SuspectRVAdapter(suspectList)
+    private var suspectList= ArrayList<Suspect>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,8 +25,6 @@ class ChooseOffenderActivity : AppCompatActivity() {
         binding.offenderListRv.adapter = suspectRVAdapter
         binding.offenderListRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-//        binding.nextBtn.setOnClickListener{
-//            startActivity(Intent(this, AbuseTypeActivity::class.java))
 
         suspectRVAdapter.setMyItemClickListener(object:SuspectRVAdapter.MyItemClickListener{
             override fun onItemClick(suspect: Suspect) {
@@ -43,8 +37,6 @@ class ChooseOffenderActivity : AppCompatActivity() {
                 }
             }
         } )
-
-
 
         suspectList.apply {
             add(Suspect(1, "홍길동", 1,"남","40",")", "ㅇㄹㄴㄻ",
@@ -62,6 +54,8 @@ class ChooseOffenderActivity : AppCompatActivity() {
         }
 
 
-
+        binding.nextBtn.setOnClickListener{
+            startActivity(Intent(this, AbuseTypeActivity::class.java))
+        }
     }
 }

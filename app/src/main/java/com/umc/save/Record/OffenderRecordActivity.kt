@@ -13,6 +13,13 @@ import com.umc.save.databinding.ActivityOffenderRecordBinding
 class OffenderRecordActivity : AppCompatActivity() {
     var name_num = 0
     var age_num = 0
+
+    var male = 0
+    var female = 0
+    var dontK = 0
+    var father = 0
+    var mother = 0
+
     lateinit var binding: ActivityOffenderRecordBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,13 +52,50 @@ class OffenderRecordActivity : AppCompatActivity() {
             startActivity(Intent(this, OffenderRecordActivity::class.java))
         }
 
-//        binding.recordNext.setOnClickListener{
-//            supportFragmentManager.beginTransaction()
-//                .replace(R.id.offender_frm, RecordDoneFragment())
-//                .commit()
-//
-////            startActivity(Intent(this, RecordDoneFragment::class.java))
-//        }
+        // 학대행위자 성별
+        binding.offenderMale.setOnClickListener{
+            male++
+            if(male % 2 != 0 ) {
+                binding.offenderMale.isSelected = true
+            } else{
+                binding.offenderMale.isSelected = false
+            }
+        }
+
+        binding.offenderFemale.setOnClickListener{
+            female++
+            if(female % 2 != 0 ) {
+                binding.offenderFemale.isSelected = true
+            } else{
+                binding.offenderFemale.isSelected = false
+            }
+        }
+        binding.offenderDontKnow.setOnClickListener{
+            dontK++
+            if(dontK % 2 != 0 ) {
+                binding.offenderDontKnow.isSelected = true
+            } else{
+                binding.offenderDontKnow.isSelected = false
+            }
+        }
+
+
+        binding.offenderFather.setOnClickListener{
+            father++
+            if(father % 2 != 0 ) {
+                binding.offenderFather.isSelected = true
+            } else{
+                binding.offenderFather.isSelected = false
+            }
+        }
+        binding.offenderMother.setOnClickListener{
+            mother++
+            if(mother % 2 != 0 ) {
+                binding.offenderMother.isSelected = true
+            } else{
+                binding.offenderMother.isSelected = false
+            }
+        }
 
 
         binding.recordNext.setOnClickListener{

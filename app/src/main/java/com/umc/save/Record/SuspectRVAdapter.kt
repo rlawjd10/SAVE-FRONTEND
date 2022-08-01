@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import com.umc.save.databinding.ItemOffenderBinding
 
-class SuspectRVAdapter(private val suspectList : ArrayList<Suspect>) : RecyclerView.Adapter<SuspectRVAdapter.ViewHolder>() {
+class SuspectRVAdapter(private val suspectList : ArrayList<Suspect>) :
+    RecyclerView.Adapter<SuspectRVAdapter.ViewHolder>() {
     interface MyItemClickListener {
         fun onItemClick(suspect: Suspect)
     }
