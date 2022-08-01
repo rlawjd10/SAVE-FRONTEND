@@ -213,7 +213,7 @@ ex) ‘옆집 아들’, ‘3층 아이’"
 <EditText
     android:id="@+id/record_child_age"
     android:layout_width="129dp"
-    android:layout_height="28dp"
+    android:layout_height="wrap_content"
     android:backgroundTint="@color/dark_red"
 
     app:layout_constraintLeft_toLeftOf="parent"
@@ -269,7 +269,7 @@ ex) ‘옆집 아들’, ‘3층 아이’"
     <EditText
         android:id="@+id/record_child_age_NS"
         android:layout_width="129dp"
-        android:layout_height="28dp"
+        android:layout_height="wrap_content"
         android:backgroundTint="@color/dark_gray"
 
         app:layout_constraintEnd_toEndOf="@+id/age_notSure_btn"

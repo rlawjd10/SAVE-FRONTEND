@@ -213,7 +213,7 @@
         <EditText
             android:id="@+id/record_offender_age"
             android:layout_width="129dp"
-            android:layout_height="28dp"
+            android:layout_height="wrap_content"
             android:backgroundTint="@color/dark_red"
 
             app:layout_constraintLeft_toLeftOf="parent"
@@ -269,7 +269,7 @@
         <EditText
             android:id="@+id/record_offender_age_NS"
             android:layout_width="129dp"
-            android:layout_height="28dp"
+            android:layout_height="wrap_content"
             android:backgroundTint="@color/dark_gray"
 
             app:layout_constraintEnd_toEndOf="@+id/age_notSure_btn"
@@ -446,8 +446,15 @@
 
             android:fontFamily="@font/pretendard_semi_bold"
 
+            android:text="선택 후 입력하세요."
             android:textColor="#FF7F61"
-            android:textSize="16sp"
+            android:textSize="12sp"
+
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:gravity="top"
 
             app:layout_constraintTop_toBottomOf="@id/offender_etc"
             app:layout_constraintRight_toRightOf="parent"

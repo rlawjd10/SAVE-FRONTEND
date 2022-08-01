@@ -35,7 +35,7 @@
 
     <TextView
         android:elevation="2dp"
-        android:id="@+id/item_child_info_name_tv"
+        android:id="@+id/item_offender_info_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"

@@ -35,7 +35,7 @@ class SuspectRVAdapter(private val suspectList : ArrayList<Suspect>) :
             var suspectRel : String? = suspect.relationWithChild
 
             binding.itemOffenderInfoRelTv.text = suspectRel
-            binding.itemOffenderInfoIb.text = suspect.suspectName
+            binding.itemOffenderInfoNameTv.text = suspect.suspectName
             itemView.setOnClickListener{
 
             }
