@@ -6,5 +6,6 @@ data class Recording (
     var recordingTitle : String,
     var second : Int = 0,
     var length : Int,
-    var isPlaying: Boolean
+    var progress: Int = 0,
+    var isPlaying: Boolean = false
 )

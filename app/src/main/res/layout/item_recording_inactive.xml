@@ -9,7 +9,7 @@
         android:id="@+id/recording_info_iv"
         android:layout_width="306dp"
         android:layout_height="48dp"
-        android:background="@drawable/fragment_child_red_on_background"
+        android:background="@drawable/fragment_dark_gray_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -19,45 +19,47 @@
         android:layout_width="21dp"
         android:layout_height="21dp"
         android:layout_marginStart="26dp"
+        android:layout_marginTop="14dp"
         android:src="@drawable/btn_player_play"
-        app:layout_constraintBottom_toBottomOf="@id/recording_info_iv"
         app:layout_constraintStart_toStartOf="@id/recording_info_iv"
         app:layout_constraintTop_toTopOf="@id/recording_info_iv" />
-
-<!--    임의로 만든 부분-->
-<!--    <ImageView-->
-<!--        android:id="@+id/recording_pause_iv"-->
-<!--        android:layout_width="21dp"-->
-<!--        android:layout_height="21dp"-->
-<!--        android:layout_marginStart="26dp"-->
-<!--        android:visibility="gone"-->
-<!--        android:src="@drawable/btn_player_play"-->
-<!--        app:layout_constraintBottom_toBottomOf="@id/recording_info_iv"-->
-<!--        app:layout_constraintStart_toStartOf="@id/recording_info_iv"-->
-<!--        app:layout_constraintTop_toTopOf="@id/recording_info_iv" />-->
 
     <TextView
         android:id="@+id/recording_title_tv"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="14dp"
         android:layout_marginStart="37dp"
+        android:layout_marginTop="17dp"
         android:fontFamily="@font/pretendard_medium"
         android:text="음성 097.mp4a"
-        app:layout_constraintBottom_toBottomOf="@id/recording_info_iv"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@id/recording_play_iv"
+        app:layout_constraintTop_toTopOf="@id/recording_info_iv"/>
+
+
+    <TextView
+        android:id="@+id/recording_time_now_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="12dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="3.97dp"
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:text="00:09"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@id/recording_length_tv"
         app:layout_constraintTop_toTopOf="@id/recording_info_iv"/>
 
     <TextView
         android:id="@+id/recording_length_tv"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="12dp"
+        android:layout_marginTop="17dp"
         android:layout_marginEnd="20.97dp"
-        app:layout_constraintBottom_toBottomOf="@id/recording_info_iv"
         android:fontFamily="@font/pretendard_semi_bold"
         android:text="01:42"
-        android:textColor="@color/black"
+        android:textColor="#D9D9D9"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@id/recording_info_iv"
         app:layout_constraintTop_toTopOf="@id/recording_info_iv"/>

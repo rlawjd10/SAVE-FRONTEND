@@ -39,13 +39,13 @@ class ListSuspectLockerFragment : Fragment() {
         suspectList.apply {
             add(Suspect(1,"홍길동","여",
                 "32","","","모", Date(2022-1900,1,2)))
-            add(Suspect(1,"","남",
+            add(Suspect(2,"","남",
                 "42","","","부", Date(2022-1900,2,2)))
-            add(Suspect(1,"박길동","여",
+            add(Suspect(3,"박길동","여",
                 "22","","","모", Date(2022-1900,3,2)))
-            add(Suspect(1,"최길동","남",
+            add(Suspect(4,"최길동","남",
                 "32","","","부", Date(2022-1900,4,2)))
-            add(Suspect(1,"오길동","여",
+            add(Suspect(5,"오길동","여",
                 "32","","","모", Date(2022-1900,1,2)))
 
         }
