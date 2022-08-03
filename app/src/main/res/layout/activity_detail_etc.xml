@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".Record.RecordDetail.DetailEtcActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     <!-- 캘린더 -->
     <TextView
         android:id="@+id/detail"
@@ -123,6 +130,31 @@
         android:enabled="false"
         />
 
+    <!-- 첨부된 사진 -->
+    <android.widget.Button
+        android:id="@+id/picture_selected_space"
+        android:layout_width="306dp"
+        android:layout_height="28dp"
+        android:background="@drawable/fragment_child_red_on_background"
+        android:drawableLeft="@drawable/btn_erase_red"
+        android:drawablePadding="10dp"
+        android:text=""
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:textSize="12sp"
+        android:textColor="@color/dark_red"
+
+        android:gravity="left"
+        android:paddingLeft="10dp"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/picture_space"
+        android:layout_marginTop="11dp"
+
+        android:enabled="false"
+        android:visibility="gone"
+        />
+
     <!-- 영상 첨부 -->
     <android.widget.Button
         android:id="@+id/video_btn"
@@ -154,13 +186,38 @@
 
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/picture_space"
+        app:layout_constraintTop_toBottomOf="@id/picture_selected_space"
         android:layout_marginTop="9dp"
 
         android:enabled="false"
         />
 
-    <!-- 영상 첨부 -->
+    <!-- 첨부된 영상 -->
+    <android.widget.Button
+        android:id="@+id/video_selected_space"
+        android:layout_width="306dp"
+        android:layout_height="28dp"
+        android:background="@drawable/fragment_child_red_on_background"
+        android:drawableLeft="@drawable/btn_erase_red"
+        android:drawablePadding="10dp"
+        android:text=""
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:textSize="12sp"
+        android:textColor="@color/dark_red"
+
+        android:gravity="left"
+        android:paddingLeft="10dp"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/video_space"
+        android:layout_marginTop="11dp"
+
+        android:enabled="false"
+        android:visibility="gone"
+        />
+
+    <!-- 녹음 첨부 -->
     <android.widget.Button
         android:id="@+id/record_btn"
         android:layout_width="14dp"
@@ -180,7 +237,7 @@
         android:drawablePadding="10dp"
 
 
-        android:text="영상 첨부"
+        android:text="녹음 첨부"
         android:fontFamily="@font/pretendard_semi_bold"
         android:textSize="12sp"
         android:textColor="@color/dark_gray"
@@ -191,11 +248,37 @@
 
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/video_space"
+        app:layout_constraintTop_toBottomOf="@id/video_selected_space"
         android:layout_marginTop="9dp"
 
         android:enabled="false"
         />
+            <!-- 첨부된 영상 -->
+            <android.widget.Button
+                android:id="@+id/record_selected_space"
+                android:layout_width="306dp"
+                android:layout_height="28dp"
+                android:background="@drawable/fragment_child_red_on_background"
+                android:drawableLeft="@drawable/btn_erase_red"
+                android:drawablePadding="10dp"
+                android:text=""
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:textSize="12sp"
+                android:textColor="@color/dark_red"
+
+                android:gravity="left"
+                android:paddingLeft="10dp"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/record_space"
+                android:layout_marginTop="11dp"
+
+                android:enabled="false"
+                android:visibility="gone"
+                />
+
+
 
 
     <!--입력 완료 버튼-->
@@ -206,7 +289,7 @@
         android:background="@color/dark_red"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/record_space"
+        app:layout_constraintTop_toBottomOf="@id/record_selected_space"
         app:layout_constraintBottom_toBottomOf="parent"
 
 
@@ -218,4 +301,8 @@
         android:textSize="16sp"
         android:fontFamily="@font/pretendard_semi_bold"
         />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!--    </FrameLayout>-->
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

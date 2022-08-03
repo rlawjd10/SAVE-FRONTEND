@@ -25,10 +25,16 @@ class SuspectRVAdapter(private val suspectList : ArrayList<Suspect>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(suspectList[position])
-        holder.itemView.setOnClickListener{  mItemClickListener.onItemClick(suspectList[position])}
+        holder.itemView.setOnClickListener{
+            mItemClickListener.onItemClick(suspectList[position])
+
+
+        }
+
     }
 
     override fun getItemCount(): Int = suspectList.size
+
 
     inner class ViewHolder(val binding: ItemOffenderBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(suspect: Suspect) {
@@ -36,10 +42,6 @@ class SuspectRVAdapter(private val suspectList : ArrayList<Suspect>) :
 
             binding.itemOffenderInfoRelTv.text = suspectRel
             binding.itemOffenderInfoNameTv.text = suspect.suspectName
-            itemView.setOnClickListener{
-
-            }
-
         }
     }
 }
