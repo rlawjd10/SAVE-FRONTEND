@@ -31,10 +31,12 @@ class HomeDialogFragment() : DialogFragment(){
         binding.SettingDialogCancelTv.text=arguments?.getString("btnCancel")
 //        val btnBundle = arguments?.getString("btnData")
 
+        //취소
         binding.SettingDialogCancelTv.setOnClickListener {
             dismiss()
         }
 
+        //확인
         binding.SettingDialogOkTv.setOnClickListener {
             buttonClickListener.onButtonOkClicked()
             dismiss()
@@ -66,7 +68,7 @@ class HomeDialogFragment() : DialogFragment(){
     fun setButtonClickListener(buttonClickListener: onButtonClickListerner) {
         this.buttonClickListener = buttonClickListener
     }
-    //클릭 이벤트 실행행
+    //클릭 이벤트 실행
    private lateinit var buttonClickListener: onButtonClickListerner
 
 }

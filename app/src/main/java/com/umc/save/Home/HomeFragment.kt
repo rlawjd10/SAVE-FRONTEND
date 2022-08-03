@@ -19,15 +19,6 @@ class HomeFragment : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
 
-   /* override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        (activity as AppCompatActivity).supportActionBar
-    }*/
-
-   /* override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.toolbar_menu, menu)
-    }*/
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,9 +26,10 @@ class HomeFragment : Fragment() {
 
         val binding = FragmentHomeBinding.inflate(layoutInflater)
 
-       /* (activity as AppCompatActivity).supportActionBar
-            ?.setDisplayShowTitleEnabled(false)
-        */
+        //toolbar
+        //(activity as AppCompatActivity).setSupportActionBar(binding.mainToolbar)
+        binding.mainToolbar.inflateMenu(R.menu.toolbar_menu)
+
 
 //        action fragment바꾸기 -> 현재는 설정으로 감
         binding.homeActionBtn.setOnClickListener {
@@ -55,6 +47,28 @@ class HomeFragment : Fragment() {
 
         return binding.root
     }
+
+    //메뉴 확장
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu)
+    }
+
+
+    //클릭 이벤트 처리
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_setting -> {
+                changeFragment(HomeSettingsFragment())
+                true
+            }
+            R.id.action_alarm -> {
+                changeFragment(HomeAlarmFragment())
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 
 
     //fragment to fragment method

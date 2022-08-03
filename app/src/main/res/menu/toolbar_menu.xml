@@ -6,13 +6,13 @@
         android:id="@+id/action_alarm"
         android:title="알림"
         android:icon="@drawable/icn_notice_normal"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
 
     <item
         android:id="@+id/action_setting"
         android:title="설정"
         android:icon="@drawable/icn_setting_normal"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
 
 
 </menu>
