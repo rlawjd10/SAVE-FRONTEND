@@ -8,7 +8,7 @@
         android:id="@+id/child_info_iv"
         android:layout_width="306dp"
         android:layout_height="96dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="52dp"
         android:background="@drawable/fragment_child_blue_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"

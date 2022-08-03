@@ -64,12 +64,10 @@ class RecordingRecordRVAdapter(private val recordingList : ArrayList<Recording>)
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
 //            (holder as ViewHolderRecording).bind(recordingList[position])
 //            (holder as ViewHolderRecording).itemView.findViewById<ImageView>(R.id.recording_play_iv)
 //                .setOnClickListener { mItemClickListener.onItemClick(recordingList[position])
 //                    notifyItemChanged(position)}
-
 
         if (!recordingList[position].isPlaying) {
             (holder as ViewHolderRecording).bind(recordingList[position])

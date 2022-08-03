@@ -28,30 +28,33 @@ class ListVideoLockerFragment() : Fragment() {
         binding = FragmentLockerVideoListBinding.inflate(inflater,container,false)
 
         videoList.apply {
-            add(Video(1,"~~~~~"))
-            add(Video(2,"~~~~~"))
-            add(Video(3,"~~~~~"))
-            add(Video(4,"~~~~~"))
-            add(Video(5,"~~~~~"))
-            add(Video(6,"~~~~~"))
-            add(Video(7,"~~~~~"))
-            add(Video(8,"~~~~~"))
+            add(Video(1,"test_video","icn_add_default",R.drawable.fragment_child_blue_background))
+            add(Video(2,"test_video2","icn_add_default",R.drawable.fragment_child_red_on_background))
+            add(Video(3,"test_video","icn_close_normal",R.drawable.fragment_dark_red_background))
+            add(Video(4,"test_video2","icn_close_normal",R.drawable.fragment_dark_gray_background))
+            add(Video(5,"test_video","icn_close_normal",R.drawable.fragment_offender_off_background))
         }
 
-//        val videoRecordRVAdapter = VideoRecordRVAdapter(videoList)
+        val videoRecordRVAdapter = VideoRecordRVAdapter(videoList)
 
-//        binding.videoListRv.adapter = videoRecordRVAdapter
-//        binding.videoListRv.layoutManager = LinearLayoutManager(context,
-//            LinearLayoutManager.HORIZONTAL,false)
+        binding.videoListRv.adapter = videoRecordRVAdapter
+        binding.videoListRv.layoutManager = LinearLayoutManager(context,
+            LinearLayoutManager.HORIZONTAL,false)
 
-//        videoRecordRVAdapter.setMyItemClickListener(object: VideoRecordRVAdapter.MyItemClickListener {
-//            override fun onItemClick(recordData: RecordData) {
-////                changeDetailRecordLockerFragment(recordData)
-//            }
-//        })
+        videoRecordRVAdapter.setMyItemClickListener(object: VideoRecordRVAdapter.MyItemClickListener {
+            override fun onItemClick(video: Video) {
+//                changeDetailRecordLockerFragment(recordData)
+            }
+        })
 
         return binding.root
     }
+
+
+    private fun getVideoList() {
+
+    }
+
 
 //    private fun changeDetailRecordLockerFragment(recordData: RecordData) {
 //        (context as MainActivity).supportFragmentManager

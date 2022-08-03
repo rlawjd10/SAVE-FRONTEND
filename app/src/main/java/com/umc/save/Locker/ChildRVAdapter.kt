@@ -14,7 +14,8 @@ import com.umc.save.databinding.ItemChildBinding
 import kotlinx.coroutines.NonDisposableHandle.parent
 import java.text.SimpleDateFormat
 
-class ChildRVAdapter (private val childList : ArrayList<Child>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ChildRVAdapter ( val childList : ArrayList<Child>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+//    val context: Context,
 
     interface MyItemClickListener {
         fun onItemClick(child: Child)

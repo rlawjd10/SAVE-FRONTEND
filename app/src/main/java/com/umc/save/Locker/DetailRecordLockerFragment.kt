@@ -51,7 +51,7 @@ class DetailRecordLockerFragment : Fragment() {
         suspect = Suspect(1,"홍길동","여",
             "32","","","모", Date(2022-1900,1,2))
 
-        setInitView()
+
 
         val recordingRVAdapter = RecordingRecordRVAdapter(recordingList)
         binding.recordingListRv.adapter = recordingRVAdapter
@@ -62,14 +62,22 @@ class DetailRecordLockerFragment : Fragment() {
             override fun onItemClick(recording:Recording) {
 
                 recording.isPlaying = !recording.isPlaying
-                
-//                timer = Timer(recording)
-
-//                Log.d("recording",recording.toString())
 
                 setPlayer(recording)
 
-//                startTimer()
+            }
+
+        })
+
+        setInitView()
+        setOnClickListeners()
+
+
+        return binding.root
+    }
+
+
+    //                startTimer()
 
 //                activity?.runOnUiThread {
 //                    recordingRVAdapter.notifyDataSetChanged()
@@ -77,22 +85,32 @@ class DetailRecordLockerFragment : Fragment() {
 
 //                Log.d("playing button clicked","True")
 //                changeRecordChildLockerFragment(child)
-            }
 
-        })
 
-        return binding.root
-    }
+    //                timer = Timer(recording)
+
+//                Log.d("recording",recording.toString())
 
 
     private fun setOnClickListeners() {
         binding.recordVideoNumTv.setOnClickListener {
+
             (context as MainActivity).supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.video_frm,ListPictureLockerFragment())
-                .addToBackStack(null)
+                .replace(R.id.picture_video_frm,ListVideoLockerFragment())
                 .commitAllowingStateLoss()
         }
+
+
+        binding.recordPictureNumTv.setOnClickListener {
+
+            (context as MainActivity).supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.picture_video_frm,ListPictureLockerFragment())
+                .commitAllowingStateLoss()
+
+        }
+
 
     }
 
@@ -116,10 +134,10 @@ class DetailRecordLockerFragment : Fragment() {
         binding.recordTextTv.text = recordDetail.detailDescription
         binding.recordTextEtcTv.text = recordDetail.detailEtcDescription
 
-
+        //default 값은 이미지 fragment
         (context as MainActivity).supportFragmentManager
             .beginTransaction()
-            .replace(R.id.picture_frm,ListPictureLockerFragment())
+            .replace(R.id.picture_video_frm,ListPictureLockerFragment())
             .commitAllowingStateLoss()
     }
 

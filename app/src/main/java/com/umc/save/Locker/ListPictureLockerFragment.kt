@@ -33,15 +33,15 @@ class ListPictureLockerFragment: Fragment() {
 //        }
 
         pictureList.apply {
-            add(Picture(1, R.drawable.btn_add))
-            add(Picture(2,R.drawable.btn_camera))
-            add(Picture(3,R.drawable.btn_close))
-            add(Picture(1, R.drawable.btn_add))
-            add(Picture(2,R.drawable.btn_camera))
-            add(Picture(3,R.drawable.btn_close))
-            add(Picture(1, R.drawable.btn_add))
-            add(Picture(2,R.drawable.btn_camera))
-            add(Picture(3,R.drawable.btn_close))
+            add(Picture(1, R.drawable.fragment_child_blue_background))
+            add(Picture(2,R.drawable.fragment_child_red_off_background))
+            add(Picture(3,R.drawable.fragment_child_red_on_background))
+            add(Picture(1, R.drawable.fragment_red_background))
+            add(Picture(2,R.drawable.fragment_child_blue_background))
+            add(Picture(3,R.drawable.fragment_child_blue_background))
+            add(Picture(1, R.drawable.fragment_child_red_on_background))
+            add(Picture(2,R.drawable.fragment_child_blue_background))
+            add(Picture(3,R.drawable.fragment_offender_off_background))
         }
 
         val pictureRecordRVAdapter = PictureRecordRVAdapter(pictureList)
