@@ -40,10 +40,16 @@ class ChildRecordActivity : AppCompatActivity() {
             if(age_num % 2 != 0 ) {
                 binding.ageNotSureBtn.isSelected = true
                 binding.recordChildAgeNS.isEnabled = true
+
+                binding.txtFlow.setTextColor(R.color.dark_red)
+                binding.recordChildAgeNS.setTextColor(R.color.dark_red)
                 binding.recordChildAgeNS.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.dark_red)
             } else{
                 binding.ageNotSureBtn.isSelected = false
                 binding.recordChildAgeNS.isEnabled = false
+
+                binding.txtFlow.setTextColor(R.color.dark_gray)
+                binding.recordChildAgeNS.setTextColor(R.color.dark_gray)
                 binding.recordChildAgeNS.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.dark_gray)
             }
         }

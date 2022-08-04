@@ -49,7 +49,7 @@
         android:id="@+id/record_new_child"
         android:layout_width="146dp"
         android:layout_height="261dp"
-        android:background="@color/light_red"
+        android:background="@drawable/fragment_child_red_on_background"
         android:fontFamily="@font/pretendard_bold"
 
         android:gravity="left"
@@ -89,7 +89,7 @@
         android:layout_marginLeft="14dp"
 
 
-        android:background="@color/red"
+        android:background="@drawable/fragment_red_background"
         android:text="기존 아동 \n등록하기"
         android:fontFamily="@font/pretendard_bold"
         android:textSize="20sp"

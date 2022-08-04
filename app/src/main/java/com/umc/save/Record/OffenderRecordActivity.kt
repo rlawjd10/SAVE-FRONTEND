@@ -40,10 +40,14 @@ class OffenderRecordActivity : AppCompatActivity() {
             if(age_num % 2 != 0 ) {
                 binding.ageNotSureBtn.isSelected = true
                 binding.recordOffenderAgeNS.isEnabled = true
+                binding.txtFlow.setTextColor(R.color.dark_red)
+                binding.recordOffenderAgeNS.setTextColor(R.color.dark_red)
                 binding.recordOffenderAgeNS.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.dark_red)
             } else{
                 binding.ageNotSureBtn.isSelected = false
                 binding.recordOffenderAgeNS.isEnabled = false
+                binding.txtFlow.setTextColor(R.color.dark_gray)
+                binding.recordOffenderAgeNS.setTextColor(R.color.dark_gray)
                 binding.recordOffenderAgeNS.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.dark_gray)
             }
         }

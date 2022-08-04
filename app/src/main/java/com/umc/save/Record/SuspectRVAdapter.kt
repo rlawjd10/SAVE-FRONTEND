@@ -3,11 +3,12 @@ package com.umc.save.Record
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView
+import com.umc.save.R
 import com.umc.save.databinding.ItemOffenderBinding
 
 class SuspectRVAdapter(private val suspectList : ArrayList<Suspect>) :
     RecyclerView.Adapter<SuspectRVAdapter.ViewHolder>() {
+
     interface MyItemClickListener {
         fun onItemClick(suspect: Suspect)
     }
@@ -23,12 +24,11 @@ class SuspectRVAdapter(private val suspectList : ArrayList<Suspect>) :
         return ViewHolder(binding)
     }
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(suspectList[position])
         holder.itemView.setOnClickListener{
             mItemClickListener.onItemClick(suspectList[position])
-
-
         }
 
     }
@@ -36,12 +36,23 @@ class SuspectRVAdapter(private val suspectList : ArrayList<Suspect>) :
     override fun getItemCount(): Int = suspectList.size
 
 
+    var selectPos = -1
+
     inner class ViewHolder(val binding: ItemOffenderBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(suspect: Suspect) {
             var suspectRel : String? = suspect.relationWithChild
 
             binding.itemOffenderInfoRelTv.text = suspectRel
             binding.itemOffenderInfoNameTv.text = suspect.suspectName
+
+            itemView.setOnClickListener {
+                if(selectPos == position){
+                    binding.itemOffenderInfoIb.setBackgroundColor(R.color.dark_red)
+                    binding.itemOffenderInfoRelTv.setTextColor(R.color.white)
+                }
+            }
+
+
         }
     }
 }
