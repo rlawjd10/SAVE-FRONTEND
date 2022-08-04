@@ -30,6 +30,11 @@
         <activity android:name=".Record.RecordDetail.AbuseTypeActivity" />
         <activity android:name=".Record.OffenderRecordActivity" />
 
+        <activity android:name=".Locker.PictureLockerActivity" android:theme="@style/Theme.ActivityDialog" />
+        <activity android:name=".Locker.PlayerLockerActivity" android:theme="@style/Theme.ActivityDialog" />
+
+        <activity android:name=".Locker.TestPlayerLockerActivity" />
+
     </application>
 
     <!--갤러리 접근 가능-->

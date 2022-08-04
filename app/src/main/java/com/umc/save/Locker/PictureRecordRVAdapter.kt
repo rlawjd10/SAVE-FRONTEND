@@ -2,7 +2,9 @@ package com.umc.save.Locker
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.umc.save.R
 import com.umc.save.databinding.ItemPictureBinding
 import com.umc.save.databinding.ItemVideoBinding
 
@@ -25,7 +27,7 @@ class PictureRecordRVAdapter(private val pictureList : ArrayList<Picture>) : Rec
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(pictureList[position])
-//        holder.itemView.setOnClickListener{ mItemClickListener.onItemClick(videoList[position]) }
+        holder.itemView.findViewById<ImageView>(R.id.picture_plus).setOnClickListener{ mItemClickListener.onItemClick(pictureList[position]) }
     }
 
     override fun getItemCount(): Int = pictureList.size
