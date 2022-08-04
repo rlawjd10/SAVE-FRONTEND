@@ -7,7 +7,7 @@ import retrofit2.http.Path
 
 interface ChildrenRetrofitInterfaces {
 
-    @GET("/info/child/:{userIdx}")
+    @GET("/info/child/{userIdx}")
     fun getChildren(@Path("userIdx") userIdx : Int) : Call<ChildrenResponse>
 
 }

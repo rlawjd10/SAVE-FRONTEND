@@ -18,7 +18,7 @@ class ChildrenService {
         val childrenService = getRetrofit().create(ChildrenRetrofitInterfaces::class.java)
 
         childrenService.getChildren(userIdx).enqueue(object : Callback<ChildrenResponse> {
-            override fun onResponse(call: Call<ChildrenResponse>, response: Response<ChildrenResponse>, ) {
+            override fun onResponse(call: Call<ChildrenResponse>, response: Response<ChildrenResponse> ,) {
                Log.d("CHILDREN-GET SUCCESS",response.toString())
                 val resp : ChildrenResponse = response.body()!!
                 when(resp.code) {

@@ -88,8 +88,8 @@ class LockerFragment : Fragment() {
 //        childrenService.getChildren(userIdx)
 //
 //    }
-
-
+//
+//
 //    private fun initRecyclerView(result : ArrayList<Child>) {
 //        val childRVAdapter = ChildRVAdapter(requireContext(),result)
 //        binding.childListRv.adapter = childRVAdapter

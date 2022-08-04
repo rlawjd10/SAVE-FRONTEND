@@ -16,6 +16,7 @@ import kotlinx.coroutines.NonDisposableHandle.parent
 import java.text.SimpleDateFormat
 
 class SuspectRVAdapter (private val suspectList : ArrayList<Suspect>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    //    val context: Context,
 
     interface MyItemClickListener {
         fun onItemClick(suspect: Suspect)

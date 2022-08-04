@@ -20,10 +20,12 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class ListSuspectLockerFragment : Fragment() {
+    //, SuspectsView
     lateinit var binding: FragmentLockerSuspectListBinding
     var currentPosition = 0
     private var suspectList= ArrayList<Suspect>()
     private var gson : Gson = Gson()
+    var childIdx = 1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -87,5 +89,32 @@ class ListSuspectLockerFragment : Fragment() {
         val intent = Intent(context, OffenderRecordActivity::class.java)
         startActivity(intent)
     }
+
+//    private fun getSuspects() {
+//
+//        val suspectsService = SuspectsService()
+//
+//        suspectsService.setSuspectsView(this)
+//        suspectsService.getSuspects(childIdx)
+//
+//    }
+//
+//
+//    private fun initRecyclerView(result : ArrayList<Suspect>) {
+//        val suspectRVAdapter = SuspectRVAdapter(suspectList)
+//        binding.suspectListRv.adapter = suspectRVAdapter
+//        binding.suspectListRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+//
+//        suspectRVAdapter.setMyItemClickListener(object: SuspectRVAdapter.MyItemClickListener {
+//            override fun onItemClick(suspect: Suspect) {
+//                changeRecordChildLockerFragment(suspect)
+//            }
+//
+//            override fun onItemClickAdd() {
+//                openRecordActivity()
+//            }
+//        })
+//
+//    }
 
 }
