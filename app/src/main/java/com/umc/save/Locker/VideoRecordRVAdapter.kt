@@ -2,7 +2,9 @@ package com.umc.save.Locker
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.umc.save.R
 import com.umc.save.databinding.ItemVideoBinding
 
 class VideoRecordRVAdapter(private val videoList : ArrayList<Video>) : RecyclerView.Adapter<VideoRecordRVAdapter.ViewHolder>() {
@@ -24,9 +26,8 @@ class VideoRecordRVAdapter(private val videoList : ArrayList<Video>) : RecyclerV
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(videoList[position])
-        holder.itemView.setOnClickListener{ mItemClickListener.onItemClick(videoList[position]) }
+        holder.itemView.findViewById<ImageView>(R.id.video_play).setOnClickListener{ mItemClickListener.onItemClick(videoList[position]) }
     }
-
     override fun getItemCount(): Int = videoList.size
 
     inner class ViewHolder(val binding: ItemVideoBinding) : RecyclerView.ViewHolder(binding.root) {

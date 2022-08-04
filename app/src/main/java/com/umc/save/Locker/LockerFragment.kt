@@ -70,6 +70,10 @@ class LockerFragment : Fragment() {
             }
         })
 
+        binding.lockerTitleTv.setOnClickListener {
+            Test()
+        }
+
         Log.d("childList",childList.toString())
 
         return binding.root
@@ -123,6 +127,11 @@ class LockerFragment : Fragment() {
 
     private fun openRecordActivity() {
         val intent = Intent(context, ChildRecordActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun Test() {
+        val intent = Intent(context, TestPlayerLockerActivity::class.java)
         startActivity(intent)
     }
 

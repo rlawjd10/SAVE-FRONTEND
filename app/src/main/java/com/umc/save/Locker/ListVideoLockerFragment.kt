@@ -1,5 +1,6 @@
 package com.umc.save.Locker
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,11 +29,11 @@ class ListVideoLockerFragment() : Fragment() {
         binding = FragmentLockerVideoListBinding.inflate(inflater,container,false)
 
         videoList.apply {
-            add(Video(1,"test_video","icn_add_default",R.drawable.fragment_child_blue_background))
-            add(Video(2,"test_video2","icn_add_default",R.drawable.fragment_child_red_on_background))
-            add(Video(3,"test_video","icn_close_normal",R.drawable.fragment_dark_red_background))
-            add(Video(4,"test_video2","icn_close_normal",R.drawable.fragment_dark_gray_background))
-            add(Video(5,"test_video","icn_close_normal",R.drawable.fragment_offender_off_background))
+            add(Video(1,"test_video","icn_add_default",R.drawable.fragment_child_blue_background,R.raw.test_video))
+            add(Video(2,"test_video2","icn_add_default",R.drawable.fragment_child_red_on_background,R.raw.test_video2))
+            add(Video(3,"test_video","icn_close_normal",R.drawable.fragment_dark_red_background,R.raw.test_video))
+            add(Video(4,"test_video2","icn_close_normal",R.drawable.fragment_dark_gray_background,R.raw.test_video2))
+            add(Video(5,"test_video","icn_close_normal",R.drawable.fragment_offender_off_background,R.raw.test_video2))
         }
 
         val videoRecordRVAdapter = VideoRecordRVAdapter(videoList)
@@ -43,12 +44,21 @@ class ListVideoLockerFragment() : Fragment() {
 
         videoRecordRVAdapter.setMyItemClickListener(object: VideoRecordRVAdapter.MyItemClickListener {
             override fun onItemClick(video: Video) {
-//                changeDetailRecordLockerFragment(recordData)
+               openPlayerActivity(video)
             }
         })
 
         return binding.root
     }
+
+    private fun openPlayerActivity(video: Video) {
+
+        val intent = Intent(context, PictureLockerActivity::class.java)
+        intent.putExtra("video",video.video)
+        //다음에 picture.location으로 바꿔놓기
+        startActivity(intent)
+    }
+
 
 
     private fun getVideoList() {

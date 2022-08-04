@@ -5,5 +5,7 @@ data class Video (
     var location : String,
     var thumb : String,
 //    var isPlaying: Boolean = false,
-    var image : Int? = null
+    var image : Int? = null,
+    var video : Int? = null
+//var image video 다 지우기 (진짜 서버에서 값을 받으면)
 )
