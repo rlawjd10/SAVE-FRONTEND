@@ -28,15 +28,11 @@ class ChooseOffenderActivity : AppCompatActivity() {
 
         suspectRVAdapter.setMyItemClickListener(object:SuspectRVAdapter.MyItemClickListener{
             override fun onItemClick(suspect: Suspect) {
-                choice_btn++
-                if(choice_btn % 2 != 0 ) {
-                    binding.offenderListRv.isSelected = true
 
-                } else{
-                    binding.offenderListRv.isSelected = false
-                }
             }
         } )
+
+
 
         suspectList.apply {
             add(Suspect(1, "홍길동", 1,"남","40",")", "ㅇㄹㄴㄻ",
@@ -56,6 +52,12 @@ class ChooseOffenderActivity : AppCompatActivity() {
 
         binding.nextBtn.setOnClickListener{
             startActivity(Intent(this, AbuseTypeActivity::class.java))
+        }
+
+        fun select(suspect: Suspect) {
+
+
+
         }
     }
 }

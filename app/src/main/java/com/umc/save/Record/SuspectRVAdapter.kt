@@ -40,7 +40,7 @@ class SuspectRVAdapter(private val suspectList : ArrayList<Suspect>) :
 
     inner class ViewHolder(val binding: ItemOffenderBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(suspect: Suspect) {
-            var suspectRel : String? = suspect.relationWithChild
+            var suspectRel : String? = suspect.relationship
 
             binding.itemOffenderInfoRelTv.text = suspectRel
             binding.itemOffenderInfoNameTv.text = suspect.suspectName

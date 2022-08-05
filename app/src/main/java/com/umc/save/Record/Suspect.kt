@@ -10,6 +10,6 @@ data class Suspect (
     var suspectAge: String,
     var suspectAddress: String? = "",
     var suspectDetailAddress: String? = "",
-    var relationWithChild: String,
+    var relationship: String,
     var createAt: Date
 )

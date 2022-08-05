@@ -108,7 +108,9 @@ class DetailEtcActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == Activity.RESULT_OK){
             if(requestCode == PICK_IMAGE){
+
                 Toast.makeText(this,"사진 첨부",Toast.LENGTH_SHORT).show()
+
             } else{
                 Toast.makeText(this,"사진을 가져오지 못했습니다",Toast.LENGTH_SHORT).show()
             }
