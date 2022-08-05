@@ -1,7 +1,9 @@
 package com.umc.save.Sign.Auth
 
+import com.google.gson.annotations.SerializedName
+
 //로그인 Body
 data class Auth(
-    val email: String,
-    val password: String
+    @SerializedName(value = "email")val email: String,
+    @SerializedName(value = "password")val password: String
 )

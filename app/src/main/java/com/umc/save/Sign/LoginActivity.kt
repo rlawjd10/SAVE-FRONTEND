@@ -4,15 +4,19 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Sign.Auth.Auth
+import com.umc.save.Sign.Auth.AuthService
+import com.umc.save.Sign.Auth.Result
 import com.umc.save.databinding.ActivityLoginBinding
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), LoginView {
     lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_login)
 
         //로그인
@@ -36,7 +40,10 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        //auth 작성하기
+        val authService = AuthService()
+        authService.setLoginView(this)
+
+        authService.login(getUser())
     }
 
     //값 받기
@@ -47,8 +54,44 @@ class LoginActivity : AppCompatActivity() {
         return Auth(email = email, password = password)
     }
 
+    //로그인 성공 시 받은 userIdx를 저장하는 함수 -> 사용자를 식별하기 위함함
+    private fun saveJwt(jwt: Int) {
+        val spf = getSharedPreferences("auth" , MODE_PRIVATE)
+        val editor = spf.edit()
+
+        editor.putInt("jwt", jwt)
+        editor.apply()
+    }
+
+    //로그인 성공 시 받은 jwt를 저장하는 함수 -> 사용자를 식별하기 위함함
+   private fun saveJwt2(jwt: String) {
+        val spf = getSharedPreferences("auth2" , MODE_PRIVATE)
+        val editor = spf.edit()
+
+        editor.putString("jwt", jwt)
+        editor.apply()
+    }
+
+
+    //activity 이동
+    private fun startMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
     //로그인 성공
+    override fun onLoginSuccess(code: Int, result: Result) {
+        when(code) {
+            1000 -> {
+                saveJwt2(result.jwt)
+                startMainActivity()
+            }
+        }
+    }
 
     //로그인 실패
+    override fun onLoginFailure() {
+        TODO("Not yet implemented")
+    }
 
 }
