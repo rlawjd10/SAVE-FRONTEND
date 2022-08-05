@@ -29,6 +29,7 @@ class SuspectRVAdapter(private val suspectList : ArrayList<Suspect>) :
         holder.bind(suspectList[position])
         holder.itemView.setOnClickListener{
             mItemClickListener.onItemClick(suspectList[position])
+            notifyItemChanged(position)
         }
 
     }
@@ -45,11 +46,23 @@ class SuspectRVAdapter(private val suspectList : ArrayList<Suspect>) :
             binding.itemOffenderInfoRelTv.text = suspectRel
             binding.itemOffenderInfoNameTv.text = suspect.suspectName
 
+            /*
             itemView.setOnClickListener {
-                if(selectPos == position){
+                /*if(selectPos == position){
                     binding.itemOffenderInfoIb.setBackgroundColor(R.color.dark_red)
                     binding.itemOffenderInfoRelTv.setTextColor(R.color.white)
-                }
+                }*/
+
+                var row_index = position
+                notifyDataSetChanged()
+            }*/
+
+            if (suspect.isSelected) {
+                binding.itemOffenderInfoIb.setBackgroundColor(R.color.dark_red)
+                binding.itemOffenderInfoRelTv.setTextColor(R.color.white)
+            } else {
+                binding.itemOffenderInfoIb.setBackgroundColor(R.color.dark_gray)
+                binding.itemOffenderInfoRelTv.setTextColor(R.color.dark_red)
             }
 
 

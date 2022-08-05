@@ -11,5 +11,6 @@ data class Suspect (
     var suspectAddress: String? = "",
     var suspectDetailAddress: String? = "",
     var relationship: String,
-    var createAt: Date
+    var createAt: Date,
+    var isSelected: Boolean = false
 )

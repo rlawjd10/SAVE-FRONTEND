@@ -2,6 +2,7 @@ package com.umc.save.Sign
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.umc.save.R
 
 class SignUpCompleteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

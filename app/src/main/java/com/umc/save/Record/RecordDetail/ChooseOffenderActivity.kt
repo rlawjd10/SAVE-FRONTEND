@@ -28,7 +28,7 @@ class ChooseOffenderActivity : AppCompatActivity() {
 
         suspectRVAdapter.setMyItemClickListener(object:SuspectRVAdapter.MyItemClickListener{
             override fun onItemClick(suspect: Suspect) {
-
+                suspect.isSelected = !suspect.isSelected
             }
         } )
 
@@ -54,10 +54,6 @@ class ChooseOffenderActivity : AppCompatActivity() {
             startActivity(Intent(this, AbuseTypeActivity::class.java))
         }
 
-        fun select(suspect: Suspect) {
 
-
-
-        }
     }
 }
