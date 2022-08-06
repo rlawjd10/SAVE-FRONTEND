@@ -10,6 +10,5 @@ data class UserResponse(
     @SerializedName("result") val result: Result?
 )
 data class Result(
-    @SerializedName("userIdx") val userIdx: Int,
-    @SerializedName("jwt") val jwt: String
+    @SerializedName("userIdx") val userIdx: Int
 )

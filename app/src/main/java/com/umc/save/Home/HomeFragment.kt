@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
@@ -26,14 +27,10 @@ class HomeFragment : Fragment() {
 
         val binding = FragmentHomeBinding.inflate(layoutInflater)
 
-        //toolbar
-        //(activity as AppCompatActivity).setSupportActionBar(binding.mainToolbar)
-        binding.mainToolbar.inflateMenu(R.menu.toolbar_menu)
 
-
-//        action fragment바꾸기 -> 현재는 설정으로 감
+//        home 화면 버튼 클릭했을 때 fragment to fragment
         binding.homeActionBtn.setOnClickListener {
-            changeFragment(HomeSettingsFragment())
+            changeFragment(ActionHomeFragment())
         }
         binding.homeStatsBtn.setOnClickListener {
             changeFragment(StatisHomeFragment())
@@ -45,33 +42,14 @@ class HomeFragment : Fragment() {
             changeFragment(NewsHomeFragment())
         }
 
+
         return binding.root
-    }
-
-    //메뉴 확장
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.toolbar_menu, menu)
-    }
-
-
-    //클릭 이벤트 처리
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_setting -> {
-                changeFragment(HomeSettingsFragment())
-                true
-            }
-            R.id.action_alarm -> {
-                changeFragment(HomeAlarmFragment())
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
 
 
     //fragment to fragment method
+    //main_frm은 fragment부분아다. MainActivity확인
     private fun changeFragment(fragment: Fragment) {
         (context as MainActivity).supportFragmentManager.beginTransaction()
             .replace(R.id.main_frm, fragment)

@@ -2,8 +2,34 @@ package com.umc.save.Sign.User
 
 
 import com.umc.save.Sign.LoginView
+import com.umc.save.Sign.SignUpView
+import com.umc.save.getRetrofit
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-//회원가입 _ view, api 관리
+//회원가입
+// view, api 관리
 class UserService {
+    private lateinit var signUpView: SignUpView
 
+    fun setSignUpView(signUpView: SignUpView) {
+        this.signUpView = signUpView
+    }
+
+    fun signUp(user: User) {
+        val signUpService = getRetrofit().create(UserRetrofitInterface::class.java)
+
+        signUpService.signUp(user).enqueue(object : Callback<UserResponse> {
+            //정상적인 통신이 성공
+            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
+                TODO("Not yet implemented")
+            }
+
+            //실패처리
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
 }
