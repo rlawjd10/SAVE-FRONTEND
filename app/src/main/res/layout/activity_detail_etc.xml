@@ -130,6 +130,15 @@
         android:enabled="false"
         />
 
+            <ImageView
+                android:id="@+id/picture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/picture_space"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+
     <!-- 첨부된 사진 -->
     <android.widget.Button
         android:id="@+id/picture_selected_space"
@@ -154,6 +163,8 @@
         android:enabled="false"
         android:visibility="gone"
         />
+
+
 
     <!-- 영상 첨부 -->
     <android.widget.Button

@@ -3,14 +3,25 @@ package com.umc.save.Record.RecordDetail
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
+import android.util.Base64.NO_WRAP
+import android.util.Log
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import com.umc.save.R
 import com.umc.save.databinding.ActivityDetailEtcBinding
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
+
 
 class DetailEtcActivity : AppCompatActivity() {
 
@@ -104,10 +115,42 @@ class DetailEtcActivity : AppCompatActivity() {
         startActivityForResult(intent, PICK_AUDIO)
     }
 
+    var currentImageURL: Uri? = null
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == Activity.RESULT_OK){
             if(requestCode == PICK_IMAGE){
+
+                currentImageURL = intent?.data
+                val ins : InputStream? = currentImageURL?.let {
+                    applicationContext.contentResolver.openInputStream(
+                        it
+                    )
+                }
+                val img: Bitmap = BitmapFactory.decodeStream(ins)
+                ins?.close()
+                val resized = Bitmap.createScaledBitmap(img, 256, 256, true)
+                val byteArrayOutputStream = ByteArrayOutputStream()
+                resized.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream)
+                val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
+                val outStream = ByteArrayOutputStream()
+                val res: Resources = resources
+                var profileImageBase64 = Base64.encodeToString(byteArray, NO_WRAP)
+                // 여기까지 인코딩 끝
+
+                // 이미지 뷰에 선택한 이미지 출력
+                val imageview: ImageView = findViewById(R.id.picture)
+                imageview.setImageURI(currentImageURL)
+                /*
+                try {
+                    //이미지 선택 후 처리
+                }catch (e: Exception){
+                    e.printStackTrace()
+                }
+            } else{
+                Log.d("ActivityResult", "something wrong")
+            }*/
 
                 Toast.makeText(this,"사진 첨부",Toast.LENGTH_SHORT).show()
 

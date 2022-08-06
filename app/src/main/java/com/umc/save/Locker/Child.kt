@@ -8,7 +8,6 @@ import java.util.*
 data class Child(
     @SerializedName(value = "childIdx") var childIdx: Int,
     @SerializedName(value = "name")var childName: String,
-    var isCertain: Boolean,
     @SerializedName(value = "gender") var childGender: String,
     @SerializedName(value = "age") var childAge: String,
     @SerializedName(value = "address") var childAddress: String,

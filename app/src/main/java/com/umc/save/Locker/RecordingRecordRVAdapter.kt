@@ -81,7 +81,6 @@ class RecordingRecordRVAdapter(private val recordingList : ArrayList<Recording>)
                     notifyItemChanged(position)}
         }
 
-
     }
 
 

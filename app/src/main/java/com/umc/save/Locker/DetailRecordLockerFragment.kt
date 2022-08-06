@@ -49,7 +49,7 @@ class DetailRecordLockerFragment : Fragment() {
         record = RecordData(1,Date(2022,7,5), Time(2,3,0),"인천광역시 연수구 송도동",Date(2022,3,2))
         recordDetail = RecordDetailData("신체학대","아파트 복도에서 목격했음","엄마와 아빠 둘다 아이에게 학대를 가하는 것 같음")
         suspect = Suspect(1,"홍길동","여",
-            "32","","","모", Date(2022-1900,1,2))
+            "32","","","모")
 
 
 
@@ -65,6 +65,18 @@ class DetailRecordLockerFragment : Fragment() {
 
                 setPlayer(recording)
 
+//                timer = Timer(recording)
+
+//                Log.d("recording",recording.toString())
+
+//                startTimer()
+//                activity?.runOnUiThread {
+//                    recordingRVAdapter.notifyDataSetChanged()
+//                }
+//                Log.d("playing button clicked","True")
+//                changeRecordChildLockerFragment(child)
+
+
             }
 
         })
@@ -76,20 +88,6 @@ class DetailRecordLockerFragment : Fragment() {
         return binding.root
     }
 
-
-    //                startTimer()
-
-//                activity?.runOnUiThread {
-//                    recordingRVAdapter.notifyDataSetChanged()
-//                }
-
-//                Log.d("playing button clicked","True")
-//                changeRecordChildLockerFragment(child)
-
-
-    //                timer = Timer(recording)
-
-//                Log.d("recording",recording.toString())
 
 
     private fun setOnClickListeners() {
