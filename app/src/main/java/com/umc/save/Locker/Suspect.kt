@@ -11,5 +11,4 @@ data class Suspect (
     @SerializedName(value = "suspectAddress") var suspectAddress: String? = "",
     var suspectDetailAddress: String? = "",
     @SerializedName(value = "relationship") var relationship: String,
-    var createAt: Date
         )

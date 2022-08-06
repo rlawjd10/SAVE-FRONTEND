@@ -49,7 +49,7 @@ class PlayerLockerActivity : AppCompatActivity() {
 
 //    url : String으로 인수 바꿔주기!!
 
-
+// MediaSource: 영상에 출력할 미디어 정보를 가져오는 클래스
     private fun play(url : String) {
         val dataSourceFactory = DefaultDataSource.Factory(this)
         val mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)

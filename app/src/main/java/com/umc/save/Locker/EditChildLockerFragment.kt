@@ -14,17 +14,18 @@ import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Record.ChildRecordActivity
 import com.umc.save.databinding.FragmentLockerBinding
+import com.umc.save.databinding.FragmentLockerChildEditBinding
 import com.umc.save.getRetrofit
 import retrofit2.Callback
 import retrofit2.adapter.rxjava2.Result.response
 import java.util.*
 import kotlin.collections.ArrayList
 
-class LockerFragment : Fragment() {
+class EditChildLockerFragment : Fragment() {
 //    , ChildrenView
 
     var userIdx = 1
-    lateinit var binding: FragmentLockerBinding
+    lateinit var binding: FragmentLockerChildEditBinding
     var currentPosition = 0
     private var childList= ArrayList<Child>()
 
@@ -33,7 +34,7 @@ class LockerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentLockerBinding.inflate(inflater,container,false)
+        binding = FragmentLockerChildEditBinding.inflate(inflater,container,false)
 
         childList.apply {
             add(Child(1,"양현진",
@@ -56,11 +57,11 @@ class LockerFragment : Fragment() {
                 "1000-1202", Date(2021-1900,2,3)))
         }
 
-        val childRVAdapter = ChildRVAdapter(childList)
-        binding.childListRv.adapter = childRVAdapter
+        val childEditRVAdapter = ChildEditRVAdapter(childList)
+        binding.childListRv.adapter = childEditRVAdapter
         binding.childListRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
 
-        childRVAdapter.setMyItemClickListener(object: ChildRVAdapter.MyItemClickListener {
+        childEditRVAdapter.setMyItemClickListener(object: ChildEditRVAdapter.MyItemClickListener {
             override fun onItemClick(child: Child) {
                 changeRecordChildLockerFragment(child)
             }
@@ -69,12 +70,6 @@ class LockerFragment : Fragment() {
                 openRecordActivity()
             }
         })
-
-        binding.lockerTitleTv.setOnClickListener {
-            Test()
-        }
-
-        Log.d("childList",childList.toString())
 
         return binding.root
     }
@@ -110,6 +105,10 @@ class LockerFragment : Fragment() {
 //        })
 //
 //    }
+
+    private fun delete(child: Child) {
+        //삭제하는 기능 추가하기 (child.childIdx 넘겨주기)
+    }
 
     private fun changeRecordChildLockerFragment(child: Child) {
         (context as MainActivity).supportFragmentManager
