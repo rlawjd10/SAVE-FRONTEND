@@ -53,7 +53,7 @@ class ListVideoLockerFragment() : Fragment() {
 
     private fun openPlayerActivity(video: Video) {
 
-        val intent = Intent(context, PictureLockerActivity::class.java)
+        val intent = Intent(context, PlayerLockerActivity::class.java)
         intent.putExtra("video",video.video)
         //다음에 picture.location으로 바꿔놓기
         startActivity(intent)

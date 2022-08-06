@@ -20,16 +20,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.exoplayer2.ui.PlayerView
+            android:background="@color/black"
             android:id="@+id/video_player_pv"
             android:layout_width="271dp"
             android:layout_height="224dp"
-            app:resize_mode="fill"
-
+            app:resize_mode="fit"
             app:use_controller="false" />
 
     </androidx.cardview.widget.CardView>
-
-<!--    app:surface_type="texture_view"-->
 
     <ImageView
         android:id="@+id/close_iv"

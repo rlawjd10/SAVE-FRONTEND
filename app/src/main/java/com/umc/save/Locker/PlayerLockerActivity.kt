@@ -22,8 +22,6 @@ class PlayerLockerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLockerPlayerBinding.inflate(layoutInflater)
 
-        initPlayer()
-        play(url)
 
         binding.closeIv.setOnClickListener {
             player?.release()
@@ -41,14 +39,20 @@ class PlayerLockerActivity : AppCompatActivity() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        initPlayer()
+        play(url)
+    }
+
     override fun onStop() {
         super.onStop()
         player?.release()
         player = null
     }
 
-//    url : String으로 인수 바꿔주기!!
 
+//    url : String으로 인수 바꿔주기!!
 // MediaSource: 영상에 출력할 미디어 정보를 가져오는 클래스
     private fun play(url : String) {
         val dataSourceFactory = DefaultDataSource.Factory(this)
@@ -60,10 +64,12 @@ class PlayerLockerActivity : AppCompatActivity() {
 
     }
 
-//    private fun play(video : Int) {
-//        val mediaItem =
-//        player.addMediaItem(mediaItem)
-//        player.play()
-//    }
+    override fun onDestroy() {
+        super.onDestroy()
+        player?.release()
+        player = null
+    }
+
+
 
 }

@@ -70,10 +70,6 @@ class LockerFragment : Fragment() {
             }
         })
 
-        binding.lockerTitleTv.setOnClickListener {
-            Test()
-        }
-
         Log.d("childList",childList.toString())
 
         return binding.root
@@ -130,10 +126,6 @@ class LockerFragment : Fragment() {
         startActivity(intent)
     }
 
-    private fun Test() {
-        val intent = Intent(context, TestPlayerLockerActivity::class.java)
-        startActivity(intent)
-    }
 
 //    override fun onGetChildSuccess(code: Int, result: ArrayList<Child>) {
 //        initRecyclerView(result)

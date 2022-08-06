@@ -129,10 +129,6 @@ class EditChildLockerFragment : Fragment() {
         startActivity(intent)
     }
 
-    private fun Test() {
-        val intent = Intent(context, TestPlayerLockerActivity::class.java)
-        startActivity(intent)
-    }
 
 //    override fun onGetChildSuccess(code: Int, result: ArrayList<Child>) {
 //        initRecyclerView(result)
