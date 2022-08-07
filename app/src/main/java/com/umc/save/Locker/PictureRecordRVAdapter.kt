@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.umc.save.R
 import com.umc.save.databinding.ItemPictureBinding
 import com.umc.save.databinding.ItemVideoBinding
@@ -36,6 +37,9 @@ class PictureRecordRVAdapter(private val pictureList : ArrayList<Picture>) : Rec
 
         fun bind(picture: Picture) {
             binding.pictureIv.setImageResource(picture.image!!)
+//            Glide.with(itemView)
+//                .load(R.drawable.img_file_name)
+//                .into(itemView.imageView)
         }
     }
 

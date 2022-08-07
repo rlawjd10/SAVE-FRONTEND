@@ -20,15 +20,13 @@ import kotlin.collections.ArrayList
 class DetailRecordLockerFragment : Fragment() {
     lateinit var binding : FragmentLockerRecordDetailBinding
     private var gson : Gson = Gson()
-    lateinit var timer : Timer
-    private var mediaPlayer : MediaPlayer? = null
     lateinit var record : RecordData
     lateinit var recordDetail : RecordDetailData
     lateinit var suspect : Suspect
     lateinit var recording : Recording
     private var recordingList = ArrayList<Recording>()
 
-    var nowPos = 0
+    var url = "https://dby56rj67jahx.cloudfront.net/recording/192470e0-2fcd-49d1-b2a0-6105b864a930.m4a"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,29 +55,7 @@ class DetailRecordLockerFragment : Fragment() {
         binding.recordingListRv.adapter = recordingRVAdapter
         binding.recordingListRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
 
-        recordingRVAdapter.setMyItemClickListener(object: RecordingRecordRVAdapter.MyItemClickListener {
-            @SuppressLint("NotifyDataSetChanged")
-            override fun onItemClick(recording:Recording) {
 
-                recording.isPlaying = !recording.isPlaying
-
-                setPlayer(recording)
-
-//                timer = Timer(recording)
-
-//                Log.d("recording",recording.toString())
-
-//                startTimer()
-//                activity?.runOnUiThread {
-//                    recordingRVAdapter.notifyDataSetChanged()
-//                }
-//                Log.d("playing button clicked","True")
-//                changeRecordChildLockerFragment(child)
-
-
-            }
-
-        })
 
         setInitView()
         setOnClickListeners()
@@ -139,100 +115,7 @@ class DetailRecordLockerFragment : Fragment() {
             .commitAllowingStateLoss()
     }
 
-//    private fun setPlayer(recording: Recording) {
-//        val music = resources.getIdentifier(recording.location,"raw",activity?.packageName)
-//        mediaPlayer = MediaPlayer.create(context,music)
-//
-//        setPlayerStatus(recording.isPlaying)
-//    }
 
-//    private fun startTimer() {
-////        timer = Timer(recording)
-//        timer.start()
-//    }
-
-
-
-    //고치기
-//    private fun setPlayerStatus(isPlaying : Boolean) {
-//        if(isPlaying) {
-//            mediaPlayer?.start()
-//        }
-//        else {
-//            if(mediaPlayer?.isPlaying == true){
-//                mediaPlayer?.pause()
-//            }
-//        }
-//    }
-
-
-//    inner class Timer(var recording: Recording):Thread(){
-////        private val length: Int, var isPlaying: Boolean = true
-//        private var second : Int = 0
-//        private var mills : Float = 0f
-//        private val recordingRVAdapter = RecordingRecordRVAdapter(recordingList)
-//
-//
-//        @SuppressLint("NotifyDataSetChanged")
-//        override fun run() {
-//            super.run()
-//            try {
-//                while (true) {
-//                    if (second >= recording.length){
-//                        break
-//                    }
-//
-//                    if (recording.isPlaying){
-//                        sleep(100)
-//                        mills += 100
-//
-//                        activity?.runOnUiThread {
-//                            recording.progress = (mills/(recording.length*1000)*100).toInt()
-//                            recordingRVAdapter.notifyDataSetChanged()
-//                            Log.d("recording thread start",recording.toString())
-////                            binding.recordingProgress.progress = ((mills/playTime)*100).toInt()
-//                        }
-//                        if (mills % 1000 == 0f){
-//                            activity?.runOnUiThread{
-//                                recording.second = second
-////                                binding.songStartTimeTv.text = String.format("%02d:%02d",second / 60, second % 60)
-//                                recordingRVAdapter.notifyDataSetChanged()
-//                                Log.d("1second added",recording.toString())
-//                            }
-//                            second++
-//                        }
-//                    }
-//                }
-//            } catch (e : InterruptedException) {
-//                Log.d("Recording","스레드가 죽었습니다. ${e.message}")
-//            }
-//
-//        }
-//    }
-
-
-
-    private fun setPlayer(recording: Recording) {
-        val music = resources.getIdentifier(recording.location,"raw",activity?.packageName)
-        mediaPlayer = MediaPlayer.create(context,music)
-
-
-        setPlayerStatus(recording.isPlaying)
-    }
-
-
-    private fun setPlayerStatus(isPlaying : Boolean) {
-        if(isPlaying) {
-            mediaPlayer?.start()
-        }
-        else {
-//            mediaPlayer?.release()
-//            mediaPlayer = null
-            if(mediaPlayer?.isPlaying == true){
-                mediaPlayer?.pause()
-            }
-        }
-    }
 
 
 

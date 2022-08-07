@@ -5,10 +5,10 @@ import java.util.*
 
 data class Suspect (
     @SerializedName(value = "suspectIdx") var suspectIdx: Int,
-    @SerializedName(value = "suspectName") var suspectName: String? = "",
-    @SerializedName(value = "suspectGender") var suspectGender: String,
-    @SerializedName(value = "suspectAge") var suspectAge: String,
-    @SerializedName(value = "suspectAddress") var suspectAddress: String? = "",
-    var suspectDetailAddress: String? = "",
-    @SerializedName(value = "relationship") var relationship: String,
+    @SerializedName(value = "name") var suspectName: String? = "",
+    @SerializedName(value = "gender") var suspectGender: String,
+    @SerializedName(value = "age") var suspectAge: String,
+    @SerializedName(value = "address") var suspectAddress: String? = "",
+    @SerializedName(value = "detailAddress") var suspectDetailAddress: String? = "",
+    @SerializedName(value = "relation") var relationship: String,
         )

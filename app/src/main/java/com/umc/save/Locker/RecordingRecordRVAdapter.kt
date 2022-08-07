@@ -1,30 +1,21 @@
 package com.umc.save.Locker
 
 import android.annotation.SuppressLint
-import android.app.PendingIntent.getActivity
-import android.content.Context
-import android.icu.text.AlphabeticIndex
-import android.media.MediaPlayer
-import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.umc.save.MainActivity
+import com.google.android.exoplayer2.ExoPlayer
 import com.umc.save.R
-import com.umc.save.databinding.ItemRecordingDefaultBinding
-import com.umc.save.databinding.ItemRecordingPlayingBinding
-import java.util.logging.Handler
+import com.umc.save.databinding.ItemRecordingBinding
 
 class RecordingRecordRVAdapter(private val recordingList : ArrayList<Recording>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var mediaPlayer : MediaPlayer? = null
+    private var player : ExoPlayer? = null
 
     interface MyItemClickListener {
         fun onItemClick(recording: Recording)
-//        fun onItemClickAdd()
     }
     private lateinit var mItemClickListener: MyItemClickListener
 
@@ -32,54 +23,24 @@ class RecordingRecordRVAdapter(private val recordingList : ArrayList<Recording>)
         mItemClickListener = itemClickListener
     }
 
-    override fun getItemViewType(position: Int): Int {
-
-        return if (!recordingList[position].isPlaying) {
-            R.layout.item_recording_default
-        } else {
-            R.layout.item_recording_playing
-        }
-    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-//        val view = ItemRecordingDefaultBinding.inflate(LayoutInflater.from(viewGroup.context),
-//            viewGroup, false)
-//        return ViewHolderRecording(view)
+        val view = ItemRecordingBinding.inflate(LayoutInflater.from(viewGroup.context),
+            viewGroup, false)
+        return ViewHolderRecording(view)
 
-        return when (viewType) {
-            R.layout.item_recording_default -> {
-                val view = ItemRecordingDefaultBinding.inflate(LayoutInflater.from(viewGroup.context),
-                    viewGroup, false)
-                ViewHolderRecording(view)
-            }
-            else -> {
-                val view = ItemRecordingPlayingBinding.inflate(LayoutInflater.from(viewGroup.context),
-                    viewGroup, false)
-                ViewHolderRecordingPlaying(view)
-            }
-        }
 
     }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-//            (holder as ViewHolderRecording).bind(recordingList[position])
-//            (holder as ViewHolderRecording).itemView.findViewById<ImageView>(R.id.recording_play_iv)
-//                .setOnClickListener { mItemClickListener.onItemClick(recordingList[position])
-//                    notifyItemChanged(position)}
-
-        if (!recordingList[position].isPlaying) {
             (holder as ViewHolderRecording).bind(recordingList[position])
             (holder as ViewHolderRecording).itemView.findViewById<ImageView>(R.id.recording_play_iv)
-                .setOnClickListener { mItemClickListener.onItemClick(recordingList[position])
-                notifyItemChanged(position)}
-        } else {
-            (holder as ViewHolderRecordingPlaying).bind(recordingList[position])
-            (holder as ViewHolderRecordingPlaying).itemView.findViewById<ImageView>(R.id.recording_pause_iv)
-                .setOnClickListener { mItemClickListener.onItemClick(recordingList[position])
-                    notifyItemChanged(position)}
-        }
+                .setOnClickListener {
+                    recordingList[position].isPlaying = !recordingList[position].isPlaying
+                    play(recordingList[position])
+                    }
 
     }
 
@@ -94,41 +55,42 @@ class RecordingRecordRVAdapter(private val recordingList : ArrayList<Recording>)
 
     override fun getItemCount(): Int = recordingList.size
 
-    inner class ViewHolderRecording(val binding: ItemRecordingDefaultBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolderRecording(val binding: ItemRecordingBinding) : RecyclerView.ViewHolder(binding.root) {
+
+//        recording.isPlaying = !recording.isPlaying
+
         @SuppressLint("ResourceType")
         fun bind(recording: Recording) {
 
-//            if (recording.isPlaying) {
-//                binding.recordingPlayIv.visibility = View.GONE
-//                binding.recordingPauseIv.visibility = View.VISIBLE
-//            }
-//            else {
-//                binding.recordingPlayIv.visibility = View.VISIBLE
-//                binding.recordingPauseIv.visibility = View.GONE
-//            }
-
+            if (recording.isPlaying) {
+                binding.recordingPlayIv.visibility = View.GONE
+                binding.recordingPauseIv.visibility = View.VISIBLE
+                binding.recordingTimeNowTv.text =
+                    String.format("%02d:%02d", recording.second / 60, recording.second % 60)
+            }
+            else {
+                binding.recordingPlayIv.visibility = View.VISIBLE
+                binding.recordingPauseIv.visibility = View.GONE
+                binding.recordingTimeNowTv.visibility = View.GONE
+            }
             binding.recordingTitleTv.text = recording.recordingTitle
             binding.recordingLengthTv.text = String.format("%02d:%02d",recording.length / 60,recording.length % 60)
         }
 
     }
 
-    inner class ViewHolderRecordingPlaying(val binding: ItemRecordingPlayingBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(recording: Recording) {
-            binding.recordingTitleTv.text = recording.recordingTitle
-            binding.recordingLengthTv.text =
-                String.format("%02d:%02d", recording.length / 60, recording.length % 60)
-            binding.recordingTimeNowTv.text =
-                String.format("%02d:%02d", recording.second / 60, recording.second % 60)
-            binding.recordingProgressbarPb.progress = (recording.second * 1000 / recording.length)
-
-        }
-    }
-
-
-//    private fun updateProgress(recording: Recording) {
+//    private fun initPlayer() {
+//        player = ExoPlayer.Builder(this).build()
+//        binding.videoPlayerPv.player = player
 //
 //    }
+
+
+    private fun play(recording: Recording) {
+
+
+
+    }
 
 //    inner class Timer(var recording: Recording):Thread(){
 //        //        private val length: Int, var isPlaying: Boolean = true

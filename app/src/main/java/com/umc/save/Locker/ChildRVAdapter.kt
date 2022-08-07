@@ -1,17 +1,11 @@
 package com.umc.save.Locker
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.save.R
-import com.umc.save.Record.ChildRecordActivity
 import com.umc.save.databinding.ItemAddBinding
-import com.umc.save.databinding.ItemAddRecordBinding
 import com.umc.save.databinding.ItemChildBinding
-import kotlinx.coroutines.NonDisposableHandle.parent
 import java.text.SimpleDateFormat
 
 class ChildRVAdapter ( val childList : ArrayList<Child>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
