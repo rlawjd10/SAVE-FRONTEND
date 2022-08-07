@@ -6,9 +6,12 @@ import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.media.tv.TvContract.Channels.CONTENT_TYPE
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
+import android.provider.MediaStore.Images.Media.CONTENT_TYPE
 import android.util.Base64
 import android.util.Base64.NO_WRAP
 import android.util.Log
@@ -17,6 +20,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import com.google.android.exoplayer2.util.FileTypes.MP4
 import com.umc.save.R
 import com.umc.save.databinding.ActivityDetailEtcBinding
 import java.io.ByteArrayOutputStream
@@ -29,9 +33,6 @@ class DetailEtcActivity : AppCompatActivity() {
     private var PICK_VIDEO = 2
     private var PICK_AUDIO = 3
 
-    private var uri : Uri? = null
-
-
     lateinit var binding: ActivityDetailEtcBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,13 +40,16 @@ class DetailEtcActivity : AppCompatActivity() {
         binding = ActivityDetailEtcBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.pictureBtn.setOnClickListener{
-            val status = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
-            if(status == PackageManager.PERMISSION_GRANTED){
+        binding.pictureBtn.setOnClickListener {
+            val status = ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+            if (status == PackageManager.PERMISSION_GRANTED) {
                 // Permission 허용
                 getImage()
                 binding.pictureSelectedSpace.isVisible = true
-            } else{
+            } else {
                 // Permission 허용
                 Toast.makeText(this, "접근 불가", Toast.LENGTH_LONG).show()
 
@@ -59,12 +63,15 @@ class DetailEtcActivity : AppCompatActivity() {
         }
 
         binding.videoBtn.setOnClickListener {
-            val status = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
-            if(status == PackageManager.PERMISSION_GRANTED){
+            val status = ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+            if (status == PackageManager.PERMISSION_GRANTED) {
                 // Permission 허용
                 getVideo()
                 binding.videoSelectedSpace.isVisible = true
-            } else{
+            } else {
                 // Permission 허용
                 Toast.makeText(this, "접근 불가", Toast.LENGTH_LONG).show()
 
@@ -78,12 +85,15 @@ class DetailEtcActivity : AppCompatActivity() {
         }
 
         binding.recordBtn.setOnClickListener {
-            val status = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
-            if(status == PackageManager.PERMISSION_GRANTED){
+            val status = ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+            if (status == PackageManager.PERMISSION_GRANTED) {
                 // Permission 허용
                 getRecord()
                 binding.recordSelectedSpace.isVisible = true
-            } else{
+            } else {
                 // Permission 허용
                 Toast.makeText(this, "접근 불가", Toast.LENGTH_LONG).show()
 
@@ -97,79 +107,62 @@ class DetailEtcActivity : AppCompatActivity() {
         }
     }
 
-    fun getImage(){
-        val intent = Intent("android.intent.action.GET_CONTENT")
+    fun getImage() {
+        // val intent = Intent("android.intent.action.GET_CONTENT")
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = MediaStore.Images.Media.CONTENT_TYPE
         intent.type = "image/*" // 모든 이미지
         startActivityForResult(intent, PICK_IMAGE)
     }
 
-    fun getVideo(){
+    fun getVideo() {
         val intent = Intent("android.intent.action.GET_CONTENT")
         intent.type = "video/*" // 모든 이미지
         startActivityForResult(intent, PICK_VIDEO)
     }
 
-    fun getRecord(){
+    fun getRecord() {
         val intent = Intent("android.intent.action.GET_CONTENT")
         intent.type = "audio/*" // 모든 이미지
         startActivityForResult(intent, PICK_AUDIO)
     }
 
-    var currentImageURL: Uri? = null
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Activity.RESULT_OK){
-            if(requestCode == PICK_IMAGE){
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == PICK_IMAGE) {
+                var currentImageURL : Uri? = data?.data
+                var filename = currentImageURL?.lastPathSegment
 
-                currentImageURL = intent?.data
-                val ins : InputStream? = currentImageURL?.let {
-                    applicationContext.contentResolver.openInputStream(
-                        it
-                    )
-                }
-                val img: Bitmap = BitmapFactory.decodeStream(ins)
-                ins?.close()
-                val resized = Bitmap.createScaledBitmap(img, 256, 256, true)
-                val byteArrayOutputStream = ByteArrayOutputStream()
-                resized.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream)
-                val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
-                val outStream = ByteArrayOutputStream()
-                val res: Resources = resources
-                var profileImageBase64 = Base64.encodeToString(byteArray, NO_WRAP)
-                // 여기까지 인코딩 끝
+                binding.pictureSelectedSpace.setText(filename)
 
-                // 이미지 뷰에 선택한 이미지 출력
-                val imageview: ImageView = findViewById(R.id.picture)
-                imageview.setImageURI(currentImageURL)
-                /*
-                try {
-                    //이미지 선택 후 처리
-                }catch (e: Exception){
-                    e.printStackTrace()
-                }
-            } else{
-                Log.d("ActivityResult", "something wrong")
-            }*/
-
-                Toast.makeText(this,"사진 첨부",Toast.LENGTH_SHORT).show()
-
-            } else{
-                Toast.makeText(this,"사진을 가져오지 못했습니다",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "사진 첨부", Toast.LENGTH_SHORT).show()
             }
 
-            if(requestCode == PICK_VIDEO){
-                Toast.makeText(this,"영상 첨부",Toast.LENGTH_SHORT).show()
-            } else{
-                Toast.makeText(this,"영상을 가져오지 못했습니다",Toast.LENGTH_SHORT).show()
+            if (requestCode == PICK_VIDEO) {
+                var currentVideoURL : Uri? = data?.data
+                var filename = currentVideoURL?.lastPathSegment
+
+                binding.videoSelectedSpace.setText(filename)
+
+                Toast.makeText(this, "영상 첨부", Toast.LENGTH_SHORT).show()
             }
 
-            if(requestCode == PICK_AUDIO){
-                Toast.makeText(this,"녹음 첨부",Toast.LENGTH_SHORT).show()
-            } else{
-                Toast.makeText(this,"녹음을 가져오지 못했습니다",Toast.LENGTH_SHORT).show()
+            if (requestCode == PICK_AUDIO) {
+                var currentVideoURL : Uri? = data?.data
+                var filename = currentVideoURL?.lastPathSegment
+
+                binding.recordSelectedSpace.setText(filename)
+
+                Toast.makeText(this, "녹음 첨부", Toast.LENGTH_SHORT).show()
             }
+
+            else {
+                Toast.makeText(this, "오류가 발생하였습니다.", Toast.LENGTH_SHORT).show()
+            }
+
         }
-    }
 
+    }
 }

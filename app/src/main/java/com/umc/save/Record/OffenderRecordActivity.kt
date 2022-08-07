@@ -60,6 +60,15 @@ class OffenderRecordActivity : AppCompatActivity() {
         binding.offenderMale.setOnClickListener{
             male++
             if(male % 2 != 0 ) {
+                if(binding.offenderFemale.isSelected) {
+                    binding.offenderFemale.isSelected = false
+                    female++
+                }
+                if(binding.offenderDontKnow.isSelected) {
+                    binding.offenderDontKnow.isSelected = false
+                    dontK++
+                }
+
                 binding.offenderMale.isSelected = true
             } else{
                 binding.offenderMale.isSelected = false
@@ -69,6 +78,15 @@ class OffenderRecordActivity : AppCompatActivity() {
         binding.offenderFemale.setOnClickListener{
             female++
             if(female % 2 != 0 ) {
+                if(binding.offenderMale.isSelected) {
+                    binding.offenderMale.isSelected = false
+                    male++
+                }
+                if(binding.offenderDontKnow.isSelected) {
+                    binding.offenderDontKnow.isSelected = false
+                    dontK++
+                }
+
                 binding.offenderFemale.isSelected = true
             } else{
                 binding.offenderFemale.isSelected = false
@@ -77,6 +95,14 @@ class OffenderRecordActivity : AppCompatActivity() {
         binding.offenderDontKnow.setOnClickListener{
             dontK++
             if(dontK % 2 != 0 ) {
+                if(binding.offenderMale.isSelected) {
+                    binding.offenderMale.isSelected = false
+                    male++
+                }
+                if(binding.offenderFemale.isSelected) {
+                    binding.offenderFemale.isSelected = false
+                    female++
+                }
                 binding.offenderDontKnow.isSelected = true
             } else{
                 binding.offenderDontKnow.isSelected = false
@@ -87,6 +113,11 @@ class OffenderRecordActivity : AppCompatActivity() {
         binding.offenderFather.setOnClickListener{
             father++
             if(father % 2 != 0 ) {
+                if(binding.offenderMother.isSelected) {
+                    binding.offenderMother.isSelected = false
+                    mother++
+                }
+
                 binding.offenderFather.isSelected = true
             } else{
                 binding.offenderFather.isSelected = false
@@ -95,6 +126,10 @@ class OffenderRecordActivity : AppCompatActivity() {
         binding.offenderMother.setOnClickListener{
             mother++
             if(mother % 2 != 0 ) {
+                if(binding.offenderFather.isSelected) {
+                    binding.offenderFather.isSelected = false
+                    father++
+                }
                 binding.offenderMother.isSelected = true
             } else{
                 binding.offenderMother.isSelected = false

@@ -1,8 +1,10 @@
 package com.umc.save.Record.RecordDetail
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.save.Record.Suspect
 import com.umc.save.Record.SuspectRVAdapter
@@ -27,8 +29,11 @@ class ChooseOffenderActivity : AppCompatActivity() {
 
 
         suspectRVAdapter.setMyItemClickListener(object:SuspectRVAdapter.MyItemClickListener{
+            @SuppressLint("NotifyDataSetChanged")
             override fun onItemClick(suspect: Suspect) {
                 suspect.isSelected = !suspect.isSelected
+
+                Log.d("suspect changed",suspect.isSelected.toString())
             }
         } )
 

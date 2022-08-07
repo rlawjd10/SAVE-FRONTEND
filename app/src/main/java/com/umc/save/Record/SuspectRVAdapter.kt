@@ -1,5 +1,6 @@
 package com.umc.save.Record
 
+import android.graphics.Color
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -28,16 +29,14 @@ class SuspectRVAdapter(private val suspectList : ArrayList<Suspect>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(suspectList[position])
         holder.itemView.setOnClickListener{
-            mItemClickListener.onItemClick(suspectList[position])
-            notifyItemChanged(position)
+            suspectList[position].isSelected = !suspectList[position].isSelected
+            holder.bind(suspectList[position])
         }
 
     }
 
     override fun getItemCount(): Int = suspectList.size
 
-
-    var selectPos = -1
 
     inner class ViewHolder(val binding: ItemOffenderBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(suspect: Suspect) {
@@ -46,24 +45,16 @@ class SuspectRVAdapter(private val suspectList : ArrayList<Suspect>) :
             binding.itemOffenderInfoRelTv.text = suspectRel
             binding.itemOffenderInfoNameTv.text = suspect.suspectName
 
-            /*
-            itemView.setOnClickListener {
-                /*if(selectPos == position){
-                    binding.itemOffenderInfoIb.setBackgroundColor(R.color.dark_red)
-                    binding.itemOffenderInfoRelTv.setTextColor(R.color.white)
-                }*/
-
-                var row_index = position
-                notifyDataSetChanged()
-            }*/
 
             if (suspect.isSelected) {
-                binding.itemOffenderInfoIb.setBackgroundColor(R.color.dark_red)
-                binding.itemOffenderInfoRelTv.setTextColor(R.color.white)
+                binding.itemOffenderInfoIb.setBackgroundColor(Color.parseColor("#FF7F61"))
+                binding.itemOffenderInfoRelTv.setTextColor(Color.parseColor("#FFFFFFFF"))
             } else {
-                binding.itemOffenderInfoIb.setBackgroundColor(R.color.dark_gray)
-                binding.itemOffenderInfoRelTv.setTextColor(R.color.dark_red)
+                binding.itemOffenderInfoIb.setBackgroundColor(Color.parseColor("#F5F5F5"))
+                binding.itemOffenderInfoRelTv.setTextColor(Color.parseColor("#FF7F61"))
             }
+
+
 
 
         }

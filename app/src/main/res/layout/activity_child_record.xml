@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Record.ChildRecordActivity">
 
+
+
 <!--* 필수 입력 사항-->
 <TextView
     android:layout_width="wrap_content"
@@ -367,4 +369,6 @@ ex) ‘옆집 아들’, ‘3층 아이’"
     android:textSize="16sp"
     android:fontFamily="@font/pretendard_semi_bold"
     />
+
+    <include layout="@layout/actionbar_inner_page_top"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
