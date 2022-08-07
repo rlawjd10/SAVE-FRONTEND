@@ -15,7 +15,9 @@ import android.provider.MediaStore.Images.Media.CONTENT_TYPE
 import android.util.Base64
 import android.util.Base64.NO_WRAP
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -39,6 +41,8 @@ class DetailEtcActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailEtcBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        initActionBar()
 
         binding.pictureBtn.setOnClickListener {
             val status = ContextCompat.checkSelfPermission(
@@ -165,4 +169,17 @@ class DetailEtcActivity : AppCompatActivity() {
         }
 
     }
+
+    fun initActionBar() {
+        val appBartext = findViewById<TextView>(R.id.appbar_page_name_tv)
+        val appBarBtn = findViewById<ImageView>(R.id.appbar_back_btn)
+        val appBarComplete = findViewById<TextView>(R.id.appbar_complete_tv)
+
+        appBartext.text= "기록"
+        appBartext.visibility= View.VISIBLE
+        appBarComplete.text= "완료"
+        appBarComplete.visibility= View.INVISIBLE
+        appBarBtn.setOnClickListener{onBackPressed()}
+    }
+
 }

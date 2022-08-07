@@ -144,4 +144,6 @@
         android:fontFamily="@font/pretendard_semi_bold"
         />
 
+    <include layout="@layout/actionbar_inner_page_top"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.umc.save.R
 import com.umc.save.Record.Suspect
 import com.umc.save.Record.SuspectRVAdapter
 import com.umc.save.databinding.ActivityChooseOffenderBinding
@@ -14,7 +18,6 @@ import kotlin.collections.ArrayList
 
 class ChooseOffenderActivity : AppCompatActivity() {
     lateinit var binding : ActivityChooseOffenderBinding
-    var choice_btn = 0
     private var suspectList= ArrayList<Suspect>()
 
 
@@ -22,6 +25,8 @@ class ChooseOffenderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChooseOffenderBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        initActionBar()
 
         val suspectRVAdapter = SuspectRVAdapter(suspectList)
         binding.offenderListRv.adapter = suspectRVAdapter
@@ -58,7 +63,16 @@ class ChooseOffenderActivity : AppCompatActivity() {
         binding.nextBtn.setOnClickListener{
             startActivity(Intent(this, AbuseTypeActivity::class.java))
         }
+    }
+    fun initActionBar() {
+        val appBartext = findViewById<TextView>(R.id.appbar_page_name_tv)
+        val appBarBtn = findViewById<ImageView>(R.id.appbar_back_btn)
+        val appBarComplete = findViewById<TextView>(R.id.appbar_complete_tv)
 
-
+        appBartext.text= "기록"
+        appBartext.visibility= View.VISIBLE
+        appBarComplete.text= "완료"
+        appBarComplete.visibility= View.INVISIBLE
+        appBarBtn.setOnClickListener{onBackPressed()}
     }
 }

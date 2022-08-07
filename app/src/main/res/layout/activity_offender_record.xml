@@ -8,17 +8,24 @@
     tools:context=".Record.OffenderRecordActivity">
 
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/content">
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <include layout="@layout/actionbar_inner_page_top"/>
 
         <!--* 필수 입력 사항-->
         <TextView
@@ -503,8 +510,12 @@
             android:fontFamily="@font/pretendard_semi_bold"
             />
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!--    </FrameLayout>-->
     </ScrollView>
+
     </LinearLayout>
+
+
 </LinearLayout>

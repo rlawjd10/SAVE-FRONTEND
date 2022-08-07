@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.umc.save.Locker.LockerFragment
@@ -25,6 +27,8 @@ class OffenderRecordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityOffenderRecordBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        initActionBar()
 
         binding.nameNotSureBtn.setOnClickListener{
             name_num++
@@ -147,5 +151,17 @@ class OffenderRecordActivity : AppCompatActivity() {
             }
             binding.content.visibility = View.GONE
         }
+    }
+
+    fun initActionBar() {
+        val appBartext = findViewById<TextView>(R.id.appbar_page_name_tv)
+        val appBarBtn = findViewById<ImageView>(R.id.appbar_back_btn)
+        val appBarComplete = findViewById<TextView>(R.id.appbar_complete_tv)
+
+        appBartext.text= "학대 행위자"
+        appBartext.visibility= View.VISIBLE
+        appBarComplete.text= "완료"
+        appBarComplete.visibility= View.INVISIBLE
+        appBarBtn.setOnClickListener{onBackPressed()}
     }
 }

@@ -27,10 +27,9 @@ class ChildRecordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChildRecordBinding.inflate(layoutInflater)
-        initActionBar()
         setContentView(binding.root)
 
-
+        initActionBar()
 
         binding.nameNotSureBtn.setOnClickListener{
             name_num++

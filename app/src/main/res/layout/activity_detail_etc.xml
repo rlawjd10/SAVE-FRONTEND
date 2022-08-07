@@ -19,7 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="38dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="100dp"
                 android:fontFamily="@font/pretendard_bold"
                 android:text="구체적 묘사 (정황)"
                 android:textColor="@color/black"
@@ -290,7 +290,10 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/record_selected_space" />
 
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
         <!--    </FrameLayout>-->
     </ScrollView>
+    <include layout="@layout/actionbar_inner_page_top"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
