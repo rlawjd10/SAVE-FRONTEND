@@ -1,6 +1,7 @@
 package com.umc.save.Record
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -44,14 +45,16 @@ class OffenderRecordActivity : AppCompatActivity() {
             if(age_num % 2 != 0 ) {
                 binding.ageNotSureBtn.isSelected = true
                 binding.recordOffenderAgeNS.isEnabled = true
-                binding.txtFlow.setTextColor(R.color.dark_red)
-                binding.recordOffenderAgeNS.setTextColor(R.color.dark_red)
+                binding.txtSae.setTextColor(Color.parseColor("#FF7F61"))
+                binding.txtFlow.setTextColor(Color.parseColor("#FF7F61"))
+                binding.recordOffenderAgeNS.setTextColor(Color.parseColor("#FF7F61"))
                 binding.recordOffenderAgeNS.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.dark_red)
             } else{
                 binding.ageNotSureBtn.isSelected = false
                 binding.recordOffenderAgeNS.isEnabled = false
-                binding.txtFlow.setTextColor(R.color.dark_gray)
-                binding.recordOffenderAgeNS.setTextColor(R.color.dark_gray)
+                binding.txtSae.setTextColor(Color.parseColor("#B5B5B5"))
+                binding.txtFlow.setTextColor(Color.parseColor("#B5B5B5"))
+                binding.recordOffenderAgeNS.setTextColor(Color.parseColor("#B5B5B5"))
                 binding.recordOffenderAgeNS.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.dark_gray)
             }
         }

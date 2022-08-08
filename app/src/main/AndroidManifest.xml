@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.umc.save">
+    package="com.umc.save" >
+    <!-- 갤러리 접근 가능 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -10,41 +14,37 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.SAVE"
-        tools:targetApi="31">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31" >
+
 
         <activity
             android:name=".Sign.LoginActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".MainActivity" />
-
+        <activity android:name=".Record.RecordPreviousActivity" />
         <activity android:name=".Record.ChildRecordActivity" />
         <activity android:name=".Record.RecordDetail.ChooseOffenderActivity" />
         <activity android:name=".Record.RecordDetail.DetailEtcActivity" />
         <activity android:name=".Record.RecordDetail.CalendarTimePlaceActivity" />
         <activity android:name=".Record.RecordDetail.AbuseTypeActivity" />
         <activity android:name=".Record.OffenderRecordActivity" />
-
-        <activity android:name=".Locker.PictureLockerActivity" android:theme="@style/Theme.ActivityDialog" />
-        <activity android:name=".Locker.PlayerLockerActivity" android:theme="@style/Theme.ActivityDialog" />
-
+        <activity
+            android:name=".Locker.PictureLockerActivity"
+            android:theme="@style/Theme.ActivityDialog" />
+        <activity
+            android:name=".Locker.PlayerLockerActivity"
+            android:theme="@style/Theme.ActivityDialog" />
         <activity android:name=".Sign.SignUpActivity" />
-        <activity android:name=".Sign.SignUpCompleteActivity"/>
-
+        <activity android:name=".Sign.SignUpCompleteActivity" />
     </application>
 
-    <!--갤러리 접근 가능-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

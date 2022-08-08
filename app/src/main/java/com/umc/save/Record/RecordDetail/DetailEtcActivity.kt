@@ -6,15 +6,13 @@ import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.media.MediaMetadataRetriever
+import android.media.ThumbnailUtils
 import android.media.tv.TvContract.Channels.CONTENT_TYPE
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.provider.MediaStore.Images.Media.CONTENT_TYPE
-import android.util.Base64
-import android.util.Base64.NO_WRAP
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -22,11 +20,9 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
-import com.google.android.exoplayer2.util.FileTypes.MP4
 import com.umc.save.R
 import com.umc.save.databinding.ActivityDetailEtcBinding
-import java.io.ByteArrayOutputStream
-import java.io.InputStream
+import kotlin.collections.HashMap
 
 
 class DetailEtcActivity : AppCompatActivity() {
@@ -139,6 +135,7 @@ class DetailEtcActivity : AppCompatActivity() {
                 var currentImageURL : Uri? = data?.data
                 var filename = currentImageURL?.lastPathSegment
 
+
                 binding.pictureSelectedSpace.setText(filename)
 
                 Toast.makeText(this, "사진 첨부", Toast.LENGTH_SHORT).show()
@@ -147,8 +144,11 @@ class DetailEtcActivity : AppCompatActivity() {
             if (requestCode == PICK_VIDEO) {
                 var currentVideoURL : Uri? = data?.data
                 var filename = currentVideoURL?.lastPathSegment
+                var thumbnail = ThumbnailUtils.createVideoThumbnail(currentVideoURL.toString(), MediaStore.Video.Thumbnails.MICRO_KIND)
+
 
                 binding.videoSelectedSpace.setText(filename)
+
 
                 Toast.makeText(this, "영상 첨부", Toast.LENGTH_SHORT).show()
             }
@@ -180,6 +180,27 @@ class DetailEtcActivity : AppCompatActivity() {
         appBarComplete.text= "완료"
         appBarComplete.visibility= View.INVISIBLE
         appBarBtn.setOnClickListener{onBackPressed()}
+    }
+
+    val thumbnailTime = 1
+    fun getVideoThumbnail(uri: Uri) : Bitmap? {
+        val retriever = MediaMetadataRetriever()
+
+        try {
+            retriever.setDataSource(uri.toString(), HashMap<String,String>())
+            return retriever.getFrameAtTime((thumbnailTime * 1000000).toLong(), MediaMetadataRetriever.OPTION_CLOSEST)
+        } catch (e : IllegalArgumentException){
+            e.printStackTrace()
+        } catch (e : RuntimeException){
+            e.printStackTrace()
+        } finally {
+            try {
+                retriever.release()
+            } catch (e : RuntimeException){
+                e.printStackTrace()
+            }
+        }
+        return null
     }
 
 }

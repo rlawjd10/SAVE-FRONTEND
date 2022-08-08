@@ -36,7 +36,12 @@ class RecordFragment : Fragment() {
         }
 
         // 보관함으로 이동하는 코드 추가 //
-
+        binding.recordPreviousChild.setOnClickListener{
+            activity?.let {
+                val intent = Intent(context, RecordPreviousActivity::class.java)
+                startActivity(intent)
+            }
+        }
 
 
 
