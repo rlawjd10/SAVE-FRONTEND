@@ -41,7 +41,7 @@ class InfoChildLockerFragment : Fragment() {
 
         binding.childInfoNameTv.text = child.childName
         binding.childInfoSpecificTv.text = childInfo
-        binding.childInfoDateTv.text = sdf.format(child.createAt).toString()
+//        binding.childInfoDateTv.text = sdf.format(child.createAt).toString()
 
     }
 

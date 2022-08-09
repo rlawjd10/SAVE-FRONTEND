@@ -1,8 +1,8 @@
-package com.umc.save.Locker
+package com.umc.save
 
 import android.util.Log
-import com.umc.save.ChildrenRetrofitInterfaces
-import com.umc.save.getRetrofit
+import com.umc.save.Locker.ChildrenResponse
+import com.umc.save.Locker.ChildrenView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,7 +18,7 @@ class ChildrenService {
         val childrenService = getRetrofit().create(ChildrenRetrofitInterfaces::class.java)
 
         childrenService.getChildren(userIdx).enqueue(object : Callback<ChildrenResponse> {
-            override fun onResponse(call: Call<ChildrenResponse>, response: Response<ChildrenResponse> ,) {
+            override fun onResponse(call: Call<ChildrenResponse>, response: Response<ChildrenResponse>,) {
                Log.d("CHILDREN-GET SUCCESS",response.toString())
                 val resp : ChildrenResponse = response.body()!!
                 when(resp.code) {

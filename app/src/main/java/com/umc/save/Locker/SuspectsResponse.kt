@@ -1,7 +1,6 @@
 package com.umc.save.Locker
 
 import com.google.gson.annotations.SerializedName
-import com.umc.save.Record.Suspect
 import java.util.*
 import kotlin.collections.ArrayList
 

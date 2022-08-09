@@ -1,11 +1,9 @@
 package com.umc.save.Locker
 
+import com.google.gson.annotations.SerializedName
+
 data class Recording (
-    var recordingIdx : Int,
-    var location : String,
-    var recordingTitle : String,
-    var second : Int = 0,
-    var length : Int,
-    var progress: Int = 0,
-    var isPlaying: Boolean = false
+    @SerializedName(value = "recordingPath") var location : String,
+    @SerializedName(value = "recordingName") var recordingTitle : String,
+    var isPlaying : Boolean = false
 )

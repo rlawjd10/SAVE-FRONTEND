@@ -43,6 +43,11 @@
         <activity
             android:name=".Locker.PlayerLockerActivity"
             android:theme="@style/Theme.ActivityDialog" />
+
+        <activity
+            android:name=".Locker.RecordingLockerActivity"
+            android:theme="@style/Theme.ActivityDialog" />
+
         <activity android:name=".Sign.SignUpActivity" />
         <activity android:name=".Sign.SignUpCompleteActivity" />
     </application>

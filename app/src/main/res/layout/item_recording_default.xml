@@ -49,18 +49,18 @@
         app:layout_constraintStart_toEndOf="@id/recording_play_iv"
         app:layout_constraintTop_toTopOf="@id/recording_info_iv"/>
 
-    <TextView
-        android:id="@+id/recording_length_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20.97dp"
-        app:layout_constraintBottom_toBottomOf="@id/recording_info_iv"
-        android:fontFamily="@font/pretendard_semi_bold"
-        android:text="01:42"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@id/recording_info_iv"
-        app:layout_constraintTop_toTopOf="@id/recording_info_iv"/>
+<!--    <TextView-->
+<!--        android:id="@+id/recording_length_tv"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="20.97dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/recording_info_iv"-->
+<!--        android:fontFamily="@font/pretendard_semi_bold"-->
+<!--        android:text="01:42"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="12sp"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/recording_info_iv"-->
+<!--        app:layout_constraintTop_toTopOf="@id/recording_info_iv"/>-->
 
 
 

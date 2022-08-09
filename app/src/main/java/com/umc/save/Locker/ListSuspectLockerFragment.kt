@@ -19,8 +19,8 @@ import java.sql.Time
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ListSuspectLockerFragment : Fragment() {
-    //, SuspectsView
+class ListSuspectLockerFragment : Fragment(), SuspectsView {
+
     lateinit var binding: FragmentLockerSuspectListBinding
     var currentPosition = 0
     private var suspectList= ArrayList<Suspect>()
@@ -37,35 +37,35 @@ class ListSuspectLockerFragment : Fragment() {
         val childJson = arguments?.getString("child")
         val child = gson.fromJson(childJson,Child::class.java)
 
+//        suspectList.apply {
+//            add(Suspect(1,"홍길동","여",
+//                "32","","","모"))
+//            add(Suspect(2,"","남",
+//                "42","","","부"))
+//            add(Suspect(3,"박길동","여",
+//                "22","","","모"))
+//            add(Suspect(4,"최길동","남",
+//                "32","","","부"))
+//            add(Suspect(5,"오길동","여",
+//                "32","","","모"))
+//
+//        }
 
-        suspectList.apply {
-            add(Suspect(1,"홍길동","여",
-                "32","","","모"))
-            add(Suspect(2,"","남",
-                "42","","","부"))
-            add(Suspect(3,"박길동","여",
-                "22","","","모"))
-            add(Suspect(4,"최길동","남",
-                "32","","","부"))
-            add(Suspect(5,"오길동","여",
-                "32","","","모"))
+//        val suspectRVAdapter = SuspectRVAdapter(suspectList)
+//        binding.suspectListRv.adapter = suspectRVAdapter
+//        binding.suspectListRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
 
-        }
+        getSuspects()
 
-        val suspectRVAdapter = SuspectRVAdapter(suspectList)
-        binding.suspectListRv.adapter = suspectRVAdapter
-        binding.suspectListRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-
-
-        suspectRVAdapter.setMyItemClickListener(object: SuspectRVAdapter.MyItemClickListener {
-            override fun onItemClick(suspect: Suspect) {
-                changeRecordChildLockerFragment(suspect)
-            }
-
-            override fun onItemClickAdd() {
-                openRecordActivity()
-            }
-        })
+//        suspectRVAdapter.setMyItemClickListener(object: SuspectRVAdapter.MyItemClickListener {
+//            override fun onItemClick(suspect: Suspect) {
+//                changeRecordChildLockerFragment(suspect)
+//            }
+//
+//            override fun onItemClickAdd() {
+//                openRecordActivity()
+//            }
+//        })
 
         return binding.root
     }
@@ -90,31 +90,43 @@ class ListSuspectLockerFragment : Fragment() {
         startActivity(intent)
     }
 
-//    private fun getSuspects() {
-//
-//        val suspectsService = SuspectsService()
-//
-//        suspectsService.setSuspectsView(this)
-//        suspectsService.getSuspects(childIdx)
-//
-//    }
-//
-//
-//    private fun initRecyclerView(result : ArrayList<Suspect>) {
-//        val suspectRVAdapter = SuspectRVAdapter(suspectList)
-//        binding.suspectListRv.adapter = suspectRVAdapter
-//        binding.suspectListRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-//
-//        suspectRVAdapter.setMyItemClickListener(object: SuspectRVAdapter.MyItemClickListener {
-//            override fun onItemClick(suspect: Suspect) {
-//                changeRecordChildLockerFragment(suspect)
-//            }
-//
-//            override fun onItemClickAdd() {
-//                openRecordActivity()
-//            }
-//        })
-//
-//    }
+    private fun getSuspects() {
 
+        val suspectsService = SuspectsService()
+
+        suspectsService.setSuspectsView(this)
+        suspectsService.getSuspects(childIdx)
+
+    }
+
+
+    private fun initRecyclerView(result : ArrayList<Suspect>) {
+        val suspectRVAdapter = SuspectRVAdapter(result)
+        binding.suspectListRv.adapter = suspectRVAdapter
+        binding.suspectListRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+
+        suspectRVAdapter.setMyItemClickListener(object: SuspectRVAdapter.MyItemClickListener {
+            override fun onItemClick(suspect: Suspect) {
+                changeRecordChildLockerFragment(suspect)
+            }
+
+            override fun onItemClickAdd() {
+                openRecordActivity()
+            }
+        })
+
+    }
+
+    override fun onGetSuspectsSuccess(code: Int, result: ArrayList<Suspect>) {
+        initRecyclerView(result)
+        Log.d("GET-SUCCESS",result.toString())
+    }
+
+    override fun suspectNotExist(code: Int, message: String) {
+        Log.d("GET-NOT-EXIST",message)
+    }
+
+    override fun onGetSuspectsFailure(code: Int, message: String) {
+        Log.d("GET-FAILURE",message)
+    }
 }

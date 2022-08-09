@@ -7,7 +7,7 @@ import retrofit2.http.Path
 
 interface SuspectsRetrofitInterfaces {
 
-    @GET("/info/child/{childIdx}")
+    @GET("/info/suspect/{childIdx}")
     fun getSuspects(@Path("childIdx") childIdx : Int) : Call<SuspectsResponse>
 
 }
