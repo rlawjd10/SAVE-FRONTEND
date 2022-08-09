@@ -1,6 +1,7 @@
 package com.umc.save.Record
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -25,6 +26,10 @@ class RecordPreviousActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initActionBar()
+
+        binding.nextBtn.setOnClickListener {
+            startActivity(Intent(this, ChildRecordActivity::class.java))
+        }
 
         childList.apply {
             add(
