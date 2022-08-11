@@ -50,6 +50,10 @@
 
         <activity android:name=".Sign.SignUpActivity" />
         <activity android:name=".Sign.SignUpCompleteActivity" />
+
+        <activity android:name=".Locker.RecordDeleteLockerActivity" />
+        <activity android:name=".Locker.ChildDeleteLockerActivity" />
+        <activity android:name=".Locker.SuspectDeleteLockerActivity" />
     </application>
 
 </manifest>

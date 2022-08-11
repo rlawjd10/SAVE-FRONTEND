@@ -21,6 +21,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.umc.save.R
+import com.umc.save.Record.Auth.AbuseSituation.abuse_var
 import com.umc.save.databinding.ActivityDetailEtcBinding
 import kotlin.collections.HashMap
 
@@ -39,6 +40,8 @@ class DetailEtcActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initActionBar()
+
+//        abuse_var.abuse.detail = binding.recordDetail.text.toString()
 
         binding.pictureBtn.setOnClickListener {
             val status = ContextCompat.checkSelfPermission(

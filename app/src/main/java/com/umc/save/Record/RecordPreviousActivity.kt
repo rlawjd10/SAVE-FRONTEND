@@ -2,6 +2,7 @@ package com.umc.save.Record
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,7 @@ import com.umc.save.Record.Auth.ChildGet.Child
 import com.umc.save.R
 import com.umc.save.Record.Auth.ChildGet.ChildGetResult
 import com.umc.save.Record.Auth.ChildGet.ChildGetService
+import com.umc.save.Record.RecordDetail.ChooseOffenderActivity
 import com.umc.save.databinding.ActivityRecordPreviousBinding
 import java.util.*
 
@@ -31,18 +33,12 @@ class RecordPreviousActivity : AppCompatActivity(), ChildGetResult {
         initActionBar()
 
         binding.nextBtn.setOnClickListener {
-            startActivity(Intent(this, ChildRecordActivity::class.java))
+            startActivity(Intent(this, ChooseOffenderActivity::class.java))
         }
-
         getPreviousChild()
-
-
     }
 
     private fun getPreviousChild(){
-//        val childRecordService = ChildRecordService()
-//        childRecordService.setRecordResult(this)
-//        childRecordService.record(getChild())
         val childGetService = ChildGetService()
         childGetService.setChildGetResult(this)
         childGetService.getChild(23)
@@ -80,56 +76,12 @@ class RecordPreviousActivity : AppCompatActivity(), ChildGetResult {
 
                 Log.d("suspect changed", RecordPreRVAdapter.clicked.toString())
 
+                if(RecordPreRVAdapter.clicked)
+                    binding.nextBtn.setBackgroundColor(Color.parseColor("#FF7F61"))
+                else
+                    binding.nextBtn.setBackgroundColor(Color.parseColor("#B5B5B5"))
             }
-
         })
-//        for(i in 0 until result.size - 1) {
-//            try {
-//                childList.add(result[result.size - 1])
-//                Log.d("변환 값 ==========================", result.get(result.size).toString())
-//            } catch (IndexOutOfBoundsException e ){
-//                e.printStrackTrace
-//            }
-//        }
-
-//        childList.apply {
-//            add(
-//                Child(1,"양현진",
-//                    "여","10","인천광역시 연수구 송도동",
-//                    "1000-1202", Date(2022-1900,1,2)
-//                )
-//            )
-//            add(
-//                Child(2,"울랄라",
-//                    "여","10","서울시 광진구",
-//                    "902-1002", Date(2022-1900,1,4)
-//                )
-//            )
-//            add(
-//                Child(3,"양땡땡",
-//                    "여","10","부산",
-//                    "1000-1202", Date(2021-1900,2,3)
-//                )
-//            )
-//            add(
-//                Child(1,"양현진",
-//                    "여","10","인천광역시 연수구 송도동",
-//                    "1000-1202", Date(2022-1900,1,2)
-//                )
-//            )
-//            add(
-//                Child(2,"울랄라",
-//                    "여","10","서울시 광진구",
-//                    "902-1002", Date(2022-1900,1,4)
-//                )
-//            )
-//            add(
-//                Child(3,"양땡땡",
-//                    "여","10","부산",
-//                    "1000-1202", Date(2021-1900,2,3)
-//                )
-//            )
-//        }
         Toast.makeText(this, "아동 불러오기 성공", Toast.LENGTH_SHORT).show()
     }
 

@@ -56,9 +56,11 @@ class RecordPreRVAdapter(private val childList : ArrayList<Child>) :
                 if (clicked) {
                     binding.itemChildInfoIv.setBackgroundColor(Color.parseColor("#FF7F61"))
                     binding.itemChildInfoNameTv.setTextColor(Color.parseColor("#FFFFFFFF"))
+                    binding.itemChildInfoDateTv.setTextColor(Color.parseColor("#FFFFFFFF"))
                 } else {
                     binding.itemChildInfoIv.setBackgroundColor(Color.parseColor("#F5F5F5"))
                     binding.itemChildInfoNameTv.setTextColor(Color.parseColor("#FF7F61"))
+                    binding.itemChildInfoDateTv.setTextColor(Color.parseColor("#FF7F61"))
                 }
             }
         }

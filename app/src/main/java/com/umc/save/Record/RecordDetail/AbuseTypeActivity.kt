@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.umc.save.R
+import com.umc.save.Record.Auth.AbuseSituation.AbuseSituation
+import com.umc.save.Record.Auth.AbuseSituation.abuse_var
 import com.umc.save.Record.OffenderRecordActivity
 import com.umc.save.databinding.ActivityAbuseTypeBinding
 
@@ -41,8 +43,10 @@ class AbuseTypeActivity : AppCompatActivity() {
                     n_num++
                 }
                 binding.physicalAbuseBtn.isSelected = true
+                abuse_var.abuse.a_type = "신체적 학대"
             } else{
                 binding.physicalAbuseBtn.isSelected = false
+                abuse_var.abuse.a_type = ""
             }
         }
 
@@ -62,8 +66,10 @@ class AbuseTypeActivity : AppCompatActivity() {
                     n_num++
                 }
                 binding.emotionalAbuseBtn.isSelected = true
+                abuse_var.abuse.a_type = "정신적 학대"
             } else{
                 binding.emotionalAbuseBtn.isSelected = false
+                abuse_var.abuse.a_type = ""
             }
         }
 
@@ -83,8 +89,10 @@ class AbuseTypeActivity : AppCompatActivity() {
                     n_num++
                 }
                 binding.sexualAbuseBtn.isSelected = true
+                abuse_var.abuse.a_type = "성적 학대"
             } else{
                 binding.sexualAbuseBtn.isSelected = false
+                abuse_var.abuse.a_type = ""
             }
         }
 
@@ -104,8 +112,10 @@ class AbuseTypeActivity : AppCompatActivity() {
                     s_num++
                 }
                 binding.neglectAbuseBtn.isSelected = true
+                abuse_var.abuse.a_type = "방관"
             } else{
                 binding.neglectAbuseBtn.isSelected = false
+                abuse_var.abuse.a_type = ""
             }
         }
 
