@@ -11,10 +11,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.umc.save.Locker.SuspectsService
 import com.umc.save.R
+import com.umc.save.Record.Auth.ChildRecord.childidx_var
+import com.umc.save.Record.Auth.SuspectRecord.Result
 import com.umc.save.Record.Auth.SuspectRecord.SuspectRecordResult
 import com.umc.save.Record.Auth.SuspectRecord.SuspectRecordService
+import com.umc.save.Record.Auth.SuspectRecord.suspectIdx_var
+import com.umc.save.databinding.ActivityChildRecordBinding
 import com.umc.save.databinding.ActivityOffenderRecordBinding
 
 class OffenderRecordActivity : AppCompatActivity(), SuspectRecordResult {
@@ -27,14 +30,17 @@ class OffenderRecordActivity : AppCompatActivity(), SuspectRecordResult {
     var father = 0
     var mother = 0
 
+
     lateinit var binding: ActivityOffenderRecordBinding
+    lateinit var binding2 : ActivityChildRecordBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOffenderRecordBinding.inflate(layoutInflater)
+        binding2 = ActivityChildRecordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initActionBar()
-
 
         binding.nameNotSureBtn.setOnClickListener{
             name_num++
@@ -65,12 +71,15 @@ class OffenderRecordActivity : AppCompatActivity(), SuspectRecordResult {
         }
 
         binding.recordAdd.setOnClickListener{
+            save()
             startActivity(Intent(this, OffenderRecordActivity::class.java))
         }
 
         // 학대행위자 성별
         binding.offenderMale.setOnClickListener{
             male++
+            Log.d("받아온 childIdx값 ==================================== ", childidx_var.childIdx.childIdx.toString())
+
             if(male % 2 != 0 ) {
                 if(binding.offenderFemale.isSelected) {
                     binding.offenderFemale.isSelected = false
@@ -151,6 +160,7 @@ class OffenderRecordActivity : AppCompatActivity(), SuspectRecordResult {
 
         binding.recordNext.setOnClickListener{
             save()
+
             val recordDoneFragment = RecordDoneFragment()
             val fragment : Fragment? = supportFragmentManager.findFragmentByTag(RecordDoneFragment::class.java.simpleName)
             if(fragment !is RecordDoneFragment){
@@ -186,10 +196,15 @@ class OffenderRecordActivity : AppCompatActivity(), SuspectRecordResult {
         val suspectRecordService = SuspectRecordService()
         suspectRecordService.setRecordResult(this)
         suspectRecordService.record(getSuspect())
+
+
     }
 
     private fun getSuspect() : Suspect {
-        var childIdx = 1
+
+        var childIdx : Int = childidx_var.childIdx.childIdx
+
+
         val suspectName : String = binding.recordOffenderName.text.toString()
 
         var suspectGender : String = "여"
@@ -212,12 +227,12 @@ class OffenderRecordActivity : AppCompatActivity(), SuspectRecordResult {
             relationWithChild = "부"
         else if (binding.offenderMother.isSelected)
             relationWithChild = "모"
-        else
+        if(!binding.offenderMother.isSelected && !binding.offenderFather.isSelected)
             relationWithChild = binding.recordRelation.text.toString()
 
-        val suspectEct : String = binding.recordOffenderEtc.text.toString()
+        val suspectEtc : String = binding.recordOffenderEtc.text.toString()
 
-        return Suspect(childIdx, suspectName, suspectGender, suspectAge, suspectAdress, suspectDetailAdress, relationWithChild, suspectEct )
+        return Suspect(childIdx, suspectName, suspectGender, suspectAge, suspectAdress, suspectDetailAdress, relationWithChild, suspectEtc )
     }
 
     fun initActionBar() {
@@ -232,13 +247,16 @@ class OffenderRecordActivity : AppCompatActivity(), SuspectRecordResult {
         appBarBtn.setOnClickListener{onBackPressed()}
     }
 
-    override fun recordSuccess() {
-        Toast.makeText(this, "아동 기록 성공.", Toast.LENGTH_SHORT).show()
-        Log.d("RECORD/FAILURE", "아동 기록 성공.")
+    override fun recordSuccess(result : Result) {
+        suspectIdx_var.suspectIdx.suspectIdx = result.suspectIdx
+        Toast.makeText(this, "학대 행위자 기록 성공.", Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", "학대 행위자 기록 성공.")
     }
 
     override fun recordFailure() {
-        Toast.makeText(this, "아동 기록 실패.", Toast.LENGTH_SHORT).show()
-        Log.d("RECORD/FAILURE", "아동 기록 실패.")
+        Toast.makeText(this, "학대 행위자 기록 실패.", Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", "학대 행위자 기록 실패.")
+        Log.d("childIdx값 ==================================== ", getSuspect().childIdx.toString())
+
     }
 }

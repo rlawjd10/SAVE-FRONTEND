@@ -2,6 +2,7 @@ package com.umc.save.Record
 
 import android.content.Intent
 import android.graphics.Color
+import android.icu.number.IntegerWidth
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,10 +11,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.umc.save.R
-import com.umc.save.Record.Auth.ChildRecord.ChildRecordResult
-import com.umc.save.Record.Auth.ChildRecord.ChildRecordService
+import com.umc.save.Record.Auth.ChildRecord.*
 import com.umc.save.databinding.ActivityChildRecordBinding
+import com.umc.save.databinding.ActivityOffenderRecordBinding
 
 
 class ChildRecordActivity : AppCompatActivity(), ChildRecordResult {
@@ -24,10 +26,15 @@ class ChildRecordActivity : AppCompatActivity(), ChildRecordResult {
     var female = 0
     var dontK = 0
 
+    var get_childIdx = 10
+
     lateinit var binding: ActivityChildRecordBinding
+    lateinit var binding2: ActivityOffenderRecordBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChildRecordBinding.inflate(layoutInflater)
+        binding2 = ActivityOffenderRecordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initActionBar()
@@ -42,8 +49,6 @@ class ChildRecordActivity : AppCompatActivity(), ChildRecordResult {
                 binding.nameNotSureBtn.isSelected = false
             }
         }
-
-
 
         ////////// 아동 성별
         binding.childMale.setOnClickListener{
@@ -124,15 +129,20 @@ class ChildRecordActivity : AppCompatActivity(), ChildRecordResult {
         }
 
 
+
         binding.recordDone.setOnClickListener{
             save()
+
             val intent = Intent(this, OffenderRecordActivity::class.java)
             startActivity(intent)
+            var childIdx : String = binding.childIdx.text.toString()
+//            intent.putExtra("childIdx_send", childIdx)
+            Log.d("binding.childIdx 값 11111111 ============================ ", childIdx)
         }
     }
 
     private fun getChild() : Child {
-        var userIdx = 1
+        var userIdx = 23
         val childName : String = binding.recordChildName.text.toString()
         val isCertain : Boolean
         if(binding.nameNotSureBtn.isSelected) {
@@ -157,7 +167,7 @@ class ChildRecordActivity : AppCompatActivity(), ChildRecordResult {
         return Child(userIdx, childName, isCertain, childGender, childAge, childAdress, childDetailAdress)
     }
 
-    private fun save(){
+    private fun save() {
         if (binding.recordChildName.text.toString().isEmpty()) {
             Toast.makeText(this, "아동의 이름을 입력해주세요.", Toast.LENGTH_SHORT).show()
             return
@@ -174,6 +184,22 @@ class ChildRecordActivity : AppCompatActivity(), ChildRecordResult {
         childRecordService.record(getChild())
     }
 
+    override fun recordSuccess(result : Result) {
+
+        childidx_var.childIdx.childIdx = result.childIdx
+
+        Log.d("변환 값 ==========================", childidx_var.childIdx.childIdx.toString())
+        Toast.makeText(this, "아동 기록 성공.", Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", "아동 기록 성공.")
+    }
+
+
+    override fun recordFailure() {
+        Toast.makeText(this, "아동 기록 실패.", Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", "아동 기록 실패.")
+    }
+
+
     fun initActionBar() {
         val appBartext = findViewById<TextView>(R.id.appbar_page_name_tv)
         val appBarBtn = findViewById<ImageView>(R.id.appbar_back_btn)
@@ -184,15 +210,5 @@ class ChildRecordActivity : AppCompatActivity(), ChildRecordResult {
         appBarComplete.text= "완료"
         appBarComplete.visibility= View.INVISIBLE
         appBarBtn.setOnClickListener{onBackPressed()}
-    }
-
-    override fun recordSuccess() {
-        Toast.makeText(this, "아동 기록 성공.", Toast.LENGTH_SHORT).show()
-        Log.d("RECORD/FAILURE", "아동 기록 성공.")
-    }
-
-    override fun recordFailure() {
-        Toast.makeText(this, "아동 기록 실패.", Toast.LENGTH_SHORT).show()
-        Log.d("RECORD/FAILURE", "아동 기록 실패.")
     }
 }

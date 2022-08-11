@@ -1,6 +1,6 @@
 package com.umc.save.Record.Auth.SuspectRecord
 
 interface SuspectRecordResult {
-    fun recordSuccess()
+    fun recordSuccess(result : Result)
     fun recordFailure()
 }

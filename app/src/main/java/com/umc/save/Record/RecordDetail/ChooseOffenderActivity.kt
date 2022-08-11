@@ -10,13 +10,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.save.R
-import com.umc.save.Record.Suspect
+import com.umc.save.Record.Auth.ChildGet.ChildGetService
+import com.umc.save.Record.Auth.ChildRecord.childidx_var
+import com.umc.save.Record.Auth.SuspectGet.Suspect
+import com.umc.save.Record.Auth.SuspectGet.SuspectGetResult
+import com.umc.save.Record.Auth.SuspectGet.SuspectGetService
 import com.umc.save.Record.SuspectRVAdapter
 import com.umc.save.databinding.ActivityChooseOffenderBinding
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ChooseOffenderActivity : AppCompatActivity() {
+class ChooseOffenderActivity : AppCompatActivity(), SuspectGetResult {
     lateinit var binding : ActivityChooseOffenderBinding
     private var suspectList= ArrayList<Suspect>()
 
@@ -27,6 +31,39 @@ class ChooseOffenderActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initActionBar()
+
+        chooseSuspect()
+
+        binding.nextBtn.setOnClickListener{
+            startActivity(Intent(this, AbuseTypeActivity::class.java))
+        }
+    }
+
+    private fun chooseSuspect(){
+//        val childRecordService = ChildRecordService()
+//        childRecordService.setRecordResult(this)
+//        childRecordService.record(getChild())
+        val suspectGetService = SuspectGetService()
+        suspectGetService.setSuspectGetResult(this)
+        suspectGetService.getSuspect(childidx_var.childIdx.childIdx)
+    }
+    fun initActionBar() {
+        val appBartext = findViewById<TextView>(R.id.appbar_page_name_tv)
+        val appBarBtn = findViewById<ImageView>(R.id.appbar_back_btn)
+        val appBarComplete = findViewById<TextView>(R.id.appbar_complete_tv)
+
+        appBartext.text= "기록"
+        appBartext.visibility= View.VISIBLE
+        appBarComplete.text= "완료"
+        appBarComplete.visibility= View.INVISIBLE
+        appBarBtn.setOnClickListener{onBackPressed()}
+    }
+
+    override fun getChildSuccess(
+        code: Int,
+        result: java.util.ArrayList<Suspect>
+    ) {
+        suspectList.addAll(result)
 
         val suspectRVAdapter = SuspectRVAdapter(suspectList)
         binding.offenderListRv.adapter = suspectRVAdapter
@@ -41,38 +78,10 @@ class ChooseOffenderActivity : AppCompatActivity() {
                 Log.d("suspect changed",suspect.isSelected.toString())
             }
         } )
-
-
-
-        suspectList.apply {
-            add(Suspect(1, "홍길동", "남","40",")", "ㅇㄹㄴㄻ",
-                "어린이집 교사"))
-            add(Suspect(1,"", "남","40",")", "ㅇㄹㄴㄻ",
-                "어린이집 원장"))
-            add(Suspect(1, "백길동", "남","40",")", "ㅇㄹㄴㄻ",
-                "친부"))
-            add(Suspect(1,  "", "남","40",")", "ㅇㄹㄴㄻ",
-                "A"))
-            add(Suspect(1 ,  "백길동", "남","40",")", "ㅇㄹㄴㄻ",
-                "B"))
-            add(Suspect(1,  "오달봉", "남","40",")", "ㅇㄹㄴㄻ",
-                "C"))
-        }
-
-
-        binding.nextBtn.setOnClickListener{
-            startActivity(Intent(this, AbuseTypeActivity::class.java))
-        }
+        TODO("Not yet implemented")
     }
-    fun initActionBar() {
-        val appBartext = findViewById<TextView>(R.id.appbar_page_name_tv)
-        val appBarBtn = findViewById<ImageView>(R.id.appbar_back_btn)
-        val appBarComplete = findViewById<TextView>(R.id.appbar_complete_tv)
 
-        appBartext.text= "기록"
-        appBartext.visibility= View.VISIBLE
-        appBarComplete.text= "완료"
-        appBarComplete.visibility= View.INVISIBLE
-        appBarBtn.setOnClickListener{onBackPressed()}
+    override fun getChildFailure(code: Int, message: String) {
+        TODO("Not yet implemented")
     }
 }

@@ -10,6 +10,6 @@ data class Suspect (
     @SerializedName(value = "suspectAddress") var suspectAddress: String? = "",
     @SerializedName(value = "suspectDetailAddress") var suspectDetailAddress: String? = "",
     @SerializedName(value = "relationWithChild") var relationship: String,
-    @SerializedName(value = "suspectEtc") var suspectEct: String? = "",
+    @SerializedName(value = "suspectEtc") var suspectEtc: String? = "",
     var isSelected: Boolean = false
 )

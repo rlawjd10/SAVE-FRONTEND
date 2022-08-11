@@ -1,13 +1,22 @@
 package com.umc.save.Record.Auth.SuspectRecord
 
 import android.util.Log
+import com.umc.save.Record.Auth.SuspectRecord.Result
 import com.umc.save.Record.Suspect
 import com.umc.save.getRetrofit
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+class suspectIdx_var {
+    object suspectIdx {
+        var suspectIdx : Int = 0
+    }
+
+}
 class SuspectRecordService {
+
+    private var result : Result = Result(suspectIdx = 1)
 
     private lateinit var suspectRecordResult : SuspectRecordResult
 
@@ -21,8 +30,9 @@ class SuspectRecordService {
             override fun onResponse(call: Call<SuspectRecordResponse>, response: Response<SuspectRecordResponse>) {
                 Log.d("RECORD/SUCCESS",response.toString())
                 val resp: SuspectRecordResponse = response.body()!!
+                result = resp.result!!
                 when(resp.code){
-                    1000 -> suspectRecordResult.recordSuccess()
+                    1000 -> suspectRecordResult.recordSuccess(result)
                     else -> suspectRecordResult.recordFailure()
                 }
             }

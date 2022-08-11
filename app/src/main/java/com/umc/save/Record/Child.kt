@@ -10,5 +10,5 @@ data class Child (
     @SerializedName(value = "gender") var childGender: String,
     @SerializedName(value = "age") var childAge: String,
     @SerializedName(value = "address") var childAddress: String,
-    @SerializedName(value = "detailAddress") var childDetailAddress: String,
+    @SerializedName(value = "detailAddress") var childDetailAddress: String
 )

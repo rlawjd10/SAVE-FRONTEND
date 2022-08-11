@@ -1,5 +1,6 @@
 package com.umc.save.Record
 
+import com.umc.save.Record.Auth.SuspectGet.Suspect
 import android.graphics.Color
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater

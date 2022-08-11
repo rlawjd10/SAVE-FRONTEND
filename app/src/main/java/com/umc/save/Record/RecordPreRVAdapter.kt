@@ -4,7 +4,7 @@ import android.graphics.Color
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.umc.save.Locker.Child
+import com.umc.save.Record.Auth.ChildGet.Child
 import com.umc.save.R
 import com.umc.save.databinding.ItemChildEditBinding
 import com.umc.save.databinding.ItemOffenderBinding
