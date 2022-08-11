@@ -32,12 +32,13 @@ class RecordChildLockerFragment() : Fragment(){
         val childJson = arguments?.getString("child")
         val child = gson.fromJson(childJson,Child::class.java)
 
-        val recordAdapter = RecordVPAdapter(this)
+        val recordAdapter = RecordVPAdapter(child.childIdx,this)
         binding.recordContentVp.adapter = recordAdapter
         binding.recordContentVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         TabLayoutMediator(binding.recordContentTb,binding.recordContentVp) {
             tab, position -> tab.text = method[position]
+
         }.attach()
 
 
@@ -48,8 +49,8 @@ class RecordChildLockerFragment() : Fragment(){
                 .replace(R.id.main_frm, ListSuspectLockerFragment()).apply {
                     arguments = Bundle().apply {
                         val gson = Gson()
-                        val childJson = gson.toJson(child)
-                        putString("child",childJson)
+                        val childIdxJson = gson.toJson(child.childIdx)
+                        putString("childIdx",childIdxJson)
                     }
                 }
                 .addToBackStack(null)
@@ -60,6 +61,12 @@ class RecordChildLockerFragment() : Fragment(){
 
         return binding.root
     }
+
+//    private fun sendData(childIdx: Child) {
+//        (context as MainActivity).supportFragmentManager
+//            .beginTransaction()
+//            .
+//    }
 
 
 

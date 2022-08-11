@@ -2,11 +2,13 @@ package com.umc.save.Locker
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
 import com.umc.save.R
 import com.umc.save.Record.ChildRecordActivity
@@ -25,28 +27,13 @@ class ListPictureLockerFragment: Fragment() {
     ): View? {
         binding = FragmentLockerPictureListBinding.inflate(inflater,container,false)
 
-//        pictureList.apply {
-//            add(Picture(1,"~~~~~"))
-//            add(Picture(2,"~~~~~"))
-//            add(Picture(3,"~~~~~"))
-//            add(Picture(4,"~~~~~"))
-//            add(Picture(5,"~~~~~"))
-//            add(Picture(6,"~~~~~"))
-//            add(Picture(7,"~~~~~"))
-//            add(Picture(8,"~~~~~"))
-//        }
 
-        pictureList.apply {
-            add(Picture(1,"",R.drawable.fragment_child_blue_background))
-            add(Picture(2,"",R.drawable.fragment_child_red_off_background))
-            add(Picture(3,"",R.drawable.fragment_child_red_on_background))
-            add(Picture(1,"",R.drawable.fragment_red_background))
-            add(Picture(2,"",R.drawable.fragment_child_blue_background))
-            add(Picture(3,"",R.drawable.fragment_child_blue_background))
-            add(Picture(1,"", R.drawable.fragment_child_red_on_background))
-            add(Picture(2,"",R.drawable.fragment_child_blue_background))
-            add(Picture(3,"",R.drawable.fragment_offender_off_background))
-        }
+        val pictureJson = arguments?.getString("picture")
+        val itemType = object : TypeToken<ArrayList<Picture>>() {}.type
+        pictureList = gson.fromJson(pictureJson,itemType)
+
+        Log.d("======PICTURELIST",pictureList.toString())
+
 
         val pictureRecordRVAdapter = PictureRecordRVAdapter(pictureList)
 
@@ -66,8 +53,7 @@ class ListPictureLockerFragment: Fragment() {
     private fun openPictureActivity(picture: Picture) {
 
         val intent = Intent(context, PictureLockerActivity::class.java)
-        intent.putExtra("picture",picture.image)
-        //다음에 picture.location으로 바꿔놓기
+        intent.putExtra("picture",picture.location)
         startActivity(intent)
     }
 

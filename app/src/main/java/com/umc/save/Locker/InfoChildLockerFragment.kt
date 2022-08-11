@@ -28,7 +28,7 @@ class InfoChildLockerFragment : Fragment() {
         val child = gson.fromJson(childJson,Child::class.java)
 
         setInit(child)
-        setRecord()
+        setRecord(child)
 
         return binding.root
     }
@@ -45,10 +45,16 @@ class InfoChildLockerFragment : Fragment() {
 
     }
 
-    private fun setRecord(){
+    private fun setRecord(child: Child){
         (context as MainActivity).supportFragmentManager
             .beginTransaction()
-            .replace(R.id.locker_frm, RecordChildLockerFragment())
+            .replace(R.id.locker_frm, RecordChildLockerFragment().apply {
+                arguments = Bundle().apply {
+                    val gson = Gson()
+                    val childJson = gson.toJson(child)
+                    putString("child",childJson)
+                }
+            })
             .commitAllowingStateLoss()
     }
 

@@ -1,7 +1,7 @@
 package com.umc.save.Locker
 
+import com.google.gson.annotations.SerializedName
+
 data class Picture (
-    var pictureIdx : Int,
-    var location : String? ="",
-    var image : Int? = null
+    @SerializedName(value = "picturePath") var location : String? =""
 )

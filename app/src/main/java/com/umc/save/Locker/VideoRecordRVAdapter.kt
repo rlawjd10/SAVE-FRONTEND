@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.umc.save.R
 import com.umc.save.databinding.ItemVideoBinding
 
@@ -31,9 +32,13 @@ class VideoRecordRVAdapter(private val videoList : ArrayList<Video>) : RecyclerV
     override fun getItemCount(): Int = videoList.size
 
     inner class ViewHolder(val binding: ItemVideoBinding) : RecyclerView.ViewHolder(binding.root) {
+        private val image : ImageView = itemView.findViewById<ImageView>(R.id.thumbnail_iv)
 
         fun bind(video: Video) {
-            binding.thumbnailIv.setImageResource(video.image!!)
+            Glide.with(itemView)
+                .load(video.thumb)
+                .into(image)
+
         }
     }
 

@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
-import com.umc.save.ChildrenService
 import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Record.ChildRecordActivity
@@ -21,7 +20,7 @@ class LockerFragment : Fragment(), ChildrenView {
     var userIdx = 2
     lateinit var binding: FragmentLockerBinding
     var currentPosition = 0
-//    private var childList= ArrayList<Child>()
+    var childList = ArrayList<Child>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,41 +29,35 @@ class LockerFragment : Fragment(), ChildrenView {
     ): View? {
         binding = FragmentLockerBinding.inflate(inflater,container,false)
 
-//        childList.apply {
-//            add(Child(1,"양현진",
-//                "여","10","인천광역시 연수구 송도동",
-//                "1000-1202", Date(2022-1900,1,2)))
-//            add(Child(2,"울랄라",
-//                "여","10","서울시 광진구",
-//                "902-1002", Date(2022-1900,1,4)))
-//            add(Child(3,"양땡땡",
-//                "여","10","부산",
-//                "1000-1202", Date(2021-1900,2,3)))
-//            add(Child(1,"양현진",
-//                "여","10","인천광역시 연수구 송도동",
-//                "1000-1202", Date(2022-1900,1,2)))
-//            add(Child(2,"울랄라",
-//                "여","10","서울시 광진구",
-//                "902-1002", Date(2022-1900,1,4)))
-//            add(Child(3,"양땡땡",
-//                "여","10","부산",
-//                "1000-1202", Date(2021-1900,2,3)))
-//        }
-
         getChildren()
 
-        binding.lockerTitleTv.setOnClickListener {
-            (context as MainActivity).supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.main_frm, TestRecordingFragment())
-                .addToBackStack(null)
-                .commitAllowingStateLoss()
+        binding.lockerChildEditTv.setOnClickListener {
+            openDeleteActivity()
         }
 
-//        Log.d("childList",childList.toString())
+    //TEST용 (지우기)
+        binding.lockerTitleTv.setOnClickListener {
+            openRecordingActivity()
+//            (context as MainActivity).supportFragmentManager
+//                .beginTransaction()
+//                .replace(R.id.main_frm, TestRecordingFragment())
+//                .addToBackStack(null)
+//                .commitAllowingStateLoss()
+        }
+
 
         return binding.root
     }
+
+    //TEST용 (지우기)
+    private fun openRecordingActivity() {
+
+        val intent = Intent(context, RecordingLockerActivity::class.java)
+//        intent.putExtra("recording",recording.location)
+        //다음에 picture.location으로 바꿔놓기
+        startActivity(intent)
+    }
+
 
     private fun getChildren() {
 
@@ -112,9 +105,17 @@ class LockerFragment : Fragment(), ChildrenView {
         startActivity(intent)
     }
 
+    //delete에 arraylist 넘길지 check
+    private fun openDeleteActivity() {
+        val intent = Intent(context, ChildDeleteLockerActivity::class.java)
+//        intent.putExtra("childList",childList)
+        startActivity(intent)
+    }
+
 
     override fun onGetChildSuccess(code: Int, result: ArrayList<Child>) {
         initRecyclerView(result)
+        childList = result
         Log.d("GET-SUCCESS","요청에 성공하였습니다.")
         Log.d("check recieve", result.toString())
     }

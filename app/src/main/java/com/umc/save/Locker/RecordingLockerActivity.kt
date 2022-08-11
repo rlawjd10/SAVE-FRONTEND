@@ -24,33 +24,30 @@ class RecordingLockerActivity : AppCompatActivity() {
     lateinit var binding : ItemRecordingBinding
 
     private var player : ExoPlayer? = null
-    var url = "https://dby56rj67jahx.cloudfront.net/recording/192470e0-2fcd-49d1-b2a0-6105b864a930.m4a"
-//    var url="https://dby56rj67jahx.cloudfront.net/recording/958e5d70-91d2-402e-8a0e-f1fe49d45683.mp3"
 
     private val timeRunnable = Runnable {
         updateTime()
     }
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ItemRecordingBinding.inflate(layoutInflater)
 
-
-
-
-
-//        initAudio(url)
-//        play()
+        val recordingTitle = intent.getStringExtra("recordingTitle")
+        binding.recordingTitleTv.text = recordingTitle
 
         binding.exoPlay.setOnClickListener {
-            initAudio(url)
             play()
         }
 
         binding.exoPause.setOnClickListener {
             pause()
+        }
+
+        binding.closeIv.setOnClickListener {
+            player?.release()
+            player = null
+            finish()
         }
 
         setContentView(binding.root)
@@ -61,6 +58,8 @@ class RecordingLockerActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         initPlayer()
+        initAudio()
+        play()
 
     }
 
@@ -83,9 +82,9 @@ class RecordingLockerActivity : AppCompatActivity() {
                         binding.exoPlay.visibility = View.GONE
                         binding.exoPause.visibility = View.VISIBLE
                         binding.exoPosition.visibility = View.VISIBLE
-                        binding.exoDuration.setTextColor(Color.parseColor("#D9D9D9"))
-                        binding.exoPosition.setTextColor(Color.parseColor("#FFFFFFFF"))
-                        binding.recordingTitleTv.setTextColor(Color.parseColor("#FFFFFFFF"))
+                        binding.exoDuration.setTextColor(Color.parseColor("#FF000000"))
+                        binding.exoPosition.setTextColor(Color.parseColor("#B5B5B5"))
+                        binding.recordingTitleTv.setTextColor(Color.parseColor("#FF000000"))
 
                     } else {
                         binding.exoPlay.visibility = View.VISIBLE
@@ -116,7 +115,6 @@ class RecordingLockerActivity : AppCompatActivity() {
 
         val state = player.playbackState
 
-//        this.runOnUiThread()
         binding.root.removeCallbacks(timeRunnable)
         if (state != Player.STATE_IDLE && state != Player.STATE_ENDED) {
             binding.root.postDelayed(timeRunnable,1000)
@@ -134,10 +132,13 @@ class RecordingLockerActivity : AppCompatActivity() {
         }
     }
 
-    private fun initAudio(url: String) {
+    private fun initAudio() {
+
+        val recordingUrl = intent.getStringExtra("recordingUrl")
+
         val dataSourceFactory = DefaultDataSource.Factory(this)
         val mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
-            .createMediaSource(MediaItem.fromUri(Uri.parse(url)))
+            .createMediaSource(MediaItem.fromUri(Uri.parse(recordingUrl)))
         player?.setMediaSource(mediaSource)
 
     }
@@ -151,8 +152,6 @@ class RecordingLockerActivity : AppCompatActivity() {
 
     private fun pause() {
         player?.pause()
-//        player?.release()
-//        player = null
     }
 
 

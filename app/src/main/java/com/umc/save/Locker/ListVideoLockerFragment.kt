@@ -2,11 +2,13 @@ package com.umc.save.Locker
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
 import com.umc.save.MainActivity
 import com.umc.save.R
@@ -19,6 +21,7 @@ import kotlin.collections.ArrayList
 class ListVideoLockerFragment() : Fragment() {
     lateinit var binding : FragmentLockerVideoListBinding
     var currentPosition = 0
+    val gson : Gson =  Gson()
     private var videoList = ArrayList<Video>()
 
     override fun onCreateView(
@@ -28,13 +31,18 @@ class ListVideoLockerFragment() : Fragment() {
     ): View? {
         binding = FragmentLockerVideoListBinding.inflate(inflater,container,false)
 
-        videoList.apply {
-            add(Video(1,"test_video","icn_add_default",R.drawable.fragment_child_blue_background,R.raw.test_video))
-            add(Video(2,"test_video2","icn_add_default",R.drawable.fragment_child_red_on_background,R.raw.test_video2))
-            add(Video(3,"test_video","icn_close_normal",R.drawable.fragment_dark_red_background,R.raw.test_video))
-            add(Video(4,"test_video2","icn_close_normal",R.drawable.fragment_dark_gray_background,R.raw.test_video2))
-            add(Video(5,"test_video","icn_close_normal",R.drawable.fragment_offender_off_background,R.raw.test_video2))
-        }
+//        videoList.apply {
+//            add(Video("https://save-bucket.s3.ap-northeast-2.amazonaws.com/static/video/a9526453-7daf-4fc6-aae7-cba4eb6f4188.mp4","https://save-bucket.s3.ap-northeast-2.amazonaws.com/static/video/a9526453-7daf-4fc6-aae7-cba4eb6f4188.mp4"))
+//            add(Video("https://save-bucket.s3.ap-northeast-2.amazonaws.com/static/video/a9526453-7daf-4fc6-aae7-cba4eb6f4188.mp4","https://save-bucket.s3.ap-northeast-2.amazonaws.com/static/video/a9526453-7daf-4fc6-aae7-cba4eb6f4188.mp4"))
+//            add(Video("https://save-bucket.s3.ap-northeast-2.amazonaws.com/static/video/a9526453-7daf-4fc6-aae7-cba4eb6f4188.mp4","https://save-bucket.s3.ap-northeast-2.amazonaws.com/static/video/a9526453-7daf-4fc6-aae7-cba4eb6f4188.mp4"))
+//        }
+
+        val videoJson = arguments?.getString("video")
+        val itemType = object : TypeToken<ArrayList<Video>>() {}.type
+        videoList = gson.fromJson(videoJson,itemType)
+
+        Log.d("======VIDEOELIST",videoList.toString())
+
 
         val videoRecordRVAdapter = VideoRecordRVAdapter(videoList)
 
@@ -54,16 +62,16 @@ class ListVideoLockerFragment() : Fragment() {
     private fun openPlayerActivity(video: Video) {
 
         val intent = Intent(context, PlayerLockerActivity::class.java)
-        intent.putExtra("video",video.video)
+        intent.putExtra("video",video.location)
         //다음에 picture.location으로 바꿔놓기
         startActivity(intent)
     }
 
 
 
-    private fun getVideoList() {
-
-    }
+//    private fun getVideoList() {
+//
+//    }
 
 
 //    private fun changeDetailRecordLockerFragment(recordData: RecordData) {

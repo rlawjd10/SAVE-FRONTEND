@@ -26,12 +26,12 @@ class PictureLockerActivity : AppCompatActivity() {
     }
 
     private fun initImage() {
-       val image = intent.getIntExtra("picture",0)
+       val imageUrl = intent.getStringExtra("picture")
         //url로 바꿔야 한다!
-        binding.pictureZoomInIv.setImageResource(image)
-//        Glide.with(this)
-//                .load(R.drawable.img_file_name)
-//                .into(itemView.imageView)
+//        binding.pictureZoomInIv.setImageResource(image)
+        Glide.with(this)
+                .load(imageUrl)
+                .into(binding.pictureZoomInIv)
     }
 
 

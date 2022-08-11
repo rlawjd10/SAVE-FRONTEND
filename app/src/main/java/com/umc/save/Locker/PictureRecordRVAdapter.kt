@@ -27,6 +27,7 @@ class PictureRecordRVAdapter(private val pictureList : ArrayList<Picture>) : Rec
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         holder.bind(pictureList[position])
         holder.itemView.findViewById<ImageView>(R.id.picture_plus).setOnClickListener{ mItemClickListener.onItemClick(pictureList[position]) }
     }
@@ -35,11 +36,13 @@ class PictureRecordRVAdapter(private val pictureList : ArrayList<Picture>) : Rec
 
     inner class ViewHolder(val binding: ItemPictureBinding) : RecyclerView.ViewHolder(binding.root) {
 
+        private val image : ImageView = itemView.findViewById<ImageView>(R.id.picture_iv)
+
         fun bind(picture: Picture) {
-            binding.pictureIv.setImageResource(picture.image!!)
-//            Glide.with(itemView)
-//                .load(R.drawable.img_file_name)
-//                .into(itemView.imageView)
+            Glide.with(itemView)
+                .load(picture.location)
+                .into(image)
+
         }
     }
 

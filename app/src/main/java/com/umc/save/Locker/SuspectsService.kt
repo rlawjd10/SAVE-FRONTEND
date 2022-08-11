@@ -1,7 +1,6 @@
 package com.umc.save.Locker
 
 import android.util.Log
-import com.umc.save.SuspectsRetrofitInterfaces
 import com.umc.save.getRetrofit
 import retrofit2.Call
 import retrofit2.Callback

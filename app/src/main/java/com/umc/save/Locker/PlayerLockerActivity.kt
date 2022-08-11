@@ -16,7 +16,6 @@ class PlayerLockerActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityLockerPlayerBinding
     private var player : ExoPlayer? = null
-    var url = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +41,7 @@ class PlayerLockerActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         initPlayer()
-        play(url)
+        play()
     }
 
     override fun onStop() {
@@ -54,10 +53,12 @@ class PlayerLockerActivity : AppCompatActivity() {
 
 //    url : String으로 인수 바꿔주기!!
 // MediaSource: 영상에 출력할 미디어 정보를 가져오는 클래스
-    private fun play(url : String) {
+    private fun play() {
+
+        val videoUrl = intent.getStringExtra("video")
         val dataSourceFactory = DefaultDataSource.Factory(this)
         val mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
-            .createMediaSource(MediaItem.fromUri(Uri.parse(url)))
+            .createMediaSource(MediaItem.fromUri(Uri.parse(videoUrl)))
         player?.setMediaSource(mediaSource)
         player?.prepare()
         player?.play()

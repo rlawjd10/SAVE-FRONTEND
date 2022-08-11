@@ -1,12 +1,14 @@
 package com.umc.save.Locker
 
+import com.google.gson.annotations.SerializedName
 import java.sql.Time
 import java.util.*
 
 data class RecordData (
-    var abuseIdx : Int,
-    var abuseDate : Date,
-    var abuseTime : Time,
-    var abusePlace : String,
-    var createAt : Date
+    @SerializedName(value = "abuseIdx") var abuseIdx : Int,
+    @SerializedName(value = "childIdx") var childIdx : Int,
+    @SerializedName(value = "date") var abuseDate : String,
+    @SerializedName(value = "time") var abuseTime : String,
+    @SerializedName(value = "place") var abusePlace : String,
+    @SerializedName(value = "create_date") var createAt : String
     )

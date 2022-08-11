@@ -16,6 +16,7 @@ import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DefaultDataSource
 import com.umc.save.R
 import com.umc.save.databinding.ItemRecordingBinding
+import com.umc.save.databinding.ItemRecordingNewBinding
 import java.util.concurrent.TimeUnit
 
 class TestRecordingFragment : Fragment() {
@@ -25,7 +26,7 @@ class TestRecordingFragment : Fragment() {
 //    var url="https://dby56rj67jahx.cloudfront.net/recording/958e5d70-91d2-402e-8a0e-f1fe49d45683.mp3"
 
     private val timeRunnable = Runnable {
-        updateTime()
+        updateView()
     }
 
 
@@ -65,9 +66,9 @@ class TestRecordingFragment : Fragment() {
                         binding.exoPlay.visibility = View.GONE
                         binding.exoPause.visibility = View.VISIBLE
                         binding.exoPosition.visibility = View.VISIBLE
-                        binding.exoDuration.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_light_gray))
-                        binding.exoPosition.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-                        binding.recordingTitleTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                        binding.exoDuration.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+                        binding.exoPosition.setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_gray))
+//                        binding.recordingTitleTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
 
                     } else {
                         binding.exoPlay.visibility = View.VISIBLE
@@ -81,8 +82,7 @@ class TestRecordingFragment : Fragment() {
 
                 override fun onPlaybackStateChanged(playbackState: Int) {
                     super.onPlaybackStateChanged(playbackState)
-                    updateTime()
-
+                    updateView()
                 }
 
             })
@@ -90,8 +90,10 @@ class TestRecordingFragment : Fragment() {
 
     }
 
-    private fun updateTime() {
+
+    private fun updateView() {
         val player = this.player ?: return
+
         val duration = if(player.duration >= 0) player.duration else 0
         val position = player.currentPosition
 
@@ -107,6 +109,9 @@ class TestRecordingFragment : Fragment() {
 
     private fun updateTimeUi(duration:Long, position: Long) {
         binding?.let { binding ->
+
+//            binding.exoProgress.pl
+
             binding.exoDuration.text = String.format("%02d:%02d",
                 TimeUnit.MINUTES.convert(duration,TimeUnit.MILLISECONDS),
                 (duration / 1000) % 60)
