@@ -35,28 +35,10 @@ class LockerFragment : Fragment(), ChildrenView {
             openDeleteActivity()
         }
 
-    //TEST용 (지우기)
-        binding.lockerTitleTv.setOnClickListener {
-            openRecordingActivity()
-//            (context as MainActivity).supportFragmentManager
-//                .beginTransaction()
-//                .replace(R.id.main_frm, TestRecordingFragment())
-//                .addToBackStack(null)
-//                .commitAllowingStateLoss()
-        }
-
 
         return binding.root
     }
 
-    //TEST용 (지우기)
-    private fun openRecordingActivity() {
-
-        val intent = Intent(context, RecordingLockerActivity::class.java)
-//        intent.putExtra("recording",recording.location)
-        //다음에 picture.location으로 바꿔놓기
-        startActivity(intent)
-    }
 
 
     private fun getChildren() {

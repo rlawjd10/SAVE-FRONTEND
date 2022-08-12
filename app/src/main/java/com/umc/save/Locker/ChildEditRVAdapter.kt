@@ -1,5 +1,6 @@
 package com.umc.save.Locker
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -80,9 +81,12 @@ class ChildEditRVAdapter (val childList : ArrayList<Child>) : RecyclerView.Adapt
     override fun getItemCount(): Int = childList.size + 1
 
     inner class ViewHolderChild(val binding: ItemChildEditBinding) : RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SimpleDateFormat")
         fun bind(child: Child) {
             val childInfo : String = child.childGender + "/" + child.childAge.toString() + "/" + child.childAddress
             val sdf = SimpleDateFormat("yyyy.MM.dd")
+//            val sdf = SimpleDateFormat("yyyy년\nMM월 dd일")
+
 
 
             if(child.isClicked) {

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -57,6 +57,7 @@
             app:layout_constraintTop_toTopOf="@id/suspect_info_iv" />
 
         <View
+            android:id="@+id/suspect_info_relationship_view"
             android:layout_width="1dp"
             android:layout_height="21dp"
             android:layout_marginStart="204dp"
@@ -82,7 +83,7 @@
 
         <ImageButton
             android:id="@+id/record_date_time_ib"
-            android:layout_width="146dp"
+            android:layout_width="178dp"
             android:layout_height="146dp"
             android:layout_marginTop="14dp"
             android:background="@drawable/fragment_dark_gray_background"
@@ -92,20 +93,20 @@
 
         <TextView
             android:id="@+id/record_info_date_tv"
-            android:layout_width="95.06dp"
-            android:layout_height="64.48dp"
+            android:layout_width="126.08dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="25.35dp"
             android:layout_marginTop="17dp"
             android:fontFamily="@font/pretendard_bold"
-            android:text="2019년\n5월 21일"
+            android:text="2019년 5월 21일"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@id/record_date_time_ib"
             app:layout_constraintTop_toTopOf="@id/record_date_time_ib" />
 
         <TextView
             android:id="@+id/record_info_time_tv"
-            android:layout_width="95.06dp"
+            android:layout_width="126.08dp"
             android:layout_height="26.72dp"
             android:fontFamily="@font/pretendard_bold"
             android:text="PM 04:00"
@@ -116,19 +117,22 @@
 
         <TextView
             android:id="@+id/record_info_location_tv"
-            android:layout_width="32dp"
-            android:layout_height="19dp"
-            android:layout_marginBottom="23.92dp"
+            android:layout_width="126.08dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            app:layout_constraintTop_toBottomOf="@id/record_info_time_tv"
             android:fontFamily="@font/pretendard_bold"
-            android:text="집 안"
+            android:text="서울시 마포구 상암동 현대아파트"
             android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@id/record_date_time_ib"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@id/record_info_time_tv" />
+
+<!--        android:layout_width="95.06dp"-->
+
 
         <ImageButton
             android:id="@+id/record_abuse_type_ib"
-            android:layout_width="146dp"
+            android:layout_width="114dp"
             android:layout_height="146dp"
             android:layout_marginStart="14dp"
             android:layout_marginTop="14dp"
@@ -139,14 +143,14 @@
 
         <TextView
             android:id="@+id/record_abuse_type_tv"
-            android:layout_width="74dp"
+            android:layout_width="wrap_content"
             android:layout_height="24dp"
-            android:layout_marginStart="25dp"
             android:layout_marginTop="17dp"
             android:fontFamily="@font/pretendard_bold"
-            android:text="신체학대"
+            android:text="신체 학대"
             android:textColor="@color/white"
             android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/record_abuse_type_ib"
             app:layout_constraintStart_toStartOf="@id/record_abuse_type_ib"
             app:layout_constraintTop_toTopOf="@id/record_abuse_type_ib" />
 
@@ -155,7 +159,7 @@
             android:id="@+id/record_abuse_type_iv"
             android:layout_width="27.29dp"
             android:layout_height="41.05dp"
-            android:layout_marginStart="93dp"
+            android:layout_marginStart="61dp"
             android:layout_marginTop="81dp"
             android:src="@drawable/icn_category_physical"
             app:layout_constraintStart_toStartOf="@id/record_abuse_type_ib"
@@ -201,16 +205,16 @@
 
         <ImageView
             android:id="@+id/record_picture_iv"
-            android:layout_width="21.92dp"
-            android:layout_height="20.73dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="11dp"
-            android:layout_marginEnd="51.08dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="51.08dp"
             android:src="@drawable/icn_picture_normal"
             app:layout_constraintStart_toStartOf="@id/record_text_tv"
             app:layout_constraintTop_toBottomOf="@id/record_text_etc_tv" />
 
-<!--        android:visibility="gone"-->
+        <!--        android:visibility="gone"-->
 
         <TextView
             android:id="@+id/record_picture_num_tv"
@@ -225,12 +229,12 @@
             app:layout_constraintStart_toEndOf="@id/record_picture_iv"
             app:layout_constraintTop_toTopOf="@id/record_picture_iv" />
 
-<!--        android:visibility="gone"-->
+        <!--        android:visibility="gone"-->
 
         <ImageView
             android:id="@+id/record_video_iv"
-            android:layout_width="24.64dp"
-            android:layout_height="15.67dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="22.94dp"
             android:layout_marginTop="21.99dp"
             android:src="@drawable/icn_video_normal"
@@ -253,31 +257,29 @@
 
         <FrameLayout
             android:id="@+id/picture_video_frm"
-            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="94dp"
             android:layout_marginTop="18.27dp"
             android:layout_marginBottom="20dp"
-            app:layout_constraintTop_toBottomOf="@id/record_video_iv"/>
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/record_video_iv" />
 
 
-
-
-<!--        <FrameLayout-->
-<!--            android:id="@+id/video_frm"-->
-<!--            android:visibility="gone"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="94dp"-->
-<!--            android:layout_marginTop="18.27dp"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/record_video_iv" />-->
+        <!--        <FrameLayout-->
+        <!--            android:id="@+id/video_frm"-->
+        <!--            android:visibility="gone"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="94dp"-->
+        <!--            android:layout_marginTop="18.27dp"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/record_video_iv" />-->
 
         <ImageView
             android:id="@+id/record_recording_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icn_record_normal"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="11dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/icn_record_normal"
             app:layout_constraintStart_toStartOf="@id/record_text_tv"
             app:layout_constraintTop_toBottomOf="@id/picture_video_frm" />
 
@@ -309,8 +311,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/record_recording_iv"
             app:layout_constraintVertical_bias="0.0"
-            tools:listitem="@layout/item_recording_default"/>
-
+            tools:listitem="@layout/item_recording_default" />
 
 
         <androidx.appcompat.widget.AppCompatButton
@@ -324,11 +325,10 @@
             android:text="삭제"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@id/recording_list_rv"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recording_list_rv" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

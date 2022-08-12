@@ -10,5 +10,5 @@ data class RecordData (
     @SerializedName(value = "date") var abuseDate : String,
     @SerializedName(value = "time") var abuseTime : String,
     @SerializedName(value = "place") var abusePlace : String,
-    @SerializedName(value = "create_date") var createAt : String
+    @SerializedName(value = "create_date") var createAt : Date
     )

@@ -15,7 +15,7 @@ import com.umc.save.databinding.FragmentLockerChildEditBinding
 import java.util.*
 import kotlin.collections.ArrayList
 
-class EditChildLockerFragment : Fragment() {
+class  EditChildLockerFragment : Fragment() {
 //    , ChildrenView
 
     var userIdx = 1

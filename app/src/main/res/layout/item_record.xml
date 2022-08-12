@@ -41,7 +41,7 @@
     <TextView
         android:id="@+id/item_record_location_tv"
         android:layout_width="95.06dp"
-        android:layout_height="26.72dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/pretendard_bold"
         android:text="아파트 복도"
         android:textColor="@color/black"

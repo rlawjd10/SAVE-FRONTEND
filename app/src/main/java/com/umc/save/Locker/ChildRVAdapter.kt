@@ -9,7 +9,7 @@ import com.umc.save.databinding.ItemAddBinding
 import com.umc.save.databinding.ItemChildBinding
 import java.text.SimpleDateFormat
 
-class ChildRVAdapter ( val childList : ArrayList<Child>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ChildRVAdapter (private val childList : ArrayList<Child>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 //    val context: Context,
 
     interface MyItemClickListener {
@@ -64,12 +64,21 @@ class ChildRVAdapter ( val childList : ArrayList<Child>) : RecyclerView.Adapter<
     inner class ViewHolderChild(val binding: ItemChildBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SimpleDateFormat")
         fun bind(child: Child) {
-            val childInfo : String
-            if(child.childDetailAddress == ""){
-                childInfo = child.childGender + "/" + child.childAge.toString() + "/" + child.childAddress
-            } else {
-                childInfo = child.childGender + "/" + child.childAge.toString() + "/" + child.childAddress + "/" + child.childDetailAddress
+
+            var childInfo: String
+
+            val gender: String = when (child.childGender) {
+                "male" -> "남자"
+                "female" -> "여자"
+                else -> "성별 모름"
             }
+
+            childInfo = gender + "/" + child.childAge + "/" + child.childAddress
+
+            if(child.childDetailAddress != null) {
+                childInfo = childInfo + "/" + child.childDetailAddress
+            }
+
             val sdf = SimpleDateFormat("yyyy.MM.dd")
 
             binding.itemChildInfoNameTv.text = child.childName

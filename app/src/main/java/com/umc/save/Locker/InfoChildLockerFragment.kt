@@ -36,12 +36,25 @@ class InfoChildLockerFragment : Fragment() {
 
     @SuppressLint("SimpleDateFormat")
     private fun setInit(child: Child){
-        val childInfo : String = child.childGender + "/" + child.childAge.toString() + "/" + child.childAddress
+
+        var childInfo: String
+        val gender: String = when (child.childGender) {
+            "male" -> "남자"
+            "female" -> "여자"
+            else -> "성별 모름"
+        }
+
+        childInfo = gender + "/" + child.childAge + "/" + child.childAddress
+
+        if(child.childDetailAddress != null) {
+            childInfo = childInfo + "/" + child.childDetailAddress
+        }
+
         val sdf = SimpleDateFormat("yyyy.MM.dd")
 
         binding.childInfoNameTv.text = child.childName
         binding.childInfoSpecificTv.text = childInfo
-//        binding.childInfoDateTv.text = sdf.format(child.createAt).toString()
+        binding.childInfoDateTv.text = sdf.format(child.createAt).toString()
 
     }
 

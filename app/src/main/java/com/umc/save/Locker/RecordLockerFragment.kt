@@ -28,10 +28,6 @@ class RecordLockerFragment(child: Int) : Fragment(), AbuseView {
     ): View? {
         binding = FragmentLockerChildListBinding.inflate(inflater,container,false)
 
-//        recordList.apply {
-//            add(RecordData(1,Date(2022,7,5), Time(2,3,0),"인천광역시 연수구 송도동",Date(2022,3,2)))
-//            add(RecordData(2,Date(2021,4,3), Time(3,3,0),"인천광역시 연수구 동춘동",Date(2021,3,12)))
-//        }
 
         getAbuseCases()
 
@@ -57,7 +53,6 @@ class RecordLockerFragment(child: Int) : Fragment(), AbuseView {
 
 //                    = gson.toJson(recordData.abuseIdx)
 //                    val gson = Gson()
-//
 //                    putString("abuseIdx",abuseIdxJson)
                 }
             })

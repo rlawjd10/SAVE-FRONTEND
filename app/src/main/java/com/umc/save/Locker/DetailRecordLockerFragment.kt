@@ -24,13 +24,9 @@ import kotlin.collections.ArrayList
 class DetailRecordLockerFragment : Fragment(),AbuseDetailView {
     lateinit var binding : FragmentLockerRecordDetailBinding
     private var gson : Gson = Gson()
-//    lateinit var recordDetail : RecordDetailData
-//    lateinit var recording : Recording
     private var pictureList = ArrayList<Picture>()
     private var videoList = ArrayList<Video>()
     private var recordingList = ArrayList<Recording>()
-
-//    var url = "https://dby56rj67jahx.cloudfront.net/recording/192470e0-2fcd-49d1-b2a0-6105b864a930.m4a"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,24 +37,8 @@ class DetailRecordLockerFragment : Fragment(),AbuseDetailView {
 
         val abuseIdx = arguments?.getInt("abuseIdx")
 
+        //서버에서 데이터 받아오기
         getDetail(abuseIdx!!)
-
-
-//        recordingList.apply {
-//            add(Recording("https://dby56rj67jahx.cloudfront.net/recording/192470e0-2fcd-49d1-b2a0-6105b864a930.m4a","음성녹음1",false))
-//            add(Recording("https://dby56rj67jahx.cloudfront.net/recording/958e5d70-91d2-402e-8a0e-f1fe49d45683.mp3","음성녹음2",false))
-//            add(Recording("https://dby56rj67jahx.cloudfront.net/recording/192470e0-2fcd-49d1-b2a0-6105b864a930.m4a","음성녹음3",false))
-//            add(Recording("https://dby56rj67jahx.cloudfront.net/recording/958e5d70-91d2-402e-8a0e-f1fe49d45683.mp3","음성녹음4",false))
-//        }
-
-
-//        recording = Recording(1,"~~~","음성녹음1",10,100,false)
-//        record = RecordData(1,Date(2022,7,5), Time(2,3,0),"인천광역시 연수구 송도동",Date(2022,3,2))
-//        recordDetail = RecordDetailData("신체학대","아파트 복도에서 목격했음","엄마와 아빠 둘다 아이에게 학대를 가하는 것 같음")
-//        suspect = Suspect(1,"홍길동","여",
-//            "32","","","모")
-
-
 
         setOnClickListeners()
 
@@ -75,7 +55,6 @@ class DetailRecordLockerFragment : Fragment(),AbuseDetailView {
         abuseDetailService.setAbuseDetailView(this)
         abuseDetailService.getAbuseDetailCase(abuseIdx)
     }
-
 
 
     private fun setPicture() {
@@ -123,7 +102,6 @@ class DetailRecordLockerFragment : Fragment(),AbuseDetailView {
             setVideo()
         }
 
-
         binding.recordPictureNumTv.setOnClickListener {
             setPicture()
         }
@@ -139,12 +117,36 @@ class DetailRecordLockerFragment : Fragment(),AbuseDetailView {
 
     private fun initView(result: RecordDetailData) {
         val unknown = "-"
-        val suspectInfo : String = result.suspect.suspectAge + "/" + result.suspect.suspectAge
-        if (result.suspect.suspectName == "") {
+
+        var suspectInfo: String
+
+        val gender: String = when (result.suspect.suspectGender) {
+            "male" -> "남자"
+            "female" -> "여자"
+            else -> "성별 모름"
+        }
+
+        suspectInfo = gender + "/" + result.suspect.suspectAge
+
+        if(result.suspect.suspectAddress != null) {
+            suspectInfo = suspectInfo + "/" + result.suspect.suspectAddress
+        }
+
+        if(result.suspect.suspectDetailAddress != null) {
+            suspectInfo = suspectInfo + "/" + result.suspect.suspectDetailAddress
+        }
+
+        //아동과의 관계 입력은 필수값 -> null 일 경우가 없음
+//        if(result.suspect.relationship==null) {
+//            binding.suspectInfoRelationshipView.visibility = View.GONE
+//        }
+
+        if (result.suspect.suspectName == null) {
             binding.suspectInfoNameTv.text = unknown
         } else {
             binding.suspectInfoNameTv.text = result.suspect.suspectName
         }
+
         binding.suspectInfoRelationshipTv.text = result.suspect.relationship
         binding.suspectInfoSpecificTv.text = suspectInfo
 
@@ -152,11 +154,22 @@ class DetailRecordLockerFragment : Fragment(),AbuseDetailView {
         binding.recordInfoTimeTv.text = result.abuseTime
         binding.recordInfoLocationTv.text = result.abusePlace
 
+        //아동학대 유형에 따른 다른 이미지 로드
+        if(result.abuseType == "신체 학대") {
+            binding.recordAbuseTypeIv.setImageResource(R.drawable.icn_category_physical)
+        } else if (result.abuseType == "정서 학대") {
+            binding.recordAbuseTypeIv.setImageResource(R.drawable.icn_category_emotional)
+        } else if (result.abuseType == "성 학대") {
+            binding.recordAbuseTypeIv.setImageResource(R.drawable.icn_category_sexual)
+        } else {
+            binding.recordAbuseTypeIv.setImageResource(R.drawable.icn_category_neglect)
+        }
+
         binding.recordAbuseTypeTv.text = result.abuseType
         binding.recordTextTv.text = result.detailDescription
         binding.recordTextEtcTv.text = result.detailEtcDescription
 
-        if (result.detailEtcDescription=="") {
+        if (result.detailEtcDescription==null) {
             binding.recordTextEtcTv.visibility = View.GONE
         } else {
             binding.recordTextEtcTv.visibility = View.VISIBLE

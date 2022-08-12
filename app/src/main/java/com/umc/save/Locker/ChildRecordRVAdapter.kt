@@ -62,14 +62,16 @@ class ChildRecordRVAdapter (private val recordList : ArrayList<RecordData>) : Re
     override fun getItemCount(): Int = recordList.size + 1
 
     inner class ViewHolderRecord(val binding: ItemRecordBinding) : RecyclerView.ViewHolder(binding.root) {
-        @SuppressLint("SimpleDateFormat")
-        val sdf = SimpleDateFormat("yyyy.MM.dd")
 
         fun bind(record: RecordData) {
-            binding.itemRecordDateTv.text = record.abuseDate.toString()
-            binding.itemRecordTimeTv.text = record.abuseTime.toString()
+            @SuppressLint("SimpleDateFormat")
+            val sdf = SimpleDateFormat("yyyy.MM.dd")
+
+            binding.itemRecordDateTv.text = record.abuseDate
+            binding.itemRecordTimeTv.text = record.abuseTime
             binding.itemRecordLocationTv.text = record.abusePlace
-            binding.itemCreateDateTv.text = record.createAt.toString()
+            binding.itemCreateDateTv.text = sdf.format(record.createAt).toString()
+
         }
     }
 
