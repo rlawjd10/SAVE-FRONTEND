@@ -1,29 +1,30 @@
 package com.umc.save.Sign
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputType
 import android.text.SpannableString
+import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.text.style.UnderlineSpan
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.umc.save.Home.HomeFragment
 import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Sign.Auth.Auth
 import com.umc.save.Sign.Auth.AuthService
-import com.umc.save.Sign.Auth.Result
 import com.umc.save.databinding.ActivityLoginBinding
 import java.nio.channels.InterruptedByTimeoutException
 
 class LoginActivity : AppCompatActivity(), LoginView {
+
     lateinit var binding: ActivityLoginBinding
     private var mIsShowPass = false
 
@@ -33,15 +34,18 @@ class LoginActivity : AppCompatActivity(), LoginView {
         setContentView(binding.root)
 
         //social login to MainActivity
-        binding.loginKakaoBtn.setOnClickListener {
+        binding.loginKakaoTv.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
+
+        //login btn is no empty -> change color
+
 
         //로그인 클릭 -> login 가능한지 method 이동
         binding.loginSignInBtn.setOnClickListener {
             login()
-
         }
+
         //회원가입 클릭 -> 회원가입 Activity로 이동하도록
         binding.signUpEmailTv.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
@@ -75,6 +79,8 @@ class LoginActivity : AppCompatActivity(), LoginView {
         //cursor가 맨 뒤로 가도록
         text.setSelection(text.text.toString().length)
     }
+
+
 
     private fun login() {
         //이메일 또는 비밀번호를 입력하지 않았을 때 토스트 띄우기
@@ -135,7 +141,8 @@ class LoginActivity : AppCompatActivity(), LoginView {
             1000 -> {
                 //로그인 성공할 시 유저 인덱스와 유저jwt를 저장하고 화면 이동
                 saveJwt(result.userIdx)
-                saveJwt2(result.jwt)
+                // saveJwt2(result.jwt)
+                result.jwt?.let { saveJwt2(it) }
                 startMainActivity()
             }
         }
@@ -143,14 +150,14 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
     //로그인 실패
     override fun onLoginFailure(code: Int, message : String) {
-        /*when(code) {
-            2003 -> Toast.makeText(LoginActivity(), "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
-            2004 -> Toast.makeText(LoginActivity(), "이메일을 입력해주세요", Toast.LENGTH_SHORT).show()
-            2101 -> Toast.makeText(LoginActivity(), "비밀번호 형식을 확인해주세요", Toast.LENGTH_SHORT).show()
-            2103 -> Toast.makeText(LoginActivity(), "이메일 형식을 확인해주세요", Toast.LENGTH_SHORT).show()
-            2334 -> Toast.makeText(LoginActivity(), "해당 이메일은 존재하지 않습니다", Toast.LENGTH_SHORT).show()
-            3010 -> Toast.makeText(LoginActivity(), "로그인이 실패하였습니다.", Toast.LENGTH_SHORT).show()
-        }*/
+        when(code) {
+            2003 -> Toast.makeText(LoginActivity(), message, Toast.LENGTH_SHORT).show()
+            2004 -> Toast.makeText(LoginActivity(), message, Toast.LENGTH_SHORT).show()
+            2101 -> Toast.makeText(LoginActivity(), message, Toast.LENGTH_SHORT).show()
+            2103 -> Toast.makeText(LoginActivity(), message, Toast.LENGTH_SHORT).show()
+            2334 -> Toast.makeText(LoginActivity(), message, Toast.LENGTH_SHORT).show()
+            3010 -> Toast.makeText(LoginActivity(), message, Toast.LENGTH_SHORT).show()
+        }
     }
 
 }

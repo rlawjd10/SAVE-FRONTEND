@@ -1,6 +1,7 @@
 package com.umc.save.Sign.User
 
 
+import com.umc.save.Sign.AuthResponse
 import com.umc.save.Sign.LoginView
 import com.umc.save.Sign.SignUpView
 import com.umc.save.getRetrofit
@@ -20,14 +21,14 @@ class UserService {
     fun signUp(user: User) {
         val signUpService = getRetrofit().create(UserRetrofitInterface::class.java)
 
-        signUpService.signUp(user).enqueue(object : Callback<UserResponse> {
+        signUpService.signUp(user).enqueue(object : Callback<AuthResponse> {
             //정상적인 통신이 성공
-            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
+            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 TODO("Not yet implemented")
             }
 
             //실패처리
-            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
                 TODO("Not yet implemented")
             }
         })

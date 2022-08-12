@@ -1,6 +1,7 @@
 package com.umc.save.Sign.Auth
 
 
+import com.umc.save.Sign.AuthResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
