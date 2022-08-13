@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.umc.save.MainActivity
 import com.umc.save.R
+import com.umc.save.Record.Auth.ChildRecord.childidx_var
 import com.umc.save.Record.ChildRecordActivity
 import com.umc.save.databinding.FragmentLockerBinding
 import kotlin.collections.ArrayList

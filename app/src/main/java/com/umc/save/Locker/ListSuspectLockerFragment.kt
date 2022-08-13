@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.umc.save.MainActivity
 import com.umc.save.R
+import com.umc.save.Record.Auth.ChildRecord.childidx_var
 import com.umc.save.Record.ChildRecordActivity
 import com.umc.save.Record.OffenderRecordActivity
 import com.umc.save.databinding.FragmentLockerBinding
@@ -61,6 +62,11 @@ class ListSuspectLockerFragment : Fragment(), SuspectsView {
 
 
     private fun openRecordActivity() {
+        //학대 행위자 등록할 때 childIdx 필요하니까 전달하기
+        childidx_var.childIdx.childIdx = child.childIdx
+
+        Log.d("CHILDINDEX",childidx_var.childIdx.childIdx.toString())
+
         val intent = Intent(context, OffenderRecordActivity::class.java)
         startActivity(intent)
     }

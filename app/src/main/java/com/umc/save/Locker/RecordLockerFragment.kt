@@ -1,5 +1,6 @@
 package com.umc.save.Locker
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.umc.save.MainActivity
 import com.umc.save.R
+import com.umc.save.Record.Auth.ChildRecord.childidx_var
+import com.umc.save.Record.OffenderRecordActivity
+import com.umc.save.Record.RecordDetail.ChooseOffenderActivity
 import com.umc.save.databinding.FragmentLockerChildListBinding
 import java.sql.Time
 import java.util.*
@@ -51,15 +55,23 @@ class RecordLockerFragment(child: Int) : Fragment(), AbuseView {
 
                     val abuseIdx = putInt("abuseIdx",recordData.abuseIdx)
 
-//                    = gson.toJson(recordData.abuseIdx)
-//                    val gson = Gson()
-//                    putString("abuseIdx",abuseIdxJson)
                 }
             })
             .addToBackStack(null)
             .commitAllowingStateLoss()
 
     }
+
+    private fun openRecordActivity() {
+        //학대 행위자 등록할 때 childIdx 필요하니까 전달하기
+        childidx_var.childIdx.childIdx = childIdx
+
+        Log.d("RECORD-FRAGMENT-CHILDINDEX", childidx_var.childIdx.childIdx.toString())
+
+        val intent = Intent(context, ChooseOffenderActivity::class.java)
+        startActivity(intent)
+    }
+
 
     private fun initRecyclerView(result : ArrayList<RecordData>){
         val childRecordRVAdapter = ChildRecordRVAdapter(result)
@@ -71,6 +83,12 @@ class RecordLockerFragment(child: Int) : Fragment(), AbuseView {
             override fun onItemClick(recordData: RecordData) {
                 changeDetailRecordLockerFragment(recordData)
             }
+
+            override fun onItemClickAdd() {
+                openRecordActivity()
+            }
+
+
         })
     }
 

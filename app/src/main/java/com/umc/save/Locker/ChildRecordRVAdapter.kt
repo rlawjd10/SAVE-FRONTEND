@@ -16,6 +16,7 @@ class ChildRecordRVAdapter (private val recordList : ArrayList<RecordData>) : Re
 
     interface MyItemClickListener {
         fun onItemClick(recordData: RecordData)
+        fun onItemClickAdd()
     }
     private lateinit var mItemClickListener: MyItemClickListener
 
@@ -53,6 +54,7 @@ class ChildRecordRVAdapter (private val recordList : ArrayList<RecordData>) : Re
 
         if (position == recordList.size) {
             (holder as ChildRecordRVAdapter.ViewHolderAdd).bind()
+            (holder as ChildRecordRVAdapter.ViewHolderAdd).itemView.setOnClickListener{  mItemClickListener.onItemClickAdd() }
         } else {
             (holder as ChildRecordRVAdapter.ViewHolderRecord).bind(recordList[position])
             (holder as ChildRecordRVAdapter.ViewHolderRecord).itemView.setOnClickListener{  mItemClickListener.onItemClick(recordList[position])}
@@ -76,11 +78,8 @@ class ChildRecordRVAdapter (private val recordList : ArrayList<RecordData>) : Re
     }
 
     inner class ViewHolderAdd(val binding: ItemAddRecordBinding) : RecyclerView.ViewHolder(binding.root) {
-        private val btn = itemView.findViewById<ImageView>(R.id.item_add_record_image)
         fun bind() {
-            btn.setOnClickListener {
-                //
-            }
+
         }
     }
 
