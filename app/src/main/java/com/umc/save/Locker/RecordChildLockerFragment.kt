@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.icu.text.AlphabeticIndex
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,17 +43,16 @@ class RecordChildLockerFragment() : Fragment(){
         }.attach()
 
 
-
         binding.suspectControlBtn.setOnClickListener {
             (context as MainActivity).supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.main_frm, ListSuspectLockerFragment()).apply {
+                .replace(R.id.main_frm, ListSuspectLockerFragment().apply {
                     arguments = Bundle().apply {
                         val gson = Gson()
-                        val childIdxJson = gson.toJson(child.childIdx)
-                        putString("childIdx",childIdxJson)
+                        val childJson = gson.toJson(child)
+                        putString("child",childJson)
                     }
-                }
+                })
                 .addToBackStack(null)
                 .commitAllowingStateLoss()
         }
@@ -61,29 +61,6 @@ class RecordChildLockerFragment() : Fragment(){
 
         return binding.root
     }
-
-//    private fun sendData(childIdx: Child) {
-//        (context as MainActivity).supportFragmentManager
-//            .beginTransaction()
-//            .
-//    }
-
-
-
-//    private fun sendData(child: Child) {
-//        (context as MainActivity).supportFragmentManager
-//            .beginTransaction()
-//            .add(R.id.main_frm, ListChildLockerFragment().apply {
-//                arguments = Bundle().apply {
-//                    val gson = Gson()
-//                    val childJson = gson.toJson(child)
-//                    putString("child", childJson)
-//                }
-//            })
-//            .addToBackStack(null)
-//            .commitAllowingStateLoss()
-//    }
-
 
 
 }

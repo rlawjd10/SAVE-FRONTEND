@@ -29,7 +29,7 @@ class LockerFragment : Fragment(), ChildrenView {
     ): View? {
         binding = FragmentLockerBinding.inflate(inflater,container,false)
 
-        getChildren()
+
 
         binding.lockerChildEditTv.setOnClickListener {
             openDeleteActivity()
@@ -39,6 +39,12 @@ class LockerFragment : Fragment(), ChildrenView {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        //지우고 나면 삭제되고 아동 리스트가 재로딩이 되야 한다 (뒤로 가기했을 때 재로딩을 위해)
+        getChildren()
+
+    }
 
 
     private fun getChildren() {

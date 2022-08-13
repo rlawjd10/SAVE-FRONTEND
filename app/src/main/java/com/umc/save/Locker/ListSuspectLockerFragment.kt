@@ -18,6 +18,7 @@ import com.umc.save.databinding.FragmentLockerSuspectListBinding
 import java.sql.Time
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.Int as Int
 
 class ListSuspectLockerFragment : Fragment(), SuspectsView {
 
@@ -25,7 +26,7 @@ class ListSuspectLockerFragment : Fragment(), SuspectsView {
     var currentPosition = 0
     private var suspectList= ArrayList<Suspect>()
     private var gson : Gson = Gson()
-    var childIdx = 1
+    lateinit var child : Child
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,62 +36,36 @@ class ListSuspectLockerFragment : Fragment(), SuspectsView {
         binding = FragmentLockerSuspectListBinding.inflate(inflater,container,false)
 
         val childJson = arguments?.getString("child")
-        val child = gson.fromJson(childJson,Child::class.java)
+        child = gson.fromJson(childJson,Child::class.java)
 
-//        suspectList.apply {
-//            add(Suspect(1,"홍길동","여",
-//                "32","","","모"))
-//            add(Suspect(2,"","남",
-//                "42","","","부"))
-//            add(Suspect(3,"박길동","여",
-//                "22","","","모"))
-//            add(Suspect(4,"최길동","남",
-//                "32","","","부"))
-//            add(Suspect(5,"오길동","여",
-//                "32","","","모"))
-//
-//        }
 
-//        val suspectRVAdapter = SuspectRVAdapter(suspectList)
-//        binding.suspectListRv.adapter = suspectRVAdapter
-//        binding.suspectListRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-
-        getSuspects()
-
-//        suspectRVAdapter.setMyItemClickListener(object: SuspectRVAdapter.MyItemClickListener {
-//            override fun onItemClick(suspect: Suspect) {
-//                changeRecordChildLockerFragment(suspect)
-//            }
-//
-//            override fun onItemClickAdd() {
-//                openRecordActivity()
-//            }
-//        })
+        binding.suspectEditTv.setOnClickListener {
+            openDeleteActivity(child.childIdx)
+        }
 
         return binding.root
     }
 
 
-    private fun changeRecordChildLockerFragment(suspect: Suspect) {
-//        (context as MainActivity).supportFragmentManager
-//            .beginTransaction()
-//            .replace(R.id.main_frm, InfoChildLockerFragment().apply {
-//                arguments = Bundle().apply {
-//                    val gson = Gson()
-//                    val childJson = gson.toJson(child)
-//                    putString("child",childJson)
-//                }
-//            })
-//            .addToBackStack(null)
-//            .commitAllowingStateLoss()
+    override fun onResume() {
+        super.onResume()
+
+        getSuspects(child.childIdx)
     }
+
+    private fun openDeleteActivity(childIdx: Int) {
+        val intent = Intent(context, SuspectDeleteLockerActivity::class.java)
+        intent.putExtra("childIdx",childIdx)
+        startActivity(intent)
+    }
+
 
     private fun openRecordActivity() {
         val intent = Intent(context, OffenderRecordActivity::class.java)
         startActivity(intent)
     }
 
-    private fun getSuspects() {
+    private fun getSuspects(childIdx : Int) {
 
         val suspectsService = SuspectsService()
 
@@ -107,7 +82,7 @@ class ListSuspectLockerFragment : Fragment(), SuspectsView {
 
         suspectRVAdapter.setMyItemClickListener(object: SuspectRVAdapter.MyItemClickListener {
             override fun onItemClick(suspect: Suspect) {
-                changeRecordChildLockerFragment(suspect)
+
             }
 
             override fun onItemClickAdd() {

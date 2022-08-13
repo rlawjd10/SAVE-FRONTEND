@@ -11,13 +11,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.gson.Gson
 import com.umc.save.Home.option.HomeDialogFragment
+import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Record.ChildRecordActivity
 import com.umc.save.databinding.ActivityLockerDeleteChildBinding
 
-class ChildDeleteLockerActivity : AppCompatActivity(), ChildrenView {
-
+class ChildDeleteLockerActivity : AppCompatActivity(), ChildrenView, DeleteChildView {
+    //아이들 가져오는 것은 ChildrenView가 한 아이를 지우는 것을 DeleteChildView가 담당
 
     var userIdx = 2
     lateinit var binding : ActivityLockerDeleteChildBinding
@@ -40,18 +42,18 @@ class ChildDeleteLockerActivity : AppCompatActivity(), ChildrenView {
             } else if (selectedItem > 1) {
                 Toast.makeText(this,"아이를 한 명만 선택해주세요.", Toast.LENGTH_SHORT).show()
             } else {
-                //정상 작동
-                //test
-
-                ClickViewEvents()
+                //해당 아동 삭제하기
+                ClickViewEvents(selectedList[0].childIdx)
+                Log.d("======deletedChildIdx", selectedList[0].childIdx.toString())
             }
-
-            Log.d("======selectedItem", selectedItem.toString())
-
 
         }
 
 
+    }
+
+    override fun onDeleteChildSuccess(code: Int, result: DeleteChild) {
+        Log.d("GET-SUCCESS",result.childDeleteMessage.toString())
     }
 
     //setContentView(binding.root) 아래에서 initActionBar() 불러야 함
@@ -65,15 +67,17 @@ class ChildDeleteLockerActivity : AppCompatActivity(), ChildrenView {
         appBarComplete.text= "완료"
         appBarComplete.visibility= View.VISIBLE
         appBarBtn.setOnClickListener{onBackPressed()}
+        appBarComplete.setOnClickListener {
+            finish()
+        }
     }
 
-    private fun ClickViewEvents() {
+    private fun ClickViewEvents(deleteChildIdx : Int) {
 
         val dialog = HomeDialogFragment()
 
-
         dialog.arguments = bundleOf(
-            "bodyContext" to "보관함에서 아동 정보를 삭제하시겠습니까?",
+            "bodyContext" to "보관함에서 아동 정보를\n 삭제하시겠습니까?",
             "btnOk" to "확인",
             "btnCancel" to "취소"
         )
@@ -82,7 +86,8 @@ class ChildDeleteLockerActivity : AppCompatActivity(), ChildrenView {
 
             }
             override fun onButtonOkClicked() {
-                //삭제하는 작업 childIdx 넣고
+                deleteChild(deleteChildIdx)
+
             }
         })
         dialog.show(this.supportFragmentManager, "HomeDialog")
@@ -90,7 +95,14 @@ class ChildDeleteLockerActivity : AppCompatActivity(), ChildrenView {
     }
 
 
-    //Action Bar
+    private fun deleteChild(deleteChildIdx : Int) {
+        val deleteChildService = DeleteChildService()
+        deleteChildService.setDeleteChildView(this)
+        deleteChildService.deleteChild(deleteChildIdx)
+
+        //지우고 나면 삭제되고 아동 리스트가 재로딩이 되야 한다
+        recreate()
+    }
 
 
     private fun getChildren() {

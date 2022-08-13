@@ -7,7 +7,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="42dp">
 
         <ImageView
             android:id="@+id/suspect_info_iv"
@@ -315,17 +316,15 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/fix_btn"
+            android:id="@+id/delete_btn"
             android:layout_width="146dp"
             android:layout_height="44dp"
-            android:layout_marginTop="47dp"
-            android:layout_marginBottom="42dp"
+            android:layout_marginTop="33dp"
             android:background="@drawable/fragment_dark_red_background"
             android:fontFamily="@font/pretendard_bold"
             android:text="삭제"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recording_list_rv" />

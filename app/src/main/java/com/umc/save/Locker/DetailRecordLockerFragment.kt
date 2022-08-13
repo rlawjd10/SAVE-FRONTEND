@@ -8,12 +8,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.Player
 import com.google.gson.Gson
+import com.umc.save.Home.option.HomeDialogFragment
 import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.databinding.FragmentLockerRecordDetailBinding
@@ -21,7 +24,7 @@ import java.sql.Time
 import java.util.*
 import kotlin.collections.ArrayList
 
-class DetailRecordLockerFragment : Fragment(),AbuseDetailView {
+class DetailRecordLockerFragment : Fragment(), AbuseDetailView, DeleteRecordView {
     lateinit var binding : FragmentLockerRecordDetailBinding
     private var gson : Gson = Gson()
     private var pictureList = ArrayList<Picture>()
@@ -42,10 +45,52 @@ class DetailRecordLockerFragment : Fragment(),AbuseDetailView {
 
         setOnClickListeners()
 
+        binding.deleteBtn.setOnClickListener {
+            ClickViewEvents(abuseIdx)
+        }
+
         Log.d("abuseIdx",abuseIdx.toString())
 
 
         return binding.root
+    }
+
+
+    private fun ClickViewEvents(deleteAbuseIdx : Int) {
+
+        val dialog = HomeDialogFragment()
+
+        dialog.arguments = bundleOf(
+            "bodyContext" to "작성하신 내용이 사라집니다.\n 삭제하시겠습니까?",
+            "btnOk" to "확인",
+            "btnCancel" to "취소"
+        )
+        dialog.setButtonClickListener(object: HomeDialogFragment.onButtonClickListerner {
+            override fun onButtonNoClicked() {
+
+            }
+            override fun onButtonOkClicked() {
+                deleteRecord(deleteAbuseIdx)
+
+            }
+        })
+        dialog.show(this.childFragmentManager, "HomeDialog")
+
+    }
+
+
+
+    private fun deleteRecord(abuseIdx: Int) {
+
+        val deleteRecordService = DeleteRecordService()
+        deleteRecordService.setDeleteRecordView(this)
+        deleteRecordService.deleteRecord(abuseIdx)
+
+        (context as MainActivity).supportFragmentManager
+            .popBackStack()
+//            .beginTransaction()
+//            .remove(this)
+
     }
 
 
@@ -178,6 +223,15 @@ class DetailRecordLockerFragment : Fragment(),AbuseDetailView {
     }
 
 
+    override fun onDeleteRecordSuccess(code: Int, result: DeleteRecord) {
+        Log.d("DELETE-SUCCESS",result.deleteAbuseMessage)
+//        Toast.makeText(context,result.deleteAbuseMessage, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDeleteRecordFailure(code: Int, message: String) {
+        Log.d("DELETE-FAILURE",message)
+    }
+
     override fun onGetAbuseDetailSuccess(code: Int, result: RecordDetailData) {
         initView(result)
         Log.d("=====DETAIL",result.toString())
@@ -205,6 +259,10 @@ class DetailRecordLockerFragment : Fragment(),AbuseDetailView {
             binding.recordPictureNumTv.visibility = View.VISIBLE
             binding.recordPictureNumTv.text = result.pictureList.size.toString()
             setPicture()
+        }
+
+        if(result.pictureList.isEmpty() && result.videoList.isEmpty()) {
+            binding.pictureVideoFrm.visibility = View.GONE
         }
 
 
