@@ -4,8 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/layout_content"
     tools:context=".Record.RecordDetail.DetailEtcActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/content">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -303,5 +308,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
         <!--    </FrameLayout>-->
     </ScrollView>
+    </LinearLayout>
     <include layout="@layout/actionbar_inner_page_top"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

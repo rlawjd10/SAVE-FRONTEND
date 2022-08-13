@@ -21,8 +21,8 @@ class SuspectGetService {
                 Log.d("CHILDREN-GET SUCCESS",response.toString())
                 val resp : SuspectGetResponse = response.body()!!
                 when(resp.code) {
-                    1000 -> suspectGetResult.getChildSuccess(resp.code, resp.result!!)
-                    else -> suspectGetResult.getChildFailure(resp.code, resp.message)
+                    1000 -> suspectGetResult.getSuspectSuccess(resp.code, resp.result!!)
+                    else -> suspectGetResult.getSuspectFailure(resp.code, resp.message)
                 }
             }
 

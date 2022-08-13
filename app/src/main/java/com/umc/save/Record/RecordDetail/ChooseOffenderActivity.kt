@@ -15,6 +15,7 @@ import com.umc.save.Record.Auth.ChildRecord.childidx_var
 import com.umc.save.Record.Auth.SuspectGet.Suspect
 import com.umc.save.Record.Auth.SuspectGet.SuspectGetResult
 import com.umc.save.Record.Auth.SuspectGet.SuspectGetService
+import com.umc.save.Record.Auth.SuspectRecord.suspectIdx_var
 import com.umc.save.Record.SuspectRVAdapter
 import com.umc.save.databinding.ActivityChooseOffenderBinding
 import java.util.*
@@ -59,7 +60,7 @@ class ChooseOffenderActivity : AppCompatActivity(), SuspectGetResult {
         appBarBtn.setOnClickListener{onBackPressed()}
     }
 
-    override fun getChildSuccess(
+    override fun getSuspectSuccess(
         code: Int,
         result: java.util.ArrayList<Suspect>
     ) {
@@ -75,13 +76,13 @@ class ChooseOffenderActivity : AppCompatActivity(), SuspectGetResult {
             override fun onItemClick(suspect: Suspect) {
                 suspect.isSelected = !suspect.isSelected
 
-                Log.d("suspect changed",suspect.isSelected.toString())
+                suspectIdx_var.suspectIdx.suspectIdx = suspectRVAdapter.get_suspectIdx
+
+                Log.d("현재 childIdx값 ============================= ",suspectIdx_var.suspectIdx.suspectIdx.toString())
             }
         } )
-        TODO("Not yet implemented")
     }
 
-    override fun getChildFailure(code: Int, message: String) {
-        TODO("Not yet implemented")
+    override fun getSuspectFailure(code: Int, message: String) {
     }
 }

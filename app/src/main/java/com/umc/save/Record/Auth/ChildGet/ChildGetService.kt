@@ -6,6 +6,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+//
+//class recyclerVier_childIdx{
+//    object childIdx{
+//        var childIdx : Int = 0
+//    }
+//}
+
 class ChildGetService {
 
     private lateinit var childGetResult : ChildGetResult

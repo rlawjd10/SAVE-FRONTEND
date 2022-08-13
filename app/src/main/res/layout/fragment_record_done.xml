@@ -11,7 +11,7 @@
         android:id="@+id/record_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="219dp"
+        android:layout_marginTop="147dp"
         app:layout_constraintStart_toStartOf="@id/move_to_storage"
         app:layout_constraintTop_toTopOf="parent"
         android:text="등록이\n완료되었습니다."

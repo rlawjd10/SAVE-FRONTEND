@@ -15,6 +15,7 @@ import com.umc.save.Record.Auth.ChildGet.Child
 import com.umc.save.R
 import com.umc.save.Record.Auth.ChildGet.ChildGetResult
 import com.umc.save.Record.Auth.ChildGet.ChildGetService
+import com.umc.save.Record.Auth.ChildRecord.childidx_var
 import com.umc.save.Record.RecordDetail.ChooseOffenderActivity
 import com.umc.save.databinding.ActivityRecordPreviousBinding
 import java.util.*
@@ -76,10 +77,15 @@ class RecordPreviousActivity : AppCompatActivity(), ChildGetResult {
 
                 Log.d("suspect changed", RecordPreRVAdapter.clicked.toString())
 
-                if(RecordPreRVAdapter.clicked)
-                    binding.nextBtn.setBackgroundColor(Color.parseColor("#FF7F61"))
-                else
+                if(RecordPreRVAdapter.clicked) {
+                    binding.nextBtn.setBackgroundColor(Color.parseColor("#FF761"))
+                    childidx_var.childIdx.childIdx = RecordPreRVAdapter.get_childIdx
+                }
+                else {
                     binding.nextBtn.setBackgroundColor(Color.parseColor("#B5B5B5"))
+                }
+
+
             }
         })
         Toast.makeText(this, "아동 불러오기 성공", Toast.LENGTH_SHORT).show()

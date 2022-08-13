@@ -26,7 +26,7 @@ class AbuseService {
     private var result : Result = Result(abuseIdx = 1)
     private lateinit var abuseResult : AbuseResult
 
-    fun setRecordResult(recordResult: AbuseResult){
+    fun setRecordResult(abuseResult: AbuseResult){
         this.abuseResult = abuseResult
     }
 

@@ -3,6 +3,6 @@ package com.umc.save.Record.Auth.SuspectGet
 import java.util.ArrayList
 
 interface SuspectGetResult {
-    fun getChildSuccess(code: Int, result: ArrayList<Suspect>)
-    fun getChildFailure(code : Int, message : String)
+    fun getSuspectSuccess(code: Int, result: ArrayList<Suspect>)
+    fun getSuspectFailure(code : Int, message : String)
 }

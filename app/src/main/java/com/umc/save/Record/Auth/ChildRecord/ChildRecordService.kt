@@ -13,7 +13,6 @@ class childidx_var {
     object childIdx {
         var childIdx : Int = 0
     }
-
 }
 
 class ChildRecordService {
