@@ -17,7 +17,7 @@ interface PictureRetrofitInterfaces {
     @Multipart
     @POST("/picture")
     fun sendPicture(
-        @Part imageList: List<MultipartBody.Part?>,
-        @Part("postPictureReq") pictureData : RequestBody
+        @Part picture: ArrayList<MultipartBody.Part>,
+        @Part("postPictureReq") postPictureReq : RequestBody
     ) : Call<PicturePostResponse>
 }

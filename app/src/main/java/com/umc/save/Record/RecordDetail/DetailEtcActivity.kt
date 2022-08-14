@@ -1,8 +1,11 @@
 package com.umc.save.Record.RecordDetail
 
 import android.app.Activity
+import android.content.ContentResolver
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.media.MediaMetadataRetriever
 import android.media.ThumbnailUtils
@@ -15,13 +18,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.Nullable
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
-import com.google.gson.JsonObject
-import com.umc.save.Home.HomeFragment
-import com.umc.save.Locker.LockerFragment
 import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Record.Auth.AbuseSituation.AbuseResult
@@ -30,23 +30,19 @@ import com.umc.save.Record.Auth.AbuseSituation.AbuseSituation
 import com.umc.save.Record.Auth.AbuseSituation.Result
 import com.umc.save.Record.Auth.AbuseSituation.abuse_var
 import com.umc.save.Record.Auth.ChildRecord.childidx_var
-import com.umc.save.Record.Auth.Picture.Picture
+import com.umc.save.Record.Auth.FileUtil
 import com.umc.save.Record.Auth.Picture.PictureResult
 import com.umc.save.Record.Auth.Picture.PictureService
-import com.umc.save.Record.Auth.Recording.Recording
-import com.umc.save.Record.Auth.Recording.RecordingPostService
-import com.umc.save.Record.Auth.Recording.RecordingResult
 import com.umc.save.Record.Auth.SuspectRecord.suspectIdx_var
-import com.umc.save.Record.Auth.Video.Video
-import com.umc.save.Record.Auth.Video.VideoResult
-import com.umc.save.Record.Auth.Video.VideoService
 import com.umc.save.databinding.ActivityDetailEtcBinding
-import okhttp3.MediaType.Companion.parse
+import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import org.json.JSONObject
 import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
 import kotlin.collections.HashMap
 
 //, VideoResult, RecordingResult
@@ -57,7 +53,7 @@ class DetailEtcActivity : AppCompatActivity(), AbuseResult, PictureResult {
     private var PICK_AUDIO = 3
 
     var pictureList = ArrayList<MultipartBody.Part>()
-    lateinit var picture : MultipartBody.Part
+//    lateinit var picture : MultipartBody.Part
     var videoList = ArrayList<MultipartBody.Part>()
     var audioList = ArrayList<MultipartBody.Part>()
 
@@ -151,47 +147,35 @@ class DetailEtcActivity : AppCompatActivity(), AbuseResult, PictureResult {
 //                    .commit()
 //            }
 //            binding.content.visibility = View.GONE
-            startActivity(Intent(this, MainActivity::class.java))
+//            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 
     //////////////////////// 각 파일 생성 ////////////////////////
 
-    fun makeImageFile(path : Uri){
-        val file = File(path.toString())
-        var fileName = path.lastPathSegment
-        fileName = fileName + "png"
+//    fun makeImageFile(path : Uri){
+//        val file = File(path.toString())
+//        var fileName = path.lastPathSegment
+//        fileName = fileName + "png"
+//
+//        var requestBody : RequestBody = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+//
+//        var body : MultipartBody.Part = MultipartBody.Part.create(requestBody)
+//
+//        pictureList.addAll(listOf(body))
+//    }
 
-        var requestBody : RequestBody = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+    // 절대경로 변환
+    fun absolutelyPath(path: Uri?, context : Context): String {
+        var proj: Array<String> = arrayOf(MediaStore.Images.Media.DATA)
+        var c: Cursor? = context.contentResolver.query(path!!, proj, null, null, null)
+        var index = c?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+        c?.moveToFirst()
 
-        var body : MultipartBody.Part = MultipartBody.Part.create(requestBody)
+        var result = c?.getString(index!!)
 
-        pictureList.addAll(listOf(body))
+        return result!!
     }
-
-//    fun makeVideoFile(path : Uri){
-//        val file = File(path.toString())
-//        var fileName = path.lastPathSegment
-//        fileName = fileName + "png"
-//
-//        var requestBody : RequestBody = RequestBody.create("video/*".toMediaTypeOrNull(), file)
-//
-//        var body : MultipartBody.Part = MultipartBody.Part.create(requestBody)
-//
-//        pictureList.addAll(listOf(body))
-//    }
-//
-//    fun makeAudioFile(path : Uri){
-//        val file = File(path.toString())
-//        var fileName = path.lastPathSegment
-//        fileName = fileName + "png"
-//
-//        var requestBody : RequestBody = RequestBody.create("audio/*".toMediaTypeOrNull(), file)
-//
-//        var body : MultipartBody.Part = MultipartBody.Part.create(requestBody)
-//
-//        pictureList.addAll(listOf(body))
-//    }
 
     private fun getAbuseSituation() : AbuseSituation {
         var childIdx = childidx_var.childIdx.childIdx
@@ -235,16 +219,28 @@ class DetailEtcActivity : AppCompatActivity(), AbuseResult, PictureResult {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == PICK_IMAGE) {
-                var currentImageURL : Uri? = data?.data
-                var filename = currentImageURL?.lastPathSegment
+//                var currentImageURL : Uri? = data?.data
+//                var filename = currentImageURL?.lastPathSegment
+//
+//
+//                binding.pictureSelectedSpace.setText(filename)
+//
+//                if (currentImageURL != null) {
+//                    makeImageFile(currentImageURL)
+//                    Toast.makeText(this, "사진 파일 생성", Toast.LENGTH_SHORT).show()
+//                }
 
+                val imagePath = data!!.data
 
-                binding.pictureSelectedSpace.setText(filename)
+                val file = File(absolutelyPath(imagePath, this))
+                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+                val body = MultipartBody.Part.createFormData("picture", file.name, requestFile)
 
-                if (currentImageURL != null) {
-                    makeImageFile(currentImageURL)
-                    Toast.makeText(this, "사진 파일 생성", Toast.LENGTH_SHORT).show()
-                }
+                binding.pictureSelectedSpace.setText(file.name)
+
+                Log.d("파일 생성!! ======== ", file.name)
+
+                pictureList.addAll(listOf(body))
 
                 Toast.makeText(this, "사진 첨부", Toast.LENGTH_SHORT).show()
             }
@@ -338,19 +334,21 @@ class DetailEtcActivity : AppCompatActivity(), AbuseResult, PictureResult {
 
     /////////////////////////////// 이미지 전송 ///////////////////////////////////////////
     private fun Image_save(){
+        Log.d("RECORD/FAILURE ==============================================================================================", "Image_save 실행")
+        Log.d("RECORD/FAILURE ==================================", pictureList[0].toString())
         val pictureService = PictureService()
         pictureService.setPicturedResult(this)
-        pictureService.postPicture(pictureList, getPictureSituation())
+        pictureService.sendPicture(pictureList, abuse_var.abuse.abuseIdx, childidx_var.childIdx.childIdx)
     }
 
-    private fun getPictureSituation() : RequestBody{
-        var pictureAbuseIdx = abuse_var.abuse.abuseIdx
-        var pictureChildIdx = childidx_var.childIdx.childIdx
-
-        val jsonObject = JSONObject("{\"pictureAbuseIdx\" :\"${pictureAbuseIdx}\", \"pictureChildIdx\" :\"${pictureChildIdx}\"}").toString()
-        val jsonBody = RequestBody.create("application/json".toMediaTypeOrNull(),jsonObject)
-        return jsonBody
-    }
+//    private fun getPictureSituation() : RequestBody{
+//        var picAbuseIdx = abuse_var.abuse.abuseIdx
+//        var picChildIdx = childidx_var.childIdx.childIdx
+//
+//        val jsonObject = JSONObject("{\"picAbuseIdx\" :\"${picAbuseIdx}\", \"picChildIdx\" :\"${picChildIdx}\"}").toString()
+//        val jsonBody = RequestBody.create("application/json".toMediaTypeOrNull(),jsonObject)
+//        return jsonBody
+//    }
 
     override fun postPictureSuccess(code: Int, result: com.umc.save.Record.Auth.Picture.Result) {
         Toast.makeText(this, "이미지 기록 성공.", Toast.LENGTH_SHORT).show()
