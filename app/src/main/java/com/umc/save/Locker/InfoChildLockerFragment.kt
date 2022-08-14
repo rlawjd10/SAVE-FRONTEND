@@ -1,11 +1,14 @@
 package com.umc.save.Locker
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import com.umc.save.MainActivity
 import com.umc.save.R
@@ -31,6 +34,16 @@ class InfoChildLockerFragment : Fragment() {
         setRecord(child)
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val fab : FloatingActionButton = view.findViewById(R.id.fab)
+        fab.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:112"))
+            startActivity(intent)
+        }
     }
 
 

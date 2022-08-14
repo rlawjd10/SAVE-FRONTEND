@@ -5,10 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="42dp">
+        android:paddingBottom="28dp">
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/fab"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="end|bottom"-->
+<!--            android:layout_marginEnd="19dp"-->
+<!--            android:backgroundTint="@color/dark_red"-->
+<!--            android:contentDescription="Call Police"-->
+<!--            android:src="@drawable/icn_report_large"-->
+<!--            app:fabCustomSize="72dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:maxImageSize="35dp" />-->
 
         <ImageView
             android:id="@+id/suspect_info_iv"
@@ -121,14 +136,14 @@
             android:layout_width="126.08dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="17dp"
-            app:layout_constraintTop_toBottomOf="@id/record_info_time_tv"
             android:fontFamily="@font/pretendard_bold"
             android:text="서울시 마포구 상암동 현대아파트"
             android:textColor="@color/black"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@id/record_info_time_tv" />
+            app:layout_constraintStart_toStartOf="@id/record_info_time_tv"
+            app:layout_constraintTop_toBottomOf="@id/record_info_time_tv" />
 
-<!--        android:layout_width="95.06dp"-->
+        <!--        android:layout_width="95.06dp"-->
 
 
         <ImageButton
@@ -223,6 +238,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15.08dp"
             android:fontFamily="@font/pretendard_bold"
+            android:paddingEnd="11.94dp"
             android:text="9"
             android:textColor="@color/dark_red"
             android:textSize="20sp"
@@ -236,7 +252,7 @@
             android:id="@+id/record_video_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="22.94dp"
+            android:layout_marginStart="11dp"
             android:layout_marginTop="21.99dp"
             android:src="@drawable/icn_video_normal"
             app:layout_constraintStart_toEndOf="@id/record_picture_num_tv"
@@ -320,11 +336,13 @@
             android:layout_width="146dp"
             android:layout_height="44dp"
             android:layout_marginTop="33dp"
+            android:layout_marginBottom="14dp"
             android:background="@drawable/fragment_dark_red_background"
             android:fontFamily="@font/pretendard_bold"
             android:text="삭제"
             android:textColor="@color/white"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recording_list_rv" />

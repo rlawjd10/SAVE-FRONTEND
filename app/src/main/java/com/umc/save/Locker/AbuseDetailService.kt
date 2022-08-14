@@ -21,7 +21,7 @@ class AbuseDetailService {
                Log.d("ABUSE-DETAIL-GET SUCCESS",response.toString())
                 val resp : AbuseDetailResponse = response.body()!!
                 when(resp.code) {
-                    1000 -> abuseDetailView.onGetAbuseDetailSuccess(resp.code, resp.result!!)
+                    1000 -> abuseDetailView.onGetAbuseDetailSuccess(resp.code, resp.result)
                     2301 -> abuseDetailView.abuseDetailNotExist(resp.code, resp.message)
                     else -> abuseDetailView.onGetAbuseDetailFailure(resp.code, resp.message)
                 }

@@ -2,12 +2,15 @@ package com.umc.save.Locker
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.marginStart
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
 import com.umc.save.R
@@ -19,7 +22,6 @@ class ListPictureLockerFragment: Fragment() {
     var currentPosition = 0
     val gson : Gson =  Gson()
     private var pictureList = ArrayList<Picture>()
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,6 +51,8 @@ class ListPictureLockerFragment: Fragment() {
 
         return binding.root
     }
+
+
 
     private fun openPictureActivity(picture: Picture) {
 

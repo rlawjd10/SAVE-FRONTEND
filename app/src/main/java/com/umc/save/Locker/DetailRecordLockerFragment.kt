@@ -3,18 +3,23 @@ package com.umc.save.Locker
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
+import androidx.core.view.marginStart
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.Player
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.umc.save.Home.option.HomeDialogFragment
 import com.umc.save.MainActivity
@@ -51,10 +56,18 @@ class DetailRecordLockerFragment : Fragment(), AbuseDetailView, DeleteRecordView
 
         Log.d("abuseIdx",abuseIdx.toString())
 
-
         return binding.root
     }
 
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//
+//        val fab : FloatingActionButton= view.findViewById(R.id.fab)
+//        fab.setOnClickListener {
+//            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:112"))
+//            startActivity(intent)
+//        }
+//    }
 
     private fun ClickViewEvents(deleteAbuseIdx : Int) {
 
@@ -86,10 +99,9 @@ class DetailRecordLockerFragment : Fragment(), AbuseDetailView, DeleteRecordView
         deleteRecordService.setDeleteRecordView(this)
         deleteRecordService.deleteRecord(abuseIdx)
 
+        //학대 정황이 지워지고 나면 페이지를 빠져나와서 뒤로 가기
         (context as MainActivity).supportFragmentManager
             .popBackStack()
-//            .beginTransaction()
-//            .remove(this)
 
     }
 
@@ -254,6 +266,7 @@ class DetailRecordLockerFragment : Fragment(), AbuseDetailView, DeleteRecordView
         if (result.pictureList.isEmpty()) {
             binding.recordPictureIv.visibility = View.GONE
             binding.recordPictureNumTv.visibility = View.GONE
+
         } else {
             binding.recordPictureIv.visibility = View.VISIBLE
             binding.recordPictureNumTv.visibility = View.VISIBLE

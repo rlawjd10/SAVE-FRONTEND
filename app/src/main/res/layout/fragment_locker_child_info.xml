@@ -4,6 +4,22 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="28dp"
+        android:backgroundTint="@color/dark_red"
+        android:contentDescription="Call Police"
+        android:src="@drawable/icn_report_large"
+        app:fabCustomSize="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="35dp" />
+
     <ImageView
         android:id="@+id/child_info_iv"
         android:layout_width="306dp"
