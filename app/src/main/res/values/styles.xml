@@ -5,4 +5,31 @@
         <item name="android:fontFamily">@font/pretendard_bold</item>
     </style>
 
+    <style name="CustomCalenderView" >
+        <item name="colorAccent">@color/dark_red</item>
+    </style>
+
+    <style name="CalenderWidgetHeader" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/dark_red</item>
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="mcv_arrowColor">@color/dark_red</item>
+
+    </style>
+
+<!--    <item name="android:weekNumberColor">@color/dark_red</item>-->
+
+    <style name="CalenderViewDateCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+
 </resources>

@@ -114,10 +114,8 @@ class RecordLockerFragment(child: Int) : Fragment(), AbuseView, SuspectsView {
 
             }
 
-
         })
     }
-
 
 
     //학대 정황 기록 가져오기 (디테일한 것 제외)
@@ -131,11 +129,13 @@ class RecordLockerFragment(child: Int) : Fragment(), AbuseView, SuspectsView {
         Log.d("GET-NOT-EXIST",message)
     }
 
-    //학대 행위자 리스트 서버에서 가져오기
+
     override fun onGetAbuseFailure(code: Int, message: String) {
         Log.d("GET-FAILURE",message)
     }
 
+    //학대 행위자가 없으면 add 버튼 눌렀을 때 학대 행위자 등록으로 이동해야 함
+    //학대 행위자 리스트 서버에서 가져오기
     override fun onGetSuspectsSuccess(code: Int, result: ArrayList<Suspect>) {
         suspectEmpty = result.isEmpty()
 

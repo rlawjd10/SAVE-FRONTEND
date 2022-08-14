@@ -31,7 +31,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/record_content_vp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="308dp"
         app:layout_constraintBottom_toTopOf="@id/suspect_control_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

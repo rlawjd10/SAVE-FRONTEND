@@ -17,11 +17,10 @@ import com.umc.save.R
 import com.umc.save.databinding.FragmentLockerChildRecordBinding
 import java.text.SimpleDateFormat
 
-class RecordChildLockerFragment() : Fragment(){
+class RecordChildLockerFragment() : Fragment() {
     lateinit var binding: FragmentLockerChildRecordBinding
     private val method  = arrayListOf("목록에서 보기","달력에서 보기")
     private var gson : Gson = Gson()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,9 +37,10 @@ class RecordChildLockerFragment() : Fragment(){
         binding.recordContentVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         TabLayoutMediator(binding.recordContentTb,binding.recordContentVp) {
-            tab, position -> tab.text = method[position]
+                tab, position -> tab.text = method[position]
 
         }.attach()
+
 
 
         binding.suspectControlBtn.setOnClickListener {
