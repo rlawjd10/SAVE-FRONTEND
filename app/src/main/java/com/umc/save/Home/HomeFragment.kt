@@ -1,19 +1,30 @@
 package com.umc.save.Home
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
+import android.provider.CalendarContract
+import android.text.Html
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentTransaction
 import com.umc.save.Home.option.HomeAlarmFragment
 import com.umc.save.Home.option.HomeSettingsFragment
 import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.databinding.FragmentHomeBinding
+import org.w3c.dom.Text
 
 
 class HomeFragment : Fragment() {
@@ -42,6 +53,24 @@ class HomeFragment : Fragment() {
             changeFragment(NewsHomeFragment())
         }
 
+        /*//text.setTextColor(ContextCompat.getColor(applicationContext, R.color.dark_red))
+        //binding.loginSignInBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_gray))
+        //아동학대란? 문자열 색
+        val answerText = binding.homeChildAnswerTv
+        answerText.setTextColor(ContextCompat.getColor(Context, R.color.dark_red))
+        val ssb = SpannableStringBuilder(binding.homeChildAnswerTv.text.toString())
+
+        ssb.setSpan(ForegroundColorSpan(Color.RED), 0, 11, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+*/
+
+       /* val spannable = SpannableStringBuilder(binding.homeChildAnswerTv.text.toString())
+        spannable.setSpan(
+            ForegroundColorSpan(Color.RED),
+            1,
+            11,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+*/
 
         return binding.root
     }

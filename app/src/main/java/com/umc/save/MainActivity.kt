@@ -8,6 +8,8 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -16,6 +18,7 @@ import com.umc.save.Home.option.HomeAlarmFragment
 import com.umc.save.Home.option.HomeSettingsFragment
 import com.umc.save.Locker.LockerFragment
 import com.umc.save.Record.RecordFragment
+import com.umc.save.databinding.ActionbarInnerPageTopBinding
 import com.umc.save.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -25,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         initBottomNavigation()
         initActionBar()
@@ -63,8 +65,13 @@ class MainActivity : AppCompatActivity() {
         }
     }*/
 
-    //action bar 알림&설정 아이콘 클릭하면 to fragment
+    //action bar 홈&알림&설정 아이콘 클릭하면 to fragment
     private fun initActionBar() {
+        binding.mainActionbar.actionMainHomeIv.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, HomeFragment())
+                .commitAllowingStateLoss()
+        }
         binding.mainActionbar.actionMainAlarmIv.setOnClickListener {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.main_frm, HomeAlarmFragment())
@@ -75,8 +82,8 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.main_frm, HomeSettingsFragment())
                 .commitAllowingStateLoss()
         }
-
     }
+
 
     private fun initBottomNavigation() {
         supportFragmentManager.beginTransaction()
@@ -86,7 +93,6 @@ class MainActivity : AppCompatActivity() {
         binding.mainBnv.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.tab_home -> {
-                    binding.mainActionbar.actionMainHomeIv.visibility = View.VISIBLE
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, HomeFragment())
                         .commitAllowingStateLoss()
@@ -94,7 +100,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.tab_storage -> {
-                    binding.mainActionbar.actionMainHomeIv.visibility = View.VISIBLE
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, LockerFragment())
                         .commitAllowingStateLoss()
@@ -102,7 +107,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.tab_add -> {
-                    binding.mainActionbar.actionMainHomeIv.visibility = View.VISIBLE
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, RecordFragment())
                         .commitAllowingStateLoss()

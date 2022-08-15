@@ -1,12 +1,6 @@
 package com.umc.save.Sign.Auth
 
-import android.content.ContentValues.TAG
-import android.content.Context
 import android.util.Log
-import android.widget.Toast
-import com.umc.save.Sign.AuthResponse
-import com.umc.save.Sign.LoginActivity
-import com.umc.save.Sign.LoginView
 import com.umc.save.getRetrofit
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,7 +29,15 @@ class AuthService {
                 Log.d("LOGIN/RESPONSE", response.toString())
                 val loginResponse: AuthResponse = response.body()!!
 
-                when (val code = loginResponse.code) {
+                if (response.isSuccessful && response.code() == 200) {
+                    val loginResponse: AuthResponse = response.body()!!
+
+                    when (val code = loginResponse.code) {
+                        1000 -> loginView.onLoginSuccess(code,loginResponse.result!! )
+                        else -> loginView.onLoginFailure(code, loginResponse.message)
+                    }
+                }
+                /*when (val code = loginResponse.code) {
                     1000 -> loginView.onLoginSuccess(code,loginResponse.result)
                 }
                 if (response.isSuccessful()) {
@@ -72,7 +74,7 @@ class AuthService {
                             Log.d("LOGIN/FAILURE_EMAILFORM", response.toString())
                             loginView.onLoginFailure(2334, "해당 이메일은 존재하지 않습니다")}
                     }
-                }
+                }*/
             }
             //통신에 실패한 경우 (시스템적인 이유) - API 호출 실패
             override fun onFailure(call: Call<AuthResponse>, t: Throwable) {

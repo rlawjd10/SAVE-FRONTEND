@@ -33,7 +33,7 @@
             android:textSize="20sp"
             android:textColor="@color/black"
             android:fontFamily="@font/pretendard_bold"
-            android:visibility="invisible"
+            android:visibility="visible"
 
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

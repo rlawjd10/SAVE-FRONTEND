@@ -1,27 +1,24 @@
 package com.umc.save.Sign
 
 import android.content.Intent
-import android.graphics.Color
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
-import android.text.InputType
 import android.text.SpannableString
 import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.text.style.UnderlineSpan
-import android.view.View
 import android.widget.*
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import com.umc.save.Home.HomeFragment
 import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Sign.Auth.Auth
 import com.umc.save.Sign.Auth.AuthService
+import com.umc.save.Sign.Auth.LoginView
+import com.umc.save.Sign.Auth.Result
 import com.umc.save.databinding.ActivityLoginBinding
-import java.nio.channels.InterruptedByTimeoutException
 
 class LoginActivity : AppCompatActivity(), LoginView {
 
@@ -39,7 +36,36 @@ class LoginActivity : AppCompatActivity(), LoginView {
         }
 
         //login btn is no empty -> change color
+        val EmailEditText = findViewById<EditText>(R.id.login_id_et)
+        val PwEditText = findViewById<EditText>(R.id.login_password_et)
 
+        EmailEditText.addTextChangedListener (object : TextWatcher {
+            // EditText에 문자 입력 전
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            // EditText에 변화가 있을 경우
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (PwEditText.text.toString().isNotEmpty() && binding.loginIdEt.text.toString().isNotEmpty())
+                    binding.loginSignInBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_red))
+                else
+                    binding.loginSignInBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_gray))
+            }
+            // EditText 입력이 끝난 후
+            override fun afterTextChanged(p0: Editable?) { }
+        })
+
+        PwEditText.addTextChangedListener (object : TextWatcher {
+            // EditText에 문자 입력 전
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            // EditText에 변화가 있을 경우
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (PwEditText.text.toString().isNotEmpty() && binding.loginIdEt.text.toString().isNotEmpty())
+                    binding.loginSignInBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_red))
+                else
+                    binding.loginSignInBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_gray))
+            }
+            // EditText 입력이 끝난 후
+            override fun afterTextChanged(p0: Editable?) { }
+        })
 
         //로그인 클릭 -> login 가능한지 method 이동
         binding.loginSignInBtn.setOnClickListener {
@@ -141,8 +167,9 @@ class LoginActivity : AppCompatActivity(), LoginView {
             1000 -> {
                 //로그인 성공할 시 유저 인덱스와 유저jwt를 저장하고 화면 이동
                 saveJwt(result.userIdx)
+                saveJwt2(result.jwt)
                 // saveJwt2(result.jwt)
-                result.jwt?.let { saveJwt2(it) }
+                //result.jwt?.let { saveJwt2(it) }
                 startMainActivity()
             }
         }

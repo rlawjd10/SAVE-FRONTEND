@@ -101,7 +101,7 @@
                 app:layout_constraintStart_toStartOf="@id/signup_name_tv"
                 app:layout_constraintTop_toBottomOf="@id/singup_name_input_et"/>
 
-            <TextView
+           <!-- <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -112,7 +112,7 @@
 
                 android:layout_marginStart="3dp"
                 app:layout_constraintTop_toTopOf="@id/signup_phone_tv"
-                app:layout_constraintStart_toEndOf="@id/signup_phone_tv"/>
+                app:layout_constraintStart_toEndOf="@id/signup_phone_tv"/>-->
 
             <!--전화번호 인증요청-->
             <EditText
@@ -400,56 +400,70 @@
                 app:layout_constraintTop_toBottomOf="@id/singup_password_confirm_et"
                 android:visibility="gone"/>
 
-
-            <!-- 전체 동의 -->
-            <CheckBox
+            <!--전체 동의-->
+            <ImageButton
                 android:id="@+id/signup_consent_all_check"
-                android:layout_width="wrap_content"
-                android:layout_height="19dp"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
 
-                android:button="@null"
-                android:clickable="false"
-                android:drawableStart="@drawable/icn_check_02_off"
-                android:drawablePadding="10dp"
+                android:src="@drawable/icn_check_02_off"
+
+                android:layout_marginStart="27dp"
+                android:layout_marginTop="112dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/singup_password_confirm_et"/>
+
+            <TextView
+                android:id="@+id/signup_consent_all_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
                 android:text="전체 동의"
                 android:textSize="16sp"
                 android:textColor="@color/dark_gray"
                 android:fontFamily="@font/pretendard_semi_bold"
                 android:includeFontPadding="false"
-                android:gravity="center"
 
-                android:layout_marginTop="100dp"
-                app:layout_constraintStart_toStartOf="@id/singup_password_confirm_et"
-                app:layout_constraintTop_toBottomOf="@id/singup_password_confirm_et"/>
+                android:layout_marginStart="10dp"
+                app:layout_constraintStart_toEndOf="@id/signup_consent_all_check"
+                app:layout_constraintTop_toTopOf="@id/signup_consent_all_check"
+                app:layout_constraintBottom_toBottomOf="@id/signup_consent_all_check"/>
 
-            <!--sub 동의-->
-            <CheckBox
+            <!--개인정보 동의-->
+            <ImageButton
                 android:id="@+id/signup_consent_info_check"
-                android:layout_width="wrap_content"
-                android:layout_height="16dp"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
 
-                android:button="@null"
-                android:clickable="false"
-                android:drawableStart="@drawable/icn_check_02_off"
-                android:drawablePadding="10dp"
+                android:src="@drawable/icn_check_02_off"
+
+                android:layout_marginTop="17dp"
+                app:layout_constraintStart_toStartOf="@id/signup_consent_all_check"
+                app:layout_constraintTop_toBottomOf="@+id/signup_consent_all_check"/>
+
+            <TextView
+                android:id="@+id/signup_consent_info_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
                 android:text="개인정보 방침 관련 문서 동의"
                 android:textSize="12sp"
                 android:textColor="@color/dark_gray"
                 android:fontFamily="@font/pretendard_semi_bold"
                 android:includeFontPadding="false"
-                android:gravity="center"
 
-                android:layout_marginTop="15dp"
-                app:layout_constraintStart_toStartOf="@id/signup_consent_all_check"
-                app:layout_constraintTop_toBottomOf="@id/signup_consent_all_check"/>
+                android:layout_marginStart="10dp"
+                app:layout_constraintStart_toEndOf="@id/signup_consent_info_check"
+                app:layout_constraintTop_toTopOf="@id/signup_consent_info_check"
+                app:layout_constraintBottom_toBottomOf="@id/signup_consent_info_check"/>
 
+            <!--보기-->
             <TextView
                 android:id="@+id/signup_info_see_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
                 android:text="보기"
-                android:clickable="false"
                 android:textSize="12sp"
                 android:textColor="@color/dark_red"
                 android:fontFamily="@font/pretendard_semi_bold"
@@ -459,33 +473,41 @@
                 app:layout_constraintBottom_toBottomOf="@id/signup_consent_info_check"
                 app:layout_constraintEnd_toEndOf="@id/singup_password_confirm_et"/>
 
-            <CheckBox
+            <!--비밀유지 동의-->
+            <ImageButton
                 android:id="@+id/signup_consent_secret_check"
-                android:layout_width="wrap_content"
-                android:layout_height="16dp"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
 
-                android:button="@null"
-                android:clickable="false"
-                android:drawableStart="@drawable/icn_check_02_off"
-                android:drawablePadding="10dp"
+                android:src="@drawable/icn_check_02_off"
+
+                android:layout_marginTop="9dp"
+                app:layout_constraintStart_toStartOf="@id/signup_consent_info_check"
+                app:layout_constraintTop_toBottomOf="@+id/signup_consent_info_check"/>
+
+            <TextView
+                android:id="@+id/signup_consent_secret_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
                 android:text="비밀 유지 서약서 동의"
                 android:textSize="12sp"
                 android:textColor="@color/dark_gray"
                 android:fontFamily="@font/pretendard_semi_bold"
                 android:includeFontPadding="false"
-                android:gravity="center"
 
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="@id/signup_consent_all_check"
-                app:layout_constraintTop_toBottomOf="@id/signup_consent_info_check"/>
+                android:layout_marginStart="10dp"
+                app:layout_constraintStart_toEndOf="@id/signup_consent_secret_check"
+                app:layout_constraintTop_toTopOf="@id/signup_consent_secret_check"
+                app:layout_constraintBottom_toBottomOf="@id/signup_consent_secret_check"/>
 
+            <!--보기-->
             <TextView
                 android:id="@+id/signup_info_secret_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
                 android:text="보기"
-                android:clickable="false"
                 android:textSize="12sp"
                 android:textColor="@color/dark_red"
                 android:fontFamily="@font/pretendard_semi_bold"
@@ -495,25 +517,35 @@
                 app:layout_constraintBottom_toBottomOf="@id/signup_consent_secret_check"
                 app:layout_constraintEnd_toEndOf="@id/singup_password_confirm_et"/>
 
-            <CheckBox
+            <!--허위사실 유표 처벌 동의-->
+            <ImageButton
                 android:id="@+id/signup_consent_fact_check"
-                android:layout_width="wrap_content"
-                android:layout_height="16dp"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
 
-                android:button="@null"
-                android:drawableStart="@drawable/icn_check_02_off"
-                android:drawablePadding="10dp"
+                android:src="@drawable/icn_check_02_off"
+
+                android:layout_marginTop="9dp"
+                app:layout_constraintStart_toStartOf="@id/signup_consent_secret_check"
+                app:layout_constraintTop_toBottomOf="@+id/signup_consent_secret_check"/>
+
+            <TextView
+                android:id="@+id/signup_consent_fact_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
                 android:text="허위사실 유포 처벌 동의"
                 android:textSize="12sp"
                 android:textColor="@color/dark_gray"
                 android:fontFamily="@font/pretendard_semi_bold"
                 android:includeFontPadding="false"
-                android:gravity="center"
 
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="@id/signup_consent_all_check"
-                app:layout_constraintTop_toBottomOf="@id/signup_consent_secret_check"/>
+                android:layout_marginStart="10dp"
+                app:layout_constraintStart_toEndOf="@id/signup_consent_fact_check"
+                app:layout_constraintTop_toTopOf="@id/signup_consent_fact_check"
+                app:layout_constraintBottom_toBottomOf="@id/signup_consent_fact_check"/>
 
+            <!--보기-->
             <TextView
                 android:id="@+id/signup_info_fact_tv"
                 android:layout_width="wrap_content"
@@ -529,7 +561,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/signup_consent_fact_check"
                 app:layout_constraintEnd_toEndOf="@id/singup_password_confirm_et"/>
 
-            <androidx.appcompat.widget.AppCompatButton
+            <android.widget.Button
                 android:id="@+id/signup_complete_btn"
                 android:layout_width="0dp"
                 android:layout_height="44dp"
@@ -548,6 +580,26 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/signup_consent_fact_check"/>
+
+            <!--<androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/signup_complete_btn"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+
+                android:background="@drawable/radius_home_btn"
+                android:backgroundTint="@color/dark_gray"
+                android:text="회원가입"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:fontFamily="@font/pretendard_bold"
+                android:gravity="center"
+
+                android:layout_marginTop="49dp"
+                android:layout_marginStart="27dp"
+                android:layout_marginEnd="27dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/signup_consent_fact_check"/>-->
 
             <LinearLayout
                 android:layout_width="match_parent"

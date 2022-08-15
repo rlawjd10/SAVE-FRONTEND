@@ -1,4 +1,4 @@
-package com.umc.save.Sign
+package com.umc.save.Sign.User
 
 interface SignUpView {
     fun onSignUpSuccess()
