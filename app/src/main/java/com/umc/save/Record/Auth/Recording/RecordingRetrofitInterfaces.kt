@@ -1,10 +1,17 @@
 package com.umc.save.Record.Auth.Recording
 
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.Body
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 
 interface RecordingRetrofitInterfaces {
+    @Multipart
     @POST("/recording")
-    fun record (@Body recording: Recording): Call<RecordingPostResponse>
+    fun sendRecording(
+        @Part recording: ArrayList<MultipartBody.Part>,
+        @Part("postRecordingReq") postRecordingReq : RequestBody
+    ) : Call<RecordingPostResponse>
 }

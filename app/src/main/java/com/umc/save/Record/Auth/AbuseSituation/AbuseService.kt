@@ -13,8 +13,6 @@ class abuse_var {
         var a_date : String = ""
         var a_time : String = ""
         var place : String = ""
-        var detail : String = ""
-        var etc : String = ""
         var a_type : String = ""
 
         var abuseIdx : Int = 0

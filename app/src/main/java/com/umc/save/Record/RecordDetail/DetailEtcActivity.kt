@@ -1,27 +1,27 @@
 package com.umc.save.Record.RecordDetail
 
 import android.app.Activity
-import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.media.MediaMetadataRetriever
-import android.media.ThumbnailUtils
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.Nullable
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.loader.content.CursorLoader
 import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Record.Auth.AbuseSituation.AbuseResult
@@ -30,30 +30,32 @@ import com.umc.save.Record.Auth.AbuseSituation.AbuseSituation
 import com.umc.save.Record.Auth.AbuseSituation.Result
 import com.umc.save.Record.Auth.AbuseSituation.abuse_var
 import com.umc.save.Record.Auth.ChildRecord.childidx_var
-import com.umc.save.Record.Auth.FileUtil
 import com.umc.save.Record.Auth.Picture.PictureResult
 import com.umc.save.Record.Auth.Picture.PictureService
+import com.umc.save.Record.Auth.RealPathUtil
+import com.umc.save.Record.Auth.Recording.RecordingPostService
+import com.umc.save.Record.Auth.Recording.RecordingResult
 import com.umc.save.Record.Auth.SuspectRecord.suspectIdx_var
+import com.umc.save.Record.Auth.Video.VideoResult
+import com.umc.save.Record.Auth.Video.VideoService
 import com.umc.save.databinding.ActivityDetailEtcBinding
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.OutputStream
 import kotlin.collections.HashMap
 
 //, VideoResult, RecordingResult
-class DetailEtcActivity : AppCompatActivity(), AbuseResult, PictureResult {
+class DetailEtcActivity : AppCompatActivity(), AbuseResult, PictureResult, VideoResult,
+    RecordingResult {
 
     private var PICK_IMAGE = 1
     private var PICK_VIDEO = 2
     private var PICK_AUDIO = 3
 
     var pictureList = ArrayList<MultipartBody.Part>()
-//    lateinit var picture : MultipartBody.Part
+
+    //    lateinit var picture : MultipartBody.Part
     var videoList = ArrayList<MultipartBody.Part>()
     var audioList = ArrayList<MultipartBody.Part>()
 
@@ -136,17 +138,8 @@ class DetailEtcActivity : AppCompatActivity(), AbuseResult, PictureResult {
         }
 
         binding.btnNext.setOnClickListener {
-//            abuse_save()
-//            if(binding.pictureSelectedSpace.text != null)
-            Image_save()
-//            val lockerFragment = LockerFragment()
-//            val fragment : Fragment? = supportFragmentManager.findFragmentByTag(LockerFragment::class.java.simpleName)
-//            if(fragment !is LockerFragment){
-//                supportFragmentManager.beginTransaction()
-//                    .add(R.id.layout_content, lockerFragment, lockerFragment::class.java.simpleName)
-//                    .commit()
-//            }
-//            binding.content.visibility = View.GONE
+            abuse_save()
+
 //            startActivity(Intent(this, MainActivity::class.java))
         }
     }
@@ -166,7 +159,7 @@ class DetailEtcActivity : AppCompatActivity(), AbuseResult, PictureResult {
 //    }
 
     // 절대경로 변환
-    fun absolutelyPath(path: Uri?, context : Context): String {
+    fun absolutelyPath(path: Uri?, context: Context): String {
         var proj: Array<String> = arrayOf(MediaStore.Images.Media.DATA)
         var c: Cursor? = context.contentResolver.query(path!!, proj, null, null, null)
         var index = c?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
@@ -177,7 +170,19 @@ class DetailEtcActivity : AppCompatActivity(), AbuseResult, PictureResult {
         return result!!
     }
 
-    private fun getAbuseSituation() : AbuseSituation {
+
+    fun absolutelyPath_audio(path: Uri?, context: Context): String {
+        var proj: Array<String> = arrayOf(MediaStore.Audio.Media.DATA)
+        var c: Cursor? = context.contentResolver.query(path!!, proj, null, null, null)
+        var index = c?.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA)
+        c?.moveToFirst()
+
+        var result = c?.getString(index!!)
+
+        return result!!
+    }
+
+    private fun getAbuseSituation(): AbuseSituation {
         var childIdx = childidx_var.childIdx.childIdx
         var suspectIdx = suspectIdx_var.suspectIdx.suspectIdx
         var date = abuse_var.abuse.a_date
@@ -219,17 +224,6 @@ class DetailEtcActivity : AppCompatActivity(), AbuseResult, PictureResult {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == PICK_IMAGE) {
-//                var currentImageURL : Uri? = data?.data
-//                var filename = currentImageURL?.lastPathSegment
-//
-//
-//                binding.pictureSelectedSpace.setText(filename)
-//
-//                if (currentImageURL != null) {
-//                    makeImageFile(currentImageURL)
-//                    Toast.makeText(this, "사진 파일 생성", Toast.LENGTH_SHORT).show()
-//                }
-
                 val imagePath = data!!.data
 
                 val file = File(absolutelyPath(imagePath, this))
@@ -246,32 +240,37 @@ class DetailEtcActivity : AppCompatActivity(), AbuseResult, PictureResult {
             }
 
             if (requestCode == PICK_VIDEO) {
-                var currentVideoURL : Uri? = data?.data
-                var filename = currentVideoURL?.lastPathSegment
-                var thumbnail = ThumbnailUtils.createVideoThumbnail(currentVideoURL.toString(), MediaStore.Video.Thumbnails.MICRO_KIND)
+                val videoPath = data!!.data
+                val realPathUtil = RealPathUtil()
+                val file = File(realPathUtil.getRealPath(this, videoPath!!))
+                val requestFile = RequestBody.create("video/*".toMediaTypeOrNull(), file)
+                val body = MultipartBody.Part.createFormData("video", file.name, requestFile)
 
-                binding.videoSelectedSpace.setText(filename)
+                binding.videoSelectedSpace.setText(file.name)
 
-                if(currentVideoURL != null)
-//                    makeVideoFile(currentVideoURL)
+                Log.d("파일 생성!! ======== ", file.name)
 
+                videoList.addAll(listOf(body))
 
                 Toast.makeText(this, "영상 첨부", Toast.LENGTH_SHORT).show()
             }
 
             if (requestCode == PICK_AUDIO) {
-                var currentAudioURL : Uri? = data?.data
-                var filename = currentAudioURL?.lastPathSegment
+                val audioPath = data!!.data
+                val realPathUtil = RealPathUtil()
+                val file = File(realPathUtil.getRealPath(this, audioPath!!))
+                val requestFile = RequestBody.create("audio/*".toMediaTypeOrNull(), file)
+                val body = MultipartBody.Part.createFormData("audio", file.name, requestFile)
 
-                binding.recordSelectedSpace.setText(filename)
+                binding.recordSelectedSpace.setText(file.name)
 
-                if(currentAudioURL != null)
-//                    makeAudioFile(currentAudioURL)
+                Log.d("파일 생성!! ======== ", file.name)
 
-                Toast.makeText(this, "녹음 첨부", Toast.LENGTH_SHORT).show()
+                audioList.addAll(listOf(body))
+
+                Toast.makeText(this, "음성 첨부", Toast.LENGTH_SHORT).show()
             }
-        }
-        else {
+        } else {
             Toast.makeText(this, "오류가 발생하였습니다.", Toast.LENGTH_SHORT).show()
         }
     }
@@ -281,29 +280,32 @@ class DetailEtcActivity : AppCompatActivity(), AbuseResult, PictureResult {
         val appBarBtn = findViewById<ImageView>(R.id.appbar_back_btn)
         val appBarComplete = findViewById<TextView>(R.id.appbar_complete_tv)
 
-        appBartext.text= "기록"
-        appBartext.visibility= View.VISIBLE
-        appBarComplete.text= "완료"
-        appBarComplete.visibility= View.INVISIBLE
-        appBarBtn.setOnClickListener{onBackPressed()}
+        appBartext.text = "기록"
+        appBartext.visibility = View.VISIBLE
+        appBarComplete.text = "완료"
+        appBarComplete.visibility = View.INVISIBLE
+        appBarBtn.setOnClickListener { onBackPressed() }
     }
 
     ///////////////////////////////////////////// 썸네일 생성 ///////////////////////////////////////
     val thumbnailTime = 1
-    fun getVideoThumbnail(uri: Uri) : Bitmap? {
+    fun getVideoThumbnail(uri: Uri): Bitmap? {
         val retriever = MediaMetadataRetriever()
 
         try {
-            retriever.setDataSource(uri.toString(), HashMap<String,String>())
-            return retriever.getFrameAtTime((thumbnailTime * 1000000).toLong(), MediaMetadataRetriever.OPTION_CLOSEST)
-        } catch (e : IllegalArgumentException){
+            retriever.setDataSource(uri.toString(), HashMap<String, String>())
+            return retriever.getFrameAtTime(
+                (thumbnailTime * 1000000).toLong(),
+                MediaMetadataRetriever.OPTION_CLOSEST
+            )
+        } catch (e: IllegalArgumentException) {
             e.printStackTrace()
-        } catch (e : RuntimeException){
+        } catch (e: RuntimeException) {
             e.printStackTrace()
         } finally {
             try {
                 retriever.release()
-            } catch (e : RuntimeException){
+            } catch (e: RuntimeException) {
                 e.printStackTrace()
             }
         }
@@ -319,10 +321,21 @@ class DetailEtcActivity : AppCompatActivity(), AbuseResult, PictureResult {
 
     override fun recordSuccess(result: Result) {
         abuse_var.abuse.abuseIdx = result.abuseIdx
-        Log.d("저장한 거 ============================= ","날짜 : " + abuse_var.abuse.a_date +
-                "\n 시간 :" + abuse_var.abuse.a_time + "\n abuseIdx : " + abuse_var.abuse.abuseIdx.toString())
+        Log.d(
+            "저장한 거 ============================= ", "날짜 : " + abuse_var.abuse.a_date +
+                    "\n 시간 :" + abuse_var.abuse.a_time + "\n abuseIdx : " + abuse_var.abuse.abuseIdx.toString()
+        )
         Toast.makeText(this, "학대 정황 기록 성공.", Toast.LENGTH_SHORT).show()
         Log.d("RECORD/FAILURE", "학대 정황 기록 성공.")
+
+//        if (binding.pictureSelectedSpace.text != null) {
+//            Image_save()
+//        }
+
+//        if(binding.videoSelectedSpace.text != null)
+//            Video_save()
+
+//        Recording_save()
 
     }
 
@@ -333,22 +346,20 @@ class DetailEtcActivity : AppCompatActivity(), AbuseResult, PictureResult {
 
 
     /////////////////////////////// 이미지 전송 ///////////////////////////////////////////
-    private fun Image_save(){
-        Log.d("RECORD/FAILURE ==============================================================================================", "Image_save 실행")
+    private fun Image_save() {
+        Log.d(
+            "RECORD/FAILURE ==============================================================================================",
+            "Image_save 실행"
+        )
         Log.d("RECORD/FAILURE ==================================", pictureList[0].toString())
         val pictureService = PictureService()
         pictureService.setPicturedResult(this)
-        pictureService.sendPicture(pictureList, abuse_var.abuse.abuseIdx, childidx_var.childIdx.childIdx)
+        pictureService.sendPicture(
+            pictureList,
+            abuse_var.abuse.abuseIdx,
+            childidx_var.childIdx.childIdx
+        )
     }
-
-//    private fun getPictureSituation() : RequestBody{
-//        var picAbuseIdx = abuse_var.abuse.abuseIdx
-//        var picChildIdx = childidx_var.childIdx.childIdx
-//
-//        val jsonObject = JSONObject("{\"picAbuseIdx\" :\"${picAbuseIdx}\", \"picChildIdx\" :\"${picChildIdx}\"}").toString()
-//        val jsonBody = RequestBody.create("application/json".toMediaTypeOrNull(),jsonObject)
-//        return jsonBody
-//    }
 
     override fun postPictureSuccess(code: Int, result: com.umc.save.Record.Auth.Picture.Result) {
         Toast.makeText(this, "이미지 기록 성공.", Toast.LENGTH_SHORT).show()
@@ -360,58 +371,62 @@ class DetailEtcActivity : AppCompatActivity(), AbuseResult, PictureResult {
         Log.d("RECORD/FAILURE", "이미지 기록 실패.")
     }
 
-//
-//    ////////////////////////////////////// 비디오 전송 ///////////////////////////////////////
-//    private fun Video_save(){
-//        val videoService = VideoService()
-//        videoService.setVideodResult(this)
-//        videoService.postPicture(getVideoSituation())
-//    }
-//
-//    private fun getVideoSituation() : Video {
-//        var video = videoList
-//        var videoAbuseIdx = abuse_var.abuse.abuseIdx
-//        var videoChildIdx = childidx_var.childIdx.childIdx
-//
-//        return Video(video, videoAbuseIdx, videoChildIdx)
-//    }
-//
-//    override fun postVideoSuccess(code: Int, result: com.umc.save.Record.Auth.Video.Result) {
-//        Toast.makeText(this, "비디오 기록 성공.", Toast.LENGTH_SHORT).show()
-//        Log.d("RECORD/FAILURE", "비디오 기록 성공.")
-//    }
-//
-//    override fun postVideoFailure(code: Int, message: String) {
-//        Toast.makeText(this, "비디오 기록 성공.", Toast.LENGTH_SHORT).show()
-//        Log.d("RECORD/FAILURE", "비디오 기록 성공.")
-//    }
-//
-//    //////////////////////////////////// 오디오 전송 /////////////////////////////////////
-//    private fun Recording_save(){
-//        val recordingPostService = RecordingPostService()
-//        recordingPostService.setRecordingResult(this)
-//        recordingPostService.postRecording(getRecordingSituation())
-//    }
-//
-//    private fun getRecordingSituation() : Recording {
-//        var recording = audioList
-//        var recordingAbuseIdx = abuse_var.abuse.abuseIdx
-//        var recordingChildIdx = childidx_var.childIdx.childIdx
-//
-//        return Recording(recording, recordingAbuseIdx, recordingChildIdx)
-//    }
-//
-//    override fun postRecordingSuccess(
-//        code: Int,
-//        result: com.umc.save.Record.Auth.Recording.Result
-//    ) {
-//        Toast.makeText(this, "녹음 기록 성공.", Toast.LENGTH_SHORT).show()
-//        Log.d("RECORD/FAILURE", "녹음 기록 성공.")
-//    }
-//
-//    override fun postRecordingFailure(code: Int, message: String) {
-//        Toast.makeText(this, "녹음 기록 성공.", Toast.LENGTH_SHORT).show()
-//        Log.d("RECORD/FAILURE", "녹음 기록 성공.")
-//    }
+
+    ////////////////////////////////////// 비디오 전송 ///////////////////////////////////////
+    private fun Video_save() {
+        Log.d(
+            "RECORD/FAILURE ==============================================================================================",
+            "Video_save 실행"
+        )
+        Log.d("RECORD/FAILURE ==================================", videoList[0].toString())
+        val videoService = VideoService()
+        videoService.setVideoResult(this)
+        videoService.sendVideo(
+            videoList,
+            abuse_var.abuse.abuseIdx,
+            childidx_var.childIdx.childIdx
+        )
+    }
+
+    override fun postVideoSuccess(code: Int, result: com.umc.save.Record.Auth.Video.Result) {
+        Toast.makeText(this, "영상 기록 성공.", Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", "영상 기록 성공.")
+    }
+
+    override fun postVideoFailure(code: Int, message: String) {
+        Toast.makeText(this, "영상 기록 실패.", Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", "영상 기록 실패.")
+    }
+
+
+    //////////////////////////////////// 오디오 전송 /////////////////////////////////////
+    private fun Recording_save() {
+        Log.d(
+            "RECORD/FAILURE ==============================================================================================",
+            "Image_save 실행"
+        )
+        Log.d("RECORD/FAILURE ==================================", audioList[0].toString())
+        val recordingPostService = RecordingPostService()
+        recordingPostService.setVideoResult(this)
+        recordingPostService.sendRecording(
+            audioList,
+            abuse_var.abuse.abuseIdx,
+            childidx_var.childIdx.childIdx
+        )
+    }
+
+
+    override fun postRecordingSuccess(
+        code: Int,
+        result: com.umc.save.Record.Auth.Recording.Result
+    ) {
+        Toast.makeText(this, "녹음 기록 성공.", Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", "녹음 기록 성공.")
+    }
+
+    override fun postRecordingFailure(code: Int, message: String) {
+        Toast.makeText(this, "녹음 기록 성공.", Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", "녹음 기록 성공.")
+    }
 
 }
