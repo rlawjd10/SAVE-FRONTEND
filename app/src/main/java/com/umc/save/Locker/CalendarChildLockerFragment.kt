@@ -25,10 +25,12 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class CalendarChildLockerFragment(child: Int) : Fragment(), AbuseView{
+//    , DayViewDecorator
     lateinit var binding : FragmentLockerChildCalendarBinding
     var currentPosition = 0
     private var childIdx = child
     private var recordList = ArrayList<RecordData>()
+//    private final drawable : Drawable
 
     @SuppressLint("SimpleDateFormat")
     override fun onCreateView(
@@ -54,12 +56,20 @@ class CalendarChildLockerFragment(child: Int) : Fragment(), AbuseView{
 
         calendarView.setWeekDayLabels(weekdayList)
         calendarView.setTitleMonths(monthList)
+        calendarView.selectionMode = MaterialCalendarView.SELECTION_MODE_MULTIPLE
 
 //        calendarView.setTitleFormatter("yyyy / MM")
 //        calendarView.selectionMode = MaterialCalendarView.SELECTION_MODE_NONE
 
     }
 
+//    override fun shouldDecorate(day: CalendarDay?): Boolean {
+//        TODO("Not yet implemented")
+//    }
+//
+//    override fun decorate(view: DayViewFacade?) {
+//        TODO("Not yet implemented")
+//    }
 
     private fun getAbuseCases() {
 
@@ -72,6 +82,7 @@ class CalendarChildLockerFragment(child: Int) : Fragment(), AbuseView{
 
 
     //학대 정황 기록 가져오기 (디테일한 것 제외)
+    @SuppressLint("SimpleDateFormat")
     override fun onGetAbuseSuccess(code: Int, result: ArrayList<RecordData>) {
         recordList = result
 
@@ -80,7 +91,6 @@ class CalendarChildLockerFragment(child: Int) : Fragment(), AbuseView{
             val date = formatter.parse(recordList[i].abuseDate)
             binding.calendarView.setSelectedDate(date)
         }
-
 
         Log.d("recordList",recordList.toString())
 

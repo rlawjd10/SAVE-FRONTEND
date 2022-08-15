@@ -84,7 +84,13 @@ class SuspectEditRVAdapter (val suspectList : ArrayList<Suspect>) : RecyclerView
                 else -> "성별 모름"
             }
 
-            suspectInfo = gender + "/" + suspect.suspectAge
+            if (gender == "남자") {
+                binding.suspectInfoImage.setImageResource(R.drawable.ilst_male_01)
+            } else {
+                binding.suspectInfoImage.setImageResource(R.drawable.ilst_female_01)
+            }
+
+                suspectInfo = gender + "/" + suspect.suspectAge
 
             if(suspect.suspectAddress != null) {
                 suspectInfo = suspectInfo + "/" + suspect.suspectAddress

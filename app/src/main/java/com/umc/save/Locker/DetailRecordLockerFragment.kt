@@ -183,6 +183,19 @@ class DetailRecordLockerFragment : Fragment(), AbuseDetailView, DeleteRecordView
             else -> "성별 모름"
         }
 
+        when (gender) {
+            "남자" -> {
+                binding.suspectInfoImage.setImageResource(R.drawable.ilst_male_01)
+            }
+            "여자" -> {
+                binding.suspectInfoImage.setImageResource(R.drawable.ilst_female_01)
+            }
+            else -> {
+                binding.suspectInfoImage.setImageResource(R.drawable.fragment_white_background)
+            }
+        }
+
+
         suspectInfo = gender + "/" + result.suspect.suspectAge
 
         if(result.suspect.suspectAddress != null) {

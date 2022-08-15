@@ -79,6 +79,19 @@ class SuspectRVAdapter (private val suspectList : ArrayList<Suspect>) : Recycler
                 else -> "성별 모름"
             }
 
+            when (gender) {
+                "남자" -> {
+                    binding.suspectInfoImage.setImageResource(R.drawable.ilst_male_01)
+                }
+                "여자" -> {
+                    binding.suspectInfoImage.setImageResource(R.drawable.ilst_female_01)
+                }
+                else -> {
+                    binding.suspectInfoImage.setImageResource(R.drawable.fragment_white_background)
+                }
+            }
+
+
             suspectInfo = gender + "/" + suspect.suspectAge
 
             if(suspect.suspectAddress != null) {
