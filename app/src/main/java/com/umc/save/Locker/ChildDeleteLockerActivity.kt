@@ -15,6 +15,7 @@ import com.google.gson.Gson
 import com.umc.save.Home.option.HomeDialogFragment
 import com.umc.save.MainActivity
 import com.umc.save.R
+import com.umc.save.Record.Auth.ChildRecord.childidx_var
 import com.umc.save.Record.ChildRecordActivity
 import com.umc.save.databinding.ActivityLockerDeleteChildBinding
 
@@ -25,7 +26,6 @@ class ChildDeleteLockerActivity : AppCompatActivity(), ChildrenView, DeleteChild
     lateinit var binding : ActivityLockerDeleteChildBinding
     private var selectedItem = 0
     var selectedList = ArrayList<Child>()
-    var childList = ArrayList<Child>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -148,6 +148,7 @@ class ChildDeleteLockerActivity : AppCompatActivity(), ChildrenView, DeleteChild
 
 
     private fun openRecordActivity() {
+
         val intent = Intent(this, ChildRecordActivity::class.java)
         startActivity(intent)
     }

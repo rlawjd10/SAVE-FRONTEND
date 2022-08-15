@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="19dp"
-        android:src="@drawable/ilst_girl_01_blue"
+        android:src="@drawable/ilst_male_01"
         app:layout_constraintStart_toStartOf="@id/suspect_wrapper_cv"
         app:layout_constraintTop_toTopOf="@id/suspect_wrapper_cv" />
 

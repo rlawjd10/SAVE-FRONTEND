@@ -14,11 +14,13 @@ import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.umc.save.Home.option.HomeDialogFragment
 import com.umc.save.R
+import com.umc.save.Record.Auth.ChildRecord.childidx_var
 import com.umc.save.Record.ChildRecordActivity
 import com.umc.save.Record.OffenderRecordActivity
 import com.umc.save.databinding.ActivityLockerDeleteChildBinding
 import com.umc.save.databinding.ActivityLockerDeleteSuspectBinding
 import com.umc.save.databinding.ActivityLockerPictureBinding
+import kotlin.properties.Delegates
 
 class SuspectDeleteLockerActivity : AppCompatActivity(), SuspectsView, DeleteSuspectView {
 
@@ -27,6 +29,7 @@ class SuspectDeleteLockerActivity : AppCompatActivity(), SuspectsView, DeleteSus
     private var selectedItem = 0
     var selectedList = ArrayList<Suspect>()
     private var gson : Gson = Gson()
+    private var childIdx : Int = -1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +39,7 @@ class SuspectDeleteLockerActivity : AppCompatActivity(), SuspectsView, DeleteSus
 
         initActionBar()
 
-        val childIdx = intent.getIntExtra("childIdx",-1)
+        childIdx = intent.getIntExtra("childIdx",-1)
 
         getSuspects(childIdx)
 
@@ -146,9 +149,9 @@ class SuspectDeleteLockerActivity : AppCompatActivity(), SuspectsView, DeleteSus
     }
 
 
-
-
     private fun openRecordActivity() {
+        childidx_var.childIdx.childIdx = childIdx
+
         val intent = Intent(this, OffenderRecordActivity::class.java)
         startActivity(intent)
     }

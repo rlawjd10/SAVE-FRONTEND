@@ -4,16 +4,45 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/child_info_iv"
-        android:layout_width="306dp"
-        android:layout_height="96dp"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/fragment_child_blue_background"
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="28dp"
+        android:backgroundTint="@color/dark_red"
+        android:contentDescription="Call Police"
+        android:src="@drawable/icn_report_large"
+        app:fabCustomSize="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:maxImageSize="35dp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/child_wrapper_cv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="14dp"
+        android:layout_marginTop="52dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/child_info_iv"
+            android:layout_width="306dp"
+            android:layout_height="96dp"
+            android:background="@color/blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.cardview.widget.CardView>
+
 
     <ImageView
         android:id="@+id/child_info_image"
@@ -22,8 +51,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="19dp"
         android:src="@drawable/ilst_girl_01_blue"
-        app:layout_constraintStart_toStartOf="@id/child_info_iv"
-        app:layout_constraintTop_toTopOf="@id/child_info_iv" />
+        app:layout_constraintStart_toStartOf="@id/child_wrapper_cv"
+        app:layout_constraintTop_toTopOf="@id/child_wrapper_cv" />
 
 
     <TextView
@@ -36,8 +65,8 @@
         android:text="박예명"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/child_info_iv"
-        app:layout_constraintTop_toTopOf="@id/child_info_iv" />
+        app:layout_constraintStart_toStartOf="@id/child_wrapper_cv"
+        app:layout_constraintTop_toTopOf="@id/child_wrapper_cv" />
 
     <TextView
         android:id="@+id/child_info_specific_tv"
@@ -49,8 +78,8 @@
         android:text="여자/5세/서울시 마포구 상암동"
         android:textColor="@color/black"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@id/child_info_iv"
-        app:layout_constraintTop_toTopOf="@id/child_info_iv" />
+        app:layout_constraintStart_toStartOf="@id/child_wrapper_cv"
+        app:layout_constraintTop_toTopOf="@id/child_wrapper_cv" />
 
     <TextView
         android:id="@+id/child_info_date_tv"
@@ -62,14 +91,14 @@
         android:text="2022.07.05"
         android:textColor="@color/white"
         android:textSize="8sp"
-        app:layout_constraintStart_toStartOf="@id/child_info_iv"
-        app:layout_constraintTop_toTopOf="@id/child_info_iv" />
+        app:layout_constraintStart_toStartOf="@id/child_wrapper_cv"
+        app:layout_constraintTop_toTopOf="@id/child_wrapper_cv" />
 
     <FrameLayout
         android:id="@+id/locker_frm"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/child_info_iv"
+        app:layout_constraintTop_toBottomOf="@id/child_wrapper_cv"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 

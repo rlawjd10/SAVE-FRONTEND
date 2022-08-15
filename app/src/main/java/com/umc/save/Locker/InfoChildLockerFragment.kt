@@ -1,15 +1,18 @@
 package com.umc.save.Locker
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import com.umc.save.MainActivity
 import com.umc.save.R
-import com.umc.save.databinding.FragmentLockerChildExpandBinding
 import com.umc.save.databinding.FragmentLockerChildInfoBinding
 import java.text.SimpleDateFormat
 
@@ -33,6 +36,16 @@ class InfoChildLockerFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val fab : FloatingActionButton = view.findViewById(R.id.fab)
+        fab.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:112"))
+            startActivity(intent)
+        }
+    }
+
 
     @SuppressLint("SimpleDateFormat")
     private fun setInit(child: Child){
@@ -42,6 +55,66 @@ class InfoChildLockerFragment : Fragment() {
             "male" -> "남자"
             "female" -> "여자"
             else -> "성별 모름"
+        }
+
+        //이미지 랜덤으로 보여지게 하기 (다시 로딩 되어도 그 아동은 그 이미지로)
+        val imageSelect = child.childIdx % 15
+
+        if (gender == "남자") {
+
+            when (imageSelect) {
+                0 -> binding.childInfoImage.setImageResource(R.drawable.ilst_boy_05_green)
+                1 -> binding.childInfoImage.setImageResource(R.drawable.ilst_boy_01_blue)
+                2 -> binding.childInfoImage.setImageResource(R.drawable.ilst_boy_02_red)
+                3 -> binding.childInfoImage.setImageResource(R.drawable.ilst_boy_03_green)
+                4 -> binding.childInfoImage.setImageResource(R.drawable.ilst_boy_04_blue)
+                5 -> binding.childInfoImage.setImageResource(R.drawable.ilst_boy_05_red)
+                6 -> binding.childInfoImage.setImageResource(R.drawable.ilst_boy_01_green)
+                7 -> binding.childInfoImage.setImageResource(R.drawable.ilst_boy_02_blue)
+                8 -> binding.childInfoImage.setImageResource(R.drawable.ilst_boy_03_red)
+                9 -> binding.childInfoImage.setImageResource(R.drawable.ilst_boy_04_green)
+                10 -> binding.childInfoImage.setImageResource(R.drawable.ilst_boy_05_blue)
+                11 -> binding.childInfoImage.setImageResource(R.drawable.ilst_boy_01_red)
+                12 -> binding.childInfoImage.setImageResource(R.drawable.ilst_boy_02_green)
+                13 -> binding.childInfoImage.setImageResource(R.drawable.ilst_boy_03_blue)
+                14 -> binding.childInfoImage.setImageResource(R.drawable.ilst_boy_04_red)
+            }
+
+
+        } else if (gender =="여자") {
+
+            when (imageSelect) {
+                0 -> binding.childInfoImage.setImageResource(R.drawable.ilst_girl_05_green)
+                1 -> binding.childInfoImage.setImageResource(R.drawable.ilst_girl_01_blue)
+                2 -> binding.childInfoImage.setImageResource(R.drawable.ilst_girl_02_red)
+                3 -> binding.childInfoImage.setImageResource(R.drawable.ilst_girl_03_green)
+                4 -> binding.childInfoImage.setImageResource(R.drawable.ilst_girl_04_blue)
+                5 -> binding.childInfoImage.setImageResource(R.drawable.ilst_girl_05_red)
+                6 -> binding.childInfoImage.setImageResource(R.drawable.ilst_girl_01_green)
+                7 -> binding.childInfoImage.setImageResource(R.drawable.ilst_girl_02_blue)
+                8 -> binding.childInfoImage.setImageResource(R.drawable.ilst_girl_03_red)
+                9 -> binding.childInfoImage.setImageResource(R.drawable.ilst_girl_04_green)
+                10 -> binding.childInfoImage.setImageResource(R.drawable.ilst_girl_05_blue)
+                11 -> binding.childInfoImage.setImageResource(R.drawable.ilst_girl_01_red)
+                12 -> binding.childInfoImage.setImageResource(R.drawable.ilst_girl_02_green)
+                13 -> binding.childInfoImage.setImageResource(R.drawable.ilst_girl_03_blue)
+                14 -> binding.childInfoImage.setImageResource(R.drawable.ilst_girl_04_red)
+            }
+
+        } else {
+            binding.childInfoImage.setImageResource(R.drawable.fragment_white_background)
+        }
+
+
+        when (imageSelect) {
+
+            //green
+            0,3,6,9,12 -> binding.childInfoIv.setBackgroundResource(R.color.green)
+            //blue
+            1,4,7,10,13 -> binding.childInfoIv.setBackgroundResource(R.color.blue)
+            //red
+            2,5,8,11,14 -> binding.childInfoIv.setBackgroundResource(R.color.dark_red)
+
         }
 
         childInfo = gender + "/" + child.childAge + "/" + child.childAddress

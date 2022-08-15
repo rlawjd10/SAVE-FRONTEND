@@ -30,12 +30,9 @@ class LockerFragment : Fragment(), ChildrenView {
     ): View? {
         binding = FragmentLockerBinding.inflate(inflater,container,false)
 
-
-
         binding.lockerChildEditTv.setOnClickListener {
             openDeleteActivity()
         }
-
 
         return binding.root
     }
@@ -47,7 +44,7 @@ class LockerFragment : Fragment(), ChildrenView {
 
     }
 
-
+    //서버에서 아동 리스트 가져오기
     private fun getChildren() {
 
         val childrenService = ChildrenService()
@@ -57,6 +54,7 @@ class LockerFragment : Fragment(), ChildrenView {
 
     }
 
+    //리사이클러뷰 불러오기
     private fun initRecyclerView(result : ArrayList<Child>) {
         val childRVAdapter = ChildRVAdapter(result)
 //        requireContext(),result
