@@ -2,6 +2,7 @@ package com.umc.save.Locker
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +13,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import com.umc.save.MainActivity
 import com.umc.save.R
-import com.umc.save.databinding.FragmentLockerChildExpandBinding
 import com.umc.save.databinding.FragmentLockerChildInfoBinding
 import java.text.SimpleDateFormat
 
@@ -58,8 +58,9 @@ class InfoChildLockerFragment : Fragment() {
         }
 
         //이미지 랜덤으로 보여지게 하기 (다시 로딩 되어도 그 아동은 그 이미지로)
+        val imageSelect = child.childIdx % 15
+
         if (gender == "남자") {
-            val imageSelect = child.childIdx % 15
 
             when (imageSelect) {
                 0 -> binding.childInfoImage.setImageResource(R.drawable.ilst_boy_05_green)
@@ -81,7 +82,6 @@ class InfoChildLockerFragment : Fragment() {
 
 
         } else if (gender =="여자") {
-            val imageSelect = child.childIdx % 15
 
             when (imageSelect) {
                 0 -> binding.childInfoImage.setImageResource(R.drawable.ilst_girl_05_green)
@@ -106,9 +106,16 @@ class InfoChildLockerFragment : Fragment() {
         }
 
 
+        when (imageSelect) {
 
+            //green
+            0,3,6,9,12 -> binding.childInfoIv.setBackgroundResource(R.color.green)
+            //blue
+            1,4,7,10,13 -> binding.childInfoIv.setBackgroundResource(R.color.blue)
+            //red
+            2,5,8,11,14 -> binding.childInfoIv.setBackgroundResource(R.color.dark_red)
 
-
+        }
 
         childInfo = gender + "/" + child.childAge + "/" + child.childAddress
 

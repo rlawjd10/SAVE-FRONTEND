@@ -91,7 +91,6 @@ class SuspectRVAdapter (private val suspectList : ArrayList<Suspect>) : Recycler
                 }
             }
 
-
             suspectInfo = gender + "/" + suspect.suspectAge
 
             if(suspect.suspectAddress != null) {

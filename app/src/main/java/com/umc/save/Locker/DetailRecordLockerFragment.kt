@@ -43,6 +43,7 @@ class DetailRecordLockerFragment : Fragment(), AbuseDetailView, DeleteRecordView
     ): View? {
         binding = FragmentLockerRecordDetailBinding.inflate(inflater,container,false)
 
+//        binding.scrollView.setEdgeEffectColor()
         val abuseIdx = arguments?.getInt("abuseIdx")
 
         //서버에서 데이터 받아오기

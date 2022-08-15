@@ -2,6 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_view"
+    android:overScrollMode="never"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,19 +13,6 @@
         android:layout_height="wrap_content"
         android:paddingBottom="28dp">
 
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--            android:id="@+id/fab"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="end|bottom"-->
-<!--            android:layout_marginEnd="19dp"-->
-<!--            android:backgroundTint="@color/dark_red"-->
-<!--            android:contentDescription="Call Police"-->
-<!--            android:src="@drawable/icn_report_large"-->
-<!--            app:fabCustomSize="72dp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:maxImageSize="35dp" />-->
 
         <ImageView
             android:id="@+id/suspect_info_iv"
@@ -318,6 +307,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recording_list_rv"
             android:layout_width="match_parent"
+            android:overScrollMode="never"
             android:layout_height="wrap_content"
             android:layout_marginTop="16.93dp"
             android:orientation="vertical"

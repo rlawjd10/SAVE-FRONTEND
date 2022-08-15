@@ -1,8 +1,10 @@
 package com.umc.save.Locker
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +16,8 @@ import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import com.prolificinteractive.materialcalendarview.format.TitleFormatter
+import com.prolificinteractive.materialcalendarview.spans.DotSpan
 import com.umc.save.R
 import com.umc.save.databinding.FragmentLockerChildCalendarBinding
 import com.umc.save.databinding.FragmentLockerChildListBinding
@@ -24,7 +28,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CalendarChildLockerFragment(child: Int) : Fragment(), AbuseView{
+class CalendarChildLockerFragment(child: Int) : Fragment(), AbuseView {
 //    , DayViewDecorator
     lateinit var binding : FragmentLockerChildCalendarBinding
     var currentPosition = 0
@@ -42,26 +46,62 @@ class CalendarChildLockerFragment(child: Int) : Fragment(), AbuseView{
 
         getAbuseCases()
 
+        val weekdayList = arrayOf("SUN","MON","TUE","WED","THU","FRI","SAT")
+        val monthList = arrayOf("01","02","03","04","05","06","07","08","09","10","11","12")
+        val disabledDates = hashSetOf<CalendarDay>()
+        disabledDates.add( CalendarDay.from(2020,1,1)
+        )
+        binding.calendarView.apply {
+            addDecorator(Disable(disabledDates))
+            setWeekDayLabels(weekdayList)
+            setTitleMonths(monthList)
+//            setTitleFormatter()
+            selectionMode = MaterialCalendarView.SELECTION_MODE_MULTIPLE
+//            setTitleFormatter(MyTitleFormatter())
+
+        }
+
         return binding.root
     }
 
 
-    @SuppressLint("SimpleDateFormat")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    inner class MyTitleFormatter : TitleFormatter {
+        @SuppressLint("SimpleDateFormat")
+        override fun format(day: CalendarDay?): CharSequence {
+            val simpleDateFormat =
+                SimpleDateFormat("yyyy / MM")
 
-        val weekdayList = arrayOf("SUN","MON","TUE","WED","THU","FRI","SAT")
-        val monthList = arrayOf("01","02","03","04","05","06","07","08","09","10","11","12")
-        val calendarView = view.findViewById<MaterialCalendarView>(R.id.calendar_view)
-
-        calendarView.setWeekDayLabels(weekdayList)
-        calendarView.setTitleMonths(monthList)
-        calendarView.selectionMode = MaterialCalendarView.SELECTION_MODE_MULTIPLE
-
-//        calendarView.setTitleFormatter("yyyy / MM")
-//        calendarView.selectionMode = MaterialCalendarView.SELECTION_MODE_NONE
+            return simpleDateFormat.format(Calendar.getInstance().time)
+        }
 
     }
+
+
+//    private var dates = HashSet<CalendarDay>()
+//    private var today: CalendarDay
+//
+//    constructor(dates: HashSet<CalendarDay>, today: CalendarDay) {
+//        this.dates = dates
+//        this.today = today
+//    }
+
+
+    inner class Disable (
+        private var dates: HashSet<CalendarDay> = HashSet<CalendarDay>()
+
+    ) : DayViewDecorator {
+
+        override fun shouldDecorate(day: CalendarDay): Boolean {
+            return true
+        }
+
+        override fun decorate(view: DayViewFacade?) {
+            view?.setDaysDisabled(true)
+        }
+    }
+
+
+
 
 //    override fun shouldDecorate(day: CalendarDay?): Boolean {
 //        TODO("Not yet implemented")

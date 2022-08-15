@@ -10,6 +10,7 @@
         android:id="@+id/child_list_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:overScrollMode="never"
         android:layout_marginTop="124dp"
         android:layout_marginBottom="32dp"
         android:orientation="vertical"
