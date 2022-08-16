@@ -18,7 +18,7 @@ class VideoService {
         this.videoResult = videoResult
     }
 
-    fun sendVideo(video : ArrayList<MultipartBody.Part>, vidAbuseIdx_get : Int, vidChildIdx_get : Int){
+    fun sendVideo(video : ArrayList<MultipartBody.Part>, thumbnail : MultipartBody.Part, vidAbuseIdx_get : Int, vidChildIdx_get : Int){
 
         val authService = getRetrofit().create(VideoRetrofitInterfaces::class.java)
 
@@ -36,7 +36,7 @@ class VideoService {
         Log.d("RECORD/FAILURE ==============================================================================================", video[0].toString())
         Log.d("RECORD/FAILURE ==============================================================================================", postVideoReq.toString())
 
-        authService.sendVideo(video, postVideoReq).enqueue(object: Callback<VideoPostResponse> {
+        authService.sendVideo(video, thumbnail, postVideoReq).enqueue(object: Callback<VideoPostResponse> {
             override fun onResponse(call: Call<VideoPostResponse>, response: Response<VideoPostResponse>) {
                 Log.d("RECORD/SUCCESS",response.toString())
                 val resp: VideoPostResponse = response.body()!!

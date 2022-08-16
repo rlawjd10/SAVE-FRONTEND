@@ -2,6 +2,7 @@ package com.umc.save.Record.RecordDetail
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -79,6 +80,8 @@ class ChooseOffenderActivity : AppCompatActivity(), SuspectGetResult {
                 suspectIdx_var.suspectIdx.suspectIdx = suspectRVAdapter.get_suspectIdx
 
                 Log.d("현재 childIdx값 ============================= ",suspectIdx_var.suspectIdx.suspectIdx.toString())
+
+                binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_red_background)
             }
         } )
     }

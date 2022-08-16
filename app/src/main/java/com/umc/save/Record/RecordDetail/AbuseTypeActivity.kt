@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -48,6 +49,13 @@ class AbuseTypeActivity : AppCompatActivity() {
                 binding.physicalAbuseBtn.isSelected = false
                 abuse_var.abuse.a_type = ""
             }
+
+            Log.d("abuse type ======================================================", abuse_var.abuse.a_type)
+            if(!abuse_var.abuse.a_type.equals(""))
+                binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_red_background)
+            else{
+                binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+            }
         }
 
         binding.emotionalAbuseBtn.setOnClickListener{
@@ -70,6 +78,13 @@ class AbuseTypeActivity : AppCompatActivity() {
             } else{
                 binding.emotionalAbuseBtn.isSelected = false
                 abuse_var.abuse.a_type = ""
+            }
+
+            Log.d("abuse type ======================================================", abuse_var.abuse.a_type)
+            if(!abuse_var.abuse.a_type.equals(""))
+                binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_red_background)
+            else{
+                binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_gray_background)
             }
         }
 
@@ -94,6 +109,13 @@ class AbuseTypeActivity : AppCompatActivity() {
                 binding.sexualAbuseBtn.isSelected = false
                 abuse_var.abuse.a_type = ""
             }
+
+            Log.d("abuse type ======================================================", abuse_var.abuse.a_type)
+            if(!abuse_var.abuse.a_type.equals(""))
+                binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_red_background)
+            else{
+                binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+            }
         }
 
         binding.neglectAbuseBtn.setOnClickListener{
@@ -117,7 +139,17 @@ class AbuseTypeActivity : AppCompatActivity() {
                 binding.neglectAbuseBtn.isSelected = false
                 abuse_var.abuse.a_type = ""
             }
+
+            Log.d("abuse type ======================================================", abuse_var.abuse.a_type)
+            if(!abuse_var.abuse.a_type.equals(""))
+                binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_red_background)
+            else{
+                binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+            }
+                binding.nextBtn.setBackgroundColor(Color.parseColor("#FF7F61"))
         }
+
+
 
         binding.nextBtn.setOnClickListener{
             startActivity(Intent(this, CalendarTimePlaceActivity::class.java))

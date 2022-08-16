@@ -6,6 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.umc.save.Home.HomeFragment
+import com.umc.save.Home.option.HomeAlarmFragment
+import com.umc.save.Home.option.HomeSettingsFragment
+import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.databinding.FragmentLockerBinding
 import com.umc.save.databinding.FragmentRecordMainBinding
@@ -21,6 +25,8 @@ class RecordFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentRecordMainBinding.inflate(inflater,container,false)
+
+        initActionBar()
 
         return binding.root
 
@@ -47,5 +53,26 @@ class RecordFragment : Fragment() {
 
     }
 
+    private fun initActionBar() {
+
+        binding.mainActionbar.actionMainHomeIv.setOnClickListener {
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, HomeFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
+        binding.mainActionbar.actionMainAlarmIv.setOnClickListener {
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, HomeAlarmFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
+        binding.mainActionbar.actionMainSettingsIv.setOnClickListener {
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, HomeSettingsFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
+    }
 
 }

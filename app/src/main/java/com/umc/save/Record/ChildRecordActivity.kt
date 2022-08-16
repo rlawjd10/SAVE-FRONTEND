@@ -5,6 +5,8 @@ import android.graphics.Color
 import android.icu.number.IntegerWidth
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -14,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.umc.save.R
 import com.umc.save.Record.Auth.ChildRecord.*
+import com.umc.save.Sign.Auth.userIdx_var
 import com.umc.save.databinding.ActivityChildRecordBinding
 import com.umc.save.databinding.ActivityOffenderRecordBinding
 
@@ -126,15 +129,36 @@ class ChildRecordActivity : AppCompatActivity(), ChildRecordResult {
                 binding.recordChildAgeNS.setTextColor(Color.parseColor("#B5B5B5"))
                 binding.recordChildAgeNS.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.dark_gray)
             }
+
+
         }
 
+        binding.recordChildAddressBase.addTextChangedListener(object :TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                if(!binding.recordChildName.text.equals("")
+                        && (binding.childMale.isSelected|| binding.childFemale.isSelected || binding.childDontKnow.isSelected)
+                        && !binding.recordChildAge.text.equals("")
+                        && !binding.recordChildAddressBase.text.equals(""))
+                    binding.recordDone.setBackgroundResource(R.drawable.fragment_dark_red_background)
+                else{
+                    binding.recordDone.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+                }
+            }
+
+        })
 
 
         binding.recordDone.setOnClickListener{
             save()
 
-            val intent = Intent(this, OffenderRecordActivity::class.java)
-            startActivity(intent)
             var childIdx : String = binding.childIdx.text.toString()
 //            intent.putExtra("childIdx_send", childIdx)
             Log.d("binding.childIdx 값 11111111 ============================ ", childIdx)
@@ -142,7 +166,7 @@ class ChildRecordActivity : AppCompatActivity(), ChildRecordResult {
     }
 
     private fun getChild() : Child {
-        var userIdx = 23
+        var userIdx = userIdx_var.UserIdx.UserIdx
         val childName : String = binding.recordChildName.text.toString()
         val isCertain : Boolean
         if(binding.nameNotSureBtn.isSelected) {
@@ -162,23 +186,15 @@ class ChildRecordActivity : AppCompatActivity(), ChildRecordResult {
             childAge = childAge + "세 ~ " + binding.recordChildAgeNS.text.toString() + "세"
 
         val childAdress : String = binding.recordChildAddressBase.text.toString()
+
         val childDetailAdress : String = binding.recordChildAddressDetail.text.toString()
+
+        Log.d("childDetailAdress =============================== ", childDetailAdress)
 
         return Child(userIdx, childName, isCertain, childGender, childAge, childAdress, childDetailAdress)
     }
 
     private fun save() {
-        if (binding.recordChildName.text.toString().isEmpty()) {
-            Toast.makeText(this, "아동의 이름을 입력해주세요.", Toast.LENGTH_SHORT).show()
-            return
-        }
-        if (binding.childMale.isSelected.toString().isEmpty()
-            && binding.childFemale.isSelected.toString().isEmpty()
-            && binding.childDontKnow.isSelected.toString().isEmpty()) {
-            Toast.makeText(this, "아동의 성별을 입력해주세요.", Toast.LENGTH_SHORT).show()
-            return
-        }
-
         val childRecordService = ChildRecordService()
         childRecordService.setRecordResult(this)
         childRecordService.record(getChild())
@@ -191,8 +207,40 @@ class ChildRecordActivity : AppCompatActivity(), ChildRecordResult {
         Log.d("변환 값 ==========================", childidx_var.childIdx.childIdx.toString())
         Toast.makeText(this, "아동 기록 성공.", Toast.LENGTH_SHORT).show()
         Log.d("RECORD/FAILURE", "아동 기록 성공.")
+
+        val intent = Intent(this, OffenderRecordActivity::class.java)
+        startActivity(intent)
     }
 
+    override fun NeedUserIdx(code: Int, message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", message)
+    }
+
+    override fun NeedChildName(code: Int, message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", message)
+    }
+
+    override fun NeedChildGender(code: Int, message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", message)
+    }
+
+    override fun NeedChildAge(code: Int, message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", message)
+    }
+
+    override fun NeedChildAddress(code: Int, message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", message)
+    }
+
+    override fun UserDontExist(code: Int, message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", message)
+    }
 
     override fun recordFailure() {
         Toast.makeText(this, "아동 기록 실패.", Toast.LENGTH_SHORT).show()

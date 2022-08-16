@@ -19,7 +19,7 @@
         android:layout_marginLeft="50dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="197dp"
         />
     <TextView
         android:id="@+id/type_txt2"
@@ -132,7 +132,7 @@
         android:layout_width="306dp"
         android:layout_height="44dp"
         android:id="@+id/next_btn"
-        android:background="#B5B5B5"
+        android:background="@drawable/fragment_dark_gray_background"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

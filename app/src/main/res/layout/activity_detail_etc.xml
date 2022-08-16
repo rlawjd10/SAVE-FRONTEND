@@ -37,11 +37,13 @@
                 android:layout_width="306dp"
                 android:layout_height="206dp"
                 android:layout_marginTop="26dp"
-                android:background="@color/red"
+                android:background="@drawable/fragment_child_red_on_background"
                 android:fontFamily="@font/pretendard_medium"
                 android:gravity="top"
                 android:lineSpacingExtra="16pt"
 
+                android:text=""
+                android:textColor="@color/dark_red"
                 android:maxWidth="207dp"
                 android:maxHeight="172dp"
                 android:paddingLeft="18dp"
@@ -76,7 +78,7 @@
                 android:layout_width="306dp"
                 android:layout_height="96dp"
                 android:layout_marginTop="26dp"
-                android:background="@color/red"
+                android:background="@drawable/fragment_child_red_on_background"
                 android:fontFamily="@font/pretendard_medium"
                 android:gravity="top"
                 android:lineSpacingExtra="16pt"
@@ -85,6 +87,9 @@
                 android:maxHeight="172dp"
                 android:paddingLeft="18dp"
                 android:paddingTop="16dp"
+
+                android:text=""
+                android:textColor="@color/dark_red"
 
                 android:paddingRight="18dp"
                 android:paddingBottom="18dp"
@@ -282,7 +287,7 @@
                 android:layout_height="44dp"
                 android:layout_marginTop="31dp"
                 android:layout_marginBottom="54dp"
-                android:background="@color/dark_red"
+                android:background="@drawable/fragment_dark_red_background"
                 android:fontFamily="@font/pretendard_semi_bold"
                 android:gravity="center"
 
@@ -295,14 +300,6 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/record_selected_space" />
 
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:id="@+id/thumbnail"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_next"
-                tools:ignore="MissingConstraints" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

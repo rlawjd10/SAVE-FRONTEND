@@ -18,19 +18,30 @@
         android:fontFamily="@font/pretendard_bold"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="104dp"
         />
 
-    <CalendarView
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendar"
-        android:layout_width="match_parent"
-        android:layout_height="258dp"
-        app:layout_constraintTop_toBottomOf="@+id/date"
+        android:layout_width="306dp"
+        android:layout_height="200dp"
+        app:mcv_showOtherDates="defaults"
+        app:mcv_selectionColor="@color/dark_red"
+        android:background="@drawable/fragment_white_background"
+        android:layout_marginTop="26dp"
+        app:layout_constraintTop_toTopOf="@id/date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:mcv_tileSize="35dp"
+        app:mcv_arrowColor="@color/dark_red"
+        app:mcv_dateTextAppearance="@style/CalenderViewDateCustomText"
+
+        app:mcv_headerTextAppearance="@style/CalenderWidgetHeader"
+        app:mcv_leftArrowMask="@drawable/icn_left"
+        app:mcv_rightArrowMask="@drawable/icn_right"
+        app:mcv_weekDayTextAppearance="@style/CalenderViewWeekCustomText" />
 
 
-        android:fontFamily="@font/pretendard_bold"
-        android:textColor="@color/black"
-        />
 
     <!-- 시간 -->
     <TextView
@@ -49,61 +60,21 @@
 
         />
 
-    <!-- AM -->
-    <android.widget.Button
-        android:id="@+id/time_AM"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
 
-        app:layout_constraintStart_toStartOf="@id/date"
-        app:layout_constraintTop_toBottomOf="@id/time"
-
-        android:layout_marginTop="35dp"
-
-        android:gravity="left"
-        android:text="AM"
-        android:fontFamily="@font/pretendard_bold"
-        android:textColor="@drawable/txt_color_dark_gray_to_dark_red"
-        android:textSize="20sp"
-        />
-
-    <!-- AM -->
-    <android.widget.Button
-        android:id="@+id/time_PM"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-
-        app:layout_constraintLeft_toRightOf="@id/time_AM"
-        app:layout_constraintTop_toBottomOf="@id/time"
-
-        android:layout_marginTop="35dp"
-        android:layout_marginLeft="5dp"
-
-        android:gravity="left"
-        android:text="PM"
-        android:fontFamily="@font/pretendard_bold"
-        android:textColor="@drawable/txt_color_dark_gray_to_dark_red"
-        android:textSize="20sp"
-        />
-
-
-    <!-- 시간 추가 -->
-
+    <!-- 시간 선택 -->
     <TimePicker
         android:id="@+id/timePicker"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="56dp"
+
         android:timePickerMode="spinner"
+        app:layout_constraintLeft_toRightOf="@+id/time"
+        app:layout_constraintRight_toRightOf="parent"
 
-        app:layout_constraintLeft_toRightOf="@+id/time_PM"
-        app:layout_constraintBottom_toTopOf="@id/record_place"
-        />
-
-
+        app:layout_constraintTop_toTopOf="@+id/time" />
 
     <!-- 목격 장소 -->
     <TextView
@@ -111,9 +82,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/date"
-        app:layout_constraintTop_toBottomOf="@id/time_AM"
+        app:layout_constraintTop_toBottomOf="@id/timePicker"
 
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
 
         android:text="목격 장소"
         android:fontFamily="@font/pretendard_bold"
@@ -133,7 +104,9 @@
 
         android:inputType="textPersonName"
         android:textSize="12sp"
-        android:text="직접 입력"
+        android:text=""
+        android:hint="직접 입력"
+        android:textColorHint="@color/dark_red"
         android:fontFamily="@font/pretendard_semi_bold"
         android:textColor="#FF7F61"
         tools:ignore="MissingConstraints" />
@@ -144,14 +117,13 @@
         android:layout_width="306dp"
         android:layout_height="44dp"
         android:id="@+id/btn_next"
-        android:background="@color/dark_gray"
+        android:background="@drawable/fragment_dark_gray_background"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/record_place"
 
-        android:layout_marginBottom="58dp"
-        android:layout_marginTop="54dp"
+
         android:text="다음"
         android:gravity="center"
         android:textColor="@color/white"
