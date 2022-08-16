@@ -4,10 +4,10 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MotionEvent
-import android.view.View
+import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.NavHostFragment
@@ -29,8 +29,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         initBottomNavigation()
-        initActionBar()
+//        initActionBar()
     }
 
     // 키보드를 다른곳 터치 시 내려주는 메소드
@@ -66,24 +67,23 @@ class MainActivity : AppCompatActivity() {
     }*/
 
     //action bar 홈&알림&설정 아이콘 클릭하면 to fragment
-    private fun initActionBar() {
-        binding.mainActionbar.actionMainHomeIv.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.main_frm, HomeFragment())
-                .commitAllowingStateLoss()
-        }
-        binding.mainActionbar.actionMainAlarmIv.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.main_frm, HomeAlarmFragment())
-                .commitAllowingStateLoss()
-        }
-        binding.mainActionbar.actionMainSettingsIv.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.main_frm, HomeSettingsFragment())
-                .commitAllowingStateLoss()
-        }
-    }
-
+//    private fun initActionBar() {
+//        binding.mainActionbar.actionMainHomeIv.setOnClickListener {
+//            supportFragmentManager.beginTransaction()
+//                .replace(R.id.main_frm, HomeFragment())
+//                .commitAllowingStateLoss()
+//        }
+//        binding.mainActionbar.actionMainAlarmIv.setOnClickListener {
+//            supportFragmentManager.beginTransaction()
+//                .replace(R.id.main_frm, HomeAlarmFragment())
+//                .commitAllowingStateLoss()
+//        }
+//        binding.mainActionbar.actionMainSettingsIv.setOnClickListener {
+//            supportFragmentManager.beginTransaction()
+//                .replace(R.id.main_frm, HomeSettingsFragment())
+//                .commitAllowingStateLoss()
+//        }
+//    }
 
     private fun initBottomNavigation() {
         supportFragmentManager.beginTransaction()

@@ -7,6 +7,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/main_actionbar"
+        layout="@layout/fragment_actionbar" />
+
     <TextView
         android:id="@+id/suspect_title_tv"
         android:layout_width="306dp"
@@ -16,7 +20,7 @@
         android:lineHeight="38.4dp"
         android:textColor="@color/black"
         android:textSize="32sp"
-        android:layout_marginTop="147dp"
+        android:layout_marginTop="197dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +43,7 @@
         android:id="@+id/suspect_list_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="278dp"
+        android:layout_marginTop="326dp"
         android:overScrollMode="never"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

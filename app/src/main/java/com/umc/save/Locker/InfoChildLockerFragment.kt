@@ -5,12 +5,17 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
+import com.umc.save.Home.HomeFragment
+import com.umc.save.Home.option.HomeAlarmFragment
+import com.umc.save.Home.option.HomeSettingsFragment
 import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.databinding.FragmentLockerChildInfoBinding
@@ -30,14 +35,21 @@ class InfoChildLockerFragment : Fragment() {
         val childJson = arguments?.getString("child")
         val child = gson.fromJson(childJson,Child::class.java)
 
+
+        initActionBar()
+
         setInit(child)
         setRecord(child)
 
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+//        val actionBar = view.findViewById<TextView>(R.id.appbar_page_name_tv)
+//        actionBar.text = "보관함"
 
         val fab : FloatingActionButton = view.findViewById(R.id.fab)
         fab.setOnClickListener {
@@ -45,6 +57,30 @@ class InfoChildLockerFragment : Fragment() {
             startActivity(intent)
         }
     }
+
+
+    private fun initActionBar() {
+
+        binding.mainActionbar.appbarPageNameTv.text = "보관함"
+
+        binding.mainActionbar.appbarBackBtn.setOnClickListener {
+            (context as MainActivity).supportFragmentManager
+                .popBackStack()
+        }
+        binding.mainActionbar.actionMainAlarmIv.setOnClickListener {
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, HomeAlarmFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
+        binding.mainActionbar.actionMainSettingsIv.setOnClickListener {
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, HomeSettingsFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
+    }
+
 
 
     @SuppressLint("SimpleDateFormat")

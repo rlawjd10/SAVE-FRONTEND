@@ -1,19 +1,25 @@
 package com.umc.save.Locker
 
+import android.app.ActionBar
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
+import com.umc.save.Home.HomeFragment
+import com.umc.save.Home.option.HomeAlarmFragment
+import com.umc.save.Home.option.HomeSettingsFragment
 import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Record.Auth.ChildRecord.childidx_var
 import com.umc.save.Record.ChildRecordActivity
 import com.umc.save.databinding.FragmentLockerBinding
+import java.util.zip.Inflater
 import kotlin.collections.ArrayList
 
 class LockerFragment : Fragment(), ChildrenView {
@@ -30,12 +36,16 @@ class LockerFragment : Fragment(), ChildrenView {
     ): View? {
         binding = FragmentLockerBinding.inflate(inflater,container,false)
 
+        initActionBar()
+
         binding.lockerChildEditTv.setOnClickListener {
             openDeleteActivity()
         }
 
         return binding.root
+
     }
+
 
     override fun onResume() {
         super.onResume()
@@ -53,6 +63,32 @@ class LockerFragment : Fragment(), ChildrenView {
         childrenService.getChildren(userIdx)
 
     }
+
+    private fun initActionBar() {
+
+        binding.mainActionbar.actionMainHomeIv.setOnClickListener {
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, HomeFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
+        binding.mainActionbar.actionMainAlarmIv.setOnClickListener {
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, HomeAlarmFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
+        binding.mainActionbar.actionMainSettingsIv.setOnClickListener {
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, HomeSettingsFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
+
+
+    }
+
+
 
     //리사이클러뷰 불러오기
     private fun initRecyclerView(result : ArrayList<Child>) {

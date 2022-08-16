@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
+import com.umc.save.Home.option.HomeAlarmFragment
+import com.umc.save.Home.option.HomeSettingsFragment
 import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Record.Auth.ChildRecord.childidx_var
@@ -39,6 +41,7 @@ class ListSuspectLockerFragment : Fragment(), SuspectsView {
         val childJson = arguments?.getString("child")
         child = gson.fromJson(childJson,Child::class.java)
 
+        initActionBar()
 
         binding.suspectEditTv.setOnClickListener {
             openDeleteActivity(child.childIdx)
@@ -52,6 +55,29 @@ class ListSuspectLockerFragment : Fragment(), SuspectsView {
         super.onResume()
 
         getSuspects(child.childIdx)
+    }
+
+
+    private fun initActionBar() {
+
+        binding.mainActionbar.appbarPageNameTv.text = "보관함"
+
+        binding.mainActionbar.appbarBackBtn.setOnClickListener {
+            (context as MainActivity).supportFragmentManager
+                .popBackStack()
+        }
+        binding.mainActionbar.actionMainAlarmIv.setOnClickListener {
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, HomeAlarmFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
+        binding.mainActionbar.actionMainSettingsIv.setOnClickListener {
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, HomeSettingsFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
     }
 
     private fun openDeleteActivity(childIdx: Int) {
