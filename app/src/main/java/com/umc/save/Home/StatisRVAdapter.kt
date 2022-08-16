@@ -48,7 +48,7 @@ class StatisRVAdapter: RecyclerView.Adapter<StatisRVAdapter.MyViewHolder>() {
         holder.bind(datalist[position])
     }
 
-   /* *//*클릭 인퍼테이스 정의의*//*
+   /* *//*클릭 인퍼테이스 정의*//*
    interface ItemClickListener{
         fun onClick(view: View,position: Int)
     }

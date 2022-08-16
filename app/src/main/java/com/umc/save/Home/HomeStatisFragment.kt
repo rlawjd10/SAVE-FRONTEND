@@ -20,7 +20,6 @@ import com.umc.save.databinding.ItemStatisBinding
 class StatisHomeFragment : Fragment() {
 
    lateinit var binding: FragmentHomeStatisBinding
-   lateinit var _binding: ActionbarMainTopBinding
    lateinit var adapter: StatisRVAdapter
 
    val mDatas = mutableListOf<StatisData>()
@@ -31,12 +30,6 @@ class StatisHomeFragment : Fragment() {
     ): View? {
 
         binding = FragmentHomeStatisBinding.inflate(inflater, container, false)
-
-        /*_binding = ActionbarMainTopBinding.inflate(inflater, container, false)
-        _binding.actionMainPageTv.visibility = View.VISIBLE
-        _binding.actionMainPageTv.text = "현황 ∙ 통계"
-
-        (activity as AppCompatActivity).supportActionBar?.customView*/
 
         initStatisRecyclerView()
         return binding.root

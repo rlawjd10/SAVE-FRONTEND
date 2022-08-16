@@ -30,10 +30,13 @@ class UserService {
         signUpService.signUp(user).enqueue(object : Callback<AuthResponse> {
             //정상적인 통신이 성공
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+
+                Log.d("SIGNUP/RESPONSE", response.toString())
+
                 if (response.isSuccessful && response.code() == 200) {
                     val signUpResponse: AuthResponse = response.body()!!
 
-                    Log.d("SIGNUP-RESPONSE", signUpResponse.toString())
+                    Log.d("SIGNUP-SUCCESS", signUpResponse.toString())
 
                     when (val code = signUpResponse.code) {
                         1000 -> signUpView.onSignUpSuccess()
@@ -44,10 +47,13 @@ class UserService {
                 }
             }
 
-            //실패처리
+            //네트워크 연결 실패처리
             override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.d("SIGNUP/FAILUARE", t.message.toString())
             }
         })
+
+        //함수가 잘 실행되었는지 확인하는 log
+        Log.d("SIGNUP", "HELLO")
     }
 }

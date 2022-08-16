@@ -36,8 +36,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentHomeBinding.inflate(layoutInflater)
-
+        binding = FragmentHomeBinding.inflate(inflater,container,false)
 
 //        home 화면 버튼 클릭했을 때 fragment to fragment
         binding.homeActionBtn.setOnClickListener {
@@ -71,19 +70,38 @@ class HomeFragment : Fragment() {
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
 */
-
+        initActionBar()
         return binding.root
     }
-
-
 
     //fragment to fragment method
     //main_frm은 fragment부분아다. MainActivity확인
     private fun changeFragment(fragment: Fragment) {
         (context as MainActivity).supportFragmentManager.beginTransaction()
             .replace(R.id.main_frm, fragment)
-            .disallowAddToBackStack()
+            .addToBackStack(null)
             .commit()
+    }
+
+    private fun initActionBar() {
+        binding.mainActionbar.actionMainHomeIv.setOnClickListener {
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, HomeFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
+        binding.mainActionbar.actionMainAlarmIv.setOnClickListener {
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, HomeAlarmFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
+        binding.mainActionbar.actionMainSettingsIv.setOnClickListener {
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, HomeSettingsFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
     }
 
 }

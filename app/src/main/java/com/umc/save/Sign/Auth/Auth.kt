@@ -10,7 +10,4 @@ import com.google.gson.annotations.SerializedName
 data class Auth(
     @SerializedName(value = "email")val email: String,
     @SerializedName(value = "password")val password: String
-) {
-    @PrimaryKey(autoGenerate = true)
-    var id: Int = 0
-}
+)

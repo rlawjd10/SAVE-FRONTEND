@@ -11,6 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <include
+            android:id="@+id/main_actionbar"
+            layout="@layout/actionbar_main_top" />
+
         <TextView
             android:id="@+id/home_userName_tv"
             android:layout_width="wrap_content"
@@ -23,7 +27,7 @@
             android:includeFontPadding="false"
 
             android:layout_marginStart="27dp"
-            android:layout_marginTop="33dp"
+            android:layout_marginTop="105dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -157,15 +161,15 @@
             android:layout_width="0dp"
             android:layout_height="306dp"
 
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="32dp"
+
+            android:layout_marginEnd="27dp"
             android:background="@drawable/radius_home_btn"
             android:backgroundTint="@color/light_gray"
-
-            android:layout_marginTop="32dp"
-            android:layout_marginStart="27dp"
-            android:layout_marginEnd="27dp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/home_banner_vp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_banner_vp" />
 
         <TextView
             android:id="@+id/home_question_tv"
@@ -200,18 +204,17 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
 
-            android:text="보호자를 포함한 성인이 아동(18세 미만인 사람)의 건강 또는 복지를 해치거나 정상적 발달을 저해할 수 있는 신체적 · 정신적 · 성적 폭력이나 가혹행위를 하는 것과 아동의 보호자가 아동을 유기하거나 방임하는 것을 말합니다."
-            android:textSize="13sp"
-            android:textColor="@color/black"
+            android:layout_marginStart="54dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/pretendard_bold"
-            android:lineSpacingExtra="9dp"
-            android:includeFontPadding="false"
             android:gravity="left"
 
-            android:layout_marginTop="17dp"
-            android:layout_marginStart="27dp"
-            app:layout_constraintStart_toStartOf="@id/home_description_iv"
-            app:layout_constraintTop_toBottomOf="@id/home_just_line_v"/>
+            android:lineSpacingExtra="10sp"
+            android:text="보호자를 포함한 성인이 아동(18세 미만인 사람)의 건강 또는 복지를 해치거나 정상적 발달을 저해할 수 있는 신체적 · 정신적 · 성적 폭력이나 가혹행위를 하는 것과 아동의 보호자가 아동을 유기하거나 방임하는 것을 말합니다."
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_just_line_v" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package com.umc.save.Sign
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +23,7 @@ import com.umc.save.R
 import com.umc.save.Sign.Auth.AuthService
 import com.umc.save.Sign.User.SignUpView
 import com.umc.save.Sign.User.User
+import com.umc.save.Sign.User.UserDao
 import com.umc.save.Sign.User.UserService
 import com.umc.save.databinding.ActivitySignUpBinding
 
@@ -51,6 +53,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         editText = findViewById<EditText>(R.id.singup_password_input_et)
         _editText = findViewById<EditText>(R.id.singup_password_confirm_et)
@@ -260,10 +263,11 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
 
     }
 
+    //사용자가 입력한 값 가져오기
     private fun getUser(): User {
         val isSnsauth: Int = 0
         val name: String = binding.singupNameInputEt.text.toString()
-        val phone: String = binding.signupPhoneInputEt.text.toString()
+        val phone: String = binding.signupPhoneEt.text.toString()
         val email: String = binding.singupEmailInputEt.text.toString()
         val pwd: String = binding.singupPasswordInputEt.text.toString()
 
@@ -329,7 +333,8 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
 
     //영문, 숫자를 조합하여 입력하여 주십시오.
     fun isPasswordCombiformat(password: String): Boolean {
-        return password.matches("^(?=.*\\d)(?=.*[a-z])([^\\s]).{0,}\$".toRegex())
+        /*return password.matches("^(?=.*\\d)(?=.*[a-z])([^\\s]).{0,}\$".toRegex())*/
+        return password.matches("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\$@\$!%*#?&]).{0,}.\$".toRegex())
     }
 
     //이름 check -> 2글자 이상만 쓰면 OK

@@ -127,7 +127,7 @@
                 android:textColor="@color/dark_red"
                 android:textSize="16sp"
                 android:fontFamily="@font/pretendard_semi_bold"
-                android:inputType="number"
+                android:inputType="text"
 
                 android:layout_marginStart="27dp"
                 android:layout_marginEnd="27dp"
@@ -165,7 +165,7 @@
                 android:textColor="@color/dark_gray"
                 android:fontFamily="@font/pretendard_semi_bold"
                 android:paddingStart="10dp"
-                android:inputType="number"
+                android:inputType="text"
 
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="27dp"
@@ -376,7 +376,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="영문, 숫자를 조합하여 입력하여 주십시오."
+                android:text="영문, 숫자, 특수문자를 조합하여 입력하여 주십시오."
                 android:textSize="10sp"
                 android:textColor="@color/dark_red"
                 android:fontFamily="@font/pretendard_semi_bold"

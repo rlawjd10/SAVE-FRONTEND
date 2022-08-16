@@ -8,6 +8,11 @@ import retrofit2.Response
 
 //로그인
 //view, api를 관리하는 클래스.
+class userIdx_var {
+    object UserIdx {
+        var UserIdx : Int = 0
+    }
+}
 
 class AuthService {
     private lateinit var loginView: LoginView
@@ -27,54 +32,16 @@ class AuthService {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 //정상적으로 통신이 성공된 경우 - API 호출 성공
                 Log.d("LOGIN/RESPONSE", response.toString())
-                val loginResponse: AuthResponse = response.body()!!
 
                 if (response.isSuccessful && response.code() == 200) {
                     val loginResponse: AuthResponse = response.body()!!
+                    Log.d("LOGIN/SUCCESS", loginResponse.toString())
 
                     when (val code = loginResponse.code) {
                         1000 -> loginView.onLoginSuccess(code,loginResponse.result!! )
-                        else -> loginView.onLoginFailure(code, loginResponse.message)
+                        else -> loginView.onLoginFailure()
                     }
                 }
-                /*when (val code = loginResponse.code) {
-                    1000 -> loginView.onLoginSuccess(code,loginResponse.result)
-                }
-                if (response.isSuccessful()) {
-                    Log.d("LOGIN/SUCCESS", response.toString())
-                    val loginResponse: AuthResponse = response.body()!!
-
-                    when (val code = loginResponse.code) {
-                        1000 -> loginView.onLoginSuccess(code,loginResponse.result)
-                        3010 -> loginView.onLoginFailure(code, "로그인이 실패하였습니다.")
-                    }
-                } else {
-                    Log.d("LOGIN/FAIL", response.toString())
-                    val loginResponse: AuthResponse = response.body()!!
-
-                    when (loginResponse.code) {
-                        //비밀번호를 입력해주세요
-                        2003 -> {
-                            Log.d("LOGIN/FAILURE_PASSWORD", response.toString())
-                            loginView.onLoginFailure(2003, "비밀번호를 입력해주세요")}
-                        //이메일을 입력해주세요
-                        2004 -> {
-                            Log.d("LOGIN/FAILURE_EMAIL", response.toString())
-                            loginView.onLoginFailure(2004, "이메일을 입력해주세요")}
-                        //비밀번호 형식을 확인해주세요
-                        2101 -> {
-                            Log.d("LOGIN/FAILURE_PASSWORD_FORM", response.toString())
-                            loginView.onLoginFailure(2101, "비밀번호 형식을 확인해주세요")}
-                        //이메일 형식을 확인해주세요
-                        2103 -> {
-                            Log.d("LOGIN/FAILURE_EMAILFORM", response.toString())
-                            loginView.onLoginFailure(2103, "이메일 형식을 확인해주세요")}
-                        //해당 이메일은 존재하지 않습니다
-                        2334 -> {
-                            Log.d("LOGIN/FAILURE_EMAILFORM", response.toString())
-                            loginView.onLoginFailure(2334, "해당 이메일은 존재하지 않습니다")}
-                    }
-                }*/
             }
             //통신에 실패한 경우 (시스템적인 이유) - API 호출 실패
             override fun onFailure(call: Call<AuthResponse>, t: Throwable) {

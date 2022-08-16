@@ -7,12 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.umc.save.MainActivity
 import com.umc.save.R
+import com.umc.save.Sign.Auth.userIdx_var
 import com.umc.save.databinding.FragmentHomeBinding
 import com.umc.save.databinding.FragmentHomeSettingsBinding
 
@@ -90,13 +92,23 @@ class HomeSettingsFragment : Fragment() {
                         TODO("Not yet implemented")
                     }
                     override fun onButtonOkClicked() {
-                        TODO("Not yet implemented")
+                        logout()
                     }
                 })
                 dialog.show(this.childFragmentManager, "HomeDialog")
             }
         }
 
+    }
+
+    //로그아웃
+    private fun logout() {
+        val userIdx : Int = userIdx_var.UserIdx.UserIdx
+        val spf = activity?.getSharedPreferences("auth" , AppCompatActivity.MODE_PRIVATE)
+        val editor = spf!!.edit()
+
+        editor.remove("jwt")
+        editor.apply()
     }
 
     //fragment to fragment method

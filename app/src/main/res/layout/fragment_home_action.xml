@@ -6,14 +6,83 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Home.ActionHomeFragment">
 
+    <include
+        android:id="@+id/main_actionbar"
+        layout="@layout/fragment_actionbar_back" />
+
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/home_action_report_btn"
         android:layout_width="match_parent"
         android:layout_height="96dp"
 
+        android:text="조사 및 응급처치 등"
+        android:textColor="@color/dark_red"
+        android:textSize="20sp"
+        android:fontFamily="@font/pretendard_bold"
+        android:drawableStart="@drawable/icn_report"
+        android:paddingStart="47dp"
+        android:paddingEnd="46.94dp"
+        android:gravity="center"
+
+        android:background="@drawable/radius_home_btn"
+        android:backgroundTint="@color/white"
+        android:elevation="5dp"
+
+        android:layout_marginTop="107dp"
         android:layout_marginStart="27dp"
         android:layout_marginEnd="27dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/home_action_shield_btn"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+
+        android:text="사후 관리"
+        android:textColor="@color/dark_red"
+        android:textSize="20sp"
+        android:fontFamily="@font/pretendard_bold"
+        android:drawableStart="@drawable/icn_shield"
+        android:paddingStart="50dp"
+        android:paddingEnd="120.94dp"
+        android:gravity="center"
+
+        android:background="@drawable/radius_home_btn"
+        android:backgroundTint="@color/white"
+        android:elevation="5dp"
+
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginEnd="27dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/home_action_report_btn"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/home_action_law_btn"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+
+        android:text="관련 법령"
+        android:textColor="@color/dark_red"
+        android:textSize="20sp"
+        android:fontFamily="@font/pretendard_bold"
+        android:drawableStart="@drawable/icn_law"
+        android:paddingStart="50dp"
+        android:paddingEnd="120.94dp"
+        android:gravity="center"
+
+        android:background="@drawable/radius_home_btn"
+        android:backgroundTint="@color/white"
+        android:elevation="5dp"
+
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginEnd="27dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/home_action_shield_btn"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

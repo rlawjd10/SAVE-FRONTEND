@@ -14,10 +14,7 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import com.umc.save.MainActivity
 import com.umc.save.R
-import com.umc.save.Sign.Auth.Auth
-import com.umc.save.Sign.Auth.AuthService
-import com.umc.save.Sign.Auth.LoginView
-import com.umc.save.Sign.Auth.Result
+import com.umc.save.Sign.Auth.*
 import com.umc.save.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity(), LoginView {
@@ -145,6 +142,8 @@ class LoginActivity : AppCompatActivity(), LoginView {
         editor.apply()
     }
 
+    //val jwt : Int = getJwt()
+
     //로그인 성공 시 받은 jwt를 저장하는 함수 -> 사용자를 식별하기 위함
    private fun saveJwt2(jwt: String) {
         val spf = getSharedPreferences("auth2" , MODE_PRIVATE)
@@ -170,21 +169,15 @@ class LoginActivity : AppCompatActivity(), LoginView {
                 saveJwt2(result.jwt)
                 // saveJwt2(result.jwt)
                 //result.jwt?.let { saveJwt2(it) }
+                userIdx_var.UserIdx.UserIdx = result.userIdx
                 startMainActivity()
             }
         }
     }
 
     //로그인 실패
-    override fun onLoginFailure(code: Int, message : String) {
-        when(code) {
-            2003 -> Toast.makeText(LoginActivity(), message, Toast.LENGTH_SHORT).show()
-            2004 -> Toast.makeText(LoginActivity(), message, Toast.LENGTH_SHORT).show()
-            2101 -> Toast.makeText(LoginActivity(), message, Toast.LENGTH_SHORT).show()
-            2103 -> Toast.makeText(LoginActivity(), message, Toast.LENGTH_SHORT).show()
-            2334 -> Toast.makeText(LoginActivity(), message, Toast.LENGTH_SHORT).show()
-            3010 -> Toast.makeText(LoginActivity(), message, Toast.LENGTH_SHORT).show()
-        }
+    override fun onLoginFailure() {
+
     }
 
 }

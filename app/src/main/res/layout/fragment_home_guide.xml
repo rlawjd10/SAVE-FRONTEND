@@ -1,15 +1,695 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Home.GuideHomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
-        android:text="신고 가이드 화면" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+    <!--아동학대 의심상황-->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/guide_suspect_cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="14dp"
+        android:elevation="10dp"
+
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginStart="27dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/home_guide_fixed_layout"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/home_guide_fixed_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="아동학대 의심상황"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/pretendard_bold"
+
+                    android:layout_marginStart="18dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/home_guide_fixed_iv"
+                    android:layout_width="22.24dp"
+                    android:layout_height="12.59dp"
+
+                    android:src="@drawable/icn_bottom_normal"
+
+                    android:layout_marginEnd="16.76dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/home_guide_hidden_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                android:visibility="gone"
+
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/home_guide_fixed_layout">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/radius_home_btn"
+                    android:backgroundTint="@color/light_red">
+
+                    <ImageView
+                        android:id="@+id/home_action_physical_iv"
+                        android:layout_width="27.29dp"
+                        android:layout_height="41.05dp"
+                        android:src="@drawable/icn_category_physical_red"
+
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="20dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="신체 학대"
+                        android:textSize="13sp"
+                        android:textColor="@color/dark_red"
+                        android:fontFamily="@font/pretendard_bold"
+                        android:includeFontPadding="false"
+
+                        android:layout_marginTop="10.95dp"
+                        app:layout_constraintTop_toBottomOf="@id/home_action_physical_iv"
+                        app:layout_constraintStart_toStartOf="@id/home_action_physical_iv"
+                        app:layout_constraintEnd_toEndOf="@id/home_action_physical_iv"/>
+
+                    <TextView
+                        android:id="@+id/home_action_physical_description_iv"
+                        android:layout_width="174dp"
+                        android:layout_height="wrap_content"
+
+                        android:text="• 사고로 보기에는 미심쩍은 멍이 나 상처가 있을 때"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/pretendard_medium"
+                        android:lineSpacingExtra="5dp"
+
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="15dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/home_action_physical_iv"/>
+
+                    <TextView
+                        android:layout_width="174dp"
+                        android:layout_height="wrap_content"
+
+                        android:text="• 보호자가 아동의 상처를 숨기거나 설명이 부적절한 경우"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/pretendard_medium"
+                        android:lineSpacingExtra="5dp"
+
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="14dp"
+                        app:layout_constraintTop_toBottomOf="@id/home_action_physical_description_iv"
+                        app:layout_constraintStart_toEndOf="@id/home_action_physical_iv"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp"
+                    android:background="@drawable/radius_home_btn"
+                    android:backgroundTint="@color/light_red">
+
+                    <ImageView
+                        android:id="@+id/home_action_emotional_iv"
+                        android:layout_width="34.48dp"
+                        android:layout_height="36.9dp"
+                        android:src="@drawable/icn_category_emotional_red"
+
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="20dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="정서 학대"
+                        android:textSize="13sp"
+                        android:textColor="@color/dark_red"
+                        android:fontFamily="@font/pretendard_bold"
+
+                        android:layout_marginTop="10.95dp"
+                        app:layout_constraintTop_toBottomOf="@id/home_action_emotional_iv"
+                        app:layout_constraintStart_toStartOf="@id/home_action_emotional_iv"
+                        app:layout_constraintEnd_toEndOf="@id/home_action_emotional_iv"/>
+
+                    <TextView
+                        android:id="@+id/home_action_emotional_description_iv"
+                        android:layout_width="174dp"
+                        android:layout_height="wrap_content"
+
+                        android:text="• 아동이 성인에게 언어적, 정서적 위협을 당하는 경우"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/pretendard_medium"
+                        android:lineSpacingExtra="5dp"
+
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="15dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/home_action_emotional_iv"/>
+
+                    <TextView
+                        android:layout_width="174dp"
+                        android:layout_height="wrap_content"
+
+                        android:text="• 언어폭력, 심한 비교, 가족내 따돌림, 집 밖으로 쫓아내는 행위"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/pretendard_medium"
+                        android:lineSpacingExtra="5dp"
+
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="14dp"
+                        app:layout_constraintTop_toBottomOf="@id/home_action_emotional_description_iv"
+                        app:layout_constraintStart_toEndOf="@id/home_action_emotional_iv"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp"
+                    android:background="@drawable/radius_home_btn"
+                    android:backgroundTint="@color/light_red">
+
+                    <ImageView
+                        android:id="@+id/home_action_sexual_iv"
+                        android:layout_width="25.25dp"
+                        android:layout_height="36.86dp"
+                        android:src="@drawable/icn_category_sexual_red"
+
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="20dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="성 학대"
+                        android:textSize="13sp"
+                        android:textColor="@color/dark_red"
+                        android:fontFamily="@font/pretendard_bold"
+                        android:includeFontPadding="false"
+
+                        android:layout_marginTop="10.95dp"
+                        android:layout_marginEnd="5dp"
+                        app:layout_constraintTop_toBottomOf="@id/home_action_sexual_iv"
+                        app:layout_constraintStart_toStartOf="@id/home_action_sexual_iv"
+                        app:layout_constraintEnd_toEndOf="@id/home_action_sexual_iv"/>
+
+                    <TextView
+                        android:id="@+id/home_action_sexual_description_iv"
+                        android:layout_width="174dp"
+                        android:layout_height="wrap_content"
+
+                        android:text="• 아동을 대상으로한 모든 성적 행동"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/pretendard_medium"
+                        android:lineSpacingExtra="5dp"
+
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="20dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/home_action_sexual_iv"/>
+
+                    <TextView
+                        android:layout_width="174dp"
+                        android:layout_height="wrap_content"
+
+                        android:text="• 아동의 나이에 맞지 않는 성적 행동이나 조숙한 성지식"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/pretendard_medium"
+                        android:lineSpacingExtra="5dp"
+
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="14dp"
+                        app:layout_constraintTop_toBottomOf="@id/home_action_sexual_description_iv"
+                        app:layout_constraintStart_toEndOf="@id/home_action_sexual_iv"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="127dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/radius_home_btn"
+                    android:backgroundTint="@color/light_red"
+                    app:layout_constraintBottom_toBottomOf="@+id/home_action_neglect_iv"
+                    app:layout_constraintTop_toBottomOf="@+id/home_action_neglect_iv">
+
+                    <ImageView
+                        android:id="@+id/home_action_neglect_iv"
+                        android:layout_width="27.29dp"
+                        android:layout_height="41.05dp"
+                        android:layout_marginStart="35dp"
+
+                        android:layout_marginTop="23dp"
+                        android:src="@drawable/icn_category_neglect_red"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10.95dp"
+                        android:fontFamily="@font/pretendard_bold"
+                        android:includeFontPadding="false"
+                        android:text="방임"
+
+                        android:textColor="@color/dark_red"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="@id/home_action_neglect_iv"
+                        app:layout_constraintStart_toStartOf="@id/home_action_neglect_iv"
+                        app:layout_constraintTop_toBottomOf="@id/home_action_neglect_iv" />
+
+                    <TextView
+                        android:id="@+id/home_action_neglect_description_iv"
+                        android:layout_width="174dp"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="-5dp"
+                        android:fontFamily="@font/pretendard_medium"
+                        android:lineSpacingExtra="5dp"
+                        android:text="• 기본적인 의식주를 제공하지 않는 행위"
+
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toEndOf="@id/home_action_neglect_iv"
+                        app:layout_constraintTop_toTopOf="@+id/home_action_neglect_iv" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="174dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="14dp"
+                        android:fontFamily="@font/pretendard_medium"
+
+                        android:lineSpacingExtra="5dp"
+                        android:text="• 아동에게 필요한 의료적 처치를 하지 않거나 비위생적인 환경에 노출시키는 경우"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/home_action_neglect_iv"
+                        app:layout_constraintTop_toBottomOf="@id/home_action_neglect_description_iv" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!--신고 요령-->
+   <com.google.android.material.card.MaterialCardView
+        android:id="@+id/guide_report_cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="14dp"
+        android:elevation="10dp"
+
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginStart="27dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guide_suspect_cardView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/home_guide_report_fixed_layout"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/home_guide_report_fixed_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="신고요령"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/pretendard_bold"
+
+                    android:layout_marginStart="18dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/home_guide_report_fixed_iv"
+                    android:layout_width="22.24dp"
+                    android:layout_height="12.59dp"
+
+                    android:src="@drawable/icn_bottom_normal"
+
+                    android:layout_marginEnd="16.76dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/home_guide_report_hidden_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+               android:visibility="gone"
+
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/home_guide_report_fixed_layout">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/radius_home_btn"
+                    android:backgroundTint="@color/light_red">
+
+                    <TextView
+                        android:id="@+id/home_guide_report_when_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="언제?"
+                        android:textSize="16sp"
+                        android:textColor="@color/dark_red"
+                        android:fontFamily="@font/pretendard_bold"
+
+                        android:layout_marginTop="15dp"
+                        android:layout_marginStart="13dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="• 아동의 울음소리, 비명, 신음소리가 계속되는 경우\n• 아동의 상처에 대한 보호자의 설명이 모순되는 경우
+\n• 계절에 맞지 않거나 깨끗하지 않은 옷을 계속 입고 다니는 경우\n• 뚜렷한 이유 없이 지각이나 결석이 잦은 경우\n• 나이에 맞지 않는 성적 행동을 보이는 경우"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pretendard_medium"
+                        android:lineSpacingExtra="10dp"
+
+                        android:layout_marginStart="13dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/home_guide_report_when_tv"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp"
+                    android:background="@drawable/radius_home_btn"
+                    android:backgroundTint="@color/light_red">
+
+                    <TextView
+                        android:id="@+id/home_guide_report_what_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="무엇을?"
+                        android:textSize="16sp"
+                        android:textColor="@color/dark_red"
+                        android:fontFamily="@font/pretendard_bold"
+
+                        android:layout_marginTop="15dp"
+                        android:layout_marginStart="13dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/home_guide_report_what_description_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="• 신고자의 이름, 연락처\n•  아동의 이름과 성별, 나이, 주소
+\n• 학대행위자로 의심되는 사람의 이름과 성별, 나이, 주소\n• 아동이 위험에 처해있거나 학대를 받고 있다고 믿는 이유"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pretendard_medium"
+                        android:lineSpacingExtra="10dp"
+
+                        android:layout_marginStart="13dp"
+                        android:layout_marginTop="15dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/home_guide_report_what_tv"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="• 아동, 학대행위자의 정보를 파악하지 못해도 신고는 가능하며,\n가능한 많은 정보를 제공하도록 합니다."
+                        android:textSize="12sp"
+                        android:textColor="@color/dark_red"
+                        android:fontFamily="@font/pretendard_medium"
+                        android:lineSpacingExtra="10dp"
+                        android:includeFontPadding="false"
+
+                        android:layout_marginStart="13dp"
+                        android:layout_marginTop="9dp"
+                        android:layout_marginBottom="25dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/home_guide_report_what_description_tv"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/radius_home_btn"
+                    android:backgroundTint="@color/light_red">
+
+                    <TextView
+                        android:id="@+id/home_guide_report_how_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="어떻게?"
+                        android:textSize="16sp"
+                        android:textColor="@color/dark_red"
+                        android:fontFamily="@font/pretendard_bold"
+
+                        android:layout_marginTop="15dp"
+                        android:layout_marginStart="13dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="• 전화 : 국번없이 112\n•  방문 : 관할 경찰서, 시·군·구
+\n• 신고자의 신분은 아동학대범죄의 처벌 등에 관한 특례법\n제 10조, 제 62조에 의해 보장됩니다."
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pretendard_medium"
+                        android:lineSpacingExtra="10dp"
+
+                        android:layout_marginStart="13dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="19dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/home_guide_report_how_tv"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!--신고 후 아동을 대하는 태도-->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/guide_child_cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="14dp"
+        android:elevation="10dp"
+
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginStart="27dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guide_report_cardView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/home_guide_child_fixed_layout"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/home_guide_child_fixed_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="신고 후 아동을 대하는 태도"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/pretendard_bold"
+
+                    android:layout_marginStart="18dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/home_guide_child_fixed_iv"
+                    android:layout_width="22.24dp"
+                    android:layout_height="12.59dp"
+
+                    android:src="@drawable/icn_bottom_normal"
+
+                    android:layout_marginEnd="16.76dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/home_guide_child_hidden_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                android:visibility="gone"
+
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/home_guide_child_fixed_layout">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="• 신고 전과 동일한 태도로 아동을 대해야 합니다.\n•  아동의 욕구에 민감하게 반응하고, 존중과 이해로 대하도록 노력해야 합니다.
+\n• 아동의 분위기 변화를 파악해야 합니다. 신고 후 아동은 학대받은 사건을 생각하며, 자주 우울해하거나 불안해할 수 있기 때문입니다.\n• 아동의 말을 경청하고, 비언어적인 대화에도 반응을 해 주도록 노력해야 합니다."
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pretendard_medium"
+                        android:lineSpacingExtra="10dp"
+
+                        android:layout_marginStart="13dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

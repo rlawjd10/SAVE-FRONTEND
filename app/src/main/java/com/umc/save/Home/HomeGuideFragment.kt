@@ -1,60 +1,52 @@
 package com.umc.save.Home
 
 import android.os.Bundle
+import android.transition.AutoTransition
+import android.transition.TransitionManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.umc.save.R
+import com.umc.save.databinding.FragmentHomeGuideBinding
+import com.umc.save.databinding.FragmentHomeStatisBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [GuideHomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class GuideHomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var binding: FragmentHomeGuideBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_guide, container, false)
+        binding = FragmentHomeGuideBinding.inflate(inflater, container, false)
+
+        binding.guideSuspectCardView.setOnClickListener {
+            changeClick(binding.homeGuideHiddenLayout, binding.guideSuspectCardView, binding.homeGuideFixedIv)
+        }
+        binding.guideReportCardView.setOnClickListener {
+            changeClick(binding.homeGuideReportHiddenLayout, binding.guideReportCardView, binding.homeGuideReportFixedIv)
+        }
+        binding.guideChildCardView.setOnClickListener {
+            changeClick(binding.homeGuideChildHiddenLayout, binding.guideChildCardView, binding.homeGuideChildFixedIv)
+        }
+
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment GuideHomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            GuideHomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    //view는 hidden, view2는 fixed card view, imageview는 toggle
+    private fun changeClick(view: ViewGroup, view2: ViewGroup, imageView: ImageView) {
+        if (view.visibility == View.VISIBLE) {
+            /*TransitionManager.beginDelayedTransition(view2, AutoTransition())*/
+            imageView.setImageResource(R.drawable.icn_bottom_normal)
+            view.visibility = View.GONE
+        } else {
+            TransitionManager.beginDelayedTransition(view2, AutoTransition())
+            view.visibility = View.VISIBLE
+            imageView.setImageResource(R.drawable.icn_top_normal)
+        }
     }
 }
