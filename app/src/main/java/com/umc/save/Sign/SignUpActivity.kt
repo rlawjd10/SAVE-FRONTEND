@@ -208,7 +208,6 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
 
         //밑줄
         underlineSee(binding.signupInfoSeeTv)
-        underlineSee(binding.signupInfoSecretTv)
         underlineSee(binding.signupInfoFactTv)
 
         //전체동의, 이용약관
@@ -230,7 +229,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
             }
         }
         //비밀유지
-        binding.signupConsentSecretCheck.setOnClickListener {
+        /*binding.signupConsentSecretCheck.setOnClickListener {
             agreeChecked3 = !agreeChecked3
             onCheckClick(agreeChecked3, binding.signupConsentSecretCheck, binding.signupConsentSecretTv)
             if (agreeChecked2 && agreeChecked3 && agreeChecked4) {
@@ -240,7 +239,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
             if (!agreeChecked2 || !agreeChecked3 || !agreeChecked4) {
                 onCheckClick(false, allCheck, binding.signupConsentAllTv)
             }
-        }
+        }*/
         //허위사실
         binding.signupConsentFactCheck.setOnClickListener {
             agreeChecked4 = !agreeChecked4
@@ -252,6 +251,16 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
             if (!agreeChecked2 || !agreeChecked3 || !agreeChecked4) {
                 onCheckClick(false, allCheck, binding.signupConsentAllTv)
             }
+        }
+
+        binding.signupInfoSeeTv.setOnClickListener {
+            val intent = Intent(this, AnnouncementPrivacyActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.signupInfoFactTv.setOnClickListener {
+            val intent = Intent(this, AnnouncementFactsFalseActivity::class.java)
+            startActivity(intent)
         }
 
         //sign up
@@ -367,13 +376,13 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
     private fun onChangedClick(isAgree: Boolean, show: ImageButton) {
 
         val cBox1 = findViewById<ImageButton>(R.id.signup_consent_info_check)
-        val cBox2 = findViewById<ImageButton>(R.id.signup_consent_secret_check)
+        /*val cBox2 = findViewById<ImageButton>(R.id.signup_consent_secret_check)*/
         val cBox3 = findViewById<ImageButton>(R.id.signup_consent_fact_check)
 
         when (show.id) {
             R.id.signup_consent_all_check -> {
                 onCheckClick(isAgree, cBox1, binding.signupConsentInfoTv)
-                onCheckClick(isAgree, cBox2, binding.signupConsentSecretTv)
+                /*onCheckClick(isAgree, cBox2, binding.signupConsentSecretTv)*/
                 onCheckClick(isAgree, cBox3, binding.signupConsentFactTv)
             }
         }

@@ -474,7 +474,7 @@
                 app:layout_constraintEnd_toEndOf="@id/singup_password_confirm_et"/>
 
             <!--비밀유지 동의-->
-            <ImageButton
+            <!--<ImageButton
                 android:id="@+id/signup_consent_secret_check"
                 android:layout_width="14dp"
                 android:layout_height="14dp"
@@ -501,7 +501,7 @@
                 app:layout_constraintTop_toTopOf="@id/signup_consent_secret_check"
                 app:layout_constraintBottom_toBottomOf="@id/signup_consent_secret_check"/>
 
-            <!--보기-->
+            &lt;!&ndash;보기&ndash;&gt;
             <TextView
                 android:id="@+id/signup_info_secret_tv"
                 android:layout_width="wrap_content"
@@ -515,7 +515,7 @@
 
                 app:layout_constraintTop_toTopOf="@id/signup_consent_secret_check"
                 app:layout_constraintBottom_toBottomOf="@id/signup_consent_secret_check"
-                app:layout_constraintEnd_toEndOf="@id/singup_password_confirm_et"/>
+                app:layout_constraintEnd_toEndOf="@id/singup_password_confirm_et"/>-->
 
             <!--허위사실 유표 처벌 동의-->
             <ImageButton
@@ -526,8 +526,8 @@
                 android:src="@drawable/icn_check_02_off"
 
                 android:layout_marginTop="9dp"
-                app:layout_constraintStart_toStartOf="@id/signup_consent_secret_check"
-                app:layout_constraintTop_toBottomOf="@+id/signup_consent_secret_check"/>
+                app:layout_constraintStart_toStartOf="@id/signup_consent_info_check"
+                app:layout_constraintTop_toBottomOf="@+id/signup_consent_info_check"/>
 
             <TextView
                 android:id="@+id/signup_consent_fact_tv"
