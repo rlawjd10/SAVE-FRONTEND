@@ -1,8 +1,7 @@
 package com.umc.save.Home.option
 
-
-
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.umc.save.Locker.ChildrenService
 import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Sign.Auth.userIdx_var
@@ -19,7 +19,9 @@ import com.umc.save.databinding.FragmentHomeBinding
 import com.umc.save.databinding.FragmentHomeSettingsBinding
 
 
-class HomeSettingsFragment : Fragment() {
+class HomeSettingsFragment : Fragment(), UserInfoView {
+
+    val userIdx = userIdx_var.UserIdx.UserIdx
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,11 @@ class HomeSettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
        binding = FragmentHomeSettingsBinding.inflate(layoutInflater)
+
+        //서버에서 userInfo 가져오기
+        getUserInfo()
+
+        initActionBar()
 
         //프로필 수정 버튼 클릭
         binding.settingsProfileEditBtn.setOnClickListener {
@@ -55,6 +62,28 @@ class HomeSettingsFragment : Fragment() {
 
         return binding.root
     }
+
+    //액션바
+    private fun initActionBar() {
+
+        binding.mainActionbar.appbarPageNameTv.text = ""
+
+        binding.mainActionbar.appbarBackBtn.setOnClickListener {
+            (context as MainActivity).supportFragmentManager
+                .popBackStack()
+        }
+
+    }
+
+
+    private fun getUserInfo() {
+
+        val userInfoService = UserInfoService()
+        userInfoService.setUserInfoView(this)
+        userInfoService.getUserInfo(userIdx)
+    }
+
+
 
     //뷰 클릭 이벤트 정의
     private fun ClickViewEvents(id: Int) {
@@ -117,6 +146,23 @@ class HomeSettingsFragment : Fragment() {
             .replace(R.id.main_frm, fragment)
             .disallowAddToBackStack()
             .commit()
+    }
+
+
+    override fun onGetUserSuccess(code: Int, result: UserInfo) {
+        Log.d("GET-USER-SUCCESS",result.toString())
+        binding.userNameTv.text = result.name
+        binding.userPhoneNumberTv.text = result.phone
+        binding.userEmailTv.text = result.email
+
+    }
+
+    override fun userNotExist(code: Int, message: String) {
+        Log.d("GET-USER-NOT-EXIST",message)
+    }
+
+    override fun onGetUserFailure(code: Int, message: String) {
+        Log.d("GET-USER-FAILURE",message)
     }
 }
 
