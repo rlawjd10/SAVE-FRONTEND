@@ -22,6 +22,8 @@ import com.umc.save.Sign.Auth.userIdx_var
 import com.umc.save.databinding.ActivityChildRecordBinding
 import com.umc.save.databinding.ActivityOffenderRecordBinding
 
+
+
 class childRecord_var {
     object abuse {
         var childName : String = ""
@@ -149,7 +151,7 @@ class ChildRecordActivity : AppCompatActivity(), ChildRecordResult {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                childRecord_var.abuse.childName = binding.recordChildAge.text.toString()
+                childRecord_var.abuse.childName = binding.recordChildName.text.toString()
             }
 
             override fun afterTextChanged(p0: Editable?) {
@@ -300,7 +302,7 @@ class ChildRecordActivity : AppCompatActivity(), ChildRecordResult {
 
         val childDetailAdress : String = childRecord_var.abuse.address_detail
 
-        Log.d("childDetailAdress =============================== ", childDetailAdress)
+        Log.d("childName =============================== ", childName)
 
         return Child(userIdx, childName, isCertain, childGender, childAge, childAdress, childDetailAdress)
     }
