@@ -20,7 +20,6 @@ import kotlin.collections.ArrayList
 
 class ListVideoLockerFragment() : Fragment() {
     lateinit var binding : FragmentLockerVideoListBinding
-    var currentPosition = 0
     val gson : Gson =  Gson()
     private var videoList = ArrayList<Video>()
 

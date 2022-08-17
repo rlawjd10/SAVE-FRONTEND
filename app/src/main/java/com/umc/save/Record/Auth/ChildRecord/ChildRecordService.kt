@@ -39,6 +39,12 @@ class ChildRecordService {
                     1000 -> {
                         recordResult.recordSuccess(result)
                     }
+                    6000 -> recordResult.NeedUserIdx(resp.code, resp.message)
+                    6001 -> recordResult.NeedChildName(resp.code, resp.message)
+                    6002 -> recordResult.NeedChildGender(resp.code, resp.message)
+                    6003 -> recordResult.NeedChildAge(resp.code, resp.message)
+                    6004-> recordResult.NeedChildAddress(resp.code, resp.message)
+                    6006 -> recordResult.UserDontExist(resp.code, resp.message)
                     else -> recordResult.recordFailure()
                 }
             }

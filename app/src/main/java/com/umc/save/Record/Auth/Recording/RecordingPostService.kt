@@ -14,51 +14,76 @@ import retrofit2.Response
 class RecordingPostService {
 
     private var result : Result = Result(recordingIdx = arrayListOf(), "")
-    private lateinit var recordingResult: RecordingResult
+    private lateinit var recordingResult : RecordingResult
 
-    fun setVideoResult(recordingResult: RecordingResult){
+    fun setRecordingResult(recordingResult: RecordingResult){
         this.recordingResult = recordingResult
     }
 
-    fun sendRecording(recording : ArrayList<MultipartBody.Part>, recAbuseIdx_get : Int, recChildIdx_get : Int){
+    fun sendRecording(recording : ArrayList<MultipartBody.Part>, recAbuseIdx_get : Int, recChilIdx_get : Int){
 
         val authService = getRetrofit().create(RecordingRetrofitInterfaces::class.java)
 
         val body = RequestBody.create(MultipartBody.FORM, "")
-        val emptyPart = MultipartBody.Part.createFormData("videoList","",body)
+        val emptyPart = MultipartBody.Part.createFormData("recording","",body)
         val emptyList = arrayListOf<MultipartBody.Part>()
         emptyList.add(emptyPart)
 
         var recAbuseIdx = recAbuseIdx_get
-        var recChildIdx = recChildIdx_get
+        var recChildIdx = recChilIdx_get
 
         val jsonObject = JSONObject("{\"recAbuseIdx\" :\"${recAbuseIdx}\", \"recChildIdx\" :${recChildIdx}}").toString()
-        val postRecordingReq = RequestBody.create("application/json".toMediaTypeOrNull(), jsonObject)
+        val postRecordingReq= RequestBody.create("application/json".toMediaTypeOrNull(), jsonObject)
 
-        Log.d("RECORD/FAILURE ==============================================================================================", recording[0].toString())
-        Log.d("RECORD/FAILURE ==============================================================================================", postRecordingReq.toString())
+
+        Log.d("**RECORD/FAILURE ==============================================================================================", recording[0].toString())
+        Log.d("**RECORD/FAILURE ==============================================================================================", postRecordingReq.toString())
+        try {
+            Log.d(
+                "recAbuseIdx ==============================================================================================",
+                recAbuseIdx.toString()
+            )
+            Log.d(
+                "recChildIdx ==============================================================================================",
+                recChildIdx.toString()
+            )
+        }catch (e : NullPointerException){
+            e.printStackTrace()
+        }
+
+
 
         authService.sendRecording(recording, postRecordingReq).enqueue(object: Callback<RecordingPostResponse> {
             override fun onResponse(call: Call<RecordingPostResponse>, response: Response<RecordingPostResponse>) {
+
                 Log.d("RECORD/SUCCESS",response.toString())
-                val resp: RecordingPostResponse = response.body()!!
-                Log.d("RECORD/FAILURE =================================================", resp.result!!.recordingIdx.toString())
-                Log.d("RECORD/FAILURE =================================================", resp.result!!.completeMessage)
+                try {
+                    val resp: RecordingPostResponse = response.body()!!
+                    Log.d(
+                        "==RECORD/FAILURE =================================================",
+                        resp.result!!.recordingIdx.toString()
+                    )
+                    Log.d(
+                        "==RECORD/FAILURE =================================================",
+                        resp.result!!.completeMessage
+                    )
 
-                if(resp != null) {
+                    if (resp != null) {
 //                    result = resp.result!!
-                    result.recordingIdx.addAll(resp.result!!.recordingIdx)
-                    result.completeMessage = resp.result!!.completeMessage
+                        result.recordingIdx.addAll(resp.result!!.recordingIdx)
+                        result.completeMessage = resp.result!!.completeMessage
 
-                    when (resp.code) {
-                        1000 -> {
-                            recordingResult.postRecordingSuccess(resp.code, result)
+                        when (resp.code) {
+                            1000 -> {
+                                recordingResult.postRecordingSuccess(resp.code, result)
+                            }
+                            else -> recordingResult.postRecordingFailure(resp.code, resp.message)
                         }
-                        else -> recordingResult.postRecordingFailure(resp.code, resp.message)
-                    }
+                    } else
+                        Log.d("RECORD/FAILURE ================== ", "오류 발생 reponse null")
+                }catch (e : NullPointerException){
+                    e.printStackTrace()
                 }
-                else
-                    Log.d("RECORD/FAILURE ================== ", "오류 발생 reponse null")
 
             }
             override fun onFailure(call: Call<RecordingPostResponse>, t: Throwable) {

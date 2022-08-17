@@ -2,15 +2,17 @@ package com.umc.save.Record
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
+import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Record.Auth.ChildRecord.childidx_var
 import com.umc.save.Record.Auth.SuspectRecord.Result
@@ -19,6 +21,16 @@ import com.umc.save.Record.Auth.SuspectRecord.SuspectRecordService
 import com.umc.save.Record.Auth.SuspectRecord.suspectIdx_var
 import com.umc.save.databinding.ActivityChildRecordBinding
 import com.umc.save.databinding.ActivityOffenderRecordBinding
+
+
+class suspectRecord_var {
+    object abuse {
+        var suspectName : String = ""
+        var suspectAge_1 : String = ""
+        var suspectAge_2 : String = ""
+        var relation : String = ""
+    }
+}
 
 class OffenderRecordActivity : AppCompatActivity(), SuspectRecordResult {
     var name_num = 0
@@ -143,6 +155,18 @@ class OffenderRecordActivity : AppCompatActivity(), SuspectRecordResult {
             } else{
                 binding.offenderFather.isSelected = false
             }
+
+            if(childidx_var.childIdx.childIdx != null
+                && (binding.offenderMale.isSelected|| binding.offenderFemale.isSelected || binding.offenderDontKnow.isSelected)
+                && !binding.recordOffenderAge.text.equals("")
+                && (binding.offenderFather.isSelected || binding.offenderMother.isSelected || !binding.recordRelation.text.equals(""))) {
+                binding.recordAdd.setBackgroundResource(R.drawable.fragment_dark_red_background)
+                binding.recordNext.setBackgroundResource(R.drawable.fragment_dark_red_background)
+            }
+            else{
+                binding.recordAdd.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+                binding.recordNext.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+            }
         }
         binding.offenderMother.setOnClickListener{
             mother++
@@ -155,44 +179,165 @@ class OffenderRecordActivity : AppCompatActivity(), SuspectRecordResult {
             } else{
                 binding.offenderMother.isSelected = false
             }
+
+            if(childidx_var.childIdx.childIdx != null
+                && (binding.offenderMale.isSelected|| binding.offenderFemale.isSelected || binding.offenderDontKnow.isSelected)
+                && !binding.recordOffenderAge.text.equals("")
+                && (binding.offenderFather.isSelected || binding.offenderMother.isSelected || !binding.recordRelation.text.equals(""))) {
+                binding.recordAdd.setBackgroundResource(R.drawable.fragment_dark_red_background)
+                binding.recordNext.setBackgroundResource(R.drawable.fragment_dark_red_background)
+            }
+            else{
+                binding.recordAdd.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+                binding.recordNext.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+            }
         }
+
+
+        binding.recordOffenderName.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                suspectRecord_var.abuse.suspectName = binding.recordOffenderName.text.toString()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                if(childidx_var.childIdx.childIdx != null
+                    && (binding.offenderMale.isSelected|| binding.offenderFemale.isSelected || binding.offenderDontKnow.isSelected)
+                    && !binding.recordOffenderAge.text.equals("")
+                    && (binding.offenderFather.isSelected || binding.offenderMother.isSelected || !binding.recordRelation.text.equals(""))) {
+                    binding.recordAdd.setBackgroundResource(R.drawable.fragment_dark_red_background)
+                    binding.recordNext.setBackgroundResource(R.drawable.fragment_dark_red_background)
+                }
+                else{
+                    binding.recordAdd.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+                    binding.recordNext.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+                }
+            }
+        })
+
+        binding.recordOffenderAge.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                suspectRecord_var.abuse.suspectAge_1 = binding.recordOffenderAge.text.toString()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                if(childidx_var.childIdx.childIdx != null
+                    && (binding.offenderMale.isSelected|| binding.offenderFemale.isSelected || binding.offenderDontKnow.isSelected)
+                    && !binding.recordOffenderAge.text.equals("")
+                    && (binding.offenderFather.isSelected || binding.offenderMother.isSelected || !binding.recordRelation.text.equals(""))) {
+                    binding.recordAdd.setBackgroundResource(R.drawable.fragment_dark_red_background)
+                    binding.recordNext.setBackgroundResource(R.drawable.fragment_dark_red_background)
+                }
+                else{
+                    binding.recordAdd.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+                    binding.recordNext.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+                }
+            }
+        })
+
+        binding.recordOffenderAgeNS.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                suspectRecord_var.abuse.suspectAge_2 = binding.recordOffenderAgeNS.text.toString()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                if(childidx_var.childIdx.childIdx != null
+                    && (binding.offenderMale.isSelected|| binding.offenderFemale.isSelected || binding.offenderDontKnow.isSelected)
+                    && !binding.recordOffenderAge.text.equals("")
+                    && (binding.offenderFather.isSelected || binding.offenderMother.isSelected || !binding.recordRelation.text.equals(""))) {
+                    binding.recordAdd.setBackgroundResource(R.drawable.fragment_dark_red_background)
+                    binding.recordNext.setBackgroundResource(R.drawable.fragment_dark_red_background)
+                }
+                else{
+                    binding.recordAdd.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+                    binding.recordNext.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+                }
+            }
+        })
+
+        binding.recordRelation.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                suspectRecord_var.abuse.relation = binding.recordRelation.text.toString()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                if(childidx_var.childIdx.childIdx != null
+                    && (binding.offenderMale.isSelected|| binding.offenderFemale.isSelected || binding.offenderDontKnow.isSelected)
+                    && !binding.recordOffenderAge.text.equals("")
+                    && (binding.offenderFather.isSelected || binding.offenderMother.isSelected || !binding.recordRelation.text.equals(""))) {
+                    binding.recordAdd.setBackgroundResource(R.drawable.fragment_dark_red_background)
+                    binding.recordNext.setBackgroundResource(R.drawable.fragment_dark_red_background)
+                }
+                else{
+                    binding.recordAdd.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+                    binding.recordNext.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+                }
+            }
+        })
+
 
 
         binding.recordNext.setOnClickListener{
-            save()
+            if(!binding.offenderMale.isSelected && !binding.offenderFemale.isSelected && !binding.offenderDontKnow.isSelected)
+                Toast.makeText(this, "학대 행위자 성별을 기록해주세요", Toast.LENGTH_SHORT).show()
+            else{
+                if(binding.recordOffenderAge.text.toString().trim().isEmpty())
+                    Toast.makeText(this, "아동 성별을 입력해주세요", Toast.LENGTH_SHORT).show()
+                else {
+                    if (!binding.offenderMother.isSelected && !binding.offenderFather.isSelected && !binding.recordRelation.text.toString().trim().isEmpty())
+                        Toast.makeText(this, "아동과의 관계를 입력해주세요", Toast.LENGTH_SHORT).show()
+                    else{
+                        save()
+                        val i = Intent(this, RecordDoneActivity::class.java)
+                        i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(i)
 
-            val recordDoneFragment = RecordDoneFragment()
-            val fragment : Fragment? = supportFragmentManager.findFragmentByTag(RecordDoneFragment::class.java.simpleName)
-            if(fragment !is RecordDoneFragment){
-                supportFragmentManager.beginTransaction()
-                    .add(R.id.layout_content, recordDoneFragment, recordDoneFragment::class.java.simpleName)
-                    .commit()
+//                        (context as MainActivity).supportFragmentManager.beginTransaction()
+//                            .replace(R.id.main_frm, HomeFragment())
+//                            .addToBackStack(null)
+//                            .commitAllowingStateLoss()
+//                        val recordDoneFragment = RecordDoneFragment()
+//                        val fragment : Fragment? = supportFragmentManager.findFragmentByTag(RecordDoneFragment::class.java.simpleName)
+//                        if(fragment !is RecordDoneFragment){
+//                            supportFragmentManager.beginTransaction()
+//                                .add(R.id.layout_content, recordDoneFragment, recordDoneFragment::class.java.simpleName)
+//                                .commit()
+//                        }
+//                        binding.content.visibility = View.GONE
+                    }
+                }
             }
-            binding.content.visibility = View.GONE
         }
+
+        binding.recordAdd.setOnClickListener {
+
+            if(!binding.offenderMale.isSelected && !binding.offenderFemale.isSelected && !binding.offenderDontKnow.isSelected)
+                Toast.makeText(this, "학대 행위자 성별을 기록해주세요", Toast.LENGTH_SHORT).show()
+            else{
+                if(binding.recordOffenderAge.text.toString().trim().isEmpty())
+                    Toast.makeText(this, "아동 성별을 입력해주세요", Toast.LENGTH_SHORT).show()
+                else {
+                    if (!binding.offenderMother.isSelected && !binding.offenderFather.isSelected && !binding.recordRelation.text.toString().trim().isEmpty())
+                        Toast.makeText(this, "아동과의 관계를 입력해주세요", Toast.LENGTH_SHORT).show()
+                    else{
+                        save()
+                        startActivity(Intent(this, OffenderRecordActivity::class.java))
+                    }
+                }
+            }
+        }
+
     }
 
+
     private fun save(){
-
-        if (binding.offenderMale.isSelected.toString().isEmpty()
-            && binding.offenderFemale.isSelected.toString().isEmpty()
-            && binding.offenderDontKnow.isSelected.toString().isEmpty()) {
-            Toast.makeText(this, "학대 행위자의 성별을 입력해주세요.", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        if (binding.recordOffenderAge.text.toString().isEmpty()) {
-            Toast.makeText(this, "학대 행위자의 나이를 입력해주세요", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        if (binding.offenderFather.isSelected.toString().isEmpty()
-            && binding.offenderMother.isSelected.toString().isEmpty()
-            && binding.recordRelation.text.toString().isEmpty()) {
-            Toast.makeText(this, "아동과의 관계를 입력해주세요.", Toast.LENGTH_SHORT).show()
-            return
-        }
-
         val suspectRecordService = SuspectRecordService()
         suspectRecordService.setRecordResult(this)
         suspectRecordService.record(getSuspect())
@@ -222,7 +367,7 @@ class OffenderRecordActivity : AppCompatActivity(), SuspectRecordResult {
         val suspectAdress : String = binding.recordOffenderAddressBase.text.toString()
         val suspectDetailAdress : String = binding.recordOffenderAddressDetail.text.toString()
 
-        var relationWithChild : String = ""
+        var relationWithChild = ""
         if(binding.offenderFather.isSelected)
             relationWithChild = "부"
         else if (binding.offenderMother.isSelected)
@@ -231,6 +376,8 @@ class OffenderRecordActivity : AppCompatActivity(), SuspectRecordResult {
             relationWithChild = binding.recordRelation.text.toString()
 
         val suspectEtc : String = binding.recordOffenderEtc.text.toString()
+
+        Log.d("아동과의 관계 ==================================", relationWithChild)
 
         return Suspect(childIdx, suspectName, suspectGender, suspectAge, suspectAdress, suspectDetailAdress, relationWithChild, suspectEtc )
     }
@@ -251,12 +398,39 @@ class OffenderRecordActivity : AppCompatActivity(), SuspectRecordResult {
         suspectIdx_var.suspectIdx.suspectIdx = result.suspectIdx
         Toast.makeText(this, "학대 행위자 기록 성공.", Toast.LENGTH_SHORT).show()
         Log.d("RECORD/FAILURE", "학대 행위자 기록 성공.")
+
+
+
+    }
+
+    override fun NeedChildIdx(code: Int, message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", message)
+    }
+
+    override fun NeedChildGender(code: Int, message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", message)
+    }
+
+    override fun NeedChildAge(code: Int, message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", message)
+    }
+
+    override fun NeedRelation(code: Int, message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", message)
+    }
+
+    override fun ChildDontExist(code: Int, message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Log.d("RECORD/FAILURE", message)
     }
 
     override fun recordFailure() {
         Toast.makeText(this, "학대 행위자 기록 실패.", Toast.LENGTH_SHORT).show()
         Log.d("RECORD/FAILURE", "학대 행위자 기록 실패.")
-        Log.d("childIdx값 ==================================== ", getSuspect().childIdx.toString())
 
     }
 }

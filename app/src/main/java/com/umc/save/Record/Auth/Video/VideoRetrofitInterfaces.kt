@@ -12,6 +12,7 @@ interface VideoRetrofitInterfaces {
     @POST("/video")
     fun sendVideo(
         @Part video: ArrayList<MultipartBody.Part>,
+        @Part thumbnail : MultipartBody.Part,
         @Part("postVideoReq") postVideoReq : RequestBody
     ) : Call<VideoPostResponse>
 }

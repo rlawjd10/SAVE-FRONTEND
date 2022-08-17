@@ -36,7 +36,6 @@ class ListPictureLockerFragment: Fragment() {
 
         Log.d("======PICTURELIST",pictureList.toString())
 
-
         val pictureRecordRVAdapter = PictureRecordRVAdapter(pictureList)
 
         binding.pictureListRv.adapter = pictureRecordRVAdapter

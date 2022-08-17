@@ -4,9 +4,11 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.umc.save.R
 import com.umc.save.Record.Auth.AbuseSituation.AbuseSituation
 import com.umc.save.Record.Auth.AbuseSituation.abuse_var
@@ -48,6 +50,13 @@ class AbuseTypeActivity : AppCompatActivity() {
                 binding.physicalAbuseBtn.isSelected = false
                 abuse_var.abuse.a_type = ""
             }
+
+            Log.d("abuse type ======================================================", abuse_var.abuse.a_type)
+            if(!abuse_var.abuse.a_type.equals(""))
+                binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_red_background)
+            else{
+                binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+            }
         }
 
         binding.emotionalAbuseBtn.setOnClickListener{
@@ -70,6 +79,13 @@ class AbuseTypeActivity : AppCompatActivity() {
             } else{
                 binding.emotionalAbuseBtn.isSelected = false
                 abuse_var.abuse.a_type = ""
+            }
+
+            Log.d("abuse type ======================================================", abuse_var.abuse.a_type)
+            if(!abuse_var.abuse.a_type.equals(""))
+                binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_red_background)
+            else{
+                binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_gray_background)
             }
         }
 
@@ -94,6 +110,13 @@ class AbuseTypeActivity : AppCompatActivity() {
                 binding.sexualAbuseBtn.isSelected = false
                 abuse_var.abuse.a_type = ""
             }
+
+            Log.d("abuse type ======================================================", abuse_var.abuse.a_type)
+            if(!abuse_var.abuse.a_type.equals(""))
+                binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_red_background)
+            else{
+                binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+            }
         }
 
         binding.neglectAbuseBtn.setOnClickListener{
@@ -117,10 +140,23 @@ class AbuseTypeActivity : AppCompatActivity() {
                 binding.neglectAbuseBtn.isSelected = false
                 abuse_var.abuse.a_type = ""
             }
+
+            Log.d("abuse type ======================================================", abuse_var.abuse.a_type)
+            if(!abuse_var.abuse.a_type.equals(""))
+                binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_red_background)
+            else{
+                binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_gray_background)
+            }
         }
 
+
+
         binding.nextBtn.setOnClickListener{
-            startActivity(Intent(this, CalendarTimePlaceActivity::class.java))
+            if(abuse_var.abuse.a_type.equals(""))
+                Toast.makeText(this, "학대 유형을 선택해주세요", Toast.LENGTH_SHORT).show()
+            else {
+                startActivity(Intent(this, CalendarTimePlaceActivity::class.java))
+            }
         }
 
     }

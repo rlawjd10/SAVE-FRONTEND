@@ -1,7 +1,6 @@
 package com.umc.save.Record.Auth.SuspectRecord
 
 import android.util.Log
-import com.umc.save.Record.Auth.SuspectRecord.Result
 import com.umc.save.Record.Suspect
 import com.umc.save.getRetrofit
 import retrofit2.Call
@@ -33,6 +32,11 @@ class SuspectRecordService {
                 result = resp.result!!
                 when(resp.code){
                     1000 -> suspectRecordResult.recordSuccess(result)
+                    2050 -> suspectRecordResult.NeedChildIdx(resp.code, resp.message)
+                    2051 -> suspectRecordResult.NeedChildGender(resp.code, resp.message)
+                    2052 -> suspectRecordResult.NeedChildAge(resp.code, resp.message)
+                    2053 -> suspectRecordResult.NeedRelation(resp.code, resp.message)
+                    2060 -> suspectRecordResult.ChildDontExist(resp.code, resp.message)
                     else -> suspectRecordResult.recordFailure()
                 }
             }

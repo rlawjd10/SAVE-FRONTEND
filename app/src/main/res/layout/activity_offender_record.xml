@@ -95,7 +95,10 @@
 
             android:fontFamily="@font/pretendard_semi_bold"
             android:inputType="textPersonName"
-            android:text="김가명"
+            android:text=""
+
+            android:hint="김가명"
+            android:textColorHint="@color/dark_red"
 
             android:textColor="#FF7F61"
             android:textSize="16sp"
@@ -244,7 +247,10 @@
 
             android:fontFamily="@font/pretendard_semi_bold"
             android:inputType="text"
-            android:text="-"
+            android:text=""
+
+            android:hint="-"
+            android:textColorHint="@color/dark_red"
 
             android:textColor="#FF7F61"
             android:textSize="16sp"
@@ -298,7 +304,10 @@
 
             android:layout_marginTop="18dp"
 
-            android:text="-"
+            android:text=""
+
+            android:hint="-"
+            android:textColorHint="@color/dark_gray"
             android:fontFamily="@font/pretendard_bold"
             android:textSize="16sp"
 
@@ -351,7 +360,9 @@
 
             android:inputType="text"
             android:textSize="12sp"
-            android:text="도로명주소"
+            android:text=""
+            android:hint="도로명주소"
+            android:textColorHint="@color/dark_red"
             android:fontFamily="@font/pretendard_semi_bold"
             android:textColor="#FF7F61"
             tools:ignore="MissingConstraints" />
@@ -366,7 +377,9 @@
             app:layout_constraintRight_toRightOf="parent"
             android:inputType="text"
             android:textSize="12sp"
-            android:text="상세주소"
+            android:text=""
+            android:hint="상세 주소"
+            android:textColorHint="@color/dark_red"
             android:fontFamily="@font/pretendard_semi_bold"
             android:textColor="#FF7F61"
             tools:ignore="MissingConstraints" />
@@ -432,7 +445,9 @@
 
             android:fontFamily="@font/pretendard_semi_bold"
             android:inputType="text"
-            android:text="기타관계"
+            android:text=""
+            android:hint="기타관계"
+            android:textColorHint="@color/dark_red"
 
             android:textColor="#FF7F61"
             android:textSize="16sp"
@@ -462,11 +477,14 @@
             android:layout_width="306dp"
             android:layout_height="96dp"
             android:layout_marginTop="12dp"
-            android:background="#FFE6E6"
+            android:background="@drawable/fragment_child_red_on_background"
+
 
             android:fontFamily="@font/pretendard_semi_bold"
 
-            android:text="선택 후 입력하세요."
+            android:text=""
+            android:hint="선택 후 입력하세요"
+            android:textColorHint="@color/dark_red"
             android:textColor="#FF7F61"
             android:textSize="12sp"
 

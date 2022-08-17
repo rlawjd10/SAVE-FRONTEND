@@ -2,11 +2,15 @@ package com.umc.save.Record
 
 import com.umc.save.Record.Auth.SuspectGet.Suspect
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.umc.save.R
 import com.umc.save.Record.Auth.ChildRecord.childidx_var
 import com.umc.save.Record.Auth.SuspectRecord.suspectIdx_var
+import com.umc.save.Record.RecordDetail.ChooseOffenderActivity
+import com.umc.save.databinding.ActivityChooseOffenderBinding
 import com.umc.save.databinding.ItemOffenderBinding
 
 class SuspectRVAdapter(private val suspectList : ArrayList<Suspect>) :
@@ -51,9 +55,11 @@ class SuspectRVAdapter(private val suspectList : ArrayList<Suspect>) :
                 suspectIdx_var.suspectIdx.suspectIdx = get_suspectIdx
                 binding.itemOffenderInfoIb.setBackgroundColor(Color.parseColor("#FF7F61"))
                 binding.itemOffenderInfoRelTv.setTextColor(Color.parseColor("#FFFFFFFF"))
+                binding.itemCheckBtn.setImageResource(R.drawable.icn_check_01_on)
             } else {
                 binding.itemOffenderInfoIb.setBackgroundColor(Color.parseColor("#F5F5F5"))
                 binding.itemOffenderInfoRelTv.setTextColor(Color.parseColor("#FF7F61"))
+                binding.itemCheckBtn.setImageResource(R.drawable.icn_check_01_off)
             }
         }
     }

@@ -18,13 +18,14 @@ import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Record.Auth.ChildRecord.childidx_var
 import com.umc.save.Record.ChildRecordActivity
+import com.umc.save.Sign.Auth.userIdx_var
 import com.umc.save.databinding.FragmentLockerBinding
 import java.util.zip.Inflater
 import kotlin.collections.ArrayList
 
 class LockerFragment : Fragment(), ChildrenView {
 
-    var userIdx = 2
+    val userIdx = userIdx_var.UserIdx.UserIdx
     lateinit var binding: FragmentLockerBinding
     var currentPosition = 0
     var childList = ArrayList<Child>()
