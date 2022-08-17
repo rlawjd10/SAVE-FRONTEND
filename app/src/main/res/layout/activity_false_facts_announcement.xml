@@ -23,7 +23,7 @@
             <ImageView
                 android:id="@+id/announcement_wrapper_iv"
                 android:layout_width="306dp"
-                android:layout_height="325dp"
+                android:layout_height="315dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 
