@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.umc.save.R
 import com.umc.save.Record.Auth.AbuseSituation.AbuseSituation
 import com.umc.save.Record.Auth.AbuseSituation.abuse_var
@@ -146,13 +147,16 @@ class AbuseTypeActivity : AppCompatActivity() {
             else{
                 binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_gray_background)
             }
-                binding.nextBtn.setBackgroundColor(Color.parseColor("#FF7F61"))
         }
 
 
 
         binding.nextBtn.setOnClickListener{
-            startActivity(Intent(this, CalendarTimePlaceActivity::class.java))
+            if(abuse_var.abuse.a_type.equals(""))
+                Toast.makeText(this, "학대 유형을 선택해주세요", Toast.LENGTH_SHORT).show()
+            else {
+                startActivity(Intent(this, CalendarTimePlaceActivity::class.java))
+            }
         }
 
     }

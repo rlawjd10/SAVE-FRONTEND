@@ -148,7 +148,7 @@ class DetailEtcActivity : AppCompatActivity(), AbuseResult, PictureResult, Video
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
+                abuse_var.abuse.detail = binding.recordDetail.text.toString()
             }
 
             override fun afterTextChanged(p0: Editable?) {
@@ -164,9 +164,12 @@ class DetailEtcActivity : AppCompatActivity(), AbuseResult, PictureResult, Video
 
 
         binding.btnNext.setOnClickListener {
-            abuse_save()
-
-            startActivity(Intent(this, MainActivity::class.java))
+            if(binding.recordDetail.text.toString().trim().isEmpty())
+                Toast.makeText(this, "학대 정황을 기록해주세요", Toast.LENGTH_SHORT).show()
+            else {
+                abuse_save()
+                startActivity(Intent(this, MainActivity::class.java))
+            }
         }
     }
 
@@ -190,7 +193,7 @@ class DetailEtcActivity : AppCompatActivity(), AbuseResult, PictureResult, Video
         var date = abuse_var.abuse.a_date
         var time = abuse_var.abuse.a_time
         var place = abuse_var.abuse.place
-        var detail = binding.recordDetail.text.toString()
+        var detail = abuse_var.abuse.detail
         var etc = binding.recordEtc.text.toString()
         var type = abuse_var.abuse.a_type
 

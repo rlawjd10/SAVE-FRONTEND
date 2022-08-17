@@ -14,6 +14,7 @@ class abuse_var {
         var a_time : String = ""
         var place : String = ""
         var a_type : String = ""
+        var detail : String = ""
 
         var abuseIdx : Int = 0
     }

@@ -37,6 +37,7 @@ class ChooseOffenderActivity : AppCompatActivity(), SuspectGetResult {
         chooseSuspect()
 
         binding.nextBtn.setOnClickListener{
+
             startActivity(Intent(this, AbuseTypeActivity::class.java))
         }
     }

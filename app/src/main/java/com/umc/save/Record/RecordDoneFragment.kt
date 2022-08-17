@@ -6,8 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentTransaction
+import com.umc.save.Home.HomeFragment
+import com.umc.save.Home.option.HomeAlarmFragment
+import com.umc.save.Home.option.HomeSettingsFragment
+import com.umc.save.Locker.LockerFragment
+import com.umc.save.MainActivity
+import com.umc.save.R
 import com.umc.save.Record.RecordDetail.ChooseOffenderActivity
 import com.umc.save.databinding.FragmentRecordDoneBinding
+import java.util.concurrent.locks.Lock
 
 class RecordDoneFragment : Fragment() {
     lateinit var binding: FragmentRecordDoneBinding
@@ -25,11 +34,13 @@ class RecordDoneFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        initActionBar()
+
         binding.moveToStorage.setOnClickListener {
-//            activity?.let {
-//                val intent = Intent(context, ChildRecordActivity::class.java)
-//                startActivity(intent)
-//            }
+            var transaction : FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
+            val lockerFragment : LockerFragment = LockerFragment()
+            transaction.add(R.id.content, lockerFragment).commit()
+            binding.content.visibility = View.GONE
         }
 
         binding.recordGoOn.setOnClickListener {
@@ -40,7 +51,29 @@ class RecordDoneFragment : Fragment() {
         }
     }
 
+    private fun initActionBar() {
 
+        binding.mainActionbar.actionMainHomeIv.setOnClickListener {
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, HomeFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
+        binding.mainActionbar.actionMainAlarmIv.setOnClickListener {
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, HomeAlarmFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
+        binding.mainActionbar.actionMainSettingsIv.setOnClickListener {
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, HomeSettingsFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
+
+
+    }
 
 
 }

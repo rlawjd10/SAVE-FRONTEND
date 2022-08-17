@@ -477,7 +477,8 @@
             android:layout_width="306dp"
             android:layout_height="96dp"
             android:layout_marginTop="12dp"
-            android:background="#FFE6E6"
+            android:background="@drawable/fragment_child_red_on_background"
+
 
             android:fontFamily="@font/pretendard_semi_bold"
 

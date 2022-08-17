@@ -75,6 +75,7 @@ class CalendarTimePlaceActivity : AppCompatActivity() {
             ) {
                 if(selected)
                     data_date = sdf.format(date.date)
+                abuse_var.abuse.a_date = data_date
                 Log.d("현재 시간 ==================================== ", data_date)
             }
 
@@ -101,7 +102,9 @@ class CalendarTimePlaceActivity : AppCompatActivity() {
         binding.recordPlace.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                abuse_var.abuse.place = binding.recordPlace.text.toString()
+            }
 
             override fun afterTextChanged(p0: Editable?) {
                 if(data_date != null && abuse_var.abuse.a_time != null && abuse_var.abuse.a_date != null
@@ -119,10 +122,25 @@ class CalendarTimePlaceActivity : AppCompatActivity() {
 
 
         binding.btnNext.setOnClickListener{
-            Log.d("시간(sdf) ==================================== ", data_date)
-            Log.d("시간 ==================================== ", abuse_var.abuse.a_time)
-            Log.d("날짜 ==================================== ", abuse_var.abuse.a_date)
-            startActivity(Intent(this, DetailEtcActivity::class.java))
+            if(data_date.equals(""))
+                Toast.makeText(this, "날짜를 기록해주세요", Toast.LENGTH_SHORT).show()
+            else{
+                if(abuse_var.abuse.a_time.equals(""))
+                    Toast.makeText(this, "학대 목격 시간을 입력해주세요", Toast.LENGTH_SHORT).show()
+                else {
+                    if (abuse_var.abuse.place.equals(""))
+                        Toast.makeText(this, "학대 목격 장소를 입력해주세요", Toast.LENGTH_SHORT).show()
+                    else{
+                        Log.d("시간(sdf) ==================================== ", data_date)
+                        Log.d("시간 ==================================== ", abuse_var.abuse.a_time)
+                        Log.d("날짜 ==================================== ", abuse_var.abuse.a_date)
+                        startActivity(Intent(this, DetailEtcActivity::class.java))
+                    }
+                }
+            }
+
+
+
         }
 
 
