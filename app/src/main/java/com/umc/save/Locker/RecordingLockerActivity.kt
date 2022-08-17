@@ -22,9 +22,7 @@ import java.util.concurrent.TimeUnit
 class RecordingLockerActivity : AppCompatActivity() {
 
     lateinit var binding : ItemRecordingBinding
-
     private var player : ExoPlayer? = null
-
     private val timeRunnable = Runnable {
         updateTime()
     }

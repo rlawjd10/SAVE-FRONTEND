@@ -31,7 +31,6 @@ import kotlin.collections.ArrayList
 
 class DetailRecordLockerFragment : Fragment(), AbuseDetailView, DeleteRecordView {
     lateinit var binding : FragmentLockerRecordDetailBinding
-    private var gson : Gson = Gson()
     private var pictureList = ArrayList<Picture>()
     private var videoList = ArrayList<Video>()
     private var recordingList = ArrayList<Recording>()
@@ -43,7 +42,6 @@ class DetailRecordLockerFragment : Fragment(), AbuseDetailView, DeleteRecordView
     ): View? {
         binding = FragmentLockerRecordDetailBinding.inflate(inflater,container,false)
 
-//        binding.scrollView.setEdgeEffectColor()
         val abuseIdx = arguments?.getInt("abuseIdx")
 
         //서버에서 데이터 받아오기
@@ -60,15 +58,6 @@ class DetailRecordLockerFragment : Fragment(), AbuseDetailView, DeleteRecordView
         return binding.root
     }
 
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        val fab : FloatingActionButton= view.findViewById(R.id.fab)
-//        fab.setOnClickListener {
-//            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:112"))
-//            startActivity(intent)
-//        }
-//    }
 
     private fun ClickViewEvents(deleteAbuseIdx : Int) {
 
@@ -91,7 +80,6 @@ class DetailRecordLockerFragment : Fragment(), AbuseDetailView, DeleteRecordView
         dialog.show(this.childFragmentManager, "HomeDialog")
 
     }
-
 
 
     private fun deleteRecord(abuseIdx: Int) {
@@ -192,27 +180,22 @@ class DetailRecordLockerFragment : Fragment(), AbuseDetailView, DeleteRecordView
                 binding.suspectInfoImage.setImageResource(R.drawable.ilst_female_01)
             }
             else -> {
-                binding.suspectInfoImage.setImageResource(R.drawable.fragment_white_background)
+                binding.suspectInfoImage.setImageResource(R.drawable.white_background_image)
             }
         }
 
-
         suspectInfo = gender + "/" + result.suspect.suspectAge
 
-        if(result.suspect.suspectAddress != null) {
+        if(result.suspect.suspectAddress != "") {
             suspectInfo = suspectInfo + "/" + result.suspect.suspectAddress
         }
 
-        if(result.suspect.suspectDetailAddress != null) {
+        if(result.suspect.suspectDetailAddress != "") {
             suspectInfo = suspectInfo + "/" + result.suspect.suspectDetailAddress
         }
 
-        //아동과의 관계 입력은 필수값 -> null 일 경우가 없음
-//        if(result.suspect.relationship==null) {
-//            binding.suspectInfoRelationshipView.visibility = View.GONE
-//        }
 
-        if (result.suspect.suspectName == null) {
+        if (result.suspect.suspectName == "") {
             binding.suspectInfoNameTv.text = unknown
         } else {
             binding.suspectInfoNameTv.text = result.suspect.suspectName
@@ -240,7 +223,7 @@ class DetailRecordLockerFragment : Fragment(), AbuseDetailView, DeleteRecordView
         binding.recordTextTv.text = result.detailDescription
         binding.recordTextEtcTv.text = result.detailEtcDescription
 
-        if (result.detailEtcDescription==null) {
+        if (result.detailEtcDescription=="") {
             binding.recordTextEtcTv.visibility = View.GONE
         } else {
             binding.recordTextEtcTv.visibility = View.VISIBLE
@@ -280,13 +263,17 @@ class DetailRecordLockerFragment : Fragment(), AbuseDetailView, DeleteRecordView
         if (result.pictureList.isEmpty()) {
             binding.recordPictureIv.visibility = View.GONE
             binding.recordPictureNumTv.visibility = View.GONE
+            Log.d("========picture-EMPTY!!!",pictureList.toString())
 
         } else {
             binding.recordPictureIv.visibility = View.VISIBLE
             binding.recordPictureNumTv.visibility = View.VISIBLE
             binding.recordPictureNumTv.text = result.pictureList.size.toString()
             setPicture()
+            Log.d("========picture-NOTEMPTY!!!",pictureList.toString())
         }
+
+
 
         if(result.pictureList.isEmpty() && result.videoList.isEmpty()) {
             binding.pictureVideoFrm.visibility = View.GONE

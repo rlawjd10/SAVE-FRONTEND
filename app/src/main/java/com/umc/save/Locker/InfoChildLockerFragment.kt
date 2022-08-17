@@ -48,9 +48,6 @@ class InfoChildLockerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val actionBar = view.findViewById<TextView>(R.id.appbar_page_name_tv)
-//        actionBar.text = "보관함"
-
         val fab : FloatingActionButton = view.findViewById(R.id.fab)
         fab.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:112"))
@@ -138,7 +135,7 @@ class InfoChildLockerFragment : Fragment() {
             }
 
         } else {
-            binding.childInfoImage.setImageResource(R.drawable.fragment_white_background)
+            binding.childInfoImage.setImageResource(R.drawable.white_background_image)
         }
 
 
@@ -155,7 +152,7 @@ class InfoChildLockerFragment : Fragment() {
 
         childInfo = gender + "/" + child.childAge + "/" + child.childAddress
 
-        if(child.childDetailAddress != null) {
+        if(child.childDetailAddress != "") {
             childInfo = childInfo + "/" + child.childDetailAddress
         }
 

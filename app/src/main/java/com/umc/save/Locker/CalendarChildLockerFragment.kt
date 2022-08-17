@@ -31,10 +31,8 @@ import kotlin.collections.ArrayList
 class CalendarChildLockerFragment(child: Int) : Fragment(), AbuseView {
 //    , DayViewDecorator
     lateinit var binding : FragmentLockerChildCalendarBinding
-    var currentPosition = 0
     private var childIdx = child
     private var recordList = ArrayList<RecordData>()
-//    private final drawable : Drawable
 
     @SuppressLint("SimpleDateFormat")
     override fun onCreateView(
@@ -55,35 +53,12 @@ class CalendarChildLockerFragment(child: Int) : Fragment(), AbuseView {
             addDecorator(Disable(disabledDates))
             setWeekDayLabels(weekdayList)
             setTitleMonths(monthList)
-//            setTitleFormatter()
             selectionMode = MaterialCalendarView.SELECTION_MODE_MULTIPLE
-//            setTitleFormatter(MyTitleFormatter())
 
         }
 
         return binding.root
     }
-
-
-    inner class MyTitleFormatter : TitleFormatter {
-        @SuppressLint("SimpleDateFormat")
-        override fun format(day: CalendarDay?): CharSequence {
-            val simpleDateFormat =
-                SimpleDateFormat("yyyy / MM")
-
-            return simpleDateFormat.format(Calendar.getInstance().time)
-        }
-
-    }
-
-
-//    private var dates = HashSet<CalendarDay>()
-//    private var today: CalendarDay
-//
-//    constructor(dates: HashSet<CalendarDay>, today: CalendarDay) {
-//        this.dates = dates
-//        this.today = today
-//    }
 
 
     inner class Disable (
@@ -100,16 +75,6 @@ class CalendarChildLockerFragment(child: Int) : Fragment(), AbuseView {
         }
     }
 
-
-
-
-//    override fun shouldDecorate(day: CalendarDay?): Boolean {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun decorate(view: DayViewFacade?) {
-//        TODO("Not yet implemented")
-//    }
 
     private fun getAbuseCases() {
 

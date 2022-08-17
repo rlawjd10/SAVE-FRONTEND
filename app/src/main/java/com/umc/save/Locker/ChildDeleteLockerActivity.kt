@@ -17,12 +17,14 @@ import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Record.Auth.ChildRecord.childidx_var
 import com.umc.save.Record.ChildRecordActivity
+import com.umc.save.Sign.Auth.userIdx_var
 import com.umc.save.databinding.ActivityLockerDeleteChildBinding
 
 class ChildDeleteLockerActivity : AppCompatActivity(), ChildrenView, DeleteChildView {
     //아이들 가져오는 것은 ChildrenView가 한 아이를 지우는 것을 DeleteChildView가 담당
 
-    var userIdx = 2
+//    var userIdx = 2
+    val userIdx = userIdx_var.UserIdx.UserIdx
     lateinit var binding : ActivityLockerDeleteChildBinding
     private var selectedItem = 0
     var selectedList = ArrayList<Child>()

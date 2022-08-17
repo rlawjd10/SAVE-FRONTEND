@@ -31,6 +31,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Record.RecordPreviousActivity" />
         <activity android:name=".Record.ChildRecordActivity" />
+        <activity android:name=".Record.RecordDoneActivity"/>
         <activity android:name=".Record.RecordDetail.ChooseOffenderActivity" />
         <activity android:name=".Record.RecordDetail.DetailEtcActivity" />
         <activity android:name=".Record.RecordDetail.CalendarTimePlaceActivity" />
@@ -47,6 +48,16 @@
             android:theme="@style/Theme.ActivityDialog" />
         <activity android:name=".Sign.SignUpActivity" />
         <activity android:name=".Sign.SignUpCompleteActivity" />
+
+
+        <activity
+            android:name=".Sign.AnnouncementPrivacyActivity"
+            android:theme="@style/Theme.ActivityDialog" />
+
+        <activity
+            android:name=".Sign.AnnouncementFactsFalseActivity"
+            android:theme="@style/Theme.ActivityDialog" />
+
         <activity android:name=".Locker.RecordDeleteLockerActivity" />
         <activity android:name=".Locker.ChildDeleteLockerActivity" />
         <activity android:name=".Locker.SuspectDeleteLockerActivity" />
