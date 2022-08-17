@@ -10,6 +10,7 @@ import android.text.Html
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Button
@@ -19,16 +20,18 @@ import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentTransaction
-import com.umc.save.Home.option.HomeAlarmFragment
-import com.umc.save.Home.option.HomeSettingsFragment
+import com.umc.save.Home.option.*
 import com.umc.save.MainActivity
 import com.umc.save.R
+import com.umc.save.Sign.Auth.userIdx_var
+import com.umc.save.Sign.User.userIdx.userIdx.userIdx
 import com.umc.save.databinding.FragmentHomeBinding
 import org.w3c.dom.Text
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), UserInfoView {
 
+    val userIdx = userIdx_var.UserIdx.UserIdx
     lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
@@ -37,6 +40,9 @@ class HomeFragment : Fragment() {
     ): View? {
 
         binding = FragmentHomeBinding.inflate(inflater,container,false)
+
+        //서버에서 userInfo 가져오기
+        getUserInfo()
 
 //        home 화면 버튼 클릭했을 때 fragment to fragment
         binding.homeActionBtn.setOnClickListener {
@@ -72,6 +78,15 @@ class HomeFragment : Fragment() {
 */
         initActionBar()
         return binding.root
+
+
+    }
+
+    private fun getUserInfo() {
+
+        val userInfoService = UserInfoService()
+        userInfoService.setUserInfoView(this)
+        userInfoService.getUserInfo(userIdx)
     }
 
     //fragment to fragment method
@@ -102,6 +117,19 @@ class HomeFragment : Fragment() {
                 .addToBackStack(null)
                 .commitAllowingStateLoss()
         }
+    }
+
+    override fun onGetUserSuccess(code: Int, result: UserInfo) {
+        Log.d("GET-USER-SUCCESS",result.toString())
+        binding.homeUserNameTv.text = result.name
+    }
+
+    override fun userNotExist(code: Int, message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onGetUserFailure(code: Int, message: String) {
+        TODO("Not yet implemented")
     }
 
 }

@@ -39,7 +39,7 @@ class HomeEditProfileFragment : Fragment() {
     private fun changeFragment(fragment: Fragment) {
         (context as MainActivity).supportFragmentManager.beginTransaction()
             .replace(R.id.main_frm, fragment)
-            .disallowAddToBackStack()
+            .addToBackStack(null)
             .commit()
     }
 }

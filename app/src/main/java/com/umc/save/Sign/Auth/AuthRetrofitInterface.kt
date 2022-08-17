@@ -16,5 +16,5 @@ interface AuthRetrofitInterface {
     fun login(@Body auth: Auth): Call<AuthResponse>
 
     @GET(" /auth/token")
-    fun autologin(): Call<AuthResponse>
+    fun autologin(@Header("jwt") jwt : String): Call<AuthResponse>
 }

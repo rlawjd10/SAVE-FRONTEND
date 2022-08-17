@@ -6,5 +6,6 @@ interface LoginView {
     fun onLoginSuccess(code : Int, result : Result)
     fun onLoginFailure()
 
-    fun onAutoLoginSuccess(code : Int, result : Result)
+    fun onAutoLoginSuccess(code : Int, result: Result)
+    fun onAutoLoginFailure()
 }

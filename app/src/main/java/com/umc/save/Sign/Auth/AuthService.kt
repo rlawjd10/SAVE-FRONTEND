@@ -50,19 +50,17 @@ class AuthService {
         })
     }
 
-    fun autologin() {
+    fun autologin(jwt : String) {
         val autologinService = getRetrofit().create(AuthRetrofitInterface::class.java)
-        autologinService.autologin().enqueue(object : Callback<AuthResponse> {
+        autologinService.autologin(jwt).enqueue(object : Callback<AuthResponse> {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 Log.d("AUTOLOGIN", response.body().toString())
+
                 if (response.isSuccessful && response.code() == 200) {
                     val loginResponse: AuthResponse = response.body()!!
                     Log.d("LOGIN/SUCCESS", loginResponse.toString())
 
-                    when (val code = loginResponse.code) {
-                        1000 -> loginView.onAutoLoginSuccess(code,loginResponse.result!! )
-                        else -> loginView.onLoginFailure()
-                    }
+
                 }
             }
 
