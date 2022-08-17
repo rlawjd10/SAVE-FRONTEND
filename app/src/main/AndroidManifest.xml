@@ -52,6 +52,15 @@
         <activity android:name=".Sign.SignUpActivity" />
         <activity android:name=".Sign.SignUpCompleteActivity" />
 
+        <activity
+            android:name=".Sign.AnnouncementPrivacyActivity"
+            android:theme="@style/Theme.ActivityDialog" />
+
+        <activity
+            android:name=".Sign.AnnouncementFactsFalseActivity"
+            android:theme="@style/Theme.ActivityDialog" />
+
+
         <activity android:name=".Locker.RecordDeleteLockerActivity" />
         <activity android:name=".Locker.ChildDeleteLockerActivity" />
         <activity android:name=".Locker.SuspectDeleteLockerActivity" />

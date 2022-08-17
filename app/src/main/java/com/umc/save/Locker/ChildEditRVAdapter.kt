@@ -137,12 +137,12 @@ class ChildEditRVAdapter (val childList : ArrayList<Child>) : RecyclerView.Adapt
                 }
 
             } else {
-                binding.itemChildInfoImage.setImageResource(R.drawable.fragment_white_background)
+                binding.itemChildInfoImage.setImageResource(R.drawable.white_background_image)
             }
 
             childInfo = gender + "/" + child.childAge + "/" + child.childAddress
 
-            if(child.childDetailAddress != null) {
+            if(child.childDetailAddress != "") {
                 childInfo = childInfo + "/" + child.childDetailAddress
             }
 

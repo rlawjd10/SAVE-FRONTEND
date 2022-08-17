@@ -86,20 +86,22 @@ class SuspectEditRVAdapter (val suspectList : ArrayList<Suspect>) : RecyclerView
 
             if (gender == "남자") {
                 binding.suspectInfoImage.setImageResource(R.drawable.ilst_male_01)
-            } else {
+            } else if (gender == "여자"){
                 binding.suspectInfoImage.setImageResource(R.drawable.ilst_female_01)
+            } else {
+                binding.suspectInfoImage.setImageResource(R.drawable.white_background_image)
             }
 
                 suspectInfo = gender + "/" + suspect.suspectAge
 
-            if(suspect.suspectAddress != null) {
+            if(suspect.suspectAddress != "") {
                 suspectInfo = suspectInfo + "/" + suspect.suspectAddress
             }
 
-            if(suspect.suspectDetailAddress != null) {
+            if(suspect.suspectDetailAddress != "") {
                 suspectInfo = suspectInfo + "/" + suspect.suspectDetailAddress
             }
-            if (suspect.suspectName == null) {
+            if (suspect.suspectName == "") {
                 binding.suspectInfoNameTv.text = unknown
             } else {
                 binding.suspectInfoNameTv.text = suspect.suspectName

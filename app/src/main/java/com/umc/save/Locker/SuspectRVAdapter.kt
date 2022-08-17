@@ -87,20 +87,20 @@ class SuspectRVAdapter (private val suspectList : ArrayList<Suspect>) : Recycler
                     binding.suspectInfoImage.setImageResource(R.drawable.ilst_female_01)
                 }
                 else -> {
-                    binding.suspectInfoImage.setImageResource(R.drawable.fragment_white_background)
+                    binding.suspectInfoImage.setImageResource(R.drawable.white_background_image)
                 }
             }
 
             suspectInfo = gender + "/" + suspect.suspectAge
 
-            if(suspect.suspectAddress != null) {
+            if(suspect.suspectAddress != "") {
                 suspectInfo = suspectInfo + "/" + suspect.suspectAddress
             }
 
-            if(suspect.suspectDetailAddress != null) {
+            if(suspect.suspectDetailAddress != "") {
                 suspectInfo = suspectInfo + "/" + suspect.suspectDetailAddress
             }
-            if (suspect.suspectName == null) {
+            if (suspect.suspectName == "") {
                 binding.suspectInfoNameTv.text = unknown
             } else {
                 binding.suspectInfoNameTv.text = suspect.suspectName

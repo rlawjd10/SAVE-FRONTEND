@@ -1,6 +1,8 @@
 package com.umc.save.Home.option
 
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.DialogFragment
@@ -19,6 +21,8 @@ class HomeDialogFragment() : DialogFragment(){
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeDialogBinding.inflate(inflater, container, false)
+
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val view = binding.root
 
         initDialog()

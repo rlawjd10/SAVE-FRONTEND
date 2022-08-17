@@ -21,12 +21,13 @@
         android:overScrollMode="never"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="47dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toStartOf="@id/center_guide_line"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_record" />
 
+<!--    android:paddingBottom="47dp"-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

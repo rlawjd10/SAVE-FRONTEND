@@ -126,6 +126,8 @@ class ListSuspectLockerFragment : Fragment(), SuspectsView {
 
     override fun onGetSuspectsSuccess(code: Int, result: ArrayList<Suspect>) {
         initRecyclerView(result)
+
+
         Log.d("GET-SUCCESS",result.toString())
     }
 
