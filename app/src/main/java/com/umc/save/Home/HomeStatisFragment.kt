@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.databinding.ActionbarInnerPageTopBinding
 import com.umc.save.databinding.ActionbarMainTopBinding
@@ -31,8 +32,21 @@ class StatisHomeFragment : Fragment() {
 
         binding = FragmentHomeStatisBinding.inflate(inflater, container, false)
 
+
+        initActionBar()
         initStatisRecyclerView()
         return binding.root
+    }
+
+    private fun initActionBar() {
+
+        binding.mainActionbar.appbarPageNameTv.text = "현황 ∙ 통계"
+
+        binding.mainActionbar.appbarBackBtn.setOnClickListener {
+            (context as MainActivity).supportFragmentManager
+                .popBackStack()
+        }
+
     }
 
     //리사이클러뷰 data 넘기기

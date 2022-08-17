@@ -4,6 +4,8 @@ package com.umc.save.Sign.Auth
 
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 //로그인
@@ -12,4 +14,7 @@ import retrofit2.http.POST
 interface AuthRetrofitInterface {
     @POST("/auth/login")
     fun login(@Body auth: Auth): Call<AuthResponse>
+
+    @GET(" /auth/token")
+    fun autologin(): Call<AuthResponse>
 }

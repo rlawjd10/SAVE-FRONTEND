@@ -10,6 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <include
+            android:id="@+id/main_actionbar"
+            layout="@layout/fragment_actionbar_back" />
+
     <!--아동학대 의심상황-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/guide_suspect_cardView"
@@ -18,7 +22,7 @@
         app:cardCornerRadius="14dp"
         android:elevation="10dp"
 
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="27dp"
         android:layout_marginStart="27dp"
         app:layout_constraintStart_toStartOf="parent"

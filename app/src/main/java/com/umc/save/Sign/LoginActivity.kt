@@ -1,6 +1,8 @@
 package com.umc.save.Sign
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +12,7 @@ import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.text.style.UnderlineSpan
+import android.util.Log
 import android.widget.*
 import androidx.core.content.ContextCompat
 import com.umc.save.MainActivity
@@ -19,6 +22,14 @@ import com.umc.save.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity(), LoginView {
 
+    companion object {
+        //만들어져있는 SharedPreferences 사용 //재생성x
+        lateinit var sSharedPreferences: SharedPreferences
+
+        // JWT Token 헤더 키 값
+        var X_ACCESS_TOKEN = "X_ACCESS_TOKEN"
+    }
+
     lateinit var binding: ActivityLoginBinding
     private var mIsShowPass = false
 
@@ -26,6 +37,8 @@ class LoginActivity : AppCompatActivity(), LoginView {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        sSharedPreferences = applicationContext.getSharedPreferences("app", Context.MODE_PRIVATE)
 
         //social login to MainActivity
         binding.loginKakaoTv.setOnClickListener {
@@ -142,7 +155,6 @@ class LoginActivity : AppCompatActivity(), LoginView {
         editor.apply()
     }
 
-    //val jwt : Int = getJwt()
 
     //로그인 성공 시 받은 jwt를 저장하는 함수 -> 사용자를 식별하기 위함
    private fun saveJwt2(jwt: String) {
@@ -167,6 +179,11 @@ class LoginActivity : AppCompatActivity(), LoginView {
                 //로그인 성공할 시 유저 인덱스와 유저jwt를 저장하고 화면 이동
                 saveJwt(result.userIdx)
                 saveJwt2(result.jwt)
+                val jwtResponse: String = result.jwt
+                Log.d("x-access-token", result.jwt)
+                //jwt 토큰 보냄
+                sSharedPreferences.edit().putString(X_ACCESS_TOKEN, jwtResponse).apply()
+                Log.d("x-access-token", X_ACCESS_TOKEN)
                 // saveJwt2(result.jwt)
                 //result.jwt?.let { saveJwt2(it) }
                 userIdx_var.UserIdx.UserIdx = result.userIdx
@@ -178,6 +195,10 @@ class LoginActivity : AppCompatActivity(), LoginView {
     //로그인 실패
     override fun onLoginFailure() {
 
+    }
+
+    override fun onAutoLoginSuccess(code: Int, result: Result) {
+        startMainActivity()
     }
 
 }

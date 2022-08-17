@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.databinding.FragmentHomeGuideBinding
 import com.umc.save.databinding.FragmentHomeStatisBinding
@@ -34,6 +35,7 @@ class GuideHomeFragment : Fragment() {
         }
 
 
+        initActionBar()
         return binding.root
     }
 
@@ -48,5 +50,16 @@ class GuideHomeFragment : Fragment() {
             view.visibility = View.VISIBLE
             imageView.setImageResource(R.drawable.icn_top_normal)
         }
+    }
+
+    private fun initActionBar() {
+
+        binding.mainActionbar.appbarPageNameTv.text = "신고 가이드"
+
+        binding.mainActionbar.appbarBackBtn.setOnClickListener {
+            (context as MainActivity).supportFragmentManager
+                .popBackStack()
+        }
+
     }
 }
