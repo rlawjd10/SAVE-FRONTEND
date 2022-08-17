@@ -14,6 +14,44 @@ class RecordDoneActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRecordDoneBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        initBottomNavigation()
     }
 
+    private fun initBottomNavigation() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_frm, RecordDoneFragment())
+            .commitAllowingStateLoss()
+
+        binding.mainBnv.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.tab_home -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frm, HomeFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
+                }
+
+                R.id.tab_storage -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frm, LockerFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
+                }
+
+                R.id.tab_add -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frm, RecordFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
+                }
+            }
+            false
+
+//        binding.button.setOnClickListener{
+//            startActivity(Intent(this, RecordActivity::class.java))
+
+        }
+
+    }
 }
