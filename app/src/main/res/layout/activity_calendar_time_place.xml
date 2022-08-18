@@ -9,11 +9,11 @@
     <!-- 캘린더 -->
     <TextView
         android:id="@+id/date"
-        android:layout_width="wrap_content"
+        android:layout_width="306dp"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="38dp"
+        app:layout_constraintStart_toStartOf="parent"
         android:text="날짜"
         android:fontFamily="@font/pretendard_bold"
         android:textColor="@color/black"
@@ -94,7 +94,7 @@
         />
     <EditText
         android:id="@+id/record_place"
-        android:layout_width="350dp"
+        android:layout_width="306dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
         android:backgroundTint="#FF7F61"
