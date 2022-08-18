@@ -383,6 +383,8 @@ class OffenderRecordActivity : AppCompatActivity(), SuspectRecordResult {
 
         Log.d("아동과의 관계 ==================================", relationWithChild)
 
+
+
         return Suspect(childIdx, suspectName, suspectGender, suspectAge, suspectAdress, suspectDetailAdress, relationWithChild, suspectEtc )
     }
 

@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.save.R
 import com.umc.save.Record.Auth.ChildGet.ChildGetService
@@ -18,14 +19,19 @@ import com.umc.save.Record.Auth.SuspectGet.SuspectGetResult
 import com.umc.save.Record.Auth.SuspectGet.SuspectGetService
 import com.umc.save.Record.Auth.SuspectRecord.suspectIdx_var
 import com.umc.save.Record.SuspectRVAdapter
+import com.umc.save.Record.selectedItem_child
+import com.umc.save.Record.selectedList_child
 import com.umc.save.databinding.ActivityChooseOffenderBinding
 import java.util.*
 import kotlin.collections.ArrayList
 
+var selectedList_suspect = ArrayList<Suspect>()
+var selectedItem_suspect = 0
+
 class ChooseOffenderActivity : AppCompatActivity(), SuspectGetResult {
     lateinit var binding : ActivityChooseOffenderBinding
     private var suspectList= ArrayList<Suspect>()
-
+    var emptyList = ArrayList<Suspect>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,15 +43,24 @@ class ChooseOffenderActivity : AppCompatActivity(), SuspectGetResult {
         chooseSuspect()
 
         binding.nextBtn.setOnClickListener{
+            Log.d("nextBtn  selectedItem ==================", selectedItem_suspect.toString())
+            if(selectedItem_suspect == 0) {
+                Toast.makeText(this,"학대 행위자를 선택해주세요.", Toast.LENGTH_SHORT).show()
+            } else if (selectedItem_suspect > 1) {
+                Toast.makeText(this,"학대 행위자는 한 명만 선택해주세요.", Toast.LENGTH_SHORT).show()
+            } else {
 
-            startActivity(Intent(this, AbuseTypeActivity::class.java))
+                suspectIdx_var.suspectIdx.suspectIdx = selectedList_suspect[0].suspectIdx
+                selectedItem_suspect = 0 // 다시 초기화
+                selectedList_suspect = emptyList
+                startActivity(Intent(this, AbuseTypeActivity::class.java))
+            }
+
+
         }
     }
 
     private fun chooseSuspect(){
-//        val childRecordService = ChildRecordService()
-//        childRecordService.setRecordResult(this)
-//        childRecordService.record(getChild())
         val suspectGetService = SuspectGetService()
         suspectGetService.setSuspectGetResult(this)
         suspectGetService.getSuspect(childidx_var.childIdx.childIdx)
@@ -78,11 +93,19 @@ class ChooseOffenderActivity : AppCompatActivity(), SuspectGetResult {
             override fun onItemClick(suspect: Suspect) {
                 suspect.isSelected = !suspect.isSelected
 
-                suspectIdx_var.suspectIdx.suspectIdx = suspectRVAdapter.get_suspectIdx
+                Log.d("======deletedChildIdx", selectedList_suspect[0].suspectIdx.toString())
 
-                Log.d("현재 childIdx값 ============================= ",suspectIdx_var.suspectIdx.suspectIdx.toString())
+                if(suspect.isSelected) {
+                    selectedList_suspect.add(suspect)
+                    selectedItem_suspect++
+//                    childidx_var.childIdx.childIdx = RecordPreRVAdapter.get_childIdx
+                }
+                else {
+                    selectedList_suspect.remove(suspect)
+                    selectedItem_suspect--
+                }
 
-                binding.nextBtn.setBackgroundResource(R.drawable.fragment_dark_red_background)
+                Log.d("======deletedChildIdx", selectedList_suspect[0].suspectIdx.toString())
             }
         } )
     }

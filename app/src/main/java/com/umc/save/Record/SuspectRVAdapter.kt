@@ -10,6 +10,8 @@ import com.umc.save.R
 import com.umc.save.Record.Auth.ChildRecord.childidx_var
 import com.umc.save.Record.Auth.SuspectRecord.suspectIdx_var
 import com.umc.save.Record.RecordDetail.ChooseOffenderActivity
+import com.umc.save.Record.RecordDetail.selectedItem_suspect
+import com.umc.save.Record.RecordDetail.selectedList_suspect
 import com.umc.save.databinding.ActivityChooseOffenderBinding
 import com.umc.save.databinding.ItemOffenderBinding
 
@@ -31,14 +33,11 @@ class SuspectRVAdapter(private val suspectList : ArrayList<Suspect>) :
         return ViewHolder(binding)
     }
 
-    var get_suspectIdx : Int = 0
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(suspectList[position])
-        holder.itemView.setOnClickListener{
-            get_suspectIdx = suspectList[position].suspectIdx
-            suspectIdx_var.suspectIdx.suspectIdx = get_suspectIdx
-            suspectList[position].isSelected = !suspectList[position].isSelected
-            holder.bind(suspectList[position])
+        holder.itemView.setOnClickListener {
+            mItemClickListener.onItemClick(suspectList[position])
+            notifyItemChanged(position)
         }
     }
 
@@ -50,17 +49,33 @@ class SuspectRVAdapter(private val suspectList : ArrayList<Suspect>) :
             var suspectRel : String? = suspect.relationship
             binding.itemOffenderInfoRelTv.text = suspectRel
             binding.itemOffenderInfoNameTv.text = suspect.suspectName
-            if (suspect.isSelected) {
-                get_suspectIdx = suspectList[position].suspectIdx
-                suspectIdx_var.suspectIdx.suspectIdx = get_suspectIdx
-                binding.itemOffenderInfoIb.setBackgroundColor(Color.parseColor("#FF7F61"))
-                binding.itemOffenderInfoRelTv.setTextColor(Color.parseColor("#FFFFFFFF"))
-                binding.itemCheckBtn.setImageResource(R.drawable.icn_check_01_on)
-            } else {
-                binding.itemOffenderInfoIb.setBackgroundColor(Color.parseColor("#F5F5F5"))
-                binding.itemOffenderInfoRelTv.setTextColor(Color.parseColor("#FF7F61"))
-                binding.itemCheckBtn.setImageResource(R.drawable.icn_check_01_off)
+
+
+
+            binding.itemOffenderInfoIb.setOnClickListener {
+                suspect.isSelected = !suspect.isSelected
+
+                if(suspect.isSelected) {
+                    selectedList_suspect.add(suspect)
+                    selectedItem_suspect++
+                }
+                else {
+                    selectedList_suspect.remove(suspect)
+                    selectedItem_suspect--
+                }
+
+
+                if (suspect.isSelected) {
+                    binding.itemOffenderInfoIb.setBackgroundColor(Color.parseColor("#FF7F61"))
+                    binding.itemOffenderInfoRelTv.setTextColor(Color.parseColor("#FFFFFFFF"))
+                    binding.itemCheckBtn.setImageResource(R.drawable.icn_check_01_on)
+                } else {
+                    binding.itemOffenderInfoIb.setBackgroundColor(Color.parseColor("#F5F5F5"))
+                    binding.itemOffenderInfoRelTv.setTextColor(Color.parseColor("#FF7F61"))
+                    binding.itemCheckBtn.setImageResource(R.drawable.icn_check_01_off)
+                }
             }
+
         }
     }
 }

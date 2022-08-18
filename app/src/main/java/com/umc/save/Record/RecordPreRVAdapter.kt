@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.umc.save.Locker.ChildEditRVAdapter
 import com.umc.save.Record.Auth.ChildGet.Child
 import com.umc.save.Record.Auth.ChildRecord.childidx_var
 import com.umc.save.Record.Auth.SuspectRecord.suspectIdx_var
@@ -28,24 +29,12 @@ class RecordPreRVAdapter(private val childList : ArrayList<Child>) :
         return ViewHolder(binding)
     }
 
-    var get_childIdx : Int = 0
-
-    private var mSelectedPos : Int = -1;
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(childList[position])
-        holder.itemView.setOnClickListener{
-            holder.bind(childList[position])
-
-            holder.itemView.setOnClickListener{
-                get_childIdx = childList[position].childIdx // 아이템 클릭했을 때 그 아이템의 childIdx를 저장해주기
-                childidx_var.childIdx.childIdx = get_childIdx
-                childList[position].isSelected = !childList[position].isSelected
-
-                holder.bind(childList[position])
-            }
-            
+        holder.itemView.setOnClickListener {
+            mItemClickListener.onItemClick(childList[position])
+            notifyItemChanged(position)
         }
-
     }
 
     override fun getItemCount(): Int = childList.size
@@ -62,9 +51,17 @@ class RecordPreRVAdapter(private val childList : ArrayList<Child>) :
 
             binding.itemChildInfoIv.setOnClickListener {
                 child.isSelected = !child.isSelected
+
+                if(child.isSelected) {
+                    selectedList_child.add(child)
+                    selectedItem_child++
+                }
+                else {
+                    selectedList_child.remove(child)
+                    selectedItem_child--
+                }
+
                 if (child.isSelected) {
-                    get_childIdx = childList[position].childIdx
-                    childidx_var.childIdx.childIdx = get_childIdx
                     binding.itemChildInfoIv.setBackgroundColor(Color.parseColor("#FF7F61"))
                     binding.itemChildInfoNameTv.setTextColor(Color.parseColor("#FFFFFFFF"))
                     binding.itemChildInfoDateTv.setTextColor(Color.parseColor("#FFFFFFFF"))

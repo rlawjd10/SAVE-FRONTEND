@@ -17,13 +17,23 @@ import com.umc.save.Record.Auth.ChildGet.ChildGetResult
 import com.umc.save.Record.Auth.ChildGet.ChildGetService
 import com.umc.save.Record.Auth.ChildRecord.childidx_var
 import com.umc.save.Record.RecordDetail.ChooseOffenderActivity
+import com.umc.save.Record.RecordDetail.selectedItem_suspect
+import com.umc.save.Record.RecordDetail.selectedList_suspect
+import com.umc.save.Sign.Auth.userIdx_var
 import com.umc.save.databinding.ActivityRecordPreviousBinding
 import java.util.*
+import kotlin.collections.ArrayList
+
+
+var selectedList_child = ArrayList<Child>()
+var selectedItem_child = 0
+
 
 class RecordPreviousActivity : AppCompatActivity(), ChildGetResult {
     lateinit var binding: ActivityRecordPreviousBinding
 
     private var childList= ArrayList<Child>()
+    var emptyList = ArrayList<Child>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,16 +43,30 @@ class RecordPreviousActivity : AppCompatActivity(), ChildGetResult {
 
         initActionBar()
 
-        binding.nextBtn.setOnClickListener {
-            startActivity(Intent(this, ChooseOffenderActivity::class.java))
-        }
         getPreviousChild()
+
+        binding.nextBtn.setOnClickListener {
+
+            if(selectedItem_child == 0) {
+                Toast.makeText(this,"아이를 선택해주세요.", Toast.LENGTH_SHORT).show()
+            } else if (selectedItem_child > 1) {
+                Toast.makeText(this,"아이를 한 명만 선택해주세요.", Toast.LENGTH_SHORT).show()
+            } else {
+//                Log.d("======deletedChildIdx", selectedList[0].childIdx.toString())
+                childidx_var.childIdx.childIdx = selectedList_child[0].childIdx
+                selectedItem_child = 0 // 다시 초기화
+                selectedList_child = emptyList
+                startActivity(Intent(this, ChooseOffenderActivity::class.java))
+            }
+
+        }
+
     }
 
     private fun getPreviousChild(){
         val childGetService = ChildGetService()
         childGetService.setChildGetResult(this)
-        childGetService.getChild(23)
+        childGetService.getChild(userIdx_var.UserIdx.UserIdx)
     }
 
     fun initActionBar() {
@@ -56,6 +80,8 @@ class RecordPreviousActivity : AppCompatActivity(), ChildGetResult {
         appBarComplete.visibility= View.INVISIBLE
         appBarBtn.setOnClickListener{onBackPressed()}
     }
+
+
 
     override fun getChildSuccess(
         code: Int,
@@ -75,17 +101,19 @@ class RecordPreviousActivity : AppCompatActivity(), ChildGetResult {
             override fun onItemClick(child: Child) {
                 child.isSelected = !child.isSelected
 
-                Log.d("suspect changed", child.isSelected.toString())
+                Log.d("======deletedChildIdx", selectedList_child[0].childIdx.toString())
 
                 if(child.isSelected) {
-                    binding.nextBtn.setBackgroundColor(Color.parseColor("#FF761"))
-                    childidx_var.childIdx.childIdx = RecordPreRVAdapter.get_childIdx
+                    selectedList_child.add(child)
+                    selectedItem_child++
+//                    childidx_var.childIdx.childIdx = RecordPreRVAdapter.get_childIdx
                 }
                 else {
-                    binding.nextBtn.setBackgroundColor(Color.parseColor("#B5B5B5"))
+                    selectedList_child.remove(child)
+                    selectedItem_child--
                 }
 
-
+                Log.d("======deletedChildIdx", selectedList_child[0].childIdx.toString())
             }
         })
         Toast.makeText(this, "아동 불러오기 성공", Toast.LENGTH_SHORT).show()
