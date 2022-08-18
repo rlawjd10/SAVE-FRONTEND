@@ -33,11 +33,18 @@ class RecordLockerFragment(child: Int) : Fragment(), AbuseView, SuspectsView {
     ): View? {
         binding = FragmentLockerChildListBinding.inflate(inflater,container,false)
 
+        return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         getSuspects()
         getAbuseCases()
 
-        return binding.root
     }
+
+
 
     private fun getAbuseCases() {
 
