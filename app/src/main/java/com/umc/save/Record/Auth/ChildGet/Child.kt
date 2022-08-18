@@ -10,5 +10,6 @@ data class Child(
     @SerializedName(value = "age") var childAge: String,
     @SerializedName(value = "address") var childAddress: String,
     @SerializedName(value = "detailAddress") var childDetailAddress: String,
-    @SerializedName(value = "createAt") var createAt: Date?
+    @SerializedName(value = "createAt") var createAt: Date?,
+    var isSelected : Boolean = false
     )

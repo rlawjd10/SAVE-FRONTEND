@@ -37,7 +37,7 @@ class RecordDoneFragment : Fragment() {
 //        initActionBar()
 
         binding.moveToStorage.setOnClickListener {
-            (context as RecordDoneActivity).supportFragmentManager.beginTransaction()
+            (context as MainActivity).supportFragmentManager.beginTransaction()
                 .replace(R.id.main_frm, LockerFragment())
                 .addToBackStack(null)
                 .commitAllowingStateLoss()

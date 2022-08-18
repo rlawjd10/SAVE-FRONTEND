@@ -21,7 +21,7 @@ import com.umc.save.Record.RecordDetail.DetailEtcActivity
 import com.umc.save.Sign.Auth.userIdx_var
 import com.umc.save.databinding.ActivityChildRecordBinding
 import com.umc.save.databinding.ActivityOffenderRecordBinding
-
+import com.umc.save.databinding.FragmentRecordMainBinding
 
 
 class childRecord_var {
@@ -43,12 +43,11 @@ class ChildRecordActivity : AppCompatActivity(), ChildRecordResult {
     var dontK = 0
 
     lateinit var binding: ActivityChildRecordBinding
-    lateinit var binding2: ActivityOffenderRecordBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChildRecordBinding.inflate(layoutInflater)
-        binding2 = ActivityOffenderRecordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initActionBar()
@@ -322,7 +321,9 @@ class ChildRecordActivity : AppCompatActivity(), ChildRecordResult {
         Log.d("RECORD/FAILURE", "아동 기록 성공.")
 
         val intent = Intent(this, OffenderRecordActivity::class.java)
+        finish()
         startActivity(intent)
+
     }
 
     override fun NeedUserIdx(code: Int, message: String) {

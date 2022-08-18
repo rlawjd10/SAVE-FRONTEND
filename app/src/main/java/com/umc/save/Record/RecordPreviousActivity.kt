@@ -73,11 +73,11 @@ class RecordPreviousActivity : AppCompatActivity(), ChildGetResult {
         RecordPreRVAdapter.setMyItemClickListener(object: RecordPreRVAdapter.MyItemClickListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onItemClick(child: Child) {
-                RecordPreRVAdapter.clicked = !RecordPreRVAdapter.clicked
+                child.isSelected = !child.isSelected
 
-                Log.d("suspect changed", RecordPreRVAdapter.clicked.toString())
+                Log.d("suspect changed", child.isSelected.toString())
 
-                if(RecordPreRVAdapter.clicked) {
+                if(child.isSelected) {
                     binding.nextBtn.setBackgroundColor(Color.parseColor("#FF761"))
                     childidx_var.childIdx.childIdx = RecordPreRVAdapter.get_childIdx
                 }

@@ -119,7 +119,8 @@
 
             app:layout_constraintBottom_toBottomOf="@+id/record_offender_name"
             app:layout_constraintLeft_toRightOf="@+id/record_offender_name"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            style="?android:attr/borderlessButtonStyle"/>
 
 
         <!-- 아이 성별 입력 -->
@@ -229,6 +230,7 @@
             android:fontFamily="@font/pretendard_semi_bold"
 
             android:drawableEnd="@drawable/not_sure_btn_gray_to_dark_red"
+            style="?android:attr/borderlessButtonStyle"
             />
 
         <!-- 나이 입력 칸 -->
@@ -310,6 +312,7 @@
             android:textColorHint="@color/dark_gray"
             android:fontFamily="@font/pretendard_bold"
             android:textSize="16sp"
+            android:textColor="@color/dark_red"
 
             android:enabled="false"
             />

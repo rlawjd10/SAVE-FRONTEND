@@ -39,6 +39,16 @@
         android:layout_marginLeft="90dp"
         tools:ignore="MissingConstraints" />
 
+       <ImageView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:background="@drawable/ilst_note"
+           app:layout_constraintEnd_toEndOf="@id/record_go_on"
+           app:layout_constraintTop_toTopOf="parent"
+
+           android:layout_marginTop="133dp"
+           />
+
     <android.widget.Button
         android:id="@+id/move_to_storage"
         android:layout_width="146dp"
@@ -115,5 +125,4 @@
     <include
         android:id="@+id/main_actionbar"
         layout="@layout/actionbar_main_top" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

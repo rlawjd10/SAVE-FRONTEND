@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.umc.save.Record.Auth.ChildGet.Child
 import com.umc.save.Record.Auth.ChildRecord.childidx_var
+import com.umc.save.Record.Auth.SuspectRecord.suspectIdx_var
 import com.umc.save.databinding.ItemChildEditBinding
 
 class RecordPreRVAdapter(private val childList : ArrayList<Child>) :
@@ -29,21 +30,26 @@ class RecordPreRVAdapter(private val childList : ArrayList<Child>) :
 
     var get_childIdx : Int = 0
 
+    private var mSelectedPos : Int = -1;
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(childList[position])
         holder.itemView.setOnClickListener{
-            clicked = !clicked
             holder.bind(childList[position])
-            get_childIdx = childList[position].childIdx // 아이템 클릭했을 때 그 아이템의 childIdx를 저장해주기
-            childidx_var.childIdx.childIdx = get_childIdx
-            Log.d("child changed", childidx_var.childIdx.childIdx.toString())
+
+            holder.itemView.setOnClickListener{
+                get_childIdx = childList[position].childIdx // 아이템 클릭했을 때 그 아이템의 childIdx를 저장해주기
+                childidx_var.childIdx.childIdx = get_childIdx
+                childList[position].isSelected = !childList[position].isSelected
+
+                holder.bind(childList[position])
+            }
+            
         }
+
     }
 
     override fun getItemCount(): Int = childList.size
 
-
-    var clicked = false
 
     inner class ViewHolder(val binding: ItemChildEditBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(child: Child) {
@@ -55,8 +61,8 @@ class RecordPreRVAdapter(private val childList : ArrayList<Child>) :
             binding.itemChildInfoIv.setBackgroundColor(Color.parseColor("#F5F5F5"))
 
             binding.itemChildInfoIv.setOnClickListener {
-                clicked = !clicked
-                if (clicked) {
+                child.isSelected = !child.isSelected
+                if (child.isSelected) {
                     get_childIdx = childList[position].childIdx
                     childidx_var.childIdx.childIdx = get_childIdx
                     binding.itemChildInfoIv.setBackgroundColor(Color.parseColor("#FF7F61"))
@@ -67,7 +73,10 @@ class RecordPreRVAdapter(private val childList : ArrayList<Child>) :
                     binding.itemChildInfoNameTv.setTextColor(Color.parseColor("#FF7F61"))
                     binding.itemChildInfoDateTv.setTextColor(Color.parseColor("#FF7F61"))
                 }
+
+
             }
+
         }
     }
 }

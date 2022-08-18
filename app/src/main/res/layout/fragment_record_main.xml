@@ -32,6 +32,16 @@
         android:gravity="top"
         tools:ignore="MissingConstraints" />
 
+   <ImageView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:background="@drawable/ilst_note"
+       app:layout_constraintEnd_toEndOf="@id/record_previous_child"
+       app:layout_constraintTop_toTopOf="parent"
+
+       android:layout_marginTop="133dp"
+       />
+
     <!--새 아동 등록하기-->
     <ImageView
         android:id="@+id/icn_plus_large"

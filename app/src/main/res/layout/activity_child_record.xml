@@ -112,6 +112,7 @@ ex) ‘옆집 아들’, ‘3층 아이’"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/record_child_name"
         android:drawableEnd="@drawable/not_sure_btn_gray_to_dark_red"
+        style="?android:attr/borderlessButtonStyle"
         />
 
 
@@ -234,6 +235,7 @@ ex) ‘옆집 아들’, ‘3층 아이’"
     android:fontFamily="@font/pretendard_semi_bold"
 
     android:drawableEnd="@drawable/not_sure_btn_gray_to_dark_red"
+    style="?android:attr/borderlessButtonStyle"
     />
 
     <!-- 나이 입력 칸 -->
