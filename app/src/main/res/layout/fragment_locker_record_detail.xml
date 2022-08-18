@@ -18,9 +18,10 @@
             android:id="@+id/suspect_info_iv"
             android:layout_width="306dp"
             android:layout_height="96dp"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/fragment_dark_gray_background"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,10 +66,11 @@
             android:id="@+id/suspect_info_relationship_view"
             android:layout_width="1dp"
             android:layout_height="21dp"
-            android:layout_marginStart="204dp"
+            android:paddingStart="5dp"
             android:layout_marginTop="24dp"
             android:background="@color/white"
-            app:layout_constraintStart_toStartOf="@id/suspect_info_iv"
+            app:layout_constraintStart_toEndOf="@id/suspect_info_name_tv"
+            app:layout_constraintEnd_toEndOf="@id/suspect_info_iv"
             app:layout_constraintTop_toTopOf="@id/suspect_info_iv" />
 
 
@@ -76,14 +78,14 @@
             android:id="@+id/suspect_info_relationship_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="210.99dp"
-            android:layout_marginTop="29dp"
+            android:layout_marginStart="6.99dp"
             android:fontFamily="@font/pretendard_bold"
             android:text="친부"
             android:textColor="@color/white"
             android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@id/suspect_info_iv"
-            app:layout_constraintTop_toTopOf="@id/suspect_info_iv" />
+            app:layout_constraintStart_toEndOf="@id/suspect_info_relationship_view"
+            app:layout_constraintBottom_toBottomOf="@id/suspect_info_relationship_view"
+            app:layout_constraintTop_toTopOf="@id/suspect_info_relationship_view" />
 
 
         <ImageButton
