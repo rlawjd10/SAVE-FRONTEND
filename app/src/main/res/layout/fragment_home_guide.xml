@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="14dp"
+        app:cardUseCompatPadding="true"
         android:elevation="10dp"
 
         android:layout_marginTop="100dp"
@@ -101,10 +102,10 @@
                         android:layout_height="41.05dp"
                         android:src="@drawable/icn_category_physical_red"
 
-                        android:layout_marginStart="35dp"
+                        android:layout_marginStart="31dp"
                         android:layout_marginTop="20dp"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"/>
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -132,7 +133,7 @@
                         android:fontFamily="@font/pretendard_medium"
                         android:lineSpacingExtra="5dp"
 
-                        android:layout_marginStart="50dp"
+                        android:layout_marginStart="45.71dp"
                         android:layout_marginTop="15dp"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toEndOf="@id/home_action_physical_iv"/>
@@ -147,7 +148,7 @@
                         android:fontFamily="@font/pretendard_medium"
                         android:lineSpacingExtra="5dp"
 
-                        android:layout_marginStart="50dp"
+                        android:layout_marginStart="45.71dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="14dp"
                         app:layout_constraintTop_toBottomOf="@id/home_action_physical_description_iv"
@@ -170,7 +171,7 @@
                         android:layout_height="36.9dp"
                         android:src="@drawable/icn_category_emotional_red"
 
-                        android:layout_marginStart="35dp"
+                        android:layout_marginStart="26dp"
                         android:layout_marginTop="20dp"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"/>
@@ -200,8 +201,8 @@
                         android:fontFamily="@font/pretendard_medium"
                         android:lineSpacingExtra="5dp"
 
-                        android:layout_marginStart="50dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginStart="43.52dp"
+                        android:layout_marginTop="13dp"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toEndOf="@id/home_action_emotional_iv"/>
 
@@ -215,9 +216,9 @@
                         android:fontFamily="@font/pretendard_medium"
                         android:lineSpacingExtra="5dp"
 
-                        android:layout_marginStart="50dp"
+                        android:layout_marginStart="43.52dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="14dp"
+                        android:layout_marginBottom="15dp"
                         app:layout_constraintTop_toBottomOf="@id/home_action_emotional_description_iv"
                         app:layout_constraintStart_toEndOf="@id/home_action_emotional_iv"
                         app:layout_constraintBottom_toBottomOf="parent"/>
@@ -237,8 +238,8 @@
                         android:layout_height="36.86dp"
                         android:src="@drawable/icn_category_sexual_red"
 
-                        android:layout_marginStart="35dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginStart="33dp"
+                        android:layout_marginTop="18dp"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -252,7 +253,7 @@
                         android:fontFamily="@font/pretendard_bold"
                         android:includeFontPadding="false"
 
-                        android:layout_marginTop="10.95dp"
+                        android:layout_marginTop="9dp"
                         android:layout_marginEnd="5dp"
                         app:layout_constraintTop_toBottomOf="@id/home_action_sexual_iv"
                         app:layout_constraintStart_toStartOf="@id/home_action_sexual_iv"
@@ -269,8 +270,8 @@
                         android:fontFamily="@font/pretendard_medium"
                         android:lineSpacingExtra="5dp"
 
-                        android:layout_marginStart="50dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginStart="45.75dp"
+                        android:layout_marginTop="14dp"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toEndOf="@id/home_action_sexual_iv"/>
 
@@ -284,7 +285,7 @@
                         android:fontFamily="@font/pretendard_medium"
                         android:lineSpacingExtra="5dp"
 
-                        android:layout_marginStart="50dp"
+                        android:layout_marginStart="45.75dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="14dp"
                         app:layout_constraintTop_toBottomOf="@id/home_action_sexual_description_iv"
@@ -307,7 +308,7 @@
                         android:id="@+id/home_action_neglect_iv"
                         android:layout_width="27.29dp"
                         android:layout_height="41.05dp"
-                        android:layout_marginStart="35dp"
+                        android:layout_marginStart="30dp"
 
                         android:layout_marginTop="23dp"
                         android:src="@drawable/icn_category_neglect_red"
@@ -335,8 +336,8 @@
                         android:layout_width="174dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="50dp"
-                        android:layout_marginTop="-5dp"
+                        android:layout_marginStart="45.13dp"
+                        android:layout_marginTop="13dp"
                         android:fontFamily="@font/pretendard_medium"
                         android:lineSpacingExtra="5dp"
                         android:text="• 기본적인 의식주를 제공하지 않는 행위"
@@ -344,15 +345,15 @@
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         app:layout_constraintStart_toEndOf="@id/home_action_neglect_iv"
-                        app:layout_constraintTop_toTopOf="@+id/home_action_neglect_iv" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/textView3"
                         android:layout_width="174dp"
 
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="50dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="45.13dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginBottom="14dp"
                         android:fontFamily="@font/pretendard_medium"
 
@@ -375,6 +376,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="14dp"
+       app:cardUseCompatPadding="true"
         android:elevation="10dp"
 
         android:layout_marginTop="14dp"
@@ -600,6 +602,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="14dp"
+        app:cardUseCompatPadding="true"
         android:elevation="10dp"
 
         android:layout_marginTop="14dp"
@@ -695,5 +698,19 @@
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/ilst_readingguide"
+
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="60dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guide_child_cardView"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

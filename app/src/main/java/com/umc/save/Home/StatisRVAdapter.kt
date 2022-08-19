@@ -25,11 +25,11 @@ class StatisRVAdapter: RecyclerView.Adapter<StatisRVAdapter.MyViewHolder>() {
 
             itemView.setOnClickListener {
                 if (binding.homeStatisHiddenLayout.visibility == View.VISIBLE) {
-                    TransitionManager.beginDelayedTransition(binding.statisCardView, AutoTransition())
+                    //TransitionManager.beginDelayedTransition(binding.statisCardView, AutoTransition())
                     binding.homeStatisFixedIv.setImageResource(R.drawable.icn_bottom_normal)
                     binding.homeStatisHiddenLayout.visibility = View.GONE
                 } else {
-                    TransitionManager.beginDelayedTransition(binding.statisCardView, AutoTransition())
+                    //TransitionManager.beginDelayedTransition(binding.statisCardView, AutoTransition())
                     binding.homeStatisHiddenLayout.visibility = View.VISIBLE
                     binding.homeStatisFixedIv.setImageResource(R.drawable.icn_top_normal)
                 }
