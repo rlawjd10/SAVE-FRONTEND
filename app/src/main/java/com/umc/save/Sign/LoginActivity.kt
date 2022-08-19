@@ -107,6 +107,8 @@ class LoginActivity : AppCompatActivity(), LoginView {
         }
     }
 
+
+
     //비밀번호 eye icon -> show/hide
     private fun showPassword(isShow: Boolean) {
         val show = binding.showPasswordIv
@@ -128,14 +130,14 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
     private fun login() {
         //이메일 또는 비밀번호를 입력하지 않았을 때 토스트 띄우기
-        if (binding.loginIdEt.text.toString().isEmpty()) {
+        /*if (binding.loginIdEt.text.toString().isEmpty()) {
             Toast.makeText(this, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show()
             return
         }
         if (binding.loginPasswordEt.text.toString().isEmpty()) {
             Toast.makeText(this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
             return
-        }
+        }*/
 
         val authService = AuthService()
         authService.setLoginView(this)
@@ -199,6 +201,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
         Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
     }
 
+    //자동 로그인
     override fun onAutoLoginSuccess(code: Int, result: Result) {
         TODO("Not yet implemented")
     }

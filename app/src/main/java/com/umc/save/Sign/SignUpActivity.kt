@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Message
 import android.text.Editable
 import android.text.SpannableString
 import android.text.TextWatcher
@@ -395,8 +396,8 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         startActivity(Intent(this, SignUpCompleteActivity::class.java))
     }
 
-    override fun onSignUpFailure() {
-        TODO("Not yet implemented")
+    override fun onSignUpFailure(code : Int, message: String) {
+        Toast.makeText(this@SignUpActivity, message, Toast.LENGTH_SHORT).show()
     }
 
 

@@ -36,12 +36,13 @@ class UserService {
                 if (response.isSuccessful && response.code() == 200) {
                     val signUpResponse: AuthResponse = response.body()!!
 
-                    Log.d("SIGNUP-SUCCESS", signUpResponse.toString())
-
                     when (val code = signUpResponse.code) {
-                        1000 -> signUpView.onSignUpSuccess()
+                        1000 -> {signUpView.onSignUpSuccess()
+                            Log.d("SIGNUP-SUCCESS", signUpResponse.toString())
+                        }
                         else -> {
-                            signUpView.onSignUpFailure()
+                            Log.d("SIGNUP-ERROR", signUpResponse.toString())
+                            signUpView.onSignUpFailure(code, signUpResponse.message)
                         }
                     }
                 }

@@ -25,7 +25,7 @@
         android:id="@+id/signup_complete_iv"
         android:layout_width="251dp"
         android:layout_height="186.16dp"
-        android:background="@color/dark_gray"
+        android:src="@drawable/ilst_register"
 
         android:layout_marginTop="70dp"
         app:layout_constraintStart_toStartOf="parent"
