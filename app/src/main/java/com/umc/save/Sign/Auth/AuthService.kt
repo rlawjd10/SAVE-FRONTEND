@@ -1,6 +1,8 @@
 package com.umc.save.Sign.Auth
 
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import com.umc.save.getRetrofit
 import retrofit2.Call
 import retrofit2.Callback
@@ -39,7 +41,7 @@ class AuthService {
 
                     when (val code = loginResponse.code) {
                         1000 -> loginView.onLoginSuccess(code,loginResponse.result!! )
-                        else -> loginView.onLoginFailure()
+                        else -> loginView.onLoginFailure(code, loginResponse.message)
                     }
                 }
             }

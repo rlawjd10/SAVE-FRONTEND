@@ -9,6 +9,7 @@ import android.provider.CalendarContract
 import android.text.Html
 import android.text.Spannable
 import android.text.SpannableStringBuilder
+import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.*
@@ -57,6 +58,11 @@ class HomeFragment : Fragment(), UserInfoView {
         binding.homeNewsBtn.setOnClickListener {
             changeFragment(NewsHomeFragment())
         }
+
+        /*val spannable = SpannableStringBuilder(binding.homeChildAnswerTv.text)
+        spannable.apply {
+            setSpan(R.color.dark_red, 0, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        }*/
 
         /*//text.setTextColor(ContextCompat.getColor(applicationContext, R.color.dark_red))
         //binding.loginSignInBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_gray))

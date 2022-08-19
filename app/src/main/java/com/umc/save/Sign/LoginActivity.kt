@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Message
 import android.provider.Settings.Global.getString
 import android.provider.Settings.Secure.getString
 import android.text.Editable
@@ -194,8 +195,8 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     //로그인 실패
-    override fun onLoginFailure() {
-
+    override fun onLoginFailure(code: Int, message: String) {
+        Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onAutoLoginSuccess(code: Int, result: Result) {
