@@ -1,9 +1,6 @@
 package com.umc.save.Sign.User
 
-import com.umc.save.Home.option.EditUserResponse
-import com.umc.save.Home.option.UserInfo
-import com.umc.save.Home.option.UserInfoResponse
-import com.umc.save.Home.option.UserOutResponse
+import com.umc.save.Home.option.*
 import com.umc.save.Sign.Auth.AuthResponse
 import retrofit2.Call
 import retrofit2.http.*
@@ -22,4 +19,7 @@ interface UserRetrofitInterface {
 
     @PATCH("/user/status/{userIdx}")
     fun outUser(@Path("userIdx") userIdx: Int) : Call<UserOutResponse>
+
+    @PATCH(" auth/password/{userIdx}")
+    fun getPwChange(@Header("X-ACCESS-TOKEN")jwt: String, @Path("userIdx")userIdx: Int, @Body pwChange: PwChange) : Call<PwChangeResponse>
 }

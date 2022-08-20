@@ -1,5 +1,6 @@
 package com.umc.save
 
+import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,11 +8,15 @@ import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.ImageView
+import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.umc.save.Home.HomeFragment
 import com.umc.save.Home.option.HomeAlarmFragment
@@ -21,7 +26,7 @@ import com.umc.save.Record.RecordFragment
 import com.umc.save.databinding.ActionbarInnerPageTopBinding
 import com.umc.save.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
     lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +34,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //val homebtmNav = findViewById<BottomNavigationView>(R.id.tab_home)
+        //val addbtnNav = findViewById<BottomNavigationView>(R.id.tab_add)
+        val storagebtnNav = findViewById<BottomNavigationView>(R.id.mainBnv)
+
+        storagebtnNav.itemIconTintList = null
 
         initBottomNavigation()
 //        initActionBar()
@@ -86,6 +96,8 @@ class MainActivity : AppCompatActivity() {
 //    }
 
     private fun initBottomNavigation() {
+
+
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_frm, HomeFragment())
             .commitAllowingStateLoss()
@@ -121,5 +133,20 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    /*override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.tab_home -> {
+
+            }
+        }
+    }
+
+    //dp값으로 변경_비밀번호 유효성 검사에서 margin값을 변경하기 위함
+    private fun changeDP(value: Int) : Int {
+        var displayMetrics = resources.displayMetrics
+        var dp = Math.round(value * displayMetrics.density)
+        return dp
+    }*/
 }
 

@@ -12,17 +12,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import com.umc.save.MainActivity
 import com.umc.save.R
+import com.umc.save.Sign.Auth.App
+import com.umc.save.Sign.Auth.userIdx_var
 import com.umc.save.databinding.FragmentHomePasswordChangeBinding
 
-class HomePasswordChangeFragment : Fragment() {
+class HomePasswordChangeFragment : Fragment(), PwChangeView {
 
     private var mSignShowPass = false
     private var mSignShow2Pass = false
     private var mSignShow3Pass = false
+
+    //토큰 가져오기
+    var token = App.prefs.token
+    //userIdx 가져오기
+    val userIdx = userIdx_var.UserIdx.UserIdx
 
     private lateinit var binding: FragmentHomePasswordChangeBinding
 
@@ -156,6 +164,11 @@ class HomePasswordChangeFragment : Fragment() {
             (context as MainActivity).supportFragmentManager
                 .popBackStack()
         }
+        binding.mainActionbar.appbarCompleteTv.setOnClickListener {
+            //비밀번호 변경 후 action
+            putPwChange()
+            changeFragment(HomeEditProfileFragment())
+        }
     }
 
     //fragment to fragment method
@@ -197,6 +210,35 @@ class HomePasswordChangeFragment : Fragment() {
         var displayMetrics = resources.displayMetrics
         var dp = Math.round(value * displayMetrics.density)
         return dp
+    }
+
+    //사용자에게 변경사항 받기
+    private fun putpwchange(): PwChange {
+        val origin = binding.originPasswordEt.text.toString()
+        val new = binding.newPasswordEt.text.toString()
+
+        return PwChange(originPassword = origin, newPassword = new)
+    }
+
+    //service 보내기 -> jwt, userIdx, 변경사항
+    private fun putPwChange() {
+        val pwChangeService = PwChangeService()
+        pwChangeService.setPwChangeView(this)
+        token?.let { pwChangeService.getPwChange(it, userIdx, putpwchange()) }
+    }
+
+    //비밀번호 변경
+    override fun onPwChangeSuccess(code: Int, result: onpwChange) {
+        Log.d("PW CHANGE SUCCESS",result.toString())
+        Toast.makeText(context, result.successMessage, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun userNotExist(code: Int, message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onPwChangFailure(code: Int, message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
 }

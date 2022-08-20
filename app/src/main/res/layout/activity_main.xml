@@ -33,9 +33,9 @@
         android:background="@color/dark_red"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
-        app:labelVisibilityMode="labeled"
+        app:labelVisibilityMode="selected"
         android:elevation="3dp"
-        app:itemIconSize="20dp"
+        app:itemIconSize="25dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

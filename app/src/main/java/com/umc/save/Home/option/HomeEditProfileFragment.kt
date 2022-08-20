@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Sign.Auth.Auth
@@ -17,6 +18,9 @@ class HomeEditProfileFragment : Fragment(), UserInfoView, EditUserView {
 
     val userIdx = userIdx_var.UserIdx.UserIdx
     lateinit var binding: FragmentHomeEditProfileBinding
+    lateinit var adapter: ProfileRVAdapter
+
+    val pDatas = mutableListOf<ProfileData>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,9 +36,9 @@ class HomeEditProfileFragment : Fragment(), UserInfoView, EditUserView {
             changeFragment(HomePasswordChangeFragment())
         }
 
-
         putUserInfo()
         initActionBar()
+        initProgileImageRecyclerView()
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -45,6 +49,29 @@ class HomeEditProfileFragment : Fragment(), UserInfoView, EditUserView {
         editUserService.setEditUserView(this)
 
         editUserService.getEditUserView(EditUser(), userIdx)
+    }
+
+    //리사이클러뷰
+    fun initProgileImageRecyclerView() {
+        val adapter = ProfileRVAdapter()
+        Log.d("CHECK-RV", "리사이클러뷰 체크")
+
+        adapter.itemList = pDatas.apply {
+            add(ProfileData(R.drawable.ilst_boy_01_blue))
+            add(ProfileData(R.drawable.ilst_boy_01_green))
+            add(ProfileData(R.drawable.ilst_boy_01_red))
+            add(ProfileData(R.drawable.ilst_boy_02_blue))
+            add(ProfileData(R.drawable.ilst_boy_02_green))
+            add(ProfileData(R.drawable.ilst_boy_02_red))
+            add(ProfileData(R.drawable.ilst_boy_03_blue))
+            add(ProfileData(R.drawable.ilst_boy_03_green))
+            add(ProfileData(R.drawable.ilst_boy_03_red))
+            add(ProfileData(R.drawable.ilst_boy_04_blue))
+            add(ProfileData(R.drawable.ilst_boy_04_green))
+            add(ProfileData(R.drawable.ilst_boy_04_red))
+        }
+        binding.imagechoiceRv.adapter = adapter
+        binding.imagechoiceRv.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, true)
     }
 
     //사용자에게 변경사항 받기
