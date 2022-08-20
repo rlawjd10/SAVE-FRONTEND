@@ -5,7 +5,4 @@ package com.umc.save.Sign.Auth
 interface LoginView {
     fun onLoginSuccess(code : Int, result : Result)
     fun onLoginFailure(code: Int, message : String)
-
-    fun onAutoLoginSuccess(code : Int, result: Result)
-    fun onAutoLoginFailure()
 }

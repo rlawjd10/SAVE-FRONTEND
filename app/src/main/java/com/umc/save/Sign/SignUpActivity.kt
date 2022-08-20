@@ -40,7 +40,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
 
     private var agreeChecked = false
     private var agreeChecked2 = false
-    private var agreeChecked3 = false
+    //private var agreeChecked3 = false
     private var agreeChecked4 = false
 
     private var nameCheck = false
@@ -87,8 +87,13 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
             override fun afterTextChanged(s: Editable?) {
                 // text가 변경된 후 호출
                 // s에는 변경 후의 문자열이 담겨 있다.
-                if (binding.signupPwValiLengthTv.isInvisible && binding.signupPwValiCombinationTv.isInvisible)
+                if (binding.signupPwValiLengthTv.isInvisible && binding.signupPwValiCombinationTv.isInvisible) {
                     PWCheck = true
+                    Log.d("password-check", "비밀번호 체크")
+                } else {
+                    PWCheck = false
+                    Log.d("NO - password-check", "비밀번호 false 체크")
+                }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -121,7 +126,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
             }
         })
 
-        //password confirm coincide check
+        //password confirm coincide check 비밀번호 일치 검사
         _editText.addTextChangedListener(object : TextWatcher {
             // EditText에 문자 입력 전
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -167,7 +172,11 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
                     asso.visibility = View.VISIBLE
 
                 if (asso.isInvisible) {
+                    Log.d("password-confirm-check", "비밀번호 일치 체크")
                     PWConfirmCheck = true
+                } else {
+                    Log.d("NO - password-confirm-check", "비밀번호 불일치 체크")
+                    PWConfirmCheck = false
                 }
 
             }
@@ -184,7 +193,11 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
                 if (checkName(nameEditText.text.toString())) {
+                    Log.d("name-check", "이름 체크")
                     nameCheck = true
+                } else {
+                    Log.d("NO - name-check", "이름 false 체크")
+                    nameCheck = false
                 }
             }
 
@@ -202,7 +215,11 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
             // EditText 입력이 끝난 후
             override fun afterTextChanged(p0: Editable?) {
                 if (checkEmailAddress(emailEditText.text.toString())) {
+                    Log.d("email-check", "이메일 체크")
                     emailCheck = true
+                } else {
+                    Log.d("NO - email-check", "이메일 false 체크")
+                    emailCheck = false
                 }
             }
         })
@@ -216,16 +233,24 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
             agreeChecked = !agreeChecked
             onChangedClick(agreeChecked, allCheck)
             onCheckClick(agreeChecked, allCheck, binding.signupConsentAllTv)
+            if (nameCheck && emailCheck && PWCheck && agreeChecked) {
+                Log.d("true-check", "전체 체크 237")
+                binding.signupCompleteBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_red))
+            } else {
+                Log.d("false-check", "전체 fasle 240")
+                binding.signupCompleteBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_gray))
+            }
         }
-        //개인정보
+        //개인정보 수집 및 이용 동의
         binding.signupConsentInfoCheck.setOnClickListener {
             agreeChecked2 = !agreeChecked2
             onCheckClick(agreeChecked2, binding.signupConsentInfoCheck, binding.signupConsentInfoTv)
-            if (agreeChecked2 && agreeChecked3 && agreeChecked4) {
+            if (agreeChecked2 && agreeChecked4) {
+                Log.d("true-check", "249-두개가 체크되었을 때")
                 onCheckClick(true, allCheck, binding.signupConsentAllTv)
-                binding.signupCompleteBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_red))
+                //binding.signupCompleteBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_red))
             }
-            if (!agreeChecked2 || !agreeChecked3 || !agreeChecked4) {
+            if (!agreeChecked2 || !agreeChecked4) {
                 onCheckClick(false, allCheck, binding.signupConsentAllTv)
             }
         }
@@ -245,11 +270,12 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         binding.signupConsentFactCheck.setOnClickListener {
             agreeChecked4 = !agreeChecked4
             onCheckClick(agreeChecked4, binding.signupConsentFactCheck, binding.signupConsentFactTv)
-            if (agreeChecked2 && agreeChecked3 && agreeChecked4) {
+            if (agreeChecked2 && agreeChecked4) {
+                Log.d("true-check", "274-두개가 체크되었을 때")
                 onCheckClick(true, allCheck, binding.signupConsentAllTv)
-                binding.signupCompleteBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_red))
+                //binding.signupCompleteBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_red))
             }
-            if (!agreeChecked2 || !agreeChecked3 || !agreeChecked4) {
+            if (!agreeChecked2 || !agreeChecked4) {
                 onCheckClick(false, allCheck, binding.signupConsentAllTv)
             }
         }
@@ -258,6 +284,11 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
             val intent = Intent(this, AnnouncementPrivacyActivity::class.java)
             startActivity(intent)
         }
+
+        /*if (nameCheck && emailCheck && PWCheck && agreeChecked) {
+            Log.d("true-check", "전체 체크")
+            binding.signupCompleteBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_red))
+        }*/
 
         binding.signupInfoFactTv.setOnClickListener {
             val intent = Intent(this, AnnouncementFactsFalseActivity::class.java)
@@ -365,6 +396,10 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         if (isAgree) {
             text.setTextColor(ContextCompat.getColor(applicationContext, R.color.dark_red))
             show.setImageResource(R.drawable.icn_check_02_on)
+            if (nameCheck && emailCheck && PWCheck && agreeChecked) {
+                Log.d("true-check", "전체 체크400")
+                binding.signupCompleteBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_red))
+            }
         } else {
             text.setTextColor(ContextCompat.getColor(applicationContext, R.color.dark_gray))
             show.setImageResource(R.drawable.icn_check_02_off)
@@ -373,7 +408,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
     }
 
     //전체동의를 누르면 다 눌리도록_전체동의만 할 수 있도록.
-    //따로 함수를 만든 이유 : 나머지 3개를 다 눌렀을 때도 전체동의가 true가 되게 하기 위해서
+    //따로 함수를 만든 이유 : 나머지 2개를 다 눌렀을 때도 전체동의가 true가 되게 하기 위해서
     private fun onChangedClick(isAgree: Boolean, show: ImageButton) {
 
         val cBox1 = findViewById<ImageButton>(R.id.signup_consent_info_check)
@@ -387,7 +422,14 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
                 onCheckClick(isAgree, cBox3, binding.signupConsentFactTv)
             }
         }
-        binding.signupCompleteBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_red))
+        //binding.signupCompleteBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_red))
+        if (nameCheck && emailCheck && PWCheck && agreeChecked) {
+            Log.d("true-check", "전체 체크427")
+            binding.signupCompleteBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_red))
+        } else {
+            Log.d("false-check", "전체 체크430")
+            binding.signupCompleteBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_gray))
+        }
     }
 
 

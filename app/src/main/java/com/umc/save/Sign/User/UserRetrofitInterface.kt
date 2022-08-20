@@ -3,6 +3,7 @@ package com.umc.save.Sign.User
 import com.umc.save.Home.option.EditUserResponse
 import com.umc.save.Home.option.UserInfo
 import com.umc.save.Home.option.UserInfoResponse
+import com.umc.save.Home.option.UserOutResponse
 import com.umc.save.Sign.Auth.AuthResponse
 import retrofit2.Call
 import retrofit2.http.*
@@ -18,4 +19,7 @@ interface UserRetrofitInterface {
 
     @PUT("/user/{userIdx}")
     fun putUserInfo(@Path("userIdx") userIdx: Int, @Body userInfo: UserInfo) : Call<EditUserResponse>
+
+    @PATCH("/user/status/{userIdx}")
+    fun outUser(@Path("userIdx") userIdx: Int) : Call<UserOutResponse>
 }

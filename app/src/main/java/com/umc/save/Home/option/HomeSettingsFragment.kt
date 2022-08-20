@@ -1,11 +1,13 @@
 package com.umc.save.Home.option
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
@@ -14,14 +16,20 @@ import androidx.fragment.app.FragmentTransaction
 import com.umc.save.Locker.ChildrenService
 import com.umc.save.MainActivity
 import com.umc.save.R
+import com.umc.save.Sign.Auth.App
+import com.umc.save.Sign.Auth.LogoutService
+import com.umc.save.Sign.Auth.getLogoutView
 import com.umc.save.Sign.Auth.userIdx_var
+import com.umc.save.Sign.LoginActivity
 import com.umc.save.databinding.FragmentHomeBinding
 import com.umc.save.databinding.FragmentHomeSettingsBinding
 
 
-class HomeSettingsFragment : Fragment(), UserInfoView {
+class HomeSettingsFragment : Fragment(), UserInfoView, UserOutView, getLogoutView {
 
     val userIdx = userIdx_var.UserIdx.UserIdx
+    //토큰 가져오기
+    var token = App.prefs.token
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +47,7 @@ class HomeSettingsFragment : Fragment(), UserInfoView {
         //서버에서 userInfo 가져오기
         getUserInfo()
 
+        //앱바
         initActionBar()
 
         //프로필 수정 버튼 클릭
@@ -75,12 +84,25 @@ class HomeSettingsFragment : Fragment(), UserInfoView {
 
     }
 
-
+    //User 정보 조회
     private fun getUserInfo() {
-
         val userInfoService = UserInfoService()
         userInfoService.setUserInfoView(this)
         userInfoService.getUserInfo(userIdx)
+    }
+
+    //탈퇴
+    private fun getUserOut() {
+        val userOutService = UserOutService()
+        userOutService.setUserOutView(this)
+        userOutService.getUserOut(userIdx)
+    }
+
+    //로그아웃
+    private fun getLogout() {
+        val logoutService = LogoutService()
+        logoutService.setLogoutView(this)
+        token?.let { logoutService.getLogoutView(it, userIdx) }
     }
 
 
@@ -103,7 +125,7 @@ class HomeSettingsFragment : Fragment(), UserInfoView {
                         TODO("Not yet implemented")
                     }
                     override fun onButtonOkClicked() {
-                        TODO("Not yet implemented")
+                        getLogout()
                     }
                 })
                 dialog.show(this.childFragmentManager, "HomeDialog")
@@ -121,7 +143,7 @@ class HomeSettingsFragment : Fragment(), UserInfoView {
                         TODO("Not yet implemented")
                     }
                     override fun onButtonOkClicked() {
-                        logout()
+                        getUserOut()
                     }
                 })
                 dialog.show(this.childFragmentManager, "HomeDialog")
@@ -131,14 +153,14 @@ class HomeSettingsFragment : Fragment(), UserInfoView {
     }
 
     //로그아웃
-    private fun logout() {
-        val userIdx : Int = userIdx_var.UserIdx.UserIdx
-        val spf = activity?.getSharedPreferences("auth" , AppCompatActivity.MODE_PRIVATE)
-        val editor = spf!!.edit()
-
-        editor.remove("jwt")
-        editor.apply()
-    }
+//    private fun logout() {
+//        val userIdx : Int = userIdx_var.UserIdx.UserIdx
+//        val spf = activity?.getSharedPreferences("auth" , AppCompatActivity.MODE_PRIVATE)
+//        val editor = spf!!.edit()
+//
+//        editor.remove("jwt")
+//        editor.apply()
+//    }
 
     //fragment to fragment method
     private fun changeFragment(fragment: Fragment) {
@@ -149,6 +171,7 @@ class HomeSettingsFragment : Fragment(), UserInfoView {
     }
 
 
+    //정보 조회 성공
     override fun onGetUserSuccess(code: Int, result: UserInfo) {
         Log.d("GET-USER-SUCCESS",result.toString())
         binding.userNameTv.text = result.name
@@ -163,6 +186,32 @@ class HomeSettingsFragment : Fragment(), UserInfoView {
 
     override fun onGetUserFailure(code: Int, message: String) {
         Log.d("GET-USER-FAILURE",message)
+    }
+
+    //탈퇴
+    override fun onUserOutSuccess(code: Int, result: UserOut) {
+        Log.d("OUT-USER-SUCCESS",result.toString())
+        val intent = Intent(this@HomeSettingsFragment.requireContext(), LoginActivity::class.java)
+        startActivity(intent)
+        Toast.makeText(context, result.completeMessage, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onUserOutFailure(code: Int, message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
+
+    //로그아웃
+    override fun onLogoutSuccess(code: Int, result: String) {
+        Log.d("LOGOUT-SUCCESS",result)
+        //토큰 지워주기
+        App.prefs.token = null
+        val intent = Intent(this.requireContext(), LoginActivity::class.java)
+        startActivity(intent)
+    }
+
+    override fun onLogoutFailure(code: Int, message: String) {
+        Log.d("LOGOUT-Failure",message)
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 }
 

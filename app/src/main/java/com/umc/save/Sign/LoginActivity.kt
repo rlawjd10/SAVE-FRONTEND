@@ -1,14 +1,12 @@
 package com.umc.save.Sign
 
+import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Message
-import android.provider.Settings.Global.getString
-import android.provider.Settings.Secure.getString
 import android.text.Editable
 import android.text.SpannableString
 import android.text.TextWatcher
@@ -22,35 +20,27 @@ import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Sign.Auth.*
 import com.umc.save.databinding.ActivityLoginBinding
-import java.lang.reflect.Array.get
-import java.util.logging.Logger.global
 
-class LoginActivity : AppCompatActivity(), LoginView {
 
-    companion object {
-        lateinit var instance: LoginActivity
-        fun AppplicationContext() : Context {
-            return instance.applicationContext
-        }
-    }
-    init {
-        instance = this
-    }
+class LoginActivity : AppCompatActivity(), LoginView, AutoLoginView {
 
 
     lateinit var binding: ActivityLoginBinding
     private var mIsShowPass = false
+    //토큰 가져오기
+    var token = App.prefs.token
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //sSharedPreferences = applicationContext.getSharedPreferences("app", Context.MODE_PRIVATE)
-
-        //social login to MainActivity
-        binding.loginKakaoTv.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+        //자동로그인
+        //토큰 가져오기
+        val token = App.prefs.token
+        //토큰이 존재한다면 자동로그인을 해라
+        if (token != null) {
+            autologin()
         }
 
         //login btn is no empty -> change color
@@ -127,18 +117,8 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
 
-
+    //로그인
     private fun login() {
-        //이메일 또는 비밀번호를 입력하지 않았을 때 토스트 띄우기
-        /*if (binding.loginIdEt.text.toString().isEmpty()) {
-            Toast.makeText(this, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show()
-            return
-        }
-        if (binding.loginPasswordEt.text.toString().isEmpty()) {
-            Toast.makeText(this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
-            return
-        }*/
-
         val authService = AuthService()
         authService.setLoginView(this)
 
@@ -167,12 +147,20 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
 
     //로그인 성공 시 받은 jwt를 저장하는 함수 -> 사용자를 식별하기 위함
-   private fun saveJwt2(jwt: String) {
+   private fun saveJwt2(jwt: String){
         val spf = getSharedPreferences("auth2" , MODE_PRIVATE)
         val editor = spf.edit()
 
         editor.putString("jwt", jwt)
         editor.apply()
+    }
+
+
+    //자동 로그인
+    private fun autologin() {
+        val autoLoginService = AutoLoginService()
+        autoLoginService.setAutoLoginView(this)
+        token?.let { autoLoginService.getAutologin(it) }
     }
 
 
@@ -191,6 +179,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
                 saveJwt2(result.jwt)
 
                 userIdx_var.UserIdx.UserIdx = result.userIdx
+                App.prefs.token = result.jwt
                 startMainActivity()
             }
         }
@@ -199,15 +188,27 @@ class LoginActivity : AppCompatActivity(), LoginView {
     //로그인 실패
     override fun onLoginFailure(code: Int, message: String) {
         Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
+        /*when(code) {
+            2003, 2004, 2101, 2103 -> {Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()}
+            2334 -> {Toast.makeText(this@LoginActivity, "해당 이메일은 존재하지 않습니다", Toast.LENGTH_SHORT).show()}
+            3010 -> {Toast.makeText(this@LoginActivity, "로그인이 실패하였습니다.", Toast.LENGTH_SHORT).show()}
+        }*/
     }
 
     //자동 로그인
-    override fun onAutoLoginSuccess(code: Int, result: Result) {
-        TODO("Not yet implemented")
+    override fun onAutoLoginSuccess(code: Int, result: aResult) {
+        Log.d("AUTO-LOGIN-USER-SUCCESS",result.toString())
+        userIdx_var.UserIdx.UserIdx = result.userIdx
+        startMainActivity()
     }
 
-    override fun onAutoLoginFailure() {
-        TODO("Not yet implemented")
+    override fun userAutoNotExist(code: Int, message: String) {
+        Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
     }
 
+    override fun onAutoLoginFailure(code: Int, message: String) {
+        Log.d("AUTO-LOGIN-USER-FAIL",message)
+        Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
+        finish()
+    }
 }

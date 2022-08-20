@@ -1,8 +1,6 @@
 package com.umc.save.Sign.Auth
 
-import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import com.umc.save.getRetrofit
 import retrofit2.Call
 import retrofit2.Callback
@@ -13,6 +11,11 @@ import retrofit2.Response
 class userIdx_var {
     object UserIdx {
         var UserIdx : Int = 0
+    }
+}
+class userJWT_var {
+    object UserJWT {
+        var JWT : String = ""
     }
 }
 
@@ -35,7 +38,8 @@ class AuthService {
                 //정상적으로 통신이 성공된 경우 - API 호출 성공
                 Log.d("LOGIN/RESPONSE", response.toString())
 
-                if (response.isSuccessful && response.code() == 200) {
+                if (response.isSuccessful) {
+
                     val loginResponse: AuthResponse = response.body()!!
                     Log.d("LOGIN/SUCCESS", loginResponse.toString())
 
@@ -43,6 +47,10 @@ class AuthService {
                         1000 -> loginView.onLoginSuccess(code,loginResponse.result!! )
                         else -> loginView.onLoginFailure(code, loginResponse.message)
                     }
+                }
+                else {
+                    Log.d("LOGIN/FAIL", response.message())
+                    loginView.onLoginFailure(code = 500, "이메일 또는 비밀번호가 잘못되었습니다.")
                 }
             }
             //통신에 실패한 경우 (시스템적인 이유) - API 호출 실패
@@ -52,7 +60,7 @@ class AuthService {
         })
     }
 
-    fun autologin(jwt : String) {
+    /*fun autologin(jwt : String) {
         val autologinService = getRetrofit().create(AuthRetrofitInterface::class.java)
         autologinService.autologin(jwt).enqueue(object : Callback<AuthResponse> {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
@@ -61,8 +69,6 @@ class AuthService {
                 if (response.isSuccessful && response.code() == 200) {
                     val loginResponse: AuthResponse = response.body()!!
                     Log.d("LOGIN/SUCCESS", loginResponse.toString())
-
-
                 }
             }
 
@@ -71,6 +77,6 @@ class AuthService {
             }
 
         })
-    }
+    }*/
 
 }

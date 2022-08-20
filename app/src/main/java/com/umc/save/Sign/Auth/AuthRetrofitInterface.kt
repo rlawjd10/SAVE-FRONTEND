@@ -3,10 +3,7 @@ package com.umc.save.Sign.Auth
 
 
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 //로그인
 //method, url & 어떤 method를 실행시킬 것인지 표시해주는 interface
@@ -15,6 +12,9 @@ interface AuthRetrofitInterface {
     @POST("/auth/login")
     fun login(@Body auth: Auth): Call<AuthResponse>
 
-    @GET(" /auth/token")
-    fun autologin(@Header("jwt") jwt : String): Call<AuthResponse>
+    @GET("/auth/token")
+    fun getAutologin(@Header("X-ACCESS-TOKEN") jwt : String): Call<AutoLoginResponse>
+
+    @GET("auth/logout/{userIdx}")
+    fun getLogout(@Header("X-ACCESS-TOKEN")jwt: String, @Path("userIdx")userIdx: Int): Call<getLogoutResponse>
 }
