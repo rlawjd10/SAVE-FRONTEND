@@ -9,6 +9,6 @@ data class Offender (
     @SerializedName(value = "suspectGender") var suspectGender: String,
     @SerializedName(value = "suspectAge") var suspectAge: String,
     @SerializedName(value = "suspectAddress") var suspectAddress: String? = "",
-    @SerializedName(value = "detailAddress") var suspectDetailAddress: String? = "",
+    @SerializedName(value = "suspectDetailAddress") var suspectDetailAddress: String? = "",
     @SerializedName(value = "relationship") var relationship: String
         )

@@ -123,6 +123,25 @@ class LockerFragment : Fragment(), ChildrenView {
             .addToBackStack(null)
             .commitAllowingStateLoss()
     }
+    //user data를 보내기
+    private fun sendUserData(child: Child) {
+        (context as MainActivity).supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.main_frm, InfoChildLockerFragment().apply {
+                arguments = Bundle().apply {
+                    val gson = Gson()
+                    val childJson = gson.toJson(child)
+                    putString("child",childJson)
+                }
+            })
+            .addToBackStack(null)
+            .commitAllowingStateLoss()
+    }
+
+
+
+
+
 
     private fun openRecordActivity() {
         val intent = Intent(context, ChildRecordActivity::class.java)

@@ -74,15 +74,15 @@
 
             <TextView
                 android:id="@+id/recording_title_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="84dp"
-                android:layout_marginBottom="17dp"
                 android:fontFamily="@font/pretendard_medium"
                 android:text="음성 097.mp4a"
                 android:textColor="@color/black"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="@id/exo_duration"
+                app:layout_constraintBottom_toBottomOf="@id/exo_duration"
                 app:layout_constraintStart_toStartOf="parent"/>
 
 
