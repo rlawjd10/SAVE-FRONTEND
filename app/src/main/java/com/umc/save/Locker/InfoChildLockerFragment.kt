@@ -2,20 +2,18 @@ package com.umc.save.Locker
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
-import com.umc.save.Home.HomeFragment
 import com.umc.save.Home.option.HomeAlarmFragment
 import com.umc.save.Home.option.HomeSettingsFragment
+import com.umc.save.Locker.Record.RecordChildLockerFragment
+import com.umc.save.Locker.data.Child
 import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.databinding.FragmentLockerChildInfoBinding
@@ -33,7 +31,7 @@ class InfoChildLockerFragment : Fragment() {
         binding = FragmentLockerChildInfoBinding.inflate(inflater,container,false)
 
         val childJson = arguments?.getString("child")
-        val child = gson.fromJson(childJson,Child::class.java)
+        val child = gson.fromJson(childJson, Child::class.java)
 
 
         initActionBar()

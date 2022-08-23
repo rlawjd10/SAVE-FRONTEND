@@ -1,14 +1,10 @@
 package com.umc.save.Record
 
 import android.graphics.Color
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.umc.save.Locker.ChildEditRVAdapter
 import com.umc.save.Record.Auth.ChildGet.Child
-import com.umc.save.Record.Auth.ChildRecord.childidx_var
-import com.umc.save.Record.Auth.SuspectRecord.suspectIdx_var
 import com.umc.save.databinding.ItemChildEditBinding
 
 class RecordPreRVAdapter(private val childList : ArrayList<Child>) :

@@ -40,13 +40,13 @@
         <activity android:name=".Record.RecordDetail.AbuseTypeActivity" />
         <activity android:name=".Record.OffenderRecordActivity" />
         <activity
-            android:name=".Locker.PictureLockerActivity"
+            android:name=".Locker.Picture.PictureLockerActivity"
             android:theme="@style/Theme.ActivityDialog" />
         <activity
-            android:name=".Locker.PlayerLockerActivity"
+            android:name=".Locker.Video.PlayerLockerActivity"
             android:theme="@style/Theme.ActivityDialog" />
         <activity
-            android:name=".Locker.RecordingLockerActivity"
+            android:name=".Locker.Recording.RecordingLockerActivity"
             android:theme="@style/Theme.ActivityDialog" />
         <activity android:name=".Sign.SignUpActivity" />
         <activity android:name=".Sign.SignUpCompleteActivity" />
@@ -60,9 +60,9 @@
             android:name=".Sign.AnnouncementFactsFalseActivity"
             android:theme="@style/Theme.ActivityDialog" />
 
-        <activity android:name=".Locker.RecordDeleteLockerActivity" />
-        <activity android:name=".Locker.ChildDeleteLockerActivity" />
-        <activity android:name=".Locker.SuspectDeleteLockerActivity" />
+        <activity android:name=".Locker.Record.RecordDeleteLockerActivity" />
+        <activity android:name=".Locker.DeleteChild.ChildDeleteLockerActivity" />
+        <activity android:name=".Locker.DeleteSuspect.SuspectDeleteLockerActivity" />
     </application>
 
 </manifest>

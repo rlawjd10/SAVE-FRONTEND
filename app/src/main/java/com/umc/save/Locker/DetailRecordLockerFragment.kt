@@ -1,32 +1,32 @@
 package com.umc.save.Locker
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.media.MediaPlayer
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
-import androidx.core.view.marginStart
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.Player
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.umc.save.Home.option.HomeDialogFragment
+import com.umc.save.Locker.Abuse.AbuseDetailService
+import com.umc.save.Locker.Abuse.AbuseDetailView
+import com.umc.save.Locker.DeleteRecord.DeleteRecord
+import com.umc.save.Locker.DeleteRecord.DeleteRecordService
+import com.umc.save.Locker.DeleteRecord.DeleteRecordView
+import com.umc.save.Locker.Picture.ListPictureLockerFragment
+import com.umc.save.Locker.Record.RecordDetailData
+import com.umc.save.Locker.Video.ListVideoLockerFragment
+import com.umc.save.Locker.Recording.RecordingLockerActivity
+import com.umc.save.Locker.Recording.RecordingRecordRVAdapter
+import com.umc.save.Locker.data.Picture
+import com.umc.save.Locker.data.Recording
+import com.umc.save.Locker.data.Video
 import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.databinding.FragmentLockerRecordDetailBinding
-import java.sql.Time
-import java.util.*
 import kotlin.collections.ArrayList
 
 class DetailRecordLockerFragment : Fragment(), AbuseDetailView, DeleteRecordView {
@@ -106,7 +106,7 @@ class DetailRecordLockerFragment : Fragment(), AbuseDetailView, DeleteRecordView
     private fun setPicture() {
         (context as MainActivity).supportFragmentManager
             .beginTransaction()
-            .replace(R.id.picture_video_frm,ListPictureLockerFragment().apply {
+            .replace(R.id.picture_video_frm, ListPictureLockerFragment().apply {
                 arguments = Bundle().apply {
                     val gson = Gson()
                     val pictureJson = gson.toJson(pictureList)
@@ -120,7 +120,7 @@ class DetailRecordLockerFragment : Fragment(), AbuseDetailView, DeleteRecordView
     private fun setVideo() {
         (context as MainActivity).supportFragmentManager
             .beginTransaction()
-            .replace(R.id.picture_video_frm,ListVideoLockerFragment().apply {
+            .replace(R.id.picture_video_frm, ListVideoLockerFragment().apply {
                 arguments = Bundle().apply {
                     val gson = Gson()
                     val videoJson = gson.toJson(videoList)

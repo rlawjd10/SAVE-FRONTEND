@@ -6,14 +6,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
-import com.umc.save.Locker.ChildrenService
 import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Sign.Auth.App
@@ -21,7 +16,6 @@ import com.umc.save.Sign.Auth.LogoutService
 import com.umc.save.Sign.Auth.getLogoutView
 import com.umc.save.Sign.Auth.userIdx_var
 import com.umc.save.Sign.LoginActivity
-import com.umc.save.databinding.FragmentHomeBinding
 import com.umc.save.databinding.FragmentHomeSettingsBinding
 
 

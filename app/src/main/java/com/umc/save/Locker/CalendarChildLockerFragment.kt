@@ -1,30 +1,21 @@
 package com.umc.save.Locker
 
 import android.annotation.SuppressLint
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
-import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
-import com.prolificinteractive.materialcalendarview.format.TitleFormatter
-import com.prolificinteractive.materialcalendarview.spans.DotSpan
-import com.umc.save.R
+import com.umc.save.Locker.Abuse.AbuseService
+import com.umc.save.Locker.Abuse.AbuseView
+import com.umc.save.Locker.Record.RecordData
 import com.umc.save.databinding.FragmentLockerChildCalendarBinding
-import com.umc.save.databinding.FragmentLockerChildListBinding
-import java.sql.Time
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -44,6 +35,7 @@ class CalendarChildLockerFragment(child: Int) : Fragment(), AbuseView {
 
         getAbuseCases()
 
+        //material calendarview custom
         val weekdayList = arrayOf("SUN","MON","TUE","WED","THU","FRI","SAT")
         val monthList = arrayOf("01","02","03","04","05","06","07","08","09","10","11","12")
         val disabledDates = hashSetOf<CalendarDay>()
