@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="14dp">
+
+    <ImageView
+        android:id="@+id/home_alarm_item_iv"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+
+        android:layout_marginStart="27dp"
+        android:layout_marginEnd="27dp"
+
+        android:background="@drawable/radius_home_btn"
+        android:backgroundTint="@color/light_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/home_alarm_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="18dp"
+        android:fontFamily="@font/pretendard_medium"
+        android:text="자동로그인이 되었습니다."
+        android:textColor="@color/black"
+
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/home_alarm_item_iv"
+        app:layout_constraintStart_toStartOf="@id/home_alarm_item_iv"
+        app:layout_constraintTop_toTopOf="@id/home_alarm_item_iv" />
+
+    <TextView
+        android:id="@+id/home_alarm_date_tv"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+
+        android:text="2022.08.23"
+        android:textSize="10sp"
+        android:textColor="@color/dark_red"
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:gravity="center"
+
+        android:layout_marginEnd="23.97dp"
+        app:layout_constraintBottom_toBottomOf="@id/home_alarm_item_iv"
+        app:layout_constraintTop_toTopOf="@id/home_alarm_item_iv"
+        app:layout_constraintEnd_toEndOf="@id/home_alarm_item_iv"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

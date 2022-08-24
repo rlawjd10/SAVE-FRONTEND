@@ -89,10 +89,10 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
                 // s에는 변경 후의 문자열이 담겨 있다.
                 if (binding.signupPwValiLengthTv.isInvisible && binding.signupPwValiCombinationTv.isInvisible) {
                     PWCheck = true
-                    Log.d("password-check", "비밀번호 체크")
+                    Log.d("password-check", "92 비밀번호 체크")
                 } else {
                     PWCheck = false
-                    Log.d("NO - password-check", "비밀번호 false 체크")
+                    Log.d("NO - password-check", "95 비밀번호 false 체크")
                 }
             }
 
@@ -172,10 +172,10 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
                     asso.visibility = View.VISIBLE
 
                 if (asso.isInvisible) {
-                    Log.d("password-confirm-check", "비밀번호 일치 체크")
+                    Log.d("password-confirm-check", "175 비밀번호 일치 체크")
                     PWConfirmCheck = true
                 } else {
-                    Log.d("NO - password-confirm-check", "비밀번호 불일치 체크")
+                    Log.d("NO - password-confirm-check", "178 비밀번호 불일치 체크")
                     PWConfirmCheck = false
                 }
 
@@ -193,10 +193,10 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
                 if (checkName(nameEditText.text.toString())) {
-                    Log.d("name-check", "이름 체크")
+                    Log.d("name-check", "196 이름 체크")
                     nameCheck = true
                 } else {
-                    Log.d("NO - name-check", "이름 false 체크")
+                    Log.d("NO - name-check", "199 이름 false 체크")
                     nameCheck = false
                 }
             }
@@ -215,10 +215,10 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
             // EditText 입력이 끝난 후
             override fun afterTextChanged(p0: Editable?) {
                 if (checkEmailAddress(emailEditText.text.toString())) {
-                    Log.d("email-check", "이메일 체크")
+                    Log.d("email-check", "218 이메일 체크")
                     emailCheck = true
                 } else {
-                    Log.d("NO - email-check", "이메일 false 체크")
+                    Log.d("NO - email-check", "221 이메일 false 체크")
                     emailCheck = false
                 }
             }
@@ -273,7 +273,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
             if (agreeChecked2 && agreeChecked4) {
                 Log.d("true-check", "274-두개가 체크되었을 때")
                 onCheckClick(true, allCheck, binding.signupConsentAllTv)
-                //binding.signupCompleteBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_red))
+                binding.signupCompleteBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.dark_red))
             }
             if (!agreeChecked2 || !agreeChecked4) {
                 onCheckClick(false, allCheck, binding.signupConsentAllTv)

@@ -163,9 +163,6 @@
             android:layout_marginTop="32dp"
             android:layout_marginStart="27dp"
             android:layout_marginEnd="27dp"
-
-            android:visibility="gone"
-
             android:background="@drawable/radius_home_btn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

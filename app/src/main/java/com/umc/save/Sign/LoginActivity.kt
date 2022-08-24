@@ -16,10 +16,14 @@ import android.text.style.UnderlineSpan
 import android.util.Log
 import android.widget.*
 import androidx.core.content.ContextCompat
+import com.umc.save.Home.option.AlarmRVAdapter
+import com.umc.save.Home.option.HomeAlarmFragment
 import com.umc.save.MainActivity
 import com.umc.save.R
 import com.umc.save.Sign.Auth.*
 import com.umc.save.databinding.ActivityLoginBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class LoginActivity : AppCompatActivity(), LoginView, AutoLoginView {
@@ -188,18 +192,16 @@ class LoginActivity : AppCompatActivity(), LoginView, AutoLoginView {
     //로그인 실패
     override fun onLoginFailure(code: Int, message: String) {
         Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
-        /*when(code) {
-            2003, 2004, 2101, 2103 -> {Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()}
-            2334 -> {Toast.makeText(this@LoginActivity, "해당 이메일은 존재하지 않습니다", Toast.LENGTH_SHORT).show()}
-            3010 -> {Toast.makeText(this@LoginActivity, "로그인이 실패하였습니다.", Toast.LENGTH_SHORT).show()}
-        }*/
     }
 
     //자동 로그인
     override fun onAutoLoginSuccess(code: Int, result: aResult) {
+
+        //자동 로그인 코드
         Log.d("AUTO-LOGIN-USER-SUCCESS",result.toString())
         userIdx_var.UserIdx.UserIdx = result.userIdx
         startMainActivity()
+
     }
 
     override fun userAutoNotExist(code: Int, message: String) {
